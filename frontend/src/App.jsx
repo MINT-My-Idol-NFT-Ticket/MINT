@@ -8,8 +8,11 @@ import Brightness7Icon from '@mui/icons-material/Brightness7'
 import ModeContext from './contexts/ModeContexts.js'
 import useBrightness from './hooks/useBrightness'
 
-import MintHome from './pages/MintHome.jsx'
+import { Box, flexbox } from '@mui/system'
+import Splash from './pages/intro/Splash.jsx'
 import Test from './pages/Test.jsx'
+import Intro from './pages/intro/Intro.jsx'
+import MintConcertDate from './pages/MintConcertDate.jsx'
 
 function App({ mode }) {
   const [bright, setBright] = useBrightness()
@@ -20,8 +23,10 @@ function App({ mode }) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/home" element={<MintHome />} />
-        <Route exact path="/test" element={<Test />} />
+        <Route exact path="/" element={<Splash />} />
+        <Route path="/test" element={<Test />} />
+        <Route path="/intro" element={<Intro />} />
+        <Route path="/concert/date" element={<MintConcertDate />} />
       </Routes>
     </BrowserRouter>
   )
@@ -69,6 +74,9 @@ export default function ToggleColorMode() {
                   disabled: '#EEEEEE',
                 },
               }),
+        },
+        typography: {
+          fontFamily: 'Spoqa Han Sans Neo',
         },
       }),
     [mode],
