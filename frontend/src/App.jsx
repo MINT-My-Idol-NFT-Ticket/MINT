@@ -1,7 +1,8 @@
 import * as React from 'react'
-import { BrowserRouter, Routes, Route, Router } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles'
 
+import { Box, flexbox } from '@mui/system'
 import MintHome from './pages/MintHome.jsx'
 import Test from './pages/Test.jsx'
 
@@ -69,7 +70,15 @@ export default function ToggleColorMode() {
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
-        <App />
+        <Box
+          sx={{
+            width: '360px',
+            margin: '0 auto',
+            minHeight: '645px',
+            backgroundColor: 'orange',
+          }}>
+          <App />
+        </Box>
       </ThemeProvider>
     </ColorModeContext.Provider>
   )
