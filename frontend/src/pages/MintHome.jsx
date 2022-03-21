@@ -1,5 +1,14 @@
+import MintFooter from '../components/footer/MintFooter'
+import '../styles/MintFooter.css'
+
 function MintHome() {
-  return <button>MintHome</button>
+  return (
+    <>
+      <div className="MintHome_footer">
+        <MintFooter />
+      </div>
+    </>
+  )
 }
 
 export default MintHome
