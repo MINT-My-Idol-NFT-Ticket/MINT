@@ -6,6 +6,7 @@ import { Box, flexbox } from '@mui/system'
 import Splash from './pages/intro/Splash.jsx'
 import Test from './pages/Test.jsx'
 import Intro from './pages/intro/Intro.jsx'
+import MintConcertDate from './pages/MintConcertDate.jsx'
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} })
 
@@ -18,6 +19,7 @@ function App() {
         <Route exact path="/" element={<Splash />} />
         <Route path="/test" element={<Test />} />
         <Route path="/intro" element={<Intro />} />
+        <Route path="/concert/date" element={<MintConcertDate />} />
       </Routes>
     </BrowserRouter>
   )
@@ -77,12 +79,11 @@ export default function ToggleColorMode() {
       <ThemeProvider theme={theme}>
         <Box
           sx={{
+            position: 'relative',
             width: '360px',
             margin: '0 auto',
             minHeight: '645px',
-            backgroundColor: 'white',
-            border: '1px solid black',
-            position: 'relative',
+            backgroundColor: '#EEEEEE',
           }}>
           <App />
         </Box>
