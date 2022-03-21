@@ -7,10 +7,10 @@ import { BottomNavigation, BottomNavigationAction } from '@mui/material'
 function MintFooter() {
   return (
     <BottomNavigation>
-      <BottomNavigationAction label="Home" icon={<HomeIcon />} />
-      <BottomNavigationAction label="Menu" icon={<MenuIcon />} />
-      <BottomNavigationAction label="MyPage" icon={<AccountBoxIcon />} />
-      <BottomNavigationAction label="Search" icon={<SearchIcon />} />
+      <BottomNavigationAction label="Home" icon={<HomeIcon style={{ color: '#222831' }} />} />
+      <BottomNavigationAction label="Menu" icon={<MenuIcon style={{ color: '#222831' }} />} />
+      <BottomNavigationAction label="MyPage" icon={<AccountBoxIcon style={{ color: '#222831' }} />} />
+      <BottomNavigationAction label="Search" icon={<SearchIcon style={{ color: '#222831' }} />} />
     </BottomNavigation>
   )
 }

@@ -76,7 +76,7 @@ export default function ToggleColorMode() {
             width: '360px',
             margin: '0 auto',
             minHeight: '645px',
-            backgroundColor: 'orange',
+            backgroundColor: '#EEEEEE',
           }}>
           <App />
         </Box>

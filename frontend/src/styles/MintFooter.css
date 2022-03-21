@@ -1,4 +1,10 @@
-.MintHome_footer {
+.MintHome__header {
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.MintHome__footer {
 	position: absolute;
 	bottom: 0;
 	width: 100%;
