@@ -4,13 +4,18 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox'
 import SearchIcon from '@mui/icons-material/Search'
 import { BottomNavigation, BottomNavigationAction } from '@mui/material'
 
+import useBrightness from '../../hooks/useBrightness'
+
 function MintFooter() {
+  const [bright, setBright] = useBrightness()
+
+  const style = bright === 'light' ? { color: '#222831' } : { color: '#EEEEEE' }
   return (
     <BottomNavigation>
-      <BottomNavigationAction label="Home" icon={<HomeIcon style={{ color: '#222831' }} />} />
-      <BottomNavigationAction label="Menu" icon={<MenuIcon style={{ color: '#222831' }} />} />
-      <BottomNavigationAction label="MyPage" icon={<AccountBoxIcon style={{ color: '#222831' }} />} />
-      <BottomNavigationAction label="Search" icon={<SearchIcon style={{ color: '#222831' }} />} />
+      <BottomNavigationAction label="Home" icon={<HomeIcon style={style} />} />
+      <BottomNavigationAction label="Menu" icon={<MenuIcon style={style} />} />
+      <BottomNavigationAction label="MyPage" icon={<AccountBoxIcon style={style} />} />
+      <BottomNavigationAction label="Search" icon={<SearchIcon style={style} />} />
     </BottomNavigation>
   )
 }
