@@ -5,6 +5,7 @@ import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles'
 import { Box, flexbox } from '@mui/system'
 import MintHome from './pages/MintHome.jsx'
 import Test from './pages/Test.jsx'
+import MintConcertDate from './pages/MintConcertDate.jsx'
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} })
 
@@ -14,8 +15,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/home" element={<MintHome />} />
-        <Route exact path="/test" element={<Test />} />
+        <Route exact path="/" element={<MintHome />} />
+        <Route path="/test" element={<Test />} />
+        <Route path="/concert/date" element={<MintConcertDate />} />
       </Routes>
     </BrowserRouter>
   )
