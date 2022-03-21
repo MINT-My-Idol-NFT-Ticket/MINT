@@ -14,8 +14,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<MintHome />} />
-        <Route path="/test" element={<Test />} />
+        <Route exact path="/home" element={<MintHome />} />
+        <Route exact path="/test" element={<Test />} />
       </Routes>
     </BrowserRouter>
   )
@@ -72,10 +72,11 @@ export default function ToggleColorMode() {
       <ThemeProvider theme={theme}>
         <Box
           sx={{
+            position: 'relative',
             width: '360px',
             margin: '0 auto',
             minHeight: '645px',
-            backgroundColor: 'orange',
+            backgroundColor: '#EEEEEE',
           }}>
           <App />
         </Box>
