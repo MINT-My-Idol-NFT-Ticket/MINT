@@ -3,8 +3,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles'
 
 import { Box, flexbox } from '@mui/system'
-import MintHome from './pages/MintHome.jsx'
+import Splash from './pages/intro/Splash.jsx'
 import Test from './pages/Test.jsx'
+import Intro from './pages/intro/Intro.jsx'
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} })
 
@@ -14,8 +15,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<MintHome />} />
+        <Route exact path="/" element={<Splash />} />
         <Route path="/test" element={<Test />} />
+        <Route path="/intro" element={<Intro />} />
       </Routes>
     </BrowserRouter>
   )
@@ -63,6 +65,9 @@ export default function ToggleColorMode() {
                 },
               }),
         },
+        typography: {
+          fontFamily: 'Spoqa Han Sans Neo',
+        },
       }),
     [mode],
   )
@@ -75,7 +80,9 @@ export default function ToggleColorMode() {
             width: '360px',
             margin: '0 auto',
             minHeight: '645px',
-            backgroundColor: 'orange',
+            backgroundColor: 'white',
+            border: '1px solid black',
+            position: 'relative',
           }}>
           <App />
         </Box>
