@@ -1,0 +1,19 @@
+.MintHome__subTitle {
+	display: flex;
+	justify-content: space-between;
+	padding: 0 20px;
+	margin: 80px 0 10px;
+	font-weight: bold;
+}
+.MintHome__subTitle > p{
+	font-size: 20px;
+}
+
+
+.MintHome__notOpenList{
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	padding: 0 10px;
+	box-sizing: border-box;
+}
