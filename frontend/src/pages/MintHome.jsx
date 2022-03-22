@@ -1,52 +1,53 @@
-import '../styles/MintHome.css'
+//components
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
-
+//modules
+import '../styles/MintHome.css'
+//components
 import MintHeader from '../components/header/MintHeader'
 import MintFooter from '../components/footer/MintFooter'
 import MintBanner from '../components/home/MintBanner'
 import MintCardItem from '../components/home/MintCardItem'
+import MintPageTemplate from '../components/common/MintPageTemplate'
 
 function MintHome({ bright }) {
-  const makeOpenList = testData => {
-    const style = {
-      singer: {
-        fontSize: '15px',
-      },
-      title: {
-        fontSize: '14px',
-      },
-      date: {
-        fontSize: '12px',
-        fontWeight: '300',
-      },
+  const Header = () => <MintHeader />
+  const Contents = () => {
+    const makeOpenList = testData => {
+      const style = {
+        singer: {
+          fontSize: '15px',
+        },
+        title: {
+          fontSize: '14px',
+        },
+        date: {
+          fontSize: '12px',
+          fontWeight: '300',
+        },
+      }
+      return testData.map(concert => <MintCardItem key={concert.date} concertData={concert} textStyle={style} />)
     }
-    return testData.map(concert => <MintCardItem key={concert.date} concertData={concert} textStyle={style} />)
-  }
-  const makeNotOpenList = testData => {
-    const style = {
-      singer: {
-        fontWeight: '500',
-        fontSize: '12px',
-      },
-      title: {
-        fontWeight: '500',
-        fontSize: '12px',
-      },
-      date: {
-        fontSize: '10px',
-        fontWeight: '300',
-      },
+    const makeNotOpenList = testData => {
+      const style = {
+        singer: {
+          fontWeight: '500',
+          fontSize: '12px',
+        },
+        title: {
+          fontWeight: '500',
+          fontSize: '12px',
+        },
+        date: {
+          fontSize: '10px',
+          fontWeight: '300',
+        },
+      }
+      return testData.map(concert => (
+        <MintCardItem key={concert.date} isOpen={true} concertData={concert} textStyle={style} />
+      ))
     }
-    return testData.map(concert => (
-      <MintCardItem key={concert.date} isOpen={true} concertData={concert} textStyle={style} />
-    ))
-  }
-  return (
-    <div className={`MintHome ${bright}`}>
-      <div className="MintHome__header">
-        <MintHeader />
-      </div>
-      <div className="MintHome__contents">
+    return (
+      <>
         <MintBanner />
         {makeOpenList(testData)}
         <div className="MintHome__sub__title">
@@ -54,12 +55,12 @@ function MintHome({ bright }) {
           <ChevronRightIcon />
         </div>
         <div className="MintHome__not__open__list">{makeNotOpenList(testData2)}</div>
-      </div>
-      <div className="MintHome__footer">
-        <MintFooter />
-      </div>
-    </div>
-  )
+      </>
+    )
+  }
+  const Footer = () => <MintFooter />
+
+  return <MintPageTemplate header={<Header />} contents={<Contents />} footer={<Footer />} />
 }
 
 // 테스트 데이터

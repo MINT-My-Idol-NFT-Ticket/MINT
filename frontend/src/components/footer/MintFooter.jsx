@@ -1,9 +1,10 @@
+//pakages
 import HomeIcon from '@mui/icons-material/Home'
 import MenuIcon from '@mui/icons-material/Menu'
 import AccountBoxIcon from '@mui/icons-material/AccountBox'
 import SearchIcon from '@mui/icons-material/Search'
 import { BottomNavigation, BottomNavigationAction } from '@mui/material'
-
+//modules
 import useBrightness from '../../hooks/useBrightness'
 
 function MintFooter() {

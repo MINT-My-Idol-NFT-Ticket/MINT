@@ -1,4 +1,6 @@
+//modules
 import '../../styles/MintCardItem.css'
+//componentx
 import MintConcertText from '../common/MintConcertText.jsx'
 // 인라인 리소스 확보시 스타일 제거 필요
 
