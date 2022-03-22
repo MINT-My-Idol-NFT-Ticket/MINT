@@ -1,54 +1,28 @@
 //packages
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import MintBanner from './MintBanner'
-import MintHomeCard from './MintHomeCard'
+//modules
+import '../../styles/MintHomeContents.css'
+//components
+import MintOpenCard from './MintOpenCard'
+import MintNotOpenCard from './MintNotOpenCard'
 
 export default function MintHomeContents() {
-  const makeOpenList = testData => {
-    const style = {
-      singer: {
-        fontSize: '15px',
-      },
-      title: {
-        fontSize: '14px',
-      },
-      date: {
-        fontSize: '12px',
-        fontWeight: '300',
-      },
-    }
-    return testData.map(concert => (
-      <MintHomeCard key={concert.date} concertData={concert} textStyle={style} height="150px" />
-    ))
-  }
-  const makeNotOpenList = testData => {
-    const style = {
-      singer: {
-        fontWeight: '600',
-        fontSize: '12px',
-      },
-      title: {
-        fontWeight: '500',
-        fontSize: '12px',
-      },
-      date: {
-        fontSize: '10px',
-        fontWeight: '300',
-      },
-    }
-    return testData.map(concert => (
-      <MintHomeCard key={concert.date} isOpen={true} concertData={concert} textStyle={style} height="120px" />
-    ))
-  }
+  const makeOpenList = testData =>
+    testData.map(concert => <MintOpenCard key={concert.date} concertData={concert} height="150px" />)
+
+  const makeNotOpenList = testData =>
+    testData.map(concert => <MintNotOpenCard key={concert.date} concertData={concert} height="120px" />)
+
   return (
     <>
       <MintBanner />
       {makeOpenList(testData)}
-      <div className="MintHome__sub__title">
+      <div className="MintHome__subTitle">
         <p>오픈 예정</p>
         <ChevronRightIcon />
       </div>
-      <div className="MintHome__not__open__list">{makeNotOpenList(testData2)}</div>
+      <div className="MintHome__notOpenList">{makeNotOpenList(testData2)}</div>
     </>
   )
 }
