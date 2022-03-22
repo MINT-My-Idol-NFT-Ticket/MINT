@@ -11,7 +11,7 @@ function MintFooter() {
 
   const style = bright === 'light' ? { color: '#222831' } : { color: '#EEEEEE' }
   return (
-    <BottomNavigation>
+    <BottomNavigation sx={{ width: '100%', height: '50px' }}>
       <BottomNavigationAction label="Home" icon={<HomeIcon style={style} />} />
       <BottomNavigationAction label="Menu" icon={<MenuIcon style={style} />} />
       <BottomNavigationAction label="MyPage" icon={<AccountBoxIcon style={style} />} />

@@ -26,7 +26,7 @@ function App({ mode }) {
       <Routes>
         <Route exact path="/" element={<Splash />} />
         <Route path="/intro" element={<Intro />} />
-        <Route path="/home" element={<MintHome />} />
+        <Route path="/home" element={<MintHome bright={bright} />} />
         <Route path="/concert/date" element={<MintConcertDate />} />
       </Routes>
     </BrowserRouter>
@@ -90,7 +90,7 @@ export default function ToggleColorMode() {
           position: 'relative',
           width: '360px',
           margin: '0 auto',
-          minHeight: '645px',
+          maxHeight: '645px',
           backgroundColor: mode === 'light' ? '#EEEEEE' : '#222831',
         }}>
         <ModeContext>
