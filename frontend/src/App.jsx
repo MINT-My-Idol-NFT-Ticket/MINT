@@ -2,16 +2,18 @@
 import * as React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
-import { Box } from '@mui/system'
 import IconButton from '@mui/material/IconButton'
 import Brightness4Icon from '@mui/icons-material/Brightness4'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
 //modules
 import ModeContext from './contexts/ModeContexts.js'
 import useBrightness from './hooks/useBrightness'
+
 //compoenents
-import Splash from './pages/intro/Splash.jsx'
-import Intro from './pages/intro/Intro.jsx'
+import { Box } from '@mui/system'
+import MintSplash from './pages/MintSplash.jsx'
+import MintIntro from './pages/MintIntro.jsx'
+import MintAddress from './pages/MintAddress.jsx'
 import MintConcertDate from './pages/MintConcertDate.jsx'
 import MintHome from './pages/MintHome.jsx'
 import MintSearch from './pages/MintSearch.jsx'
@@ -25,11 +27,12 @@ function App({ mode }) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<Splash />} />
-        <Route path="/intro" element={<Intro />} />
+        <Route exact path="/" element={<MintSplash />} />
+        <Route path="/intro" element={<MintIntro />} />
         <Route path="/home" element={<MintHome bright={bright} />} />
         <Route path="/search" element={<MintSearch bright={bright} />} />
         <Route path="/concert/date" element={<MintConcertDate />} />
+        <Route path="/address" element={<MintAddress />} />
       </Routes>
     </BrowserRouter>
   )
