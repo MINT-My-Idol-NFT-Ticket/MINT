@@ -1,25 +1,30 @@
 import '../../styles/MintCardItem.css'
+import MintConcertText from '../common/MintConcertText.jsx'
 // 인라인 리소스 확보시 스타일 제거 필요
 
-export default function MintCardItem(props) {
+export default function MintCardItem({ isOpen, concertData, textStyle }) {
   return (
-    <div className="MintCardItem">
-      <div className="MintCardItem__img">
+    <div className={`MintCardItem ${isOpen ? 'open' : ''}`}>
+      {/* {a} */}
+      <div className={`MintCardItem__img`}>
         <div
-          className="img__wrapper"
+          className={`img__wrapper`}
           style={{
             width: '100%',
             height: '100%',
             backgroundColor: 'brown',
           }}>
-          이것은 포스터 영역이여
+          {concertData.img}
         </div>
       </div>
-      <p className="MintCardItem__title">
-        <span className="singer">[가수]</span>
-        <span className="title">이것은 제목이여</span>
-      </p>
-      <p className="MintCardItem__date">이것은 날짜여</p>
+      <MintConcertText
+        data={{
+          singer: concertData.singer,
+          title: concertData.title,
+          date: concertData.date,
+        }}
+        textStyle={textStyle}
+      />
     </div>
   )
 }
