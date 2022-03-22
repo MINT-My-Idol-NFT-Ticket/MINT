@@ -1,3 +1,4 @@
+//packages
 import * as React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
@@ -5,14 +6,14 @@ import { Box } from '@mui/system'
 import IconButton from '@mui/material/IconButton'
 import Brightness4Icon from '@mui/icons-material/Brightness4'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
-import ModeContext from './contexts/ModeContexts.js'
-import useBrightness from './hooks/useBrightness'
-
-import { Box, flexbox } from '@mui/system'
+//compoenents
 import Splash from './pages/intro/Splash.jsx'
-import Test from './pages/Test.jsx'
 import Intro from './pages/intro/Intro.jsx'
 import MintConcertDate from './pages/MintConcertDate.jsx'
+import MintHome from './pages/MintHome.jsx'
+//modules
+import ModeContext from './contexts/ModeContexts.js'
+import useBrightness from './hooks/useBrightness'
 
 function App({ mode }) {
   const [bright, setBright] = useBrightness()
@@ -24,8 +25,8 @@ function App({ mode }) {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Splash />} />
-        <Route path="/test" element={<Test />} />
         <Route path="/intro" element={<Intro />} />
+        <Route path="/home" element={<MintHome />} />
         <Route path="/concert/date" element={<MintConcertDate />} />
       </Routes>
     </BrowserRouter>
