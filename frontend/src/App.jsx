@@ -6,14 +6,15 @@ import { Box } from '@mui/system'
 import IconButton from '@mui/material/IconButton'
 import Brightness4Icon from '@mui/icons-material/Brightness4'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
+//modules
+import ModeContext from './contexts/ModeContexts.js'
+import useBrightness from './hooks/useBrightness'
 //compoenents
 import Splash from './pages/intro/Splash.jsx'
 import Intro from './pages/intro/Intro.jsx'
 import MintConcertDate from './pages/MintConcertDate.jsx'
 import MintHome from './pages/MintHome.jsx'
-//modules
-import ModeContext from './contexts/ModeContexts.js'
-import useBrightness from './hooks/useBrightness'
+import MintSearch from './pages/MintSearch.jsx'
 
 function App({ mode }) {
   const [bright, setBright] = useBrightness()
@@ -27,6 +28,7 @@ function App({ mode }) {
         <Route exact path="/" element={<Splash />} />
         <Route path="/intro" element={<Intro />} />
         <Route path="/home" element={<MintHome bright={bright} />} />
+        <Route path="/search" element={<MintSearch bright={bright} />} />
         <Route path="/concert/date" element={<MintConcertDate />} />
       </Routes>
     </BrowserRouter>
