@@ -1,7 +1,9 @@
+import '../../styles/MintConcertText.css'
+
 export default function MintConcertText({ data, textStyle }) {
   return (
-    <>
-      <p className={`MintCardItem__title`}>
+    <div className="MintConcertText">
+      <p className={`MintConcertText__title`}>
         <span className="singer" style={textStyle.singer}>
           [{data.singer}]
         </span>
@@ -9,9 +11,9 @@ export default function MintConcertText({ data, textStyle }) {
           {data.title}
         </span>
       </p>
-      <p className={`MintCardItem__date`} style={textStyle.date}>
+      <p className={`MintConcertText__date`} style={textStyle.date}>
         {data.date}
       </p>
-    </>
+    </div>
   )
 }

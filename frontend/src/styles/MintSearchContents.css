@@ -1,0 +1,15 @@
+.MintSearchContents__searchBar {
+	position: absolute;
+	width: 100%;
+	top: 42px;
+}
+.MintSearchContents__searchBar.light {
+	background-color: #EEEEEE;
+}
+.MintSearchContents__searchBar.dark {
+	background-color: #222831;
+}
+
+.MintSearchContents__itemlist {
+	margin-top: 55px;
+}

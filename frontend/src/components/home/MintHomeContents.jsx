@@ -1,7 +1,7 @@
 //packages
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import MintBanner from './MintBanner'
-import MintCardItem from './MintCardItem'
+import MintHomeCard from './MintHomeCard'
 
 export default function MintHomeContents() {
   const makeOpenList = testData => {
@@ -18,13 +18,13 @@ export default function MintHomeContents() {
       },
     }
     return testData.map(concert => (
-      <MintCardItem key={concert.date} concertData={concert} textStyle={style} height="150px" />
+      <MintHomeCard key={concert.date} concertData={concert} textStyle={style} height="150px" />
     ))
   }
   const makeNotOpenList = testData => {
     const style = {
       singer: {
-        fontWeight: '500',
+        fontWeight: '600',
         fontSize: '12px',
       },
       title: {
@@ -37,7 +37,7 @@ export default function MintHomeContents() {
       },
     }
     return testData.map(concert => (
-      <MintCardItem key={concert.date} isOpen={true} concertData={concert} textStyle={style} height="120px" />
+      <MintHomeCard key={concert.date} isOpen={true} concertData={concert} textStyle={style} height="120px" />
     ))
   }
   return (

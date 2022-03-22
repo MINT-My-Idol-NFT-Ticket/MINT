@@ -1,0 +1,11 @@
+.MintConcertPoster {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.MintConcertPoster .img__wrapper{
+	border-radius: 10px;
+}

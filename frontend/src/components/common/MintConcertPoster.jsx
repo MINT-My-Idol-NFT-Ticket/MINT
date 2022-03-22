@@ -1,8 +1,9 @@
+import '../../styles/MintConcertPoster.css'
+
 export default function MintConcertPoster({ imgUrl, height }) {
-  console.log(height)
   return (
     <div
-      className={`MintCardItem__img`}
+      className={`MintConcertPoster`}
       style={{
         height: height,
       }}>
