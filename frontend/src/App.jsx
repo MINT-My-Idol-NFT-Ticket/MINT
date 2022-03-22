@@ -3,18 +3,19 @@ import * as React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import IconButton from '@mui/material/IconButton'
-import Brightness4Icon from '@mui/icons-material/Brightness4'
-import Brightness7Icon from '@mui/icons-material/Brightness7'
+import LightModeIcon from '@mui/icons-material/LightMode'
+import DarkModeIcon from '@mui/icons-material/DarkMode'
 //modules
 import ModeContext from './contexts/ModeContexts.js'
 import useBrightness from './hooks/useBrightness'
-
+import MintConcertArea from './pages/MintConcertArea.jsx'
+import MintSearch from './pages/MintSearch.jsx'
 //compoenents
 import { Box } from '@mui/system'
-import MintSplash from './pages/MintSplash'
-import MintIntro from './pages/MintIntro'
-import MintAddress from './pages/MintAddress'
-import MintConcertDate from './pages/MintConcertDate'
+import MintSplash from './pages/MintSplash.jsx'
+import MintIntro from './pages/MintIntro.jsx'
+import MintAddress from './pages/MintAddress.jsx'
+import MintConcertDate from './pages/MintConcertDate.jsx'
 import MintHome from './pages/MintHome'
 import MintSearch from './pages/MintSearch'
 import MintSoon from './pages/MintSoon'
@@ -34,6 +35,7 @@ function App({ mode }) {
         <Route path="/search" element={<MintSearch bright={bright} />} />
         <Route path="/comming_soon" element={<MintSoon bright={bright} />} />
         <Route path="/concert/date" element={<MintConcertDate />} />
+        <Route path="/concert/area" element={<MintConcertArea />} />
         <Route path="/address" element={<MintAddress />} />
       </Routes>
     </BrowserRouter>
@@ -82,6 +84,17 @@ export default function ToggleColorMode() {
                   disabled: '#EEEEEE',
                 },
               }),
+          // for button color
+          primary: {
+            // main purple
+            main: '#8811DD',
+            light: '#DECAEB',
+          },
+          secondary: {
+            // secondary grey
+            main: '#C4C4C4',
+            contrastText: '#222831',
+          },
         },
         typography: {
           fontFamily: 'Spoqa Han Sans Neo',
@@ -90,6 +103,12 @@ export default function ToggleColorMode() {
     [mode],
   )
 
+  const modeStyle = {
+    borderRadius: '100px',
+    padding: '8px',
+    boxShadow: '2px 2px 12px rgba(0,0,0,.4)',
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -97,7 +116,7 @@ export default function ToggleColorMode() {
           position: 'relative',
           width: '360px',
           margin: '0 auto',
-          maxHeight: '645px',
+          height: '645px',
           backgroundColor: mode === 'light' ? '#EEEEEE' : '#222831',
         }}>
         <ModeContext>
@@ -113,9 +132,9 @@ export default function ToggleColorMode() {
           onClick={colorMode.toggleColorMode}
           color="inherit">
           {mode === 'dark' ? (
-            <Brightness7Icon style={{ color: 'EEEEEE' }} />
+            <LightModeIcon sx={{ ...modeStyle, backgroundColor: '#EEEEEE' }} style={{ color: '#222831' }} />
           ) : (
-            <Brightness4Icon style={{ color: '222831' }} />
+            <DarkModeIcon sx={{ ...modeStyle, backgroundColor: '#222831' }} style={{ color: '#EEEEEE' }} />
           )}
         </IconButton>
       </Box>
