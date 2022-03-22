@@ -1,16 +1,16 @@
 //modules
-import '../../styles/MintSearchCard.css'
+import '../../styles/MintSoonCard.css'
 //componentx
 import MintConcertText from '../common/MintConcertText'
 import MintConcertPoster from '../common/MintConcertPoster'
 
-export default function MintSearchCard({ concertData, height }) {
+export default function MintSoonCard({ concertData, height }) {
   return (
-    <div className={`MintSearchCard`}>
-      <div className="MintSearchCard__poster">
+    <div className={`MintSoonCard`}>
+      <div className="MintSoonCard__poster">
         <MintConcertPoster imgUrl={concertData.img} height={height} />
       </div>
-      <div className="MintSearchCard__text">
+      <div className="MintSoonCard__text">
         <MintConcertText
           data={{
             singer: concertData.singer,
