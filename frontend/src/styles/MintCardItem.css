@@ -1,14 +1,18 @@
 .MintCardItem {
+	width: 100%;
 	margin: 10px 0;
 	padding: 0 12px;
 	box-sizing: border-box;
+}
+.MintCardItem.open {
+	width: 50%;
 }
 .MintCardItem__img {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-	height: 130px;
+	height: 110px;
 	box-sizing: border-box;
 }
 
@@ -17,17 +21,9 @@
 }
 
 .MintCardItem__title {
-	font-weight: bold;
 	margin: 5px 0;
-}
-
-.MintCardItem__title .singer{
-	font-size: 15px;
-}
-.MintCardItem__title .title{
-	font-size: 14px;
-}
-
-.MintCardItem__date {
-	font-size: 12px;
+	font-weight: bold;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }

@@ -1,18 +1,22 @@
+//packages
 import * as React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import IconButton from '@mui/material/IconButton'
 import Brightness4Icon from '@mui/icons-material/Brightness4'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
+//modules
 import ModeContext from './contexts/ModeContexts.js'
 import useBrightness from './hooks/useBrightness'
 
-import { Box, flexbox } from '@mui/system'
-import Splash from './pages/MintSplash.jsx'
-import Test from './pages/Test.jsx'
-import Intro from './pages/MintIntro.jsx'
-import MintConcertDate from './pages/MintConcertDate.jsx'
+//compoenents
+import { Box } from '@mui/system'
+import MintSplash from './pages/MintSplash.jsx'
+import MintIntro from './pages/MintIntro.jsx'
 import MintAddress from './pages/MintAddress.jsx'
+import MintConcertDate from './pages/MintConcertDate.jsx'
+import MintHome from './pages/MintHome.jsx'
+import MintSearch from './pages/MintSearch.jsx'
 
 function App({ mode }) {
   const [bright, setBright] = useBrightness()
@@ -23,9 +27,10 @@ function App({ mode }) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<Splash />} />
-        <Route path="/test" element={<Test />} />
-        <Route path="/intro" element={<Intro />} />
+        <Route exact path="/" element={<MintSplash />} />
+        <Route path="/intro" element={<MintIntro />} />
+        <Route path="/home" element={<MintHome bright={bright} />} />
+        <Route path="/search" element={<MintSearch bright={bright} />} />
         <Route path="/concert/date" element={<MintConcertDate />} />
         <Route path="/address" element={<MintAddress />} />
       </Routes>
@@ -90,7 +95,7 @@ export default function ToggleColorMode() {
           position: 'relative',
           width: '360px',
           margin: '0 auto',
-          minHeight: '645px',
+          maxHeight: '645px',
           backgroundColor: mode === 'light' ? '#EEEEEE' : '#222831',
         }}>
         <ModeContext>

@@ -23,12 +23,6 @@
       {
         "endOfLine": "auto"
       }
-    ],
-    "rules": {
-        "react/react-in-jsx-scope": "off",
-        "no-unused-vars": "off",
-        "no-console": "off",
-        "linebreak-style": 0,
-        "react/prop-types": "off"
-    }
+    ]
+  }
 }
