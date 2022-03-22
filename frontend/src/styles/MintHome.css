@@ -1,7 +1,7 @@
 .MintHome__sub__title {
 	display: flex;
 	justify-content: space-between;
-	padding: 0 12px;
+	padding: 0 20px;
 	margin: 80px 0 10px;
 	font-weight: bold;
 }
@@ -9,8 +9,17 @@
 	font-size: 20px;
 }
 
+
 .MintHome__not__open__list{
 	display: flex;
 	width: 100%;
 	flex-wrap: wrap;
+}
+
+.light {
+	color: #222831;
+}
+
+.dark {
+	color: #EEEEEE;
 }

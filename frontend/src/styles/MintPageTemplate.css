@@ -4,7 +4,7 @@
 .MintPageTemplate {
   display: flex;
   flex-direction: column;
-  max-height: 645px;
+  height: 645px;
 }
 .MintPageTemplate__header {
   flex: 0 1 auto;
@@ -12,9 +12,13 @@
 }
 .MintPageTemplate__contents {
   flex: 1 1 auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
   overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.MintPageTemplate__contents::-webkit-scrollbar {
+  display: none;
 }
 
 .MintPageTemplate__footer {

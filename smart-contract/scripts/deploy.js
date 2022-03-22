@@ -7,10 +7,10 @@ async function main() {
 
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
-  const Token = await ethers.getContractFactory("Token");
-  const token = await Token.deploy();
+  const MintTicket = await ethers.getContractFactory("MintTicket");
+  const mintTicket = await MintTicket.deploy();
 
-  console.log("Token address:", token.address);
+  saveFrontendFiles(mintTicket, "MintTicket");
 }
 
 function saveFrontendFiles(token, name) {
