@@ -1,13 +1,14 @@
 import { Box, Button, Typography } from '@mui/material'
 import React from 'react'
-import MintBtn from './MintBtn'
 
 function MintBtnGroup(props) {
   return (
     <Box
       sx={{
+        paddingTop: '20px',
         paddingLeft: '31px',
         paddingRight: '31px',
+        paddingBottom: '20px',
         backgroundColor: 'red',
       }}>
       <Button variant="contained" color="secondary" sx={{ width: '141px', height: '31px', marginRight: '16px' }}>

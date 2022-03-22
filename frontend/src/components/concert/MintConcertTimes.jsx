@@ -6,12 +6,17 @@ function MintConcertTimes(props) {
   const [choice, setChoice] = useState('')
 
   const passTime = () => {
-    props.myTime(props.times.date, props.idx)
+    props.pick(props.times.date, props.idx)
   }
   return (
     <>
       <Box
-        sx={{ display: 'flex', cursor: 'pointer', backgroundColor: props.selected ? '#DECAEB' : '' }}
+        sx={{
+          color: 'text.primary',
+          display: 'flex',
+          cursor: 'pointer',
+          backgroundColor: props.selected ? 'rgba(136, 17, 221, .15)' : '',
+        }}
         onClick={passTime}>
         <Box
           sx={{

@@ -15,6 +15,7 @@ import MintHome from './pages/MintHome.jsx'
 import ModeContext from './contexts/ModeContexts.js'
 import useBrightness from './hooks/useBrightness'
 import MintConcertArea from './pages/MintConcertArea.jsx'
+import MintSearch from './pages/MintSearch.jsx'
 
 function App({ mode }) {
   const [bright, setBright] = useBrightness()
@@ -28,6 +29,7 @@ function App({ mode }) {
         <Route exact path="/" element={<Splash />} />
         <Route path="/intro" element={<Intro />} />
         <Route path="/home" element={<MintHome bright={bright} />} />
+        <Route path="/search" element={<MintSearch bright={bright} />} />
         <Route path="/concert/date" element={<MintConcertDate />} />
         <Route path="/concert/area" element={<MintConcertArea />} />
       </Routes>
@@ -109,7 +111,7 @@ export default function ToggleColorMode() {
           position: 'relative',
           width: '360px',
           margin: '0 auto',
-          maxHeight: '645px',
+          height: '645px',
           backgroundColor: mode === 'light' ? '#EEEEEE' : '#222831',
         }}>
         <ModeContext>

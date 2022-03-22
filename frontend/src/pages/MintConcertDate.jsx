@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import tempBg from '../images/concert_bg.png'
 import { Box, Button, Typography } from '@mui/material'
-import MintConcertTimes from '../components/MintConcertTimes'
-import MintBtnGroup from '../components/MintBtnGroup'
+import MintConcertTimes from '../components/concert/MintConcertTimes'
+import MintBtnGroup from '../components/common/MintBtnGroup'
 
 function MintConcertDate() {
   const [tourName, settourName] = useState('BTS WORLD TOUR')
@@ -25,12 +25,13 @@ function MintConcertDate() {
   }
 
   return (
-    <Box sx={{ height: '645px' }}>
+    <Box>
       <Box
         sx={{
           textAlign: 'center',
           border: '1px solid red',
           height: '400px',
+          color: '#EEEEEE',
           backgroundImage: `url("${tempBg}")`,
         }}>
         <Typography variant="h6" sx={{ paddingTop: '20px' }}>
@@ -43,7 +44,7 @@ function MintConcertDate() {
           <MintConcertTimes
             key={time + idx}
             times={time}
-            myTime={pickTime}
+            pick={pickTime}
             idx={idx}
             selected={isSelected && idx === selectedId}
           />
