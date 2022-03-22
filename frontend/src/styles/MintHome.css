@@ -1,15 +1,44 @@
 .MintHome {
-	padding: 40px 0 50px;
+	display: flex;
+	flex-direction: column;
+	max-height: 645px;
 }
 
 .MintHome__header {
-	position: absolute;
-	top: 0;
+	flex: 0 1 auto;
 	width: 100%;
+}
+.MintHome__contents {
+	flex: 1 1 auto;
+	overflow-y: scroll;
+}
+
+.MintHome__sub__title {
+	display: flex;
+	justify-content: space-between;
+	padding: 0 12px;
+	margin: 80px 0 10px;
+	font-weight: bold;
+}
+.MintHome__sub__title > p{
+	font-size: 20px;
 }
 
 .MintHome__footer {
-	position: absolute;
-	bottom: 0;
+	flex: 0 1 auto;
 	width: 100%;
+}
+
+.MintHome__not__open__list{
+	display: flex;
+	width: 100%;
+	flex-wrap: wrap;
+}
+
+.light {
+	color: #222831;
+}
+
+.dark {
+	color: #EEEEEE;
 }
