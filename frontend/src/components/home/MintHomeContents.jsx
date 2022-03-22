@@ -17,7 +17,9 @@ export default function MintHomeContents() {
         fontWeight: '300',
       },
     }
-    return testData.map(concert => <MintCardItem key={concert.date} concertData={concert} textStyle={style} />)
+    return testData.map(concert => (
+      <MintCardItem key={concert.date} concertData={concert} textStyle={style} height="150px" />
+    ))
   }
   const makeNotOpenList = testData => {
     const style = {
@@ -35,7 +37,7 @@ export default function MintHomeContents() {
       },
     }
     return testData.map(concert => (
-      <MintCardItem key={concert.date} isOpen={true} concertData={concert} textStyle={style} />
+      <MintCardItem key={concert.date} isOpen={true} concertData={concert} textStyle={style} height="120px" />
     ))
   }
   return (

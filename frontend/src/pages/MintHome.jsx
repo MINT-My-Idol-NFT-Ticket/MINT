@@ -7,9 +7,9 @@ import MintHomeContents from '../components/home/MintHomeContents'
 import MintPageTemplate from '../components/common/MintPageTemplate'
 
 function MintHome({ bright }) {
-  const Header = () => <MintHeader />
+  const Header = () => <MintHeader bright={bright} />
   const Contents = () => <MintHomeContents />
-  const Footer = () => <MintFooter />
+  const Footer = () => <MintFooter bright={bright} />
 
   return (
     <div className={`${bright}`}>

@@ -1,24 +1,15 @@
 //modules
 import '../../styles/MintCardItem.css'
 //componentx
-import MintConcertText from '../common/MintConcertText.jsx'
+import MintConcertText from '../common/MintConcertText'
+import MintConcertPoster from '../common/MintConcertPoster'
+import { height } from '@mui/system'
 // 인라인 리소스 확보시 스타일 제거 필요
 
-export default function MintCardItem({ isOpen, concertData, textStyle }) {
+export default function MintCardItem({ isOpen, concertData, textStyle, height }) {
   return (
     <div className={`MintCardItem ${isOpen ? 'open' : ''}`}>
-      {/* {a} */}
-      <div className={`MintCardItem__img`}>
-        <div
-          className={`img__wrapper`}
-          style={{
-            width: '100%',
-            height: '100%',
-            backgroundColor: 'brown',
-          }}>
-          {concertData.img}
-        </div>
-      </div>
+      <MintConcertPoster imgUrl={concertData.img} height={height} />
       <MintConcertText
         data={{
           singer: concertData.singer,

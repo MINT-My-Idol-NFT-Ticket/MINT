@@ -1,0 +1,28 @@
+.MintSearchBar {
+	padding: 10px;
+	box-sizing: border-box;
+	background-color: inherit;
+}
+.MintSearchBar .searchBar{
+	all: unset;
+	width: 100%;
+	padding: 5px 10px;
+	font-size: 12px;
+	box-sizing: border-box;
+	border-radius: 10px;
+}
+
+.MintSearchBar .searchBar.light{
+	border: 2px solid #222831;
+}
+
+.MintSearchBar .searchBar.dark{
+	border: 2px solid #EEEEEE;
+}
+
+.MintSearchBar .searchBar:focus.light{
+	background-color: rgba(100, 100, 100, .2);
+}
+.MintSearchBar .searchBar:focus.dark{
+	background-color: rgba(50, 50, 50, .7);
+}

@@ -10,11 +10,11 @@ import Brightness7Icon from '@mui/icons-material/Brightness7'
 import ModeContext from './contexts/ModeContexts.js'
 import useBrightness from './hooks/useBrightness'
 //compoenents
-import Splash from './pages/intro/Splash.jsx'
-import Intro from './pages/intro/Intro.jsx'
-import MintConcertDate from './pages/MintConcertDate.jsx'
-import MintHome from './pages/MintHome.jsx'
-import MintSearch from './pages/MintSearch.jsx'
+import Splash from './pages/intro/Splash'
+import Intro from './pages/intro/Intro'
+import MintConcertDate from './pages/MintConcertDate'
+import MintHome from './pages/MintHome'
+import MintSearch from './pages/MintSearch'
 
 function App({ mode }) {
   const [bright, setBright] = useBrightness()
