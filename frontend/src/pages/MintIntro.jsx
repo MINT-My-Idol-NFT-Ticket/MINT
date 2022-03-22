@@ -4,15 +4,33 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
+import useBrightness from '../hooks/useBrightness'
 
 export default function Intro() {
+  const [bright, setBright] = useBrightness()
+  const moveToAccount = () => {
+    window.location.pathname = '/address'
+  }
+
+  const moveToSSAFYGit = () => {
+    window.open('https://project.ssafy.com/notice/view/BD202203100420475003290', '_blank')
+  }
+
   return (
     <>
-      <Typography variant="h5" component="div" sx={{ textAlign: 'center', fontWeight: '700', mt: '10px', mb: '10px' }}>
+      <Typography
+        variant="h5"
+        component="div"
+        sx={{
+          textAlign: 'center',
+          fontWeight: '700',
+          paddingTop: '70px',
+          color: bright === 'light' ? '#000000' : '#ffffff',
+        }}>
         안녕하세요~~
         <br /> 지갑 있으신가요~?
       </Typography>
-      <Card sx={{ height: '300px' }}>
+      <Card sx={{ width: '320px', height: '350px', mt: '20px', ml: '18px' }}>
         <CardContent>
           <Typography sx={{ textAlign: 'center', mt: '10px' }}>SSAFY WALLET 안내문</Typography>
           <Typography sx={{ mt: '10px' }}>
@@ -32,11 +50,15 @@ export default function Intro() {
           </Typography>
         </CardContent>
       </Card>
-      <Box textAlign="center">
-        <Button variant="text"> 지갑 주소 입력하기</Button>
+      <Box sx={{ textAlign: 'center', mt: '30px' }}>
+        <Button variant="text" sx={{ width: '250px' }} onClick={moveToAccount}>
+          지갑 주소 입력하기
+        </Button>
       </Box>
       <Box textAlign="center">
-        <Button variant="text"> 지갑 생성하기</Button>
+        <Button variant="text" sx={{ width: '250px', mt: '10px' }} onClick={moveToSSAFYGit}>
+          지갑 생성하기
+        </Button>
       </Box>
     </>
   )
