@@ -6,20 +6,6 @@ import MintConcertPoster from '../common/MintConcertPoster'
 // 인라인 리소스 확보시 스타일 제거 필요
 
 export default function MintNotOpenCard({ concertData, height }) {
-  const textStyle = {
-    singer: {
-      fontWeight: '600',
-      fontSize: '12px',
-    },
-    title: {
-      fontWeight: '500',
-      fontSize: '12px',
-    },
-    date: {
-      fontSize: '10px',
-      fontWeight: '300',
-    },
-  }
   return (
     <div className={`MintNotOpenCard`}>
       <MintConcertPoster imgUrl={concertData.img} height={height} />
@@ -33,4 +19,19 @@ export default function MintNotOpenCard({ concertData, height }) {
       />
     </div>
   )
+}
+
+const textStyle = {
+  singer: {
+    fontWeight: '600',
+    fontSize: '12px',
+  },
+  title: {
+    fontWeight: '500',
+    fontSize: '12px',
+  },
+  date: {
+    fontSize: '10px',
+    fontWeight: '300',
+  },
 }

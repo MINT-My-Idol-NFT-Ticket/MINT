@@ -5,18 +5,20 @@ import { ThemeProvider, createTheme } from '@mui/material/styles'
 import IconButton from '@mui/material/IconButton'
 import LightModeIcon from '@mui/icons-material/LightMode'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
+//modules
+import ModeContext from './contexts/ModeContexts.js'
+import useBrightness from './hooks/useBrightness'
+import MintConcertArea from './pages/MintConcertArea.jsx'
+import MintSearch from './pages/MintSearch.jsx'
 //compoenents
 import { Box } from '@mui/system'
 import MintSplash from './pages/MintSplash.jsx'
 import MintIntro from './pages/MintIntro.jsx'
 import MintAddress from './pages/MintAddress.jsx'
 import MintConcertDate from './pages/MintConcertDate.jsx'
-import MintHome from './pages/MintHome.jsx'
-//modules
-import ModeContext from './contexts/ModeContexts.js'
-import useBrightness from './hooks/useBrightness'
-import MintConcertArea from './pages/MintConcertArea.jsx'
-import MintSearch from './pages/MintSearch.jsx'
+import MintHome from './pages/MintHome'
+import MintSearch from './pages/MintSearch'
+import MintSoon from './pages/MintSoon'
 
 function App({ mode }) {
   const [bright, setBright] = useBrightness()
@@ -31,6 +33,7 @@ function App({ mode }) {
         <Route path="/intro" element={<MintIntro />} />
         <Route path="/home" element={<MintHome bright={bright} />} />
         <Route path="/search" element={<MintSearch bright={bright} />} />
+        <Route path="/comming_soon" element={<MintSoon bright={bright} />} />
         <Route path="/concert/date" element={<MintConcertDate />} />
         <Route path="/concert/area" element={<MintConcertArea />} />
         <Route path="/address" element={<MintAddress />} />
