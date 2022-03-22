@@ -14,6 +14,7 @@ import MintHome from './pages/MintHome.jsx'
 //modules
 import ModeContext from './contexts/ModeContexts.js'
 import useBrightness from './hooks/useBrightness'
+import MintConcertArea from './pages/MintConcertArea.jsx'
 
 function App({ mode }) {
   const [bright, setBright] = useBrightness()
@@ -28,6 +29,7 @@ function App({ mode }) {
         <Route path="/intro" element={<Intro />} />
         <Route path="/home" element={<MintHome />} />
         <Route path="/concert/date" element={<MintConcertDate />} />
+        <Route path="/concert/area" element={<MintConcertArea />} />
       </Routes>
     </BrowserRouter>
   )
@@ -75,6 +77,17 @@ export default function ToggleColorMode() {
                   disabled: '#EEEEEE',
                 },
               }),
+          // for button color
+          primary: {
+            // main purple
+            main: '#8811DD',
+            light: '#DECAEB',
+          },
+          secondary: {
+            // secondary grey
+            main: '#C4C4C4',
+            contrastText: '#222831',
+          },
         },
         typography: {
           fontFamily: 'Spoqa Han Sans Neo',
