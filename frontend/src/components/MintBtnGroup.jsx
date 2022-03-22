@@ -6,8 +6,6 @@ function MintBtnGroup(props) {
   return (
     <Box
       sx={{
-        position: 'absolute',
-        bottom: '28px',
         paddingLeft: '31px',
         paddingRight: '31px',
         backgroundColor: 'red',

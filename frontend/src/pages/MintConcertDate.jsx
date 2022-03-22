@@ -25,7 +25,7 @@ function MintConcertDate() {
   }
 
   return (
-    <Box>
+    <Box sx={{ height: '645px' }}>
       <Box
         sx={{
           textAlign: 'center',

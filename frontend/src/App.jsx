@@ -4,8 +4,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { Box } from '@mui/system'
 import IconButton from '@mui/material/IconButton'
-import Brightness4Icon from '@mui/icons-material/Brightness4'
-import Brightness7Icon from '@mui/icons-material/Brightness7'
+import LightModeIcon from '@mui/icons-material/LightMode'
+import DarkModeIcon from '@mui/icons-material/DarkMode'
 //compoenents
 import Splash from './pages/intro/Splash.jsx'
 import Intro from './pages/intro/Intro.jsx'
@@ -96,6 +96,12 @@ export default function ToggleColorMode() {
     [mode],
   )
 
+  const modeStyle = {
+    borderRadius: '100px',
+    padding: '8px',
+    boxShadow: '2px 2px 12px rgba(0,0,0,.4)',
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -119,9 +125,9 @@ export default function ToggleColorMode() {
           onClick={colorMode.toggleColorMode}
           color="inherit">
           {mode === 'dark' ? (
-            <Brightness7Icon style={{ color: 'EEEEEE' }} />
+            <LightModeIcon sx={{ ...modeStyle, backgroundColor: '#EEEEEE' }} style={{ color: '#222831' }} />
           ) : (
-            <Brightness4Icon style={{ color: '222831' }} />
+            <DarkModeIcon sx={{ ...modeStyle, backgroundColor: '#222831' }} style={{ color: '#EEEEEE' }} />
           )}
         </IconButton>
       </Box>
