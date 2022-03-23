@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-  <img src="./readme_assets/logo_light.png" alt="SSAFY MATE" height="150px" />
+  <img src="./readme_assets/logo_light.png" alt="MINT" height="150px" />
   <br />
   <h3>My Idol NFT Ticket</h3>
   <div>
