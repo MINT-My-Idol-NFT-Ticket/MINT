@@ -9,7 +9,6 @@ import DarkModeIcon from '@mui/icons-material/DarkMode'
 import ModeContext from './contexts/ModeContexts.js'
 import useBrightness from './hooks/useBrightness'
 import MintConcertArea from './pages/MintConcertArea.jsx'
-import MintSearch from './pages/MintSearch.jsx'
 //compoenents
 import { Box } from '@mui/system'
 import MintSplash from './pages/MintSplash.jsx'
@@ -104,8 +103,10 @@ export default function ToggleColorMode() {
   )
 
   const modeStyle = {
+    width: '28px',
+    height: '28px',
     borderRadius: '100px',
-    padding: '8px',
+    padding: '4px',
     boxShadow: '2px 2px 12px rgba(0,0,0,.4)',
   }
 
@@ -124,11 +125,11 @@ export default function ToggleColorMode() {
         </ModeContext>
         <IconButton
           sx={{
-            ml: 1,
             position: 'absolute',
-            right: '5px',
-            top: 0,
+            right: '3px',
+            top: '3px',
           }}
+          size="small"
           onClick={colorMode.toggleColorMode}
           color="inherit">
           {mode === 'dark' ? (
