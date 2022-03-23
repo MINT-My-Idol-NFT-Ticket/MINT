@@ -1,16 +1,14 @@
 import React from 'react'
 import { Box, Typography } from '@mui/material'
 
-function MintSeatForm({ title, seat, price }) {
+function MintSeatForm({ title, section, seat, price }) {
   return (
     <Box
       sx={{
         padding: '0 18px 0 18px',
       }}>
       <Typography>{title}</Typography>
-      <Box sx={content}>
-        {seat}구역 {price}eth
-      </Box>
+      <Box sx={content}>{seat}</Box>
     </Box>
   )
 }
@@ -19,6 +17,8 @@ function MintSeatForm({ title, seat, price }) {
 const content = {
   height: '58px',
   border: '1px solid #5F6369',
+  textAlign: 'center',
+  lineHeight: '58px',
 }
 
 // props default value
