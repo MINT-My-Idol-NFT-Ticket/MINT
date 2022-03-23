@@ -4,7 +4,7 @@
 .MintPageTemplate {
   display: flex;
   flex-direction: column;
-  height: 645px;
+  height: 100vh;
 }
 .MintPageTemplate__header {
   flex: 0 1 auto;
