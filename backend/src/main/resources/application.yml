@@ -1,0 +1,33 @@
+
+server:
+  port: 8080
+
+spring:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL57Dialect
+
+  config:
+    activate:
+      on-profile: local
+---
+
+server:
+  port: 9090
+
+spring:
+  datasource:
+    password: ssafy
+    username: ssafy
+    url: jdbc:mysql://j6b108.p.ssafy.io:3306/mint?serverTimezone=UTC&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  config:
+    activate:
+      on-profile: dev
