@@ -8,5 +8,6 @@ ARG JAR_FILE=./build/libs/backend-0.0.1-SNAPSHOT.jar
 
 ADD ${JAR_FILE} backend.jar
 
+ENV USE_PROFILE dev
 
 ENTRYPOINT ["java","-jar","backend.jar"]
