@@ -56,13 +56,13 @@
 
 ### **Front-end**
 
-| <img src="https://profilinator.rishav.dev/skills-assets/html5-original-wordmark.svg" alt="HTML5" width="50px" height="50px" /> | <img src="https://profilinator.rishav.dev/skills-assets/css3-original-wordmark.svg" alt="CSS3" width="50px" height="50px" /> | <img src="https://profilinator.rishav.dev/skills-assets/react-original-wordmark.svg" alt="React.js" width="50px" height="50px" /> | <img src="https://mui.com/static/logo.png" alt="MUI" width="50px" height="50px" /> |<img src="http://wiki.hash.kr/images/thumb/3/37/Web3.js_%EB%A1%9C%EA%B3%A0.png/200px-Web3.js_%EB%A1%9C%EA%B3%A0.png" alt="React.js" width="50px" height="50px" /> |
+| <img src="https://profilinator.rishav.dev/skills-assets/html5-original-wordmark.svg" alt="HTML5" width="50px" height="50px" /> | <img src="https://profilinator.rishav.dev/skills-assets/css3-original-wordmark.svg" alt="CSS3" width="50px" height="50px" /> | <img src="https://profilinator.rishav.dev/skills-assets/react-original-wordmark.svg" alt="React.js" width="50px" height="50px" /> | <img src="https://mui.com/static/logo.png" alt="MUI" width="50px" height="50px" /> |<img src="https://i.imgur.com/GX0qzK1.jpeg" alt="Web3.js" width="50px" height="50px" /> |
 | :----------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------: |:---------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |                                                             HTML5                                                              |                                                             CSS3                                                             |                                                               React                                                               |                                        MUI                                         |                                                                              Web3.js                                                                              |
 
 ### **Back-end**
 
-| <img src="https://profilinator.rishav.dev/skills-assets/java-original-wordmark.svg" alt="Java" width="50px" height="50px" /> |                                                                              <img src="https://www.seekpng.com/png/full/8-80775_spring-logo-png-transparent-spring-java.png" alt="Spring-Boot" width="50px" height="50px" />                                                                               | <img src="https://profilinator.rishav.dev/skills-assets/mysql-original-wordmark.svg" alt="MySQL" width="50px" height="50px" /> |
+| <img src="https://profilinator.rishav.dev/skills-assets/java-original-wordmark.svg" alt="Java" width="50px" height="50px" /> |                                                                              <img src="https://i2.wp.com/thinkground.studio/wp-content/uploads/2020/05/200525_spring-boot-1.png?w=310&ssl=1" alt="Spring-Boot" width="50px" height="50px" />                                                                               | <img src="https://profilinator.rishav.dev/skills-assets/mysql-original-wordmark.svg" alt="MySQL" width="50px" height="50px" /> |
 | :--------------------------------------------------------------------------------------------------------------------------: |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|  :----------------------------------------------------------------------------------------------------------------------------: |
 |                                                             Java                                                             |                                                                                                               Spring-Boot                                                                                                                                                                                  |                                                             MySQL                                                              |
 
@@ -83,14 +83,6 @@
 <div id="4"></div>
 
 ## 💡 주요 기능
-
-| 기능                      | 내용                                                                                                                                |
-| :------------------------ | :---------------------------------------------------------------------------------------------------------------------------------- |
-| 팀 공고                   | 팀들의 정보를 비교하고 검색 폼을 통해 내가 원하는 프로젝트 트랙, 직무, 기술 스택 등을 검색하여 내게 꼭 맞는 팀 정보를 제공해줍니다. |
-| 교육생 공고               | 교육생들의 정보를 한눈에 확인하고 검색 폼을 통해 나의 팀에 필요한 직무, 기술 역량 등을 갖춘 교육생을 찾아볼 수 있습니다.            |
-| 팀 지원 및 합류 요청 기능 | 내가 원하는 팀 또는 교육생을 찾았다면 팀 지원 및 팀 합류 요청 기능을 통해 팀에 합류하거나 팀을 구성할 수 있습니다.                  |
-| 실시간 1대1 채팅 서비스   | 팀장 또는 교육생에게 좀 더 구체적인 개발 계획이나 정보가 궁금하다면 실시간 1대1 채팅을 통해 이야기를 나눌 수 있습니다.              |
-| 반응형 웹 제공            | PC, 테블릿, 모바일 등 어떤 기기에서든 최적화된 싸피 메이트 서비스를 이용하실 수 있습니다.                                           |
 
 <br />
 
