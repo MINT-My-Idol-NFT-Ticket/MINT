@@ -9,8 +9,8 @@ import DarkModeIcon from '@mui/icons-material/DarkMode'
 import ModeContext from './contexts/ModeContexts.js'
 import useBrightness from './hooks/useBrightness'
 import MintConcertArea from './pages/MintConcertArea.jsx'
-//compoenents
 import { Box } from '@mui/system'
+//compoenents
 import MintSplash from './pages/MintSplash.jsx'
 import MintIntro from './pages/MintIntro.jsx'
 import MintAddress from './pages/MintAddress.jsx'
@@ -18,6 +18,7 @@ import MintConcertDate from './pages/MintConcertDate.jsx'
 import MintHome from './pages/MintHome'
 import MintSearch from './pages/MintSearch'
 import MintSoon from './pages/MintSoon'
+import Admin from './pages/Admin'
 
 function App({ mode }) {
   const [bright, setBright] = useBrightness()
@@ -33,6 +34,7 @@ function App({ mode }) {
         <Route path="/home" element={<MintHome bright={bright} />} />
         <Route path="/search" element={<MintSearch bright={bright} />} />
         <Route path="/comming_soon" element={<MintSoon bright={bright} />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="/concert/date" element={<MintConcertDate />} />
         <Route path="/concert/area" element={<MintConcertArea />} />
         <Route path="/address" element={<MintAddress />} />
@@ -41,7 +43,7 @@ function App({ mode }) {
   )
 }
 
-export default function ToggleColorMode() {
+export default function MINT() {
   const [mode, setMode] = React.useState('light')
 
   const colorMode = React.useMemo(
@@ -115,29 +117,37 @@ export default function ToggleColorMode() {
       <Box
         sx={{
           position: 'relative',
-          width: '360px',
-          margin: '0 auto',
-          height: '645px',
-          backgroundColor: mode === 'light' ? '#EEEEEE' : '#222831',
+          width: '100vw',
+          height: '100vh',
+          backgroundColor: 'gray',
         }}>
         <ModeContext>
-          <App mode={mode} />
+          <Box
+            sx={{
+              position: 'relative',
+              width: '360px',
+              margin: '0 auto',
+              height: '645px',
+              backgroundColor: mode === 'light' ? '#EEEEEE' : '#222831',
+            }}>
+            <App mode={mode} />
+            <IconButton
+              sx={{
+                position: 'absolute',
+                right: '3px',
+                top: '3px',
+              }}
+              size="small"
+              onClick={colorMode.toggleColorMode}
+              color="inherit">
+              {mode === 'dark' ? (
+                <LightModeIcon sx={{ ...modeStyle, backgroundColor: '#EEEEEE' }} style={{ color: '#222831' }} />
+              ) : (
+                <DarkModeIcon sx={{ ...modeStyle, backgroundColor: '#222831' }} style={{ color: '#EEEEEE' }} />
+              )}
+            </IconButton>
+          </Box>
         </ModeContext>
-        <IconButton
-          sx={{
-            position: 'absolute',
-            right: '3px',
-            top: '3px',
-          }}
-          size="small"
-          onClick={colorMode.toggleColorMode}
-          color="inherit">
-          {mode === 'dark' ? (
-            <LightModeIcon sx={{ ...modeStyle, backgroundColor: '#EEEEEE' }} style={{ color: '#222831' }} />
-          ) : (
-            <DarkModeIcon sx={{ ...modeStyle, backgroundColor: '#222831' }} style={{ color: '#EEEEEE' }} />
-          )}
-        </IconButton>
       </Box>
     </ThemeProvider>
   )
