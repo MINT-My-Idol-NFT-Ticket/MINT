@@ -20,12 +20,12 @@ import MintSearch from './pages/MintSearch'
 import MintSoon from './pages/MintSoon'
 import Admin from './pages/Admin'
 
-function App({ mode }) {
+function App({ setMode }) {
   const [bright, setBright] = useBrightness()
 
   React.useEffect(() => {
-    setBright(mode)
-  }, [mode])
+    setMode(bright)
+  }, [bright])
   return (
     <BrowserRouter>
       <Routes>
@@ -45,15 +45,6 @@ function App({ mode }) {
 
 export default function MINT() {
   const [mode, setMode] = React.useState('light')
-
-  const colorMode = React.useMemo(
-    () => ({
-      toggleColorMode: () => {
-        setMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'))
-      },
-    }),
-    [],
-  )
 
   const theme = React.useMemo(
     () =>
@@ -104,14 +95,6 @@ export default function MINT() {
     [mode],
   )
 
-  const modeStyle = {
-    width: '28px',
-    height: '28px',
-    borderRadius: '100px',
-    padding: '4px',
-    boxShadow: '2px 2px 12px rgba(0,0,0,.4)',
-  }
-
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -125,27 +108,12 @@ export default function MINT() {
           <Box
             sx={{
               position: 'relative',
-              width: '360px',
+              maxWidth: '700px',
               margin: '0 auto',
-              height: '645px',
+              height: '100vh',
               backgroundColor: mode === 'light' ? '#EEEEEE' : '#222831',
             }}>
-            <App mode={mode} />
-            <IconButton
-              sx={{
-                position: 'absolute',
-                right: '3px',
-                top: '3px',
-              }}
-              size="small"
-              onClick={colorMode.toggleColorMode}
-              color="inherit">
-              {mode === 'dark' ? (
-                <LightModeIcon sx={{ ...modeStyle, backgroundColor: '#EEEEEE' }} style={{ color: '#222831' }} />
-              ) : (
-                <DarkModeIcon sx={{ ...modeStyle, backgroundColor: '#222831' }} style={{ color: '#EEEEEE' }} />
-              )}
-            </IconButton>
+            <App setMode={setMode} />
           </Box>
         </ModeContext>
       </Box>

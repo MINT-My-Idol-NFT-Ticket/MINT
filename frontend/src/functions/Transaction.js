@@ -41,4 +41,4 @@ export async function owner(contractAddress) {
   return
 }
 
-export async function mint()
+// export async function mint()
