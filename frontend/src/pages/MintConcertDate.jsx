@@ -29,7 +29,6 @@ function MintConcertDate() {
       <Box
         sx={{
           textAlign: 'center',
-          border: '1px solid red',
           height: '400px',
           color: '#EEEEEE',
           backgroundImage: `url("${tempBg}")`,
@@ -50,7 +49,7 @@ function MintConcertDate() {
           />
         ))}
       </Box>
-      <MintBtnGroup />
+      <MintBtnGroup next="concert/area" />
     </Box>
   )
 }

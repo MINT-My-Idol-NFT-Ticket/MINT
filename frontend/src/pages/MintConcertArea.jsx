@@ -9,6 +9,7 @@ import MintSeatForm from '../components/concert/MintSeatForm'
 import tempArea from '../images/concert_area.png'
 
 function MintConcertArea(props) {
+  const [showSection, setShowSection] = useState('구역을 선택해 주세요.')
   const Header = () => {
     return (
       <>
@@ -17,7 +18,7 @@ function MintConcertArea(props) {
         </Box>
         <Box sx={area}>구역그림</Box>
         <Box sx={seatFromContainer}>
-          <MintSeatForm title="좌석등급/가격" />
+          <MintSeatForm title="좌석등급/가격" section={showSection} />
         </Box>
       </>
     )
@@ -25,26 +26,13 @@ function MintConcertArea(props) {
   const Contents = () => {
     const [isSelected, setIsSelected] = useState(false)
     const [selectedId, setSelectedId] = useState(0)
-    const pickTime = (time, idx) => {
+    const [sections, setSections] = useState(tempSection)
+    const pickArea = (area, idx) => {
+      setShowSection(area)
       setIsSelected(true)
       setSelectedId(idx)
+      console.log(area, idx, 'pickArea')
     }
-
-    const [sections, setSections] = useState([
-      {
-        name: 'A',
-        seats: 150,
-      },
-      {
-        name: 'B',
-        seats: 100,
-      },
-      {
-        name: 'C',
-        seats: 200,
-      },
-    ])
-    // return <MintConcertAreaContents />
     return (
       <Box>
         <Typography sx={{ position: 'sticky', top: '0', backgroundColor: '#cacaca' }}>지정석</Typography>
@@ -54,16 +42,32 @@ function MintConcertArea(props) {
             section={section.name}
             leftover={section.seats}
             idx={idx}
-            pick={pickTime}
+            pick={pickArea}
             selected={isSelected && idx === selectedId}
           />
         ))}
       </Box>
     )
   }
-  const Footer = () => <MintBtnGroup />
+  const Footer = () => <MintBtnGroup prev="concert/date" />
   return <MintPageTemplate header={<Header />} contents={<Contents />} footer={<Footer />} />
 }
+
+// temp data
+const tempSection = [
+  {
+    name: 'A',
+    seats: 150,
+  },
+  {
+    name: 'B',
+    seats: 100,
+  },
+  {
+    name: 'C',
+    seats: 200,
+  },
+]
 
 // styles
 const header = {

@@ -8,7 +8,10 @@ function MintSeatForm({ title, section, seat, price }) {
         padding: '0 18px 0 18px',
       }}>
       <Typography>{title}</Typography>
-      <Box sx={content}>{seat}</Box>
+      <Box sx={content}>
+        {seat ? seat : ''}
+        {section ? section : ''}
+      </Box>
     </Box>
   )
 }
@@ -21,10 +24,10 @@ const content = {
   lineHeight: '58px',
 }
 
-// props default value
-MintSeatForm.defaultProps = {
-  seat: 'A',
-  price: '0.2',
-}
+// props default value for test
+// MintSeatForm.defaultProps = {
+//   seat: 'A',
+//   price: '0.2',
+// }
 
 export default MintSeatForm
