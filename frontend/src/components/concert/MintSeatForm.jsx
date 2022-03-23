@@ -1,22 +1,24 @@
-import { Box, Typography } from '@mui/material'
 import React from 'react'
+import { Box, Typography } from '@mui/material'
 
-function MintSeatForm({ seat, price }) {
+function MintSeatForm({ title, seat, price }) {
   return (
     <Box
       sx={{
         padding: '0 18px 0 18px',
       }}>
-      <Typography>좌석등급/가격</Typography>
-      <Box
-        sx={{
-          height: '58px',
-          border: '1px solid #5F6369',
-        }}>
+      <Typography>{title}</Typography>
+      <Box sx={content}>
         {seat}구역 {price}eth
       </Box>
     </Box>
   )
+}
+
+// styles
+const content = {
+  height: '58px',
+  border: '1px solid #5F6369',
 }
 
 // props default value

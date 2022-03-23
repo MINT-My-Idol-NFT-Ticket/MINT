@@ -1,10 +1,12 @@
-import { Box, Button, Typography } from '@mui/material'
 import React from 'react'
+import { Box, Button, Typography } from '@mui/material'
 
 function MintBtnGroup(props) {
   return (
     <Box
       sx={{
+        position: props.position ? 'absolute' : '',
+        bottom: 0,
         paddingTop: '20px',
         paddingLeft: '31px',
         paddingRight: '31px',
