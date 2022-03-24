@@ -18,11 +18,8 @@ import MintConcertDate from './pages/MintConcertDate.jsx'
 import MintHome from './pages/MintHome'
 import MintSearch from './pages/MintSearch'
 import MintSoon from './pages/MintSoon'
-<<<<<<< HEAD
 import MintTrade from './pages/MintTrade.jsx'
-=======
 import Admin from './pages/Admin'
->>>>>>> 22912696fa0c537150af5bc88684b5a74b9eef8f
 
 function App({ setMode }) {
   const [bright, setBright] = useBrightness()
