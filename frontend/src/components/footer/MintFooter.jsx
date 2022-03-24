@@ -8,10 +8,15 @@ import IconButton from '@mui/material/IconButton'
 import LightModeIcon from '@mui/icons-material/LightMode'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 import { useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
 //modules
 import useBrightness from '../../hooks/useBrightness'
 
 function MintFooter() {
+  const navigate = useNavigate()
+  const pushHome = () => navigate('/home')
+  const pushMypage = () => navigate('/mypage')
+  const pushSearch = () => navigate('/search')
   const [bright, setBright] = useBrightness()
 
   const colorMode = useMemo(
@@ -49,10 +54,10 @@ function MintFooter() {
         )}
       </IconButton>
       <BottomNavigation sx={{ width: '100%', height: '50px' }}>
-        <BottomNavigationAction label="Home" icon={<HomeIcon style={style} />} />
+        <BottomNavigationAction label="Home" icon={<HomeIcon style={style} />} onClick={pushHome} />
         <BottomNavigationAction label="Menu" icon={<MenuIcon style={style} />} />
-        <BottomNavigationAction label="MyPage" icon={<AccountBoxIcon style={style} />} />
-        <BottomNavigationAction label="Search" icon={<SearchIcon style={style} />} />
+        <BottomNavigationAction label="MyPage" icon={<AccountBoxIcon style={style} />} onClick={pushMypage} />
+        <BottomNavigationAction label="Search" icon={<SearchIcon style={style} />} onClick={pushSearch} />
       </BottomNavigation>
     </>
   )

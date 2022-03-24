@@ -2,7 +2,7 @@ import '../../styles/MintConcertText.css'
 
 export default function MintConcertText({ data, textStyle }) {
   return (
-    <div className="MintConcertText">
+    <div className="MintConcertText" style={textStyle.width}>
       <p className={`MintConcertText__title`}>
         <span className="singer" style={textStyle.singer}>
           [{data.singer}]

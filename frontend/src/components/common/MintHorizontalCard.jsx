@@ -4,7 +4,7 @@ import '../../styles/MintHorizontalCard.css'
 import MintConcertText from './MintConcertText'
 import MintConcertPoster from './MintConcertPoster'
 
-export default function MintHorizontalCard({ concertData, width, height, extra }) {
+export default function MintHorizontalCard({ concertData, width = '20vw', height = '20vw', extra }) {
   return (
     <div className={`MintHorizontalCard`}>
       <div className="MintHorizontalCard__poster">
@@ -27,13 +27,14 @@ export default function MintHorizontalCard({ concertData, width, height, extra }
 
 const textStyle = {
   singer: {
-    fontSize: '15px',
+    fontSize: '18px',
   },
   title: {
-    fontSize: '14px',
+    fontSize: '18px',
   },
   date: {
-    fontSize: '12px',
+    marginTop: '10px',
+    fontSize: '16px',
     fontWeight: '300',
   },
 }
