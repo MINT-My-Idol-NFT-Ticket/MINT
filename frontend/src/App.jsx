@@ -2,9 +2,6 @@
 import * as React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
-import IconButton from '@mui/material/IconButton'
-import LightModeIcon from '@mui/icons-material/LightMode'
-import DarkModeIcon from '@mui/icons-material/DarkMode'
 //modules
 import ModeContext from './contexts/ModeContexts.js'
 import useBrightness from './hooks/useBrightness'
@@ -16,8 +13,10 @@ import MintAddress from './pages/MintAddress.jsx'
 import MintConcertDate from './pages/MintConcertDate.jsx'
 import MintConcertArea from './pages/MintConcertArea.jsx'
 import MintConcertSeat from './pages/MintConcertSeat.jsx'
+import MintConcertPayment from './pages/MintConcertPayment.jsx'
 import MintHome from './pages/MintHome'
 import MintSearch from './pages/MintSearch'
+import MintMyPage from './pages/MintMyPage'
 import MintSoon from './pages/MintSoon'
 import MintTrade from './pages/MintTrade.jsx'
 import Admin from './pages/Admin'
@@ -36,10 +35,12 @@ function App({ setMode }) {
         <Route path="/home" element={<MintHome bright={bright} />} />
         <Route path="/search" element={<MintSearch bright={bright} />} />
         <Route path="/comming_soon" element={<MintSoon bright={bright} />} />
+        <Route path="/mypage" element={<MintMyPage bright={bright} />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/concert/date" element={<MintConcertDate />} />
         <Route path="/concert/area" element={<MintConcertArea />} />
         <Route path="/concert/seat" element={<MintConcertSeat />} />
+        <Route path="/concert/payment" element={<MintConcertPayment />} />
         <Route path="/address" element={<MintAddress />} />
         <Route path="/trade" element={<MintTrade bright={bright} />} />
       </Routes>
@@ -90,6 +91,11 @@ export default function MINT() {
             // secondary grey
             main: '#C4C4C4',
             contrastText: '#222831',
+          },
+          info: {
+            // info black
+            main: '#000000',
+            contrastText: '#EEEEEE',
           },
         },
         typography: {

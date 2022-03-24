@@ -1,7 +1,13 @@
+.MintSearchContents{
+	padding: 0 20px;
+}
 .MintSearchContents__searchBar {
 	position: absolute;
+	padding: 0 20px;
 	width: 100%;
 	top: 42px;
+	left: 0;
+	box-sizing: border-box;
 }
 .MintSearchContents__searchBar.light {
 	background-color: #EEEEEE;

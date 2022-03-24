@@ -1,7 +1,7 @@
 //components
 import MintFooter from '../components/footer/MintFooter'
 import MintPageTemplate from '../components/common/MintPageTemplate'
-import MintSubHeader from '../components/common/MintSubHeader'
+import MintSubHeader from '../components/header/MintSubHeader'
 import MintSoonContents from '../components/comming_soon/MintSoonContents'
 
 function MintSearch({ bright }) {

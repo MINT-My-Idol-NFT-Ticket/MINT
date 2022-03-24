@@ -1,6 +1,9 @@
 .MintConcertText__title {
 	margin: 5px 0;
 	font-weight: bold;
+}
+
+.MintConcertText__title {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
