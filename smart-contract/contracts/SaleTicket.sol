@@ -18,11 +18,10 @@ contract SaleTicket {
 
     function setForSaleTicket(uint256 _tokenId, uint256 _price) public {
         address ticketOwner = mintTicketAddress.ownerOf(_tokenId);
-        console.log(address(this));
         require(ticketOwner == msg.sender, "Caller is not ticket owner.");
         require(ticketPrices[_tokenId] == 0, "This ticket is already on sale.");
         require(_price > 0, "Price is zero or lower.");
-        require(mintTicketAddress.isApprovedForAll(ticketOwner, address(this)), "Ticket owner did not approve token.");
+        //require(mintTicketAddress.isApprovedForAll(ticketOwner, address(this)), "Ticket owner did not approve token.");
 
         ticketPrices[_tokenId] = _price;
         onSaleTicketArray.push(_tokenId);
@@ -35,8 +34,9 @@ contract SaleTicket {
         require(price > 0, "Ticket not sale.");
         require(price <= msg.value, "Caller sent lower than price.");
         require(ticketOwner != msg.sender, "Caller is ticket owner.");
-
+        console.log(ticketOwner);
         payable(ticketOwner).transfer(msg.value);
+        console.log(msg.sender);
         mintTicketAddress.safeTransferFrom(ticketOwner, msg.sender, _tokenId);
 
         ticketPrices[_tokenId] = 0;
