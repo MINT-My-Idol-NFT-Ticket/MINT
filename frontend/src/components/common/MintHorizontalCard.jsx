@@ -4,7 +4,7 @@ import '../../styles/MintHorizontalCard.css'
 import MintConcertText from './MintConcertText'
 import MintConcertPoster from './MintConcertPoster'
 
-export default function MintHorizontalCard({ concertData, width = '20vw', height = '20vw', extra }) {
+export default function MintHorizontalCard({ concertData, width = '20vw', height = '25vw' }) {
   return (
     <div className={`MintHorizontalCard`}>
       <div className="MintHorizontalCard__poster">
@@ -19,7 +19,7 @@ export default function MintHorizontalCard({ concertData, width = '20vw', height
           }}
           textStyle={textStyle}
         />
-        {extra}
+        <p className="MintHorizontalCard__place">장소장소</p>
       </div>
     </div>
   )

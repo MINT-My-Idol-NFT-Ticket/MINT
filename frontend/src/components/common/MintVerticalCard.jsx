@@ -11,13 +11,13 @@ export default function MintVerticalCard({ concertData, width, height }) {
       width: width,
     },
     singer: {
-      fontSize: '15px',
+      fontSize: '18px',
     },
     title: {
-      fontSize: '14px',
+      fontSize: '18px',
     },
     date: {
-      fontSize: '12px',
+      fontSize: '15px',
       fontWeight: '300',
     },
   }

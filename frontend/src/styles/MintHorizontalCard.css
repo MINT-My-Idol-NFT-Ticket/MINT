@@ -17,3 +17,9 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
+.MintHorizontalCard__place {
+	margin-top: 18px;
+	font-size: '16px';
+	font-weight: '300';
+}
