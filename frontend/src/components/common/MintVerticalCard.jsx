@@ -1,13 +1,13 @@
 //modules
-import '../../styles/MintNotOpenCard.css'
+import '../../styles/MintVerticalCard.css'
 //componentx
 import MintConcertText from '../common/MintConcertText'
 import MintConcertPoster from '../common/MintConcertPoster'
 // 인라인 리소스 확보시 스타일 제거 필요
 
-export default function MintNotOpenCard({ concertData, height }) {
+export default function MintVerticalCard({ concertData, width, height }) {
   return (
-    <div className={`MintNotOpenCard`}>
+    <div className={`MintVerticalCard`} style={{ width: width }}>
       <MintConcertPoster imgUrl={concertData.img} height={height} />
       <MintConcertText
         data={{
@@ -23,15 +23,13 @@ export default function MintNotOpenCard({ concertData, height }) {
 
 const textStyle = {
   singer: {
-    fontWeight: '600',
-    fontSize: '12px',
+    fontSize: '15px',
   },
   title: {
-    fontWeight: '500',
-    fontSize: '12px',
+    fontSize: '14px',
   },
   date: {
-    fontSize: '10px',
+    fontSize: '12px',
     fontWeight: '300',
   },
 }

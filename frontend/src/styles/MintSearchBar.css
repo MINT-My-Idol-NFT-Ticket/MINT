@@ -1,6 +1,5 @@
 .MintSearchBar {
-	padding: 10px;
-	box-sizing: border-box;
+	padding: 10px 0;
 	background-color: inherit;
 }
 .MintSearchBar .searchBar{

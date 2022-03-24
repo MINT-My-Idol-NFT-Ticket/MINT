@@ -2,9 +2,6 @@
 import * as React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
-import IconButton from '@mui/material/IconButton'
-import LightModeIcon from '@mui/icons-material/LightMode'
-import DarkModeIcon from '@mui/icons-material/DarkMode'
 //modules
 import ModeContext from './contexts/ModeContexts.js'
 import useBrightness from './hooks/useBrightness'
@@ -19,6 +16,7 @@ import MintConcertSeat from './pages/MintConcertSeat.jsx'
 import MintConcertPayment from './pages/MintConcertPayment.jsx'
 import MintHome from './pages/MintHome'
 import MintSearch from './pages/MintSearch'
+import MintMyPage from './pages/MintMyPage'
 import MintSoon from './pages/MintSoon'
 import Admin from './pages/Admin'
 
@@ -36,6 +34,7 @@ function App({ setMode }) {
         <Route path="/home" element={<MintHome bright={bright} />} />
         <Route path="/search" element={<MintSearch bright={bright} />} />
         <Route path="/comming_soon" element={<MintSoon bright={bright} />} />
+        <Route path="/mypage" element={<MintMyPage bright={bright} />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/concert/date" element={<MintConcertDate />} />
         <Route path="/concert/area" element={<MintConcertArea />} />
