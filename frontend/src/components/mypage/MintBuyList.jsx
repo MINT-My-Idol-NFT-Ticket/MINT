@@ -14,9 +14,7 @@ export default function MintBuyList() {
   }
 
   const makeBuyList = () => {
-    return testData.map(concert => (
-      <MintHorizontalCard key={concert.date} concertData={concert} width="120px" height="120px" />
-    ))
+    return testData.map(concert => <MintHorizontalCard key={concert.date} concertData={concert} />)
   }
   return <div>{makeBuyList()}</div>
 }

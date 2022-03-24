@@ -2,6 +2,8 @@
 import * as React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
+import Grid from '@mui/material/Grid'
+
 //modules
 import ModeContext from './contexts/ModeContexts.js'
 import useBrightness from './hooks/useBrightness'
@@ -116,12 +118,18 @@ export default function MINT() {
           <Box
             sx={{
               position: 'relative',
-              maxWidth: '700px',
+              flexGrow: 1,
+              maxWidth: '768px',
+              minWidth: '340px',
               margin: '0 auto',
               height: '100vh',
               backgroundColor: mode === 'light' ? '#EEEEEE' : '#222831',
             }}>
-            <App setMode={setMode} />
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <App setMode={setMode} />
+              </Grid>
+            </Grid>
           </Box>
         </ModeContext>
       </Box>
