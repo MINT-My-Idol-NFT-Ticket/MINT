@@ -100,6 +100,15 @@ export default function MINT() {
         typography: {
           fontFamily: 'Spoqa Han Sans Neo',
         },
+        components: {
+          MuiCalendarPicker: {
+            styleOverrides: {
+              root: {
+                color: '#222831',
+              },
+            },
+          },
+        },
       }),
     [mode],
   )

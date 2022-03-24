@@ -3,7 +3,7 @@ import React from 'react'
 
 function MintPayConcertInfo(props) {
   return (
-    <Box sx={{ display: 'flex', height: '20%', backgroundColor: 'lightblue' }}>
+    <Box sx={{ display: 'flex', flex: 1 }}>
       <Box sx={{ flex: 3, display: 'flex', padding: '20px' }}>
         <Box sx={{ width: '100%', height: '100%', backgroundColor: 'red' }}></Box>
       </Box>
