@@ -1,10 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
+import "./SaleTicket.sol";
 import "./token/ERC721/extensions/ERC721Enumerable.sol";
 import "hardhat/console.sol";
 
 contract MintTicket is ERC721Enumerable {
+
+    SaleTicket public saleTicket;
+    address public saleContractAddress;
     // Payable address can receive Ether
     address payable public owner;
     uint256 ticketPrice;
@@ -42,10 +46,11 @@ contract MintTicket is ERC721Enumerable {
     // 사용자에게 돈을 받고, NFT 발급
     function buyTicket(string memory _tokenURI) public payable returns (uint256) {   
         require(msg.value > 0, "Caller sent zero ether");
-
+        require(ticketPrice <= msg.value, "Caller sent lower than price.");
         uint256 newTokenId = totalSupply() + 1;
         _mint(msg.sender, newTokenId);
         tokenURIs[newTokenId] = _tokenURI;
+        approve(saleContractAddress, newTokenId);
         return newTokenId;
     }
 
@@ -66,4 +71,8 @@ contract MintTicket is ERC721Enumerable {
         return ticketTokenData;
     }
 
+    function setSaleTicket(address _setSaleTicket) public {
+        saleTicket = SaleTicket(_setSaleTicket);
+        saleContractAddress = _setSaleTicket;
+    }
 }
