@@ -1,17 +1,19 @@
-.MintSearchCard {
+.MintHorizontalCard {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	margin: 10px 0;
-	padding: 0 20px;
 	box-sizing: border-box;
 }
 
-.MintSearchCard__poster {
-	width: 60px;
+.MintHorizontalCard__poster {
 	box-sizing: border-box;
 	margin-right: 20px;
 }
-.MintSearchCard__text {
+.MintHorizontalCard__text {
+	width: 100px;
 	flex: 1 auto;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }

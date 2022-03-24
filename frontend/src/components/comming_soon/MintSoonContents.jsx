@@ -1,5 +1,7 @@
+//modules
+import '../../styles/MintSoonContents.css'
 //components
-import MintSoonCard from './MintSoonCard'
+import MintHorizontalCard from '../common/MintHorizontalCard'
 
 export default function MintSoonContents() {
   const testData = []
@@ -14,7 +16,7 @@ export default function MintSoonContents() {
   }
 
   const makeSearchList = () => {
-    return testData.map(concert => <MintSoonCard key={concert.date} concertData={concert} height="100px" />)
+    return testData.map(concert => <MintHorizontalCard key={concert.date} concertData={concert} />)
   }
   return (
     <div className="MintSoonContents">

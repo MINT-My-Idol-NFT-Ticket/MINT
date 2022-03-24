@@ -1,6 +1,7 @@
 //packages
 import LogoLight from '../../images/logo_light.png'
 import LogoDark from '../../images/logo_dark.png'
+//moduels
 import '../../styles/MintHeader.css'
 
 function MintHeader({ bright }) {

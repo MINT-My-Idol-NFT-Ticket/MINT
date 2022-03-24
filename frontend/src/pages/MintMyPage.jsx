@@ -1,12 +1,12 @@
 //components
+import MintSubHeader from '../components/header/MintSubHeader'
+import MintMypageContents from '../components/mypage/MintMypageContents'
 import MintFooter from '../components/footer/MintFooter'
 import MintPageTemplate from '../components/common/MintPageTemplate'
-import MintSubHeader from '../components/header/MintSubHeader'
-import MintSearchContents from '../components/search/MintSearchContents'
 
-function MintSearch({ bright }) {
-  const Header = () => <MintSubHeader content="검색" bright={bright} />
-  const Contents = () => <MintSearchContents bright={bright} />
+function MintHome({ bright }) {
+  const Header = () => <MintSubHeader content="내 정보" bright={bright} />
+  const Contents = () => <MintMypageContents bright={bright} />
   const Footer = () => <MintFooter bright={bright} />
 
   return (
@@ -16,4 +16,4 @@ function MintSearch({ bright }) {
   )
 }
 
-export default MintSearch
+export default MintHome
