@@ -18,24 +18,29 @@ function MintBtnGroup({ position, prev, next }) {
   return (
     <Box
       sx={{
+        display: 'flex',
         position: position ? 'absolute' : '',
         bottom: 0,
-        paddingTop: '20px',
-        paddingLeft: '31px',
-        paddingRight: '31px',
-        paddingBottom: '20px',
+        marginTop: '20px',
+        marginLeft: '31px',
+        marginRight: '31px',
+        marginBottom: '20px',
       }}>
-      <Button variant="contained" color="secondary" sx={{ ...btnStyle, marginRight: '16px' }} onClick={handlePrev}>
-        이전
-      </Button>
-      <Button variant="contained" color="primary" sx={btnStyle} onClick={handleNext}>
-        다음
-      </Button>
+      <Box sx={{ flex: 1, marginRight: '16px' }}>
+        <Button variant="contained" color="secondary" sx={btnStyle} onClick={handlePrev}>
+          이전
+        </Button>
+      </Box>
+      <Box sx={{ flex: 1 }}>
+        <Button variant="contained" color="primary" sx={btnStyle} onClick={handleNext}>
+          다음
+        </Button>
+      </Box>
     </Box>
   )
 }
 
 // styles
-const btnStyle = { width: '141px', height: '35px' }
+const btnStyle = { width: '100%', height: '35px' }
 
 export default MintBtnGroup
