@@ -26,10 +26,9 @@ export default function MintConnectWallet() {
           sx={{
             width: '306px',
             height: '260px',
-            mt: '50px',
             border: '1px solid gray',
-            marginLeft: '25px',
             borderRadius: 7,
+            margin: '50px auto',
           }}>
           <CardContent>
             <Typography sx={{ textAlign: 'center', fontWeight: 700, mt: '50px' }}>

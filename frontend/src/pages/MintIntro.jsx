@@ -30,7 +30,14 @@ export default function Intro() {
         안녕하세요~~
         <br /> 지갑 있으신가요~?
       </Typography>
-      <Card sx={{ width: '320px', height: '350px', mt: '20px', ml: '18px' }}>
+      <Card
+        sx={{
+          width: '306px',
+          height: '350px',
+          border: '1px solid gray',
+          borderRadius: 7,
+          margin: '20px auto',
+        }}>
         <CardContent>
           <Typography sx={{ textAlign: 'center', mt: '10px' }}>SSAFY WALLET 안내문</Typography>
           <Typography sx={{ mt: '10px' }}>
