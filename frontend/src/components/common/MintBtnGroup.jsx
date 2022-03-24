@@ -36,5 +36,6 @@ function MintBtnGroup({ position, prev, next }) {
 }
 
 // styles
-const btnStyle = { width: '141px', height: '31px' }
+const btnStyle = { width: '141px', height: '35px' }
+
 export default MintBtnGroup
