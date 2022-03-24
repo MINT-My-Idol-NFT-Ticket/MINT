@@ -6,7 +6,7 @@ export default function MintTradeCard({ cardData }) {
   return (
     <div className={`MintTradeCard`}>
       <Card sx={{ border: '1px solid grey' }}>
-        <CardMedia component="img" image={cardData.img} alt="nft사진" />
+        <CardMedia component="img" image={cardData.img} alt="nft사진" sx={{ height: '175px' }} />
         <CardActions sx={{ padding: '1px', height: '30px' }}>
           <CardMedia component="img" image={etherIcon} sx={{ width: '10px', ml: '3px', mr: '5px' }} />
           <Typography>{cardData.price}</Typography>
