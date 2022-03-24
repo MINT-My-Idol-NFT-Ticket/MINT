@@ -16,6 +16,7 @@ import MintAddress from './pages/MintAddress.jsx'
 import MintConcertDate from './pages/MintConcertDate.jsx'
 import MintConcertArea from './pages/MintConcertArea.jsx'
 import MintConcertSeat from './pages/MintConcertSeat.jsx'
+import MintConcertPayment from './pages/MintConcertPayment.jsx'
 import MintHome from './pages/MintHome'
 import MintSearch from './pages/MintSearch'
 import MintSoon from './pages/MintSoon'
@@ -39,6 +40,7 @@ function App({ setMode }) {
         <Route path="/concert/date" element={<MintConcertDate />} />
         <Route path="/concert/area" element={<MintConcertArea />} />
         <Route path="/concert/seat" element={<MintConcertSeat />} />
+        <Route path="/concert/payment" element={<MintConcertPayment />} />
         <Route path="/address" element={<MintAddress />} />
       </Routes>
     </BrowserRouter>
@@ -88,6 +90,11 @@ export default function MINT() {
             // secondary grey
             main: '#C4C4C4',
             contrastText: '#222831',
+          },
+          info: {
+            // info black
+            main: '#000000',
+            contrastText: '#EEEEEE',
           },
         },
         typography: {
