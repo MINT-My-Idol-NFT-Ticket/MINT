@@ -8,6 +8,8 @@ import useBrightness from '../hooks/useBrightness'
 
 export default function Intro() {
   const [bright, setBright] = useBrightness()
+
+  // 지갑 연동 페이지 이동
   const moveToAccount = () => {
     window.location.pathname = '/address'
   }
@@ -17,14 +19,21 @@ export default function Intro() {
   }
 
   return (
-    <>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
       <Typography
         variant="h5"
         component="div"
         sx={{
           textAlign: 'center',
           fontWeight: '700',
-          paddingTop: '70px',
+          paddingTop: '20px',
           color: bright === 'light' ? '#000000' : '#ffffff',
         }}>
         안녕하세요~~
@@ -67,6 +76,6 @@ export default function Intro() {
           지갑 생성하기
         </Button>
       </Box>
-    </>
+    </div>
   )
 }

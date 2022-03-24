@@ -8,13 +8,14 @@ import DarkModeIcon from '@mui/icons-material/DarkMode'
 //modules
 import ModeContext from './contexts/ModeContexts.js'
 import useBrightness from './hooks/useBrightness'
-import MintConcertArea from './pages/MintConcertArea.jsx'
 import { Box } from '@mui/system'
 //compoenents
 import MintSplash from './pages/MintSplash.jsx'
 import MintIntro from './pages/MintIntro.jsx'
 import MintAddress from './pages/MintAddress.jsx'
 import MintConcertDate from './pages/MintConcertDate.jsx'
+import MintConcertArea from './pages/MintConcertArea.jsx'
+import MintConcertSeat from './pages/MintConcertSeat.jsx'
 import MintHome from './pages/MintHome'
 import MintSearch from './pages/MintSearch'
 import MintSoon from './pages/MintSoon'
@@ -38,6 +39,7 @@ function App({ setMode }) {
         <Route path="/admin" element={<Admin />} />
         <Route path="/concert/date" element={<MintConcertDate />} />
         <Route path="/concert/area" element={<MintConcertArea />} />
+        <Route path="/concert/seat" element={<MintConcertSeat />} />
         <Route path="/address" element={<MintAddress />} />
         <Route path="/trade" element={<MintTrade bright={bright} />} />
       </Routes>

@@ -1,0 +1,11 @@
+.MintCategory__contents {
+  flex: auto;
+  width: 80px;
+  border-radius: 8px;
+  text-align: center;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  padding: 5px;
+}
