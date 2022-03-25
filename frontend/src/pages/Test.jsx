@@ -46,8 +46,8 @@ export default function Test() {
 
   const transferButtonClick = async () => {
     const tmp = await transferSSAFY(senderAddress, senderPK, setderAddressCH, 1)
-    CHwalletButtonClick()
-    walletButtonClick()
+    // CHwalletButtonClick()
+    // walletButtonClick()
     // setWallet(tmp)
   }
 

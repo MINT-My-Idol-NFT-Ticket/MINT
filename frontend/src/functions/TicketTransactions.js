@@ -1,14 +1,13 @@
 import Web3 from 'web3'
-// import MintTicket from '../contract/MintTicket.json'
+import MintTicket from '../contract/MintTicket.json'
 import no_MintTicket from '../contract/no_MintTicket.json'
-import ERC20 from '../contract/ERC20.json'
 
 const web3 = new Web3(process.env.REACT_APP_BLOCK_CHAIN_NODE_URL)
 
 // 사용하는 컨트랙트 타입 정의
 const MintTicketObj = {
-  ABI: no_MintTicket.abi,
-  BYTE_CODE: no_MintTicket.bytecode,
+  ABI: MintTicket.abi,
+  BYTE_CODE: MintTicket.bytecode,
 }
 const compiledContract = new Map()
 compiledContract.set('MintTicket', MintTicketObj)
@@ -32,7 +31,7 @@ export async function deployContract() {
   const contractInstance = new web3.eth.Contract(compiledContract.get('MintTicket').ABI) // 배포하고자 하는 컨트랙트 인스턴스
   const transactionInstance = contractInstance.deploy({
     data: compiledContract.get('MintTicket').BYTE_CODE,
-    arguments: [0],
+    arguments: [2],
   }) // 트랜잭션 인스턴스
 
   const gas = await transactionInstance.estimateGas({ from: process.env.REACT_APP_ADMIN_WALLET_ADDRESS })
@@ -60,7 +59,7 @@ export async function mintTicket(contractType, contractAddress, senderAddress, s
     to: contractAddress,
     data: transactionInstance.encodeABI(),
     gas,
-    value: 0,
+    value: web3.utils.toWei(`${2}`, 'ether'),
   }
 
   const responseObject = await send(options, senderAddress, senderPK)

@@ -22,15 +22,12 @@ export async function getWalletBalance(senderAddress) {
 
 export async function transferSSAFY(sender, senderPK, recipient, amount) {
   const contractInstance = new web3.eth.Contract(ERC20Obj.ABI, contractAddress)
-  const wei = web3.utils.toWei(`${amount}`, 'ether')
-  const transAmount = web3.utils.toBN(wei).toString()
-  const transactionInstance = contractInstance.methods.transferFrom(sender, recipient, amount)
-  const gas = '3000000'
+  const transactionInstance = contractInstance.methods.transfer(recipient, 1)
+  const gas = await transactionInstance.estimateGas({ from: process.env.REACT_APP_ADMIN_WALLET_ADDRESS })
   const options = {
     to: contractAddress,
     data: transactionInstance.encodeABI(),
     gas,
-    value: amount,
   }
 
   const responseObject = await send(options, sender, senderPK)
