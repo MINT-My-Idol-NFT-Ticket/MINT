@@ -35,6 +35,4 @@ export async function transferSSAFY(sender, senderPK, recipient, amount) {
   console.log(`transferSSAFY 함수 - 전송 정보: `)
   console.log(responseObject)
   console.log(`transferSSAFY 함수 - ${sender}로부터 ${amount} ${recipient} 전송`)
-
-  // return response
 }

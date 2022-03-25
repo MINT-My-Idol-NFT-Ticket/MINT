@@ -6,8 +6,8 @@ const web3 = new Web3(process.env.REACT_APP_BLOCK_CHAIN_NODE_URL)
 
 // 사용하는 컨트랙트 타입 정의
 const MintTicketObj = {
-  ABI: MintTicket.abi,
-  BYTE_CODE: MintTicket.bytecode,
+  ABI: no_MintTicket.abi,
+  BYTE_CODE: no_MintTicket.bytecode,
 }
 const compiledContract = new Map()
 compiledContract.set('MintTicket', MintTicketObj)
@@ -31,7 +31,7 @@ export async function deployContract() {
   const contractInstance = new web3.eth.Contract(compiledContract.get('MintTicket').ABI) // 배포하고자 하는 컨트랙트 인스턴스
   const transactionInstance = contractInstance.deploy({
     data: compiledContract.get('MintTicket').BYTE_CODE,
-    arguments: [2],
+    arguments: [0],
   }) // 트랜잭션 인스턴스
 
   const gas = await transactionInstance.estimateGas({ from: process.env.REACT_APP_ADMIN_WALLET_ADDRESS })
@@ -59,7 +59,6 @@ export async function mintTicket(contractType, contractAddress, senderAddress, s
     to: contractAddress,
     data: transactionInstance.encodeABI(),
     gas,
-    value: web3.utils.toWei(`${2}`, 'ether'),
   }
 
   const responseObject = await send(options, senderAddress, senderPK)
@@ -69,10 +68,26 @@ export async function mintTicket(contractType, contractAddress, senderAddress, s
   return responseObject.status ? '민팅 성공' : '민팅 실패'
 }
 
-// export async function transferSSAFY
+export async function transferTicket(contractType, contractAddress, senderAddress, senderPK, receiverAddress, tokenId) {
+  console.log(tokenId)
+  const contractInstance = new web3.eth.Contract(compiledContract.get(contractType).ABI, contractAddress)
+  const transactionInstance = contractInstance.methods.safeTransferFrom(senderAddress, receiverAddress, tokenId)
+
+  const gas = '3000000'
+  const options = {
+    to: contractAddress,
+    data: transactionInstance.encodeABI(),
+    gas,
+  }
+
+  const responseObject = await send(options, senderAddress, senderPK)
+  console.log(`transferTicket - 전송 정보 `)
+  console.log(responseObject)
+
+  return responseObject.status ? '전송 성공' : '전송 실패'
+}
 
 export async function getContractName(contractType, contractAddress) {
-  //트랜잭션을 보내고자 하는 컨트랙트의 주소
   const contractInstance = new web3.eth.Contract(compiledContract.get(contractType).ABI, contractAddress)
   const transactionInstance = contractInstance.methods.name()
   const response = await transactionInstance.call()
@@ -89,4 +104,18 @@ export async function getBalance(contractType, contractAddress, senderAddress) {
   console.log(`getBalance 함수 - ${senderAddress}의 토큰 개수: ${response}`)
 
   return response
+}
+
+export async function getTicketList(contractType, contractAddress, senderAddress) {
+  const contractInstance = new web3.eth.Contract(compiledContract.get(contractType).ABI, contractAddress)
+  const transactionInstance = contractInstance.methods.getTicketList(senderAddress)
+  try {
+    const response = await transactionInstance.call()
+    console.log('===================================================================================')
+    console.log(`getTicketList 함수 - ${senderAddress}의 토큰 목록: ${response}`)
+    return response ? response.toString() : 'no token'
+  } catch {
+    console.log('===================================================================================')
+    console.log('보유한 토큰 없음')
+  }
 }
