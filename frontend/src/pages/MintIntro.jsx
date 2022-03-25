@@ -1,10 +1,12 @@
 import * as React from 'react'
+//modules
+import useBrightness from '../hooks/useBrightness'
+//components
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import useBrightness from '../hooks/useBrightness'
 
 export default function Intro() {
   const [bright, setBright] = useBrightness()
@@ -23,7 +25,7 @@ export default function Intro() {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        height: '100%',
+        height: '100vh',
         alignItems: 'center',
         justifyContent: 'center',
       }}>

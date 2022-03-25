@@ -3,7 +3,7 @@ import LogoLight from '../images/logo_light.png'
 import LogoDark from '../images/logo_dark.png'
 import DoDuck from '../images/do-duck.gif'
 import useBrightness from '../hooks/useBrightness'
-
+//components
 import { Box, Typography } from '@mui/material'
 
 export default function MintSplash() {
@@ -18,7 +18,7 @@ export default function MintSplash() {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        height: '100%',
+        height: '100vh',
         alignItems: 'center',
         justifyContent: 'center',
       }}
