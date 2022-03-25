@@ -17,9 +17,7 @@ export default function MintSearchContents({ bright }) {
   }
 
   const makeSearchList = () => {
-    return testData.map(concert => (
-      <MintHorizontalCard key={concert.date} concertData={concert} width="70px" height="70px" />
-    ))
+    return testData.map(concert => <MintHorizontalCard key={concert.date} concertData={concert} />)
   }
   return (
     <div className="MintSearchContents">

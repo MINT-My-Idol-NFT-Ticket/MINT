@@ -1,8 +1,14 @@
 import { Box, Typography, Card, CardContent, TextField, Button } from '@mui/material'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import useBrightness from '../hooks/useBrightness'
 
 export default function MintConnectWallet() {
+  //이주현
+  //메인 페이지 이동 함수
+  const navigate = useNavigate()
+  const pushHome = () => navigate('/home')
+
   const [bright, setBright] = useBrightness()
   const [address, setAddress] = useState()
 
@@ -46,7 +52,7 @@ export default function MintConnectWallet() {
             }}
           />
           <Box sx={{ mt: '30px' }}>
-            <Button onClick={connectWallet} sx={{ width: '250px' }}>
+            <Button onClick={([connectWallet], pushHome)} sx={{ width: '250px' }}>
               연동하기
             </Button>
           </Box>

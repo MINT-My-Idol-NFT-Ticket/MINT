@@ -1,17 +1,30 @@
 //packages
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import MintBanner from './MintBanner'
+import Grid from '@mui/material/Grid'
+import { useNavigate } from 'react-router-dom'
 //modules
 import '../../styles/MintHomeContents.css'
 //components
 import MintVerticalCard from '../common/MintVerticalCard'
 
 export default function MintHomeContents() {
+  const navigate = useNavigate()
+  const pushCommingSoon = () => navigate('/comming_soon')
   const makeOpenList = testData =>
-    testData.map(concert => <MintVerticalCard key={concert.date} concertData={concert} width="100%" height="150px" />)
+    testData.map(concert => <MintVerticalCard key={concert.date} concertData={concert} width="100%" height="30vw" />)
 
-  const makeNotOpenList = testData =>
-    testData.map(concert => <MintVerticalCard key={concert.date} concertData={concert} width="50%" height="120px" />)
+  const makeNotOpenList = testData => {
+    return (
+      <Grid container spacing={2}>
+        {testData.map(concert => (
+          <Grid key={concert.date} item xs={6}>
+            <MintVerticalCard concertData={concert} width="100%" height="38vw" />
+          </Grid>
+        ))}
+      </Grid>
+    )
+  }
 
   return (
     <>
@@ -19,7 +32,7 @@ export default function MintHomeContents() {
       {makeOpenList(testData)}
       <div className="MintHome__subTitle">
         <p>오픈 예정</p>
-        <ChevronRightIcon />
+        <ChevronRightIcon onClick={pushCommingSoon} />
       </div>
       <div className="MintHome__notOpenList">{makeNotOpenList(testData2)}</div>
     </>

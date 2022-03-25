@@ -16,9 +16,7 @@ export default function MintSoonContents() {
   }
 
   const makeSearchList = () => {
-    return testData.map(concert => (
-      <MintHorizontalCard key={concert.date} concertData={concert} width="100px" height="100px" />
-    ))
+    return testData.map(concert => <MintHorizontalCard key={concert.date} concertData={concert} />)
   }
   return (
     <div className="MintSoonContents">
