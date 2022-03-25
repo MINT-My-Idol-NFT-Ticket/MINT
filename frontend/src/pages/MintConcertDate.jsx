@@ -15,7 +15,7 @@ function MintConcertDate() {
     return (
       <Box
         sx={{
-          minHeight: '500px',
+          minHeight: '440px',
           textAlign: 'center',
           color: '#EEEEEE',
           backgroundImage: `url("${tempBg}")`,
@@ -29,14 +29,15 @@ function MintConcertDate() {
         <Box
           sx={{
             width: '320px',
+            height: '305px',
             backgroundColor: '#eeeeee',
-            margin: '28px 20px 0 20px',
+            margin: '24px 10px 0 20px',
             display: 'inlineBlock',
             textAlign: 'center',
             borderRadius: '8px',
             position: 'absolute',
             top: '50%',
-            left: '45%',
+            left: '44.4%',
             transform: 'translate(-50%, -50%)',
           }}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>

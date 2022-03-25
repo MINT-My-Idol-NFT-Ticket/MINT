@@ -19,10 +19,18 @@ function MintConcertSeat(props) {
     setSeat(seat.name)
   }
   return (
-    <Box sx={{ color: 'text.primary' }}>
-      <Box sx={header}>{section}구역 좌석 배치도입니다.</Box>
+    <Box
+      sx={{
+        color: 'text.primary',
+        display: 'flex',
+        flexDirection: 'column',
+        alignContent: 'space-between',
+        height: '100%',
+      }}>
+      <Box sx={header}>
+        <Typography sx={headerText}>{section}구역 좌석 배치도입니다.</Typography>
+      </Box>
       <Box sx={seatContainer}>
-        시트
         <MintConcertSeatSelect data={tempSeatLayout} handleSelect={handleSelect} />
       </Box>
       <Box sx={seatFromContainer}>
@@ -31,7 +39,7 @@ function MintConcertSeat(props) {
       <Box sx={seatFromContainer}>
         <MintSeatForm title="선택한 좌석" seat={seat} />
       </Box>
-      <MintBtnGroup position="absolute" />
+      <MintBtnGroup />
     </Box>
   )
 }
@@ -66,17 +74,19 @@ const tempSeatLayout = {
 
 // styles
 const header = {
+  boxSizing: 'border-box',
   height: '62px',
   maxHeight: '72px',
-  paddingLeft: '30px',
-  paddingRight: '30px',
-  fontSize: '14px',
+  padding: '10px 30px',
   textAlign: 'center',
-  lineHeight: '1.3',
-  display: 'table-cell',
-  verticalAlign: 'middle',
 }
-const seatContainer = { height: '220px', backgroundColor: 'yellow' }
+const headerText = {
+  fontSize: '14px',
+  position: 'relative',
+  top: '50%',
+  transform: 'translateY(-50%)',
+}
+const seatContainer = { height: '220px' }
 const seatFromContainer = { marginTop: '16px', height: '100px' }
 
 export default MintConcertSeat
