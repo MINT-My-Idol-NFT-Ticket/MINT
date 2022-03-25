@@ -1,3 +1,4 @@
+//modules
 import '../../styles/MintCategory.css'
 
 export default function MintCategory({ category }) {
