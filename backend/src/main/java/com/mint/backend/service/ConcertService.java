@@ -15,4 +15,16 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class ConcertService {
+
+    //콘서트 목록 조회
+
+    //콘서트 상세정보
+
+    //콘서트 검색
+
+    //콘서트 등록
+
+    //콘서트 수정
+
+    //콘서트 삭제
 }
