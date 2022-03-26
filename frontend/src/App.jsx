@@ -20,6 +20,7 @@ import MintHome from './pages/MintHome'
 import MintSearch from './pages/MintSearch'
 import MintMyPage from './pages/MintMyPage'
 import MintSoon from './pages/MintSoon'
+import MintTrade from './pages/MintTrade.jsx'
 import Admin from './pages/Admin'
 
 function App({ setMode }) {
@@ -43,6 +44,7 @@ function App({ setMode }) {
         <Route path="/concert/seat" element={<MintConcertSeat />} />
         <Route path="/concert/payment" element={<MintConcertPayment />} />
         <Route path="/address" element={<MintAddress />} />
+        <Route path="/trade" element={<MintTrade bright={bright} />} />
       </Routes>
     </BrowserRouter>
   )
