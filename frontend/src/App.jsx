@@ -22,6 +22,7 @@ import MintMyPage from './pages/MintMyPage'
 import MintSoon from './pages/MintSoon'
 import Admin from './pages/Admin'
 import Test from './pages/Test'
+import Test2 from './pages/Test2'
 
 function App({ setMode }) {
   const [bright, setBright] = useBrightness()
@@ -45,7 +46,8 @@ function App({ setMode }) {
         <Route path="/concert/payment" element={<MintConcertPayment />} />
         <Route path="/address" element={<MintAddress />} />
         {/* 트랜젝션 테스트 페이지 */}
-        <Route path="/test" element={<Test />} />
+        <Route exact path="/test" element={<Test />} />
+        <Route exact path="/test2" element={<Test2 />} />
       </Routes>
     </BrowserRouter>
   )

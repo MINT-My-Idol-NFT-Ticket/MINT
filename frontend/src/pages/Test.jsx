@@ -55,6 +55,20 @@ export default function Test() {
     balanceButtonClick()
   }
 
+  //토큰 전송2
+  const transferTicketButtonClick2 = async () => {
+    await transferTicket(
+      'MintTicket',
+      contractAddress,
+      setderAddressCH,
+      '0x2268d80094b1dcbfcb3785c0940d06ed14d941efe4a80145aced37037833cb7a',
+      senderAddress,
+      ipt,
+    )
+    tokenListButtonClick()
+    balanceButtonClick()
+  }
+
   //지갑 잔액 확인
   const setderAddressCH = '0xb2FF8d3Cb3759CD4F3841816Fc0e646C5A9AC40b'
   const [CHwallet, CHsetWallet] = useState(0)
@@ -118,6 +132,12 @@ export default function Test() {
       <input type="text" value={ipt} onChange={change} />
       <Button variant="contained" onClick={transferTicketButtonClick}>
         티켓 전송
+      </Button>
+      <br />
+      <br />
+      <input type="text" value={ipt} onChange={change} />
+      <Button variant="contained" onClick={transferTicketButtonClick2}>
+        창현님 티켓 전송
       </Button>
       <br />
       <br />
