@@ -1,7 +1,7 @@
 
 # Created by https://www.toptal.com/developers/gitignore/api/windows,macos,node,react,java,visualstudiocode,intellij,eclipse,solidity,soliditytruffle
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,macos,node,react,java,visualstudiocode,intellij,eclipse,solidity,soliditytruffle
-
+./idea
 ### Eclipse ###
 .metadata
 bin/
