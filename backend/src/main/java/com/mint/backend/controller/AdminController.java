@@ -1,5 +1,6 @@
 package com.mint.backend.controller;
 
+import com.mint.backend.dto.requestConcertDto;
 import com.mint.backend.service.ConcertService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -24,12 +25,12 @@ public class AdminController {
     private final ConcertService concertService;
 
     @PostMapping
-    public ResponseEntity create(@RequestParam int status){
+    public ResponseEntity create(@RequestBody requestConcertDto requestConcertDto){
         return ResponseEntity.ok().body("콘서트 정보 등록");
     }
 
     @PutMapping("/concert")
-    public ResponseEntity update(@PathVariable Long concertId){
+    public ResponseEntity update(@RequestBody requestConcertDto requestConcertDto){
         //to do
         return ResponseEntity.ok().body("콘서트 정보 수정");
     }

@@ -35,7 +35,7 @@ public class Concert {
     private String place;
     private String contract_address;
     private String price;
-    private String status;
+    private boolean status;
 
     @OneToOne
     @JoinColumn(name="image_id")
