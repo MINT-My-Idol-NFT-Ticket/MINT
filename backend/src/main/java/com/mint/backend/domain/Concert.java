@@ -1,10 +1,14 @@
 package com.mint.backend.domain;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @packageName : com.mint.backend.dto
@@ -19,6 +23,8 @@ import javax.persistence.*;
  **/
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 public class Concert {
     @Id
@@ -30,5 +36,12 @@ public class Concert {
     private String contract_address;
     private String price;
     private String status;
+
+    @OneToOne
+    @JoinColumn(name="image_id")
+    private Image image;
+
+    @OneToMany
+    private List<Times> times = new ArrayList<>();
 
 }

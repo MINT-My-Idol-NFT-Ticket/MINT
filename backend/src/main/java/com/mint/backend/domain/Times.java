@@ -1,9 +1,12 @@
 package com.mint.backend.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @packageName : com.mint.backend.dto
@@ -18,6 +21,8 @@ import javax.persistence.*;
  **/
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 public class Times {
     @Id
@@ -25,6 +30,9 @@ public class Times {
     @Column(name="times_id")
     private Long id;
     private String date;
+
+    @OneToMany
+    private List<Section> sections = new ArrayList<>();
 
 
 }

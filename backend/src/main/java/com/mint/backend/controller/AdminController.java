@@ -1,5 +1,7 @@
 package com.mint.backend.controller;
 
+import com.mint.backend.service.ConcertService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,11 +18,13 @@ import org.springframework.web.bind.annotation.*;
  **/
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class AdminController {
+
+    private final ConcertService concertService;
 
     @PostMapping
     public ResponseEntity create(@RequestParam int status){
-        //to do
         return ResponseEntity.ok().body("콘서트 정보 등록");
     }
 

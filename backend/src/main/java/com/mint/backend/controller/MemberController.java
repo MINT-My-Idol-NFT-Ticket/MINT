@@ -1,5 +1,7 @@
 package com.mint.backend.controller;
 
+import com.mint.backend.service.ConcertService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +17,11 @@ import org.springframework.web.bind.annotation.*;
  * @description :
  **/
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/concert")
 public class MemberController {
+
+    private final ConcertService concertService;
 
     @GetMapping
     public ResponseEntity findAll(@RequestParam int status){
