@@ -9,6 +9,7 @@ import ModeContext from './contexts/ModeContexts.js'
 import useBrightness from './hooks/useBrightness'
 import { Box } from '@mui/system'
 //compoenents
+import MintInner from './components/common/MintInner'
 import MintSplash from './pages/MintSplash.jsx'
 import MintIntro from './pages/MintIntro.jsx'
 import MintAddress from './pages/MintAddress.jsx'
@@ -122,22 +123,19 @@ export default function MINT() {
           backgroundColor: 'gray',
         }}>
         <ModeContext>
-          <Box
-            sx={{
-              position: 'relative',
-              flexGrow: 1,
-              maxWidth: '768px',
-              minWidth: '340px',
-              margin: '0 auto',
-              height: '100vh',
-              backgroundColor: mode === 'light' ? '#EEEEEE' : '#222831',
-            }}>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <App setMode={setMode} />
-              </Grid>
-            </Grid>
-          </Box>
+          <MintInner>
+            <Box
+              sx={{
+                position: 'relative',
+                flexGrow: 1,
+                minWidth: '340px',
+                margin: '0 auto',
+                height: '100vh',
+                backgroundColor: mode === 'light' ? '#EEEEEE' : '#222831',
+              }}>
+              <App setMode={setMode} />
+            </Box>
+          </MintInner>
         </ModeContext>
       </Box>
     </ThemeProvider>

@@ -1,13 +1,8 @@
 import '../../styles/MintConcertPoster.css'
 
-export default function MintConcertPoster({ imgUrl, width, height }) {
+export default function MintConcertPoster({ imgUrl }) {
   return (
-    <div
-      className="MintConcertPoster"
-      style={{
-        width,
-        height,
-      }}>
+    <div className="MintConcertPoster">
       <div
         className="img__wrapper"
         style={{
