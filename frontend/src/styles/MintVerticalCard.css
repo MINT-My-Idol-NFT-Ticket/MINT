@@ -4,3 +4,21 @@
 	box-sizing: border-box;
 	overflow: hidden;
 }
+
+.MintVerticalCard__poster {
+	width: 100%;
+	height: 200px;
+}
+
+.MintVerticalCard__poster.notOpen {
+	width: 150px;
+	height: 150px;
+	margin: 0 auto;
+}
+@media screen and (max-width: 390px) {
+	.MintVerticalCard__poster.notOpen {
+		width: 130px;
+		height: 130px;
+		margin: 0 auto;
+	}
+}
