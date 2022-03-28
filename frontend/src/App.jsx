@@ -26,6 +26,10 @@ import Admin from './pages/Admin'
 import Test from './pages/Test'
 import Test2 from './pages/Test2'
 import MintTicket from './pages/MintTicket.jsx'
+import MintNotice from './pages/MintNotice.jsx'
+import MintNotice3 from './components/notice/MintNotice3.jsx'
+import MintNotice2 from './components/notice/MintNotice2.jsx'
+import MintNotice1 from './components/notice/MintNotice1.jsx'
 
 function App({ setMode }) {
   const [bright, setBright] = useBrightness()
@@ -49,6 +53,10 @@ function App({ setMode }) {
         <Route path="/concert/seat" element={<MintConcertSeat />} />
         <Route path="/concert/payment" element={<MintConcertPayment />} />
         <Route path="/address" element={<MintAddress />} />
+        <Route path="/notice" element={<MintNotice />} />
+        <Route path="/notice/1" element={<MintNotice1 />} />
+        <Route path="/notice/2" element={<MintNotice2 />} />
+        <Route path="/notice/3" element={<MintNotice3 />} />
         {/* 트랜젝션 테스트 페이지 */}
         <Route exact path="/test" element={<Test />} />
         <Route exact path="/test2" element={<Test2 />} />
