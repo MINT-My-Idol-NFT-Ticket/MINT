@@ -50,17 +50,7 @@ public class Concert {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Artist> artists;
 
-    public void addImage(Image image){
-        this.image=image;
-    }
 
-    public void addArtist(List<Artist> artist){
-        this.artists = artist;
-    }
-
-    public void addtimes(List<Times> times){
-        this.times = times;
-    }
 
 
 
