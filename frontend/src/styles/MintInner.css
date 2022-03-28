@@ -1,0 +1,15 @@
+.MintInner {
+	margin: 0 auto;
+}
+
+@media screen and (max-width: 414px) {
+	.MintInner {
+		max-width: 414px;
+	}
+}
+
+@media screen and (min-width: 414px) {
+	.MintInner {
+		max-width: 414px;
+	}
+}

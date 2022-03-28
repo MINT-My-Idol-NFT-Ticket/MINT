@@ -12,14 +12,14 @@ export default function MintHomeContents() {
   const navigate = useNavigate()
   const pushCommingSoon = () => navigate('/comming_soon')
   const makeOpenList = testData =>
-    testData.map(concert => <MintVerticalCard key={concert.date} concertData={concert} width="100%" height="30vw" />)
+    testData.map(concert => <MintVerticalCard key={concert.date} concertData={concert} notOpen={false} />)
 
   const makeNotOpenList = testData => {
     return (
-      <Grid container spacing={2}>
+      <Grid container>
         {testData.map(concert => (
           <Grid key={concert.date} item xs={6}>
-            <MintVerticalCard concertData={concert} width="100%" height="38vw" />
+            <MintVerticalCard concertData={concert} notOpen={true} />
           </Grid>
         ))}
       </Grid>
