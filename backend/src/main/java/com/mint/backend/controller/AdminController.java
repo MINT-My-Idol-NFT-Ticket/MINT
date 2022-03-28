@@ -21,6 +21,7 @@ import java.io.IOException;
  * @submissions : 1
  * @description :
  **/
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
