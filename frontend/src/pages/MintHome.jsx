@@ -6,7 +6,7 @@ import MintFooter from '../components/footer/MintFooter'
 import MintHomeContents from '../components/home/MintHomeContents'
 import MintPageTemplate from '../components/common/MintPageTemplate'
 
-function MintHome({ bright }) {
+export default function MintHome({ bright }) {
   const Header = () => <MintHeader bright={bright} />
   const Contents = () => <MintHomeContents />
   const Footer = () => <MintFooter bright={bright} />
@@ -17,5 +17,3 @@ function MintHome({ bright }) {
     </div>
   )
 }
-
-export default MintHome
