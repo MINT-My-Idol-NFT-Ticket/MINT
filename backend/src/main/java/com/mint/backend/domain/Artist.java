@@ -1,9 +1,12 @@
 package com.mint.backend.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * @packageName : com.mint.backend.dto
@@ -18,11 +21,15 @@ import javax.persistence.*;
  **/
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Builder
 public class Artist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="artist_id")
     private Long id;
+    @NotNull
     private String name;
 
 }

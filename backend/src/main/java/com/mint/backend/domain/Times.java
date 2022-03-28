@@ -1,6 +1,7 @@
 package com.mint.backend.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -31,8 +32,10 @@ public class Times {
     private Long id;
     private String date;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Section> sections = new ArrayList<>();
 
-
+    public void addSections(List<Section> sections){
+        this.sections = sections;
+    }
 }

@@ -28,6 +28,9 @@ public class Seat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String date;
+    @Column(columnDefinition = "integer default 0")
+    private int status;
 
 
 }

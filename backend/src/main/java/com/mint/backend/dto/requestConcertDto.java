@@ -1,6 +1,9 @@
 package com.mint.backend.dto;
 
-import java.io.File;
+import com.mint.backend.domain.Concert;
+import lombok.Getter;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.Map;
 
 /**
@@ -14,18 +17,33 @@ import java.util.Map;
  * @submissions : 1
  * @description :
  **/
+@Getter
 public class requestConcertDto {
 
     private String title;
     private boolean status;
     private String date;
-    private File descriptionsImage;
-    private File postImage;
-    private File sectionImage;
+    private String[] singer;
+    private MultipartFile descriptionsImage;
+    private MultipartFile postImage;
+    private MultipartFile sectionImage;
     private int time;
+    private String[] timeTable;
     private String place;
     private String contract_address;
     private String price;
     private Map<String,Integer> section;
+
+    public Concert toEntity(){
+        Concert concert = Concert.builder()
+                .title(this.title)
+                .place(this.place)
+                .contract_address(this.contract_address)
+                .price(this.price)
+                .status(this.status)
+                .build();
+
+        return concert;
+    }
 
 }

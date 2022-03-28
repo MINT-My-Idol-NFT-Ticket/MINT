@@ -3,8 +3,12 @@ package com.mint.backend.controller;
 import com.mint.backend.dto.requestConcertDto;
 import com.mint.backend.service.ConcertService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * @packageName : com.mint.backend.controller
@@ -25,8 +29,15 @@ public class AdminController {
     private final ConcertService concertService;
 
     @PostMapping
-    public ResponseEntity create(@RequestBody requestConcertDto requestConcertDto){
-        return ResponseEntity.ok().body("콘서트 정보 등록");
+    public ResponseEntity<Boolean> create(@RequestBody requestConcertDto requestConcertDto) throws IOException {
+        //디렉토리생성
+        String folderPath  = "backend/src/main/resources/image"+requestConcertDto.getTitle();
+        File makeFolder = new File(folderPath);
+        if(!makeFolder.exists())makeFolder.mkdir();
+        //콘서트 등록
+        boolean result = concertService.create(requestConcertDto);
+
+        return new ResponseEntity<Boolean>(result, HttpStatus.OK);
     }
 
     @PutMapping("/concert")
