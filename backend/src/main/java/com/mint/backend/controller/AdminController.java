@@ -48,7 +48,7 @@ public class AdminController {
 
     @DeleteMapping("/concert")
     public ResponseEntity delete(@RequestParam Long concertId){
-        //to do
+        concertService.delete(concertId);
         return ResponseEntity.ok().body("콘서트 정보 삭제");
     }
 
