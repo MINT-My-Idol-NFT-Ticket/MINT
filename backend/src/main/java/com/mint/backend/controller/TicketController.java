@@ -3,10 +3,7 @@ package com.mint.backend.controller;
 import com.mint.backend.service.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @packageName : com.mint.backend.controller
@@ -19,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @submissions : 1
  * @description :
  **/
+@CrossOrigin
 @RestController
 @RequestMapping("/api/ticket")
 @RequiredArgsConstructor
