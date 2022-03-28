@@ -25,6 +25,7 @@ import MintTrade from './pages/MintTrade.jsx'
 import Admin from './pages/Admin'
 import Test from './pages/Test'
 import Test2 from './pages/Test2'
+import MintTicket from './pages/MintTicket.jsx'
 
 function App({ setMode }) {
   const [bright, setBright] = useBrightness()
@@ -41,6 +42,7 @@ function App({ setMode }) {
         <Route path="/search" element={<MintSearch bright={bright} />} />
         <Route path="/comming_soon" element={<MintSoon bright={bright} />} />
         <Route path="/mypage" element={<MintMyPage bright={bright} />} />
+        <Route path="/mypage/ticket/:id" element={<MintTicket />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/concert/date" element={<MintConcertDate />} />
         <Route path="/concert/area" element={<MintConcertArea />} />

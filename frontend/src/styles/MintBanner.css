@@ -1,0 +1,17 @@
+.track {
+  position: absolute;
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee 22s linear infinite;
+  z-index: 1;
+  background-color: #222831;
+  color: white;
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
