@@ -1,8 +1,10 @@
+//modules
 import LogoLight from '../images/logo_light.png'
 import LogoDark from '../images/logo_dark.png'
 import DoDuck from '../images/do-duck.gif'
-import { Box, Typography } from '@mui/material'
 import useBrightness from '../hooks/useBrightness'
+//components
+import { Box, Typography } from '@mui/material'
 
 export default function MintSplash() {
   const [bright, setBright] = useBrightness()
@@ -12,7 +14,15 @@ export default function MintSplash() {
   }
 
   return (
-    <div style={{ display: 'absolute', paddingTop: '200px' }} onMouseUp={nextPage}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100vh',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+      onMouseUp={nextPage}>
       <Box sx={{ textAlign: 'center' }}>
         <img src={DoDuck} width="150px" />
       </Box>
