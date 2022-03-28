@@ -1,10 +1,12 @@
 package com.mint.backend.controller;
 
 import com.mint.backend.dto.requestConcertDto;
+import com.mint.backend.dto.requestExistAuth;
 import com.mint.backend.service.ConcertService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
@@ -48,14 +50,18 @@ public class AdminController {
     }
 
     @DeleteMapping("/concert")
-    public ResponseEntity delete(@RequestParam Long concertId){
-        concertService.delete(concertId);
-        return ResponseEntity.ok().body("콘서트 정보 삭제");
+    public ResponseEntity<Boolean> delete(@RequestParam Long concertId){
+        boolean result = concertService.delete(concertId);
+        return new ResponseEntity<Boolean>(result, HttpStatus.OK);
     }
 
     @PostMapping("/concert/admin")
-    public ResponseEntity existAuth(@RequestParam String keyword){
-        //to do
-        return ResponseEntity.ok().body("관리자 권한 확인");
+    public ResponseEntity<Boolean> existAuth(@RequestBody requestExistAuth admin){
+        boolean flag = false;
+        if(admin.getId().equals("admin")&&admin.getPassword().equals("admin")){
+            flag =true;
+        }
+
+        return new ResponseEntity<Boolean>(flag,HttpStatus.OK);
     }
 }
