@@ -10,18 +10,19 @@ import useBrightness from './hooks/useBrightness'
 import { Box } from '@mui/system'
 //compoenents
 import MintInner from './components/common/MintInner'
-import MintSplash from './pages/MintSplash.jsx'
-import MintIntro from './pages/MintIntro.jsx'
-import MintAddress from './pages/MintAddress.jsx'
-import MintConcertDate from './pages/MintConcertDate.jsx'
-import MintConcertArea from './pages/MintConcertArea.jsx'
-import MintConcertSeat from './pages/MintConcertSeat.jsx'
-import MintConcertPayment from './pages/MintConcertPayment.jsx'
+import MintSplash from './pages/MintSplash'
+import MintIntro from './pages/MintIntro'
+import MintAddress from './pages/MintAddress'
+import MintConcertDate from './pages/MintConcertDate'
+import MintConcertArea from './pages/MintConcertArea'
+import MintConcertSeat from './pages/MintConcertSeat'
+import MintConcertPayment from './pages/MintConcertPayment'
 import MintHome from './pages/MintHome'
 import MintSearch from './pages/MintSearch'
 import MintMyPage from './pages/MintMyPage'
 import MintSoon from './pages/MintSoon'
-import MintTrade from './pages/MintTrade.jsx'
+import MintTrade from './pages/MintTrade'
+import MintConcertDetail from './pages/MintConcertDetail'
 import Admin from './pages/Admin'
 import Test from './pages/Test'
 import Test2 from './pages/Test2'
@@ -48,6 +49,7 @@ function App({ setMode }) {
         <Route path="/mypage" element={<MintMyPage bright={bright} />} />
         <Route path="/mypage/ticket/:id" element={<MintTicket />} />
         <Route path="/admin" element={<Admin />} />
+        <Route exact path="/concert/detail" element={<MintConcertDetail bright={bright} />} />
         <Route path="/concert/date" element={<MintConcertDate />} />
         <Route path="/concert/area" element={<MintConcertArea />} />
         <Route path="/concert/seat" element={<MintConcertSeat />} />
@@ -60,7 +62,7 @@ function App({ setMode }) {
         {/* 트랜젝션 테스트 페이지 */}
         <Route exact path="/test" element={<Test />} />
         <Route exact path="/test2" element={<Test2 />} />
-        <Route path="/trade" element={<MintTrade bright={bright} />} />
+        <Route exact path="/trade" element={<MintTrade bright={bright} />} />
       </Routes>
     </BrowserRouter>
   )

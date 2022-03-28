@@ -21,6 +21,7 @@ import java.io.IOException;
  * @submissions : 1
  * @description :
  **/
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -48,7 +49,7 @@ public class AdminController {
 
     @DeleteMapping("/concert")
     public ResponseEntity delete(@RequestParam Long concertId){
-        //to do
+        concertService.delete(concertId);
         return ResponseEntity.ok().body("콘서트 정보 삭제");
     }
 

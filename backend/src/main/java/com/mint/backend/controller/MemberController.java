@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * @submissions : 1
  * @description :
  **/
+@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/concert")

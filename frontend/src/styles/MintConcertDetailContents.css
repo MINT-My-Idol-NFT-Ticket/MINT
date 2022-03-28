@@ -1,0 +1,16 @@
+.MintConcertDetailContents {
+	position: relative;
+}
+.MintConcertDetailContents__poster {
+	width: 100%;
+}
+.MintConcertDetailContents__poster > img{
+	width: 100%;
+}
+.MintConcertDetailContents__detail {
+	width: 100%;
+}
+.MintConcertDetailContents__detail > img{
+	width: 100%;
+	margin-bottom: 60px;
+}
