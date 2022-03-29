@@ -60,19 +60,24 @@ public class ConcertService {
     public boolean create(requestConcertDto requestConcertDto) throws IOException {
         //기본경로
         String path = "backend/src/main/resources/image" + requestConcertDto.getTitle();
-        String postPath = path + File.separator + requestConcertDto.getPostImage().getOriginalFilename();
+        String postPath = path + File.separator + requestConcertDto.getPosterImage().getOriginalFilename();
         String sectionPath = path + File.separator + requestConcertDto.getSectionImage().getOriginalFilename();
         String DescriptionPath = path + File.separator + requestConcertDto.getDescriptionsImage().getOriginalFilename();
+        String comingPath = path + File.separator + requestConcertDto.getComingImage().getOriginalFilename();
 
         //이미지 저장
-        requestConcertDto.getPostImage().transferTo(new File(postPath));
+        requestConcertDto.getPosterImage().transferTo(new File(postPath));
         requestConcertDto.getSectionImage().transferTo(new File(sectionPath));
         requestConcertDto.getDescriptionsImage().transferTo(new File(DescriptionPath));
+        requestConcertDto.getComingImage().transferTo(new File(comingPath));
+
         Image image = Image.builder()
-                .coming_url(sectionPath)
+                .coming_url(comingPath)
                 .description_url(DescriptionPath)
-                .main_url(postPath)
+                .poster_url(postPath)
+                .section_url(sectionPath)
                 .build();
+
         //시간등록
         List<Times> timesList = new ArrayList<>();
         int turn = requestConcertDto.getTime();
@@ -117,7 +122,7 @@ public class ConcertService {
         Concert concert = Concert.builder()
                 .title(requestConcertDto.getTitle())
                 .place(requestConcertDto.getPlace())
-                .contract_address(requestConcertDto.getContract_address())
+                .contractAddress(requestConcertDto.getContractAddress())
                 .price(requestConcertDto.getPrice())
                 .status(requestConcertDto.getStatus())
                 .image(image)
