@@ -27,6 +27,7 @@ const testData = [
     tokenId: 'ddffa213',
     date: '220212',
     number: 1,
+    ownerAccount: 'dafadfaqwer1',
   },
   {
     imgUrl:
@@ -37,6 +38,7 @@ const testData = [
     owner: 'b023423422',
     date: '220212',
     number: 2,
+    ownerAccount: 'dafadfaqwer1',
   },
   {
     imgUrl:
@@ -46,6 +48,7 @@ const testData = [
     owner: 'b0234234212',
     date: '220212',
     number: 3,
+    ownerAccount: 'dafadfaqwer1',
   },
   {
     imgUrl: `${Doduck}`,
@@ -53,6 +56,7 @@ const testData = [
     owner: 'b0234234212',
     date: '220212',
     number: 4,
+    ownerAccount: 'dafadfaqwer1',
   },
   {
     imgUrl:
@@ -62,6 +66,7 @@ const testData = [
     owner: 'b023423422',
     date: '220212',
     number: 5,
+    ownerAccount: 'dafadfaqwer1',
   },
   {
     imgUrl:
@@ -71,6 +76,7 @@ const testData = [
     owner: 'b023423422',
     date: '220212',
     number: 6,
+    ownerAccount: 'dafadfaqwer1',
   },
   {
     imgUrl:
@@ -80,6 +86,7 @@ const testData = [
     owner: 'b023423422',
     date: '220212',
     number: 7,
+    ownerAccount: 'dafadfaqwer1',
   },
 ]
 

@@ -26,6 +26,7 @@ import MintConcertDetail from './pages/MintConcertDetail'
 import Admin from './pages/Admin'
 import Test from './pages/Test'
 import Test2 from './pages/Test2'
+import MintTradeDetail from './pages/MintTradeDetail.jsx'
 
 function App({ setMode }) {
   const [bright, setBright] = useBrightness()
@@ -53,6 +54,7 @@ function App({ setMode }) {
         <Route exact path="/test" element={<Test />} />
         <Route exact path="/test2" element={<Test2 />} />
         <Route exact path="/trade" element={<MintTrade bright={bright} />} />
+        <Route exact path="/trade/ticket/:id" element={<MintTradeDetail bright={bright} />} />
       </Routes>
     </BrowserRouter>
   )
