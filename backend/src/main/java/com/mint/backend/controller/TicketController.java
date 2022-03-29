@@ -1,12 +1,16 @@
 package com.mint.backend.controller;
 
+import com.mint.backend.domain.Seat;
+import com.mint.backend.domain.Section;
+import com.mint.backend.domain.Times;
+import com.mint.backend.dto.responseExistSeatDto;
 import com.mint.backend.service.TicketService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @packageName : com.mint.backend.controller
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @submissions : 1
  * @description :
  **/
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/ticket")
 @RequiredArgsConstructor
@@ -27,26 +32,25 @@ public class TicketController {
     private final TicketService ticketService;
 
     @GetMapping("/concert/{concertId}")
-    public ResponseEntity findDay(@PathVariable Long concertId){
-        //to do
-        return ResponseEntity.ok().body("회차별 선택가능한 날짜");
+    public ResponseEntity<List<Times>> findDay(@PathVariable Long concertId){
+        List<Times> list = ticketService.getTimes(concertId);
+        return new ResponseEntity<List<Times>>(list, HttpStatus.OK);
     }
 
     @GetMapping("/times/{concertId}")
-    public ResponseEntity findSection(@PathVariable Long timesId){
-        //to do
-        return ResponseEntity.ok().body("날짜별 선택가능한 구역");
+    public ResponseEntity<List<Section>> findSection(@PathVariable Long timesId){
+        List<Section> list= ticketService.getSection(timesId);
+        return new ResponseEntity<List<Section>>(list,HttpStatus.OK);
     }
 
     @GetMapping("/section/{concertId}")
-    public ResponseEntity findSeat(@PathVariable Long sectionId){
-        //to do
-        return ResponseEntity.ok().body("구역별 선택 가능 좌석");
+    public ResponseEntity<List<Seat>> findSeat(@PathVariable Long sectionId){
+        List<Seat> list = ticketService.getSeat(sectionId);
+        return new ResponseEntity<List<Seat>>(list,HttpStatus.OK);
     }
 
     @GetMapping("/seat/{concertId}")
-    public ResponseEntity existSeat(@PathVariable Long seatId){
-        //to do
-        return ResponseEntity.ok().body("선택 가능 좌석 예매 가능 여부");
+    public ResponseEntity<responseExistSeatDto> existSeat(@PathVariable Long seatId){
+        return new ResponseEntity<responseExistSeatDto>(ticketService.getSeatStatus(seatId),HttpStatus.OK);
     }
 }

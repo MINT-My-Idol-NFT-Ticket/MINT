@@ -142,8 +142,12 @@ public class ConcertService {
     }
 
     //콘서트 삭제
-    public Concert delete() {
-        //to do
-        return new Concert();
+    public boolean delete(Long ConcertId) {
+        try {
+            concertRepository.deleteById(ConcertId);
+        }catch (Exception e){
+            return false;
+        }
+        return true;
     }
 }

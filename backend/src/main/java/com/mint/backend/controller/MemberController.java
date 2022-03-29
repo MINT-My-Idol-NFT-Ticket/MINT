@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * @submissions : 1
  * @description :
  **/
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/concert")
@@ -24,19 +25,23 @@ public class MemberController {
     private final ConcertService concertService;
 
     @GetMapping
-    public ResponseEntity findAll(@RequestParam int status){
-        //to do
+    public ResponseEntity findAll(@RequestParam String status){
+        boolean flag =true;
+        if(status.equals(0)){
+            flag = false;
+        }
+        concertService.getConcertList(flag);
         return ResponseEntity.ok().body("콘서트 목록 조회");
     }
 
     @GetMapping("/{concertId}")
-    public ResponseEntity findone(@PathVariable Long concertId){
+    public ResponseEntity findOne(@PathVariable Long concertId){
         //to do
         return ResponseEntity.ok().body("상세페이지");
     }
 
     @GetMapping("/search")
-    public ResponseEntity findAll(@RequestParam String keyword){
+    public ResponseEntity search(@RequestParam String keyword){
         //to do
         return ResponseEntity.ok().body("콘서트 검색");
     }

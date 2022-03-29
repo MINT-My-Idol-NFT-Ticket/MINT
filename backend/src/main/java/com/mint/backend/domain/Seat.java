@@ -29,8 +29,14 @@ public class Seat {
     private Long id;
     private String name;
     private String date;
-    @Column(columnDefinition = "integer default 0")
-    private int status;
+    @Column(columnDefinition = "boolean default true")
+    private boolean status;
 
+    @ManyToOne
+    @JoinColumn(name="section_id")
+    private Section section;
 
+    public void updateStatus(){
+        this.status=false;
+    }
 }

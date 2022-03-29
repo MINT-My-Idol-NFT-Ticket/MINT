@@ -1,12 +1,18 @@
 package com.mint.backend.service;
 
-import com.mint.backend.domain.Concert;
+
+import com.mint.backend.domain.Seat;
+import com.mint.backend.domain.Section;
+import com.mint.backend.domain.Times;
+import com.mint.backend.dto.responseExistSeat;
 import com.mint.backend.repository.SeatRepository;
 import com.mint.backend.repository.SectionRepository;
 import com.mint.backend.repository.TimesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import sun.security.krb5.internal.Ticket;
+
+
+import java.util.List;
 
 /**
  * @packageName : com.mint.backend.service
@@ -29,19 +35,23 @@ public class TicketService {
     private final TimesRepository timesRepository;
 
     //회차 조회
-    public void getTimes(){
-        //to do
-
+    public List<Times> getTimes(Long concertId){
+        return timesRepository.findAllByConcert_Id(concertId);
     }
 
     //구역 조회
-    public void getSection(){
-        //to do
+    public List<Section> getSection(Long timesId){
+        return sectionRepository.findAllByTimesId(timesId);
 
     }
-    //날짜 조회
-    public void getday(){
-        //to do
-
+    //좌석 조회
+    public List<Seat> getSeat(Long sectionId){
+        return seatRepository.findAllBySectionId(sectionId);
     }
+    //예매가능여부
+    public responseExistSeat getSeatStatus(Long seatId){
+        Seat seat = seatRepository.findById(seatId).orElse(Seat.builder().status(false).build());
+        return new responseExistSeat(seat.isStatus());
+    }
+    //좌석 상태변경
 }

@@ -2,6 +2,9 @@ package com.mint.backend.repository;
 
 import com.mint.backend.domain.Seat;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 /**
  * @packageName : com.mint.backend.repository
@@ -15,4 +18,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @description :
  **/
 public interface SeatRepository extends JpaRepository<Seat,Long> {
+    List<Seat> findAllBySectionId(@Param(value = "scetionId")Long sectionId);
 }
