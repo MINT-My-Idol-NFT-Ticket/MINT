@@ -50,8 +50,8 @@ public class TicketService {
     }
     //예매가능여부
     public responseExistSeatDto getSeatStatus(Long seatId){
-        Seat seat = seatRepository.findById(seatId).orElse(Seat.builder().status(false).build());
-        return new responseExistSeatDto(seat.isStatus());
+        Seat seat = seatRepository.findById(seatId).orElse(Seat.builder().status(0).build());
+        return new responseExistSeatDto(seat.getStatus());
     }
     //좌석 상태변경
 }
