@@ -52,8 +52,14 @@ contract MintTicket is ERC721Enumerable, Ownable{
     
     // 사용자가 결제 누르면 티켓 가격(msg.value)과 함께 호출되는 함수
     // 사용자에게 돈을 받고, NFT 발급
+<<<<<<< HEAD
     function buyTicket(string memory _tokenURI) public returns (uint256) {   
         erc20Contract.transferFrom(msg.sender, admin, ticketPrice);
+=======
+    function buyTicket(string memory _tokenURI) public payable returns (uint256) {   
+        require(msg.value > 0, "Caller sent zero ether");
+        require(ticketPrice <= msg.value, "Caller sent lower than price.");
+>>>>>>> 53d3a249de6145d5f4cd63037f4d02bb393fa910
         uint256 newTokenId = totalSupply() + 1;
         _mint(msg.sender, newTokenId);
         tokenURIs[newTokenId] = _tokenURI;

@@ -2,23 +2,30 @@
 import * as React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
+import Grid from '@mui/material/Grid'
+
 //modules
 import ModeContext from './contexts/ModeContexts.js'
 import useBrightness from './hooks/useBrightness'
 import { Box } from '@mui/system'
 //compoenents
-import MintSplash from './pages/MintSplash.jsx'
-import MintIntro from './pages/MintIntro.jsx'
-import MintAddress from './pages/MintAddress.jsx'
-import MintConcertDate from './pages/MintConcertDate.jsx'
-import MintConcertArea from './pages/MintConcertArea.jsx'
-import MintConcertSeat from './pages/MintConcertSeat.jsx'
-import MintConcertPayment from './pages/MintConcertPayment.jsx'
+import MintInner from './components/common/MintInner'
+import MintSplash from './pages/MintSplash'
+import MintIntro from './pages/MintIntro'
+import MintAddress from './pages/MintAddress'
+import MintConcertDate from './pages/MintConcertDate'
+import MintConcertArea from './pages/MintConcertArea'
+import MintConcertSeat from './pages/MintConcertSeat'
+import MintConcertPayment from './pages/MintConcertPayment'
 import MintHome from './pages/MintHome'
 import MintSearch from './pages/MintSearch'
 import MintMyPage from './pages/MintMyPage'
 import MintSoon from './pages/MintSoon'
+import MintTrade from './pages/MintTrade'
+import MintConcertDetail from './pages/MintConcertDetail'
 import Admin from './pages/Admin'
+import Test from './pages/Test'
+import Test2 from './pages/Test2'
 
 function App({ setMode }) {
   const [bright, setBright] = useBrightness()
@@ -30,17 +37,22 @@ function App({ setMode }) {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<MintSplash />} />
-        <Route path="/intro" element={<MintIntro />} />
-        <Route path="/home" element={<MintHome bright={bright} />} />
-        <Route path="/search" element={<MintSearch bright={bright} />} />
-        <Route path="/comming_soon" element={<MintSoon bright={bright} />} />
-        <Route path="/mypage" element={<MintMyPage bright={bright} />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/concert/date" element={<MintConcertDate />} />
-        <Route path="/concert/area" element={<MintConcertArea />} />
-        <Route path="/concert/seat" element={<MintConcertSeat />} />
-        <Route path="/concert/payment" element={<MintConcertPayment />} />
-        <Route path="/address" element={<MintAddress />} />
+        <Route exact path="/intro" element={<MintIntro />} />
+        <Route exact path="/home" element={<MintHome bright={bright} />} />
+        <Route exact path="/search" element={<MintSearch bright={bright} />} />
+        <Route exact path="/comming_soon" element={<MintSoon bright={bright} />} />
+        <Route exact path="/mypage" element={<MintMyPage bright={bright} />} />
+        <Route exact path="/admin" element={<Admin />} />
+        <Route exact path="/concert/detail" element={<MintConcertDetail bright={bright} />} />
+        <Route exact path="/concert/date" element={<MintConcertDate />} />
+        <Route exact path="/concert/area" element={<MintConcertArea />} />
+        <Route exact path="/concert/seat" element={<MintConcertSeat />} />
+        <Route exact path="/concert/payment" element={<MintConcertPayment />} />
+        <Route exact path="/address" element={<MintAddress />} />
+        {/* 트랜젝션 테스트 페이지 */}
+        <Route exact path="/test" element={<Test />} />
+        <Route exact path="/test2" element={<Test2 />} />
+        <Route exact path="/trade" element={<MintTrade bright={bright} />} />
       </Routes>
     </BrowserRouter>
   )
@@ -113,16 +125,19 @@ export default function MINT() {
           backgroundColor: 'gray',
         }}>
         <ModeContext>
-          <Box
-            sx={{
-              position: 'relative',
-              maxWidth: '700px',
-              margin: '0 auto',
-              height: '100vh',
-              backgroundColor: mode === 'light' ? '#EEEEEE' : '#222831',
-            }}>
-            <App setMode={setMode} />
-          </Box>
+          <MintInner>
+            <Box
+              sx={{
+                position: 'relative',
+                flexGrow: 1,
+                minWidth: '340px',
+                margin: '0 auto',
+                height: '100vh',
+                backgroundColor: mode === 'light' ? '#EEEEEE' : '#222831',
+              }}>
+              <App setMode={setMode} />
+            </Box>
+          </MintInner>
         </ModeContext>
       </Box>
     </ThemeProvider>

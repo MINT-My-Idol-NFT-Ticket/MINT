@@ -30,14 +30,27 @@ contract SaleTicket {
         onSaleTicketArray.push(_tokenId);
     }
 
+<<<<<<< HEAD
     function purchaseTicket(uint256 _tokenId) public {
+=======
+    function purchaseTicket(uint256 _tokenId) public payable {
+>>>>>>> 53d3a249de6145d5f4cd63037f4d02bb393fa910
         uint256 price = ticketPrices[_tokenId];
         address ticketOwner = mintTicketAddress.ownerOf(_tokenId);
 
         require(price > 0, "Ticket not sale.");
+<<<<<<< HEAD
         require(ticketOwner != msg.sender, "Caller is ticket owner.");
         //erc20Contract.transfer(ticketOwner, price);
         //mintTicketAddress.safeTransferFrom(ticketOwner, msg.sender, _tokenId);
+=======
+        require(price <= msg.value, "Caller sent lower than price.");
+        require(ticketOwner != msg.sender, "Caller is ticket owner.");
+        console.log(ticketOwner);
+        payable(ticketOwner).transfer(msg.value);
+        console.log(msg.sender);
+        mintTicketAddress.safeTransferFrom(ticketOwner, msg.sender, _tokenId);
+>>>>>>> 53d3a249de6145d5f4cd63037f4d02bb393fa910
 
         ticketPrices[_tokenId] = 0;
 

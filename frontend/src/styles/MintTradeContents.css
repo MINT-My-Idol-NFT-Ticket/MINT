@@ -1,0 +1,13 @@
+.MintTrade__cardList {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.MintTrade__category {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+}

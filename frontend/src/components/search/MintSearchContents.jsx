@@ -12,14 +12,12 @@ export default function MintSearchContents({ bright }) {
       title: `${i}번 제목${i}번 제목${i}번 제목${i}번 제목${i}번 제목${i}번 제목${i}번 제목${i}번 제목${i}번 제목`,
       date: `${i}번 날짜`,
       singer: `${i}번 가수`,
-      img: `${i}번 포스터`,
+      img: 'poster_ver.gif',
     })
   }
 
   const makeSearchList = () => {
-    return testData.map(concert => (
-      <MintHorizontalCard key={concert.date} concertData={concert} width="70px" height="70px" />
-    ))
+    return testData.map(concert => <MintHorizontalCard key={concert.date} concertData={concert} />)
   }
   return (
     <div className="MintSearchContents">

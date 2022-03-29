@@ -5,10 +5,12 @@ import MintConcertText from '../common/MintConcertText'
 import MintConcertPoster from '../common/MintConcertPoster'
 // 인라인 리소스 확보시 스타일 제거 필요
 
-export default function MintVerticalCard({ concertData, width, height }) {
+export default function MintVerticalCard({ concertData, notOpen }) {
   return (
-    <div className={`MintVerticalCard`} style={{ width: width }}>
-      <MintConcertPoster imgUrl={concertData.img} height={height} />
+    <div className="MintVerticalCard">
+      <div className={`MintVerticalCard__poster ${notOpen ? 'notOpen' : 'open'}`}>
+        <MintConcertPoster imgUrl={concertData.img} />
+      </div>
       <MintConcertText
         data={{
           singer: concertData.singer,

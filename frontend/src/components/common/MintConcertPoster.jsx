@@ -1,22 +1,11 @@
 import '../../styles/MintConcertPoster.css'
 
-export default function MintConcertPoster({ imgUrl, width, height }) {
+export default function MintConcertPoster({ imgUrl }) {
+  console.log(imgUrl)
   return (
-    <div
-      className={`MintConcertPoster`}
-      style={{
-        width: width,
-        height: height,
-      }}>
-      <div
-        className={`img__wrapper`}
-        style={{
-          width: '100%',
-          height: '100%',
-          backgroundColor: 'brown',
-        }}>
-        {imgUrl}
-      </div>
+    <div className="MintConcertPoster">
+      {/* <img src={require('../../images/poster_ho.png')} alt="" /> */}
+      <img src={imgUrl} alt="" />
     </div>
   )
 }

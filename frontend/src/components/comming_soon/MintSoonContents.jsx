@@ -11,14 +11,12 @@ export default function MintSoonContents() {
       title: `${i}번 제목`,
       date: `${i}번 날짜`,
       singer: `${i}번 가수`,
-      img: `${i}번 포스터`,
+      img: 'poster_ver.gif',
     })
   }
 
   const makeSearchList = () => {
-    return testData.map(concert => (
-      <MintHorizontalCard key={concert.date} concertData={concert} width="100px" height="100px" />
-    ))
+    return testData.map(concert => <MintHorizontalCard key={concert.date} concertData={concert} />)
   }
   return (
     <div className="MintSoonContents">
