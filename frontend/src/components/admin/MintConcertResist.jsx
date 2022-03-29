@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid'
 import Button from '@mui/material/Button'
 import { useState } from 'react'
 //modules
-import { postReqeust } from '../../functions/Request.js'
+import { postReqeust } from '../../api/Request.js'
 //components
 import MintSetConcertData from './MintSetConcertData'
 import MintSetConcertImage from './MintSetConcertImage'
@@ -39,7 +39,11 @@ export default function MintConcertResist() {
       console.log(`${item}: ${formData.get(item)}`)
     }
 
-    const result = postReqeust('api/concert')
+    const result = postReqeust('api/concert', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
     console.log(result)
   }
 
