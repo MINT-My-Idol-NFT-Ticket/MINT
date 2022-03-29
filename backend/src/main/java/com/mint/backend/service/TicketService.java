@@ -54,4 +54,5 @@ public class TicketService {
         return new responseExistSeatDto(seat.getStatus());
     }
     //좌석 상태변경
+
 }

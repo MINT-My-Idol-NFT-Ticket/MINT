@@ -30,7 +30,7 @@ public class AdminController {
 
     private final ConcertService concertService;
 
-    @PostMapping
+    @PostMapping("/concert")
     public ResponseEntity<Boolean> create(@RequestBody requestConcertDto requestConcertDto) throws IOException {
         //디렉토리생성
         String folderPath  = "backend/src/main/resources/image"+requestConcertDto.getTitle();
@@ -43,7 +43,7 @@ public class AdminController {
     }
 
     @PutMapping("/concert")
-    public ResponseEntity update(@RequestBody requestConcertDto requestConcertDto){
+    public ResponseEntity update(@RequestParam Long concertId){
         //to do
         return ResponseEntity.ok().body("콘서트 정보 수정");
     }

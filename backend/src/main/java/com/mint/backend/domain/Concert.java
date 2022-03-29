@@ -37,7 +37,7 @@ public class Concert {
     @NotNull
     private String place;
     @NotNull
-    private String contract_address;
+    private String contractAddress;
     private String price;
     @Column(columnDefinition = "Integer default 0")
     private int status;
