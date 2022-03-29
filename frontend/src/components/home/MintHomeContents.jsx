@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import '../../styles/MintHomeContents.css'
 //components
 import MintVerticalCard from '../common/MintVerticalCard'
+import { useEffect, useRef, useState } from 'react'
 
 export default function MintHomeContents() {
   const navigate = useNavigate()

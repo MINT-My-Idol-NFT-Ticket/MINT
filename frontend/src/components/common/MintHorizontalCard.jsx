@@ -19,7 +19,7 @@ export default function MintHorizontalCard({ concertData, extra }) {
           }}
           textStyle={textStyle}
         />
-        {extra}
+        <p className="MintHorizontalCard__place">장소장소</p>
       </div>
     </div>
   )
