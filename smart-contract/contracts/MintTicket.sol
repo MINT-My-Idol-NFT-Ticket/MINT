@@ -10,7 +10,6 @@ contract MintTicket is ERC721Enumerable, Ownable{
 
     SaleTicket public saleTicket;
     address public saleContractAddress;
-    // Payable address can receive Ether
     address admin;
     address adminAddress;
     uint256 ticketPrice;
@@ -57,7 +56,7 @@ contract MintTicket is ERC721Enumerable, Ownable{
         uint256 newTokenId = totalSupply() + 1;
         _mint(msg.sender, newTokenId);
         tokenURIs[newTokenId] = _tokenURI;
-        //approve(saleContractAddress, newTokenId);
+        approve(saleContractAddress, newTokenId);
         return newTokenId;
     }
 
@@ -83,5 +82,25 @@ contract MintTicket is ERC721Enumerable, Ownable{
     function setSaleTicket(address _setSaleTicket) public {
         saleTicket = SaleTicket(_setSaleTicket);
         saleContractAddress = _setSaleTicket;
+    }
+
+    // 보유하고 있는 토큰 소각 (요청자의 토큰 보유 여부 확인 후 소각 그리고 돈 환불)
+    function cancelTicket(uint256 _tokenId) public {
+        // msg.sender가 가지고 있는 tokenId인지 확인
+        address ticketOwner = ownerOf(_tokenId);
+        require(ticketOwner == msg.sender, "Caller is not ticket owner.");
+
+        // NFT 소각
+        _burn(_tokenId);
+
+        // SSF 환불
+        erc20Contract.approve(admin, ticketPrice);
+        erc20Contract.transferFrom(admin, msg.sender, ticketPrice);
+    }   
+
+    modifier isTokenOwner() {
+        
+        //require(msg.sender == seller, "Sale: You are not seller.");
+        _;
     }
 }
