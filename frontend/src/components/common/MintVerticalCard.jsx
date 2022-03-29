@@ -25,13 +25,13 @@ export default function MintVerticalCard({ concertData, notOpen }) {
 
 const textStyle = {
   singer: {
-    fontSize: '15px',
+    fontSize: '16px',
   },
   title: {
-    fontSize: '14px',
+    fontSize: '16px',
   },
   date: {
-    fontSize: '12px',
+    fontSize: '14px',
     fontWeight: '300',
   },
 }
