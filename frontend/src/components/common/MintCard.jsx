@@ -2,8 +2,11 @@
 import '../../styles/MintCard.css'
 //components
 import { Card, CardMedia, CardActions, Typography } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 export default function MintCard({ cardData, type }) {
+  const navigate = useNavigate()
+
   /**
    * 박창현
    * type props에 따라 가격 표시 여부를 구분하여 출력하기 위해 구현했습니다.
@@ -18,8 +21,14 @@ export default function MintCard({ cardData, type }) {
       ''
     )
 
+  const handleDetail = () => {
+    type === 'trade'
+      ? navigate(`/trade/ticket/${cardData.number}`, { state: cardData })
+      : alert('잘못된 페이지 접근 MintCard.jsx의 handleDetail()')
+  }
+
   return (
-    <div className={`MintCard`}>
+    <div className={`MintCard`} onClick={handleDetail}>
       <Card sx={{ border: '1px solid grey' }}>
         <CardMedia component="img" image={cardData.imgUrl} alt="nft사진" sx={{ height: '175px' }} />
         {setType}

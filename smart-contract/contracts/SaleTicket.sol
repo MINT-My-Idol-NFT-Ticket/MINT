@@ -2,20 +2,23 @@
 pragma solidity ^0.8.4;
 
 import "./MintTicket.sol";
-import "hardhat/console.sol";
+import "./token/ERC20/ERC20.sol";
 
 contract SaleTicket {
    
     MintTicket public mintTicketAddress;
+    IERC20 public erc20Contract;
 
-    constructor (address _mintTicketAddress) {
+    constructor (address _mintTicketAddress, address _currencyAddress) {
         mintTicketAddress = MintTicket(_mintTicketAddress);
+        erc20Contract = IERC20(_currencyAddress);
     }
 
     mapping(uint256 => uint256) public ticketPrices;
     
     uint256[] public onSaleTicketArray;
 
+    // 티켓 소유자가 판매 등록
     function setForSaleTicket(uint256 _tokenId, uint256 _price) public {
         address ticketOwner = mintTicketAddress.ownerOf(_tokenId);
         require(ticketOwner == msg.sender, "Caller is not ticket owner.");
@@ -27,17 +30,15 @@ contract SaleTicket {
         onSaleTicketArray.push(_tokenId);
     }
 
-    function purchaseTicket(uint256 _tokenId) public payable {
+    // 다른 사용자가 판매 등록된 티켓 구매
+    function purchaseTicket(uint256 _tokenId) public {
         uint256 price = ticketPrices[_tokenId];
         address ticketOwner = mintTicketAddress.ownerOf(_tokenId);
 
         require(price > 0, "Ticket not sale.");
-        require(price <= msg.value, "Caller sent lower than price.");
         require(ticketOwner != msg.sender, "Caller is ticket owner.");
-        console.log(ticketOwner);
-        payable(ticketOwner).transfer(msg.value);
-        console.log(msg.sender);
-        mintTicketAddress.safeTransferFrom(ticketOwner, msg.sender, _tokenId);
+        erc20Contract.transferFrom(msg.sender, ticketOwner, price);
+        mintTicketAddress.transferFrom(ticketOwner, msg.sender, _tokenId);
 
         ticketPrices[_tokenId] = 0;
 

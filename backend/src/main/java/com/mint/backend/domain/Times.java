@@ -38,4 +38,8 @@ public class Times {
     public void addSections(List<Section> sections){
         this.sections = sections;
     }
+
+    @ManyToOne
+    @JoinColumn(name="concert_id")
+    private Concert concert;
 }
