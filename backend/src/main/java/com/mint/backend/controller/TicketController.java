@@ -3,7 +3,7 @@ package com.mint.backend.controller;
 import com.mint.backend.domain.Seat;
 import com.mint.backend.domain.Section;
 import com.mint.backend.domain.Times;
-import com.mint.backend.dto.responseExistSeat;
+import com.mint.backend.dto.responseExistSeatDto;
 import com.mint.backend.service.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,7 +23,7 @@ import java.util.List;
  * @submissions : 1
  * @description :
  **/
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/ticket")
 @RequiredArgsConstructor
@@ -50,7 +50,7 @@ public class TicketController {
     }
 
     @GetMapping("/seat/{concertId}")
-    public ResponseEntity<responseExistSeat> existSeat(@PathVariable Long seatId){
-        return new ResponseEntity<responseExistSeat>(ticketService.getSeatStatus(seatId),HttpStatus.OK);
+    public ResponseEntity<responseExistSeatDto> existSeat(@PathVariable Long seatId){
+        return new ResponseEntity<responseExistSeatDto>(ticketService.getSeatStatus(seatId),HttpStatus.OK);
     }
 }

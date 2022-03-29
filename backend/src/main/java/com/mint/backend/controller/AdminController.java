@@ -1,12 +1,11 @@
 package com.mint.backend.controller;
 
 import com.mint.backend.dto.requestConcertDto;
-import com.mint.backend.dto.requestExistAuth;
+import com.mint.backend.dto.requestExistAuthDto;
 import com.mint.backend.service.ConcertService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
@@ -23,7 +22,7 @@ import java.io.IOException;
  * @submissions : 1
  * @description :
  **/
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -56,7 +55,7 @@ public class AdminController {
     }
 
     @PostMapping("/concert/admin")
-    public ResponseEntity<Boolean> existAuth(@RequestBody requestExistAuth admin){
+    public ResponseEntity<Boolean> existAuth(@RequestBody requestExistAuthDto admin){
         boolean flag = false;
         if(admin.getId().equals("admin")&&admin.getPassword().equals("admin")){
             flag =true;
