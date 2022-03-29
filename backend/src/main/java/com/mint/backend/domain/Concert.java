@@ -39,8 +39,8 @@ public class Concert {
     @NotNull
     private String contract_address;
     private String price;
-    @Column(columnDefinition = "integer default 0")
-    private boolean status;
+    @Column(columnDefinition = "Integer default 0")
+    private int status;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="image_id")
