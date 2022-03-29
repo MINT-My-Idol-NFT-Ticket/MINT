@@ -31,7 +31,7 @@ public class AdminController {
     private final ConcertService concertService;
 
     @PostMapping("/concert")
-    public ResponseEntity<Boolean> create(@RequestBody requestConcertDto requestConcertDto) throws IOException {
+    public ResponseEntity<Boolean> create(@RequestPart requestConcertDto requestConcertDto) throws IOException {
         //디렉토리생성
         String folderPath  = "backend/src/main/resources/image"+requestConcertDto.getTitle();
         File makeFolder = new File(folderPath);
