@@ -26,14 +26,6 @@ contract MintTicket is ERC721Enumerable, Ownable{
         erc20Contract = IERC20(_currencyAddress);
     }
 
-    // contract를 deploy한 owner에게 contract가 갖고있는 결제금이 출금되는 함수
-    function withdraw() public {
-        uint amount = address(this).balance;
-
-        (bool success, ) = admin.call{value: amount}("");
-        require(success, "Failed to send Ether");
-    }
-
     // tokenId에 해당하는 tokenURI 반환
     function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
         return tokenURIs[tokenId];
