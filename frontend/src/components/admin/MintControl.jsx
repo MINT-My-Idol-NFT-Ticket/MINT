@@ -5,7 +5,7 @@ import Tab from '@mui/material/Tab'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 //moduels
-import '../../styles/MintConcertResist.css'
+import '../../styles/MintControl.css'
 //components
 import MintConcertResist from './MintConcertResist'
 
@@ -17,7 +17,7 @@ export default function MintControl() {
   }
   return (
     <div className="MintControl">
-      <Box sx={{ width: '100%' }}>
+      <Box>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
             <Tab label="콘서트 목록" />

@@ -9,9 +9,7 @@ export default function MintBanner() {
           height: '100px',
           backgroundColor: 'royalblue',
         }}
-        className="MintBanner__img">
-        이것은 배너 영역이여
-      </div>
+        className="MintBanner__img"></div>
     </>
   )
 }
