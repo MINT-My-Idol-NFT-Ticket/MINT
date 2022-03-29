@@ -1,9 +1,9 @@
 .MintControl {
-	position: absolute;
-	width: 85vw;
+	position: fixed;
+	left: 0;
+	width: 100vw;
 	height: 100vh;
-	top: 0;
-	left: -30vw;
 	z-index: 100;
 	background-color: antiquewhite;
+	overflow-y: scroll;
 }

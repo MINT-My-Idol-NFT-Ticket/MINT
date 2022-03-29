@@ -1,5 +1,5 @@
 import ERC20 from '../contract/ERC20.json'
-import send from './TicketTransactions'
+import send from './sendTransactions.js'
 
 const ABI = ERC20.abi
 const CONTRACT_ADDRESS = process.env.REACT_APP_ERC20_ADDRESS
