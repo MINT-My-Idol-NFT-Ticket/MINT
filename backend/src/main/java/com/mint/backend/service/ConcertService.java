@@ -41,9 +41,7 @@ public class ConcertService {
     //콘서트 목록 조회
     @Transactional
     public List<Concert> getConcertList(int status) {
-        List<Concert> list =concertRepository.findConcert(status);
-
-        return list;
+        return concertRepository.findConcert(status);
     }
 
     //콘서트 상세정보
