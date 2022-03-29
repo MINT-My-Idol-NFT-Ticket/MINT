@@ -1,5 +1,6 @@
 {
   "name": "hardhat-project",
+  "type": "commonjs",
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.5",
     "@nomiclabs/hardhat-waffle": "^2.0.3",
