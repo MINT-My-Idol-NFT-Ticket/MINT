@@ -1,8 +1,16 @@
-import React, { Suspense, useRef, useState } from 'react'
+import React, { Suspense, useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
-import { Canvas, useFrame, useLoader } from '@react-three/fiber'
+import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber'
 import { TextureLoader } from 'three'
-import { OrbitControls, Environment, MeshReflectorMaterial, ContactShadows, Backdrop, Bounds } from '@react-three/drei'
+import {
+  OrbitControls,
+  Environment,
+  MeshReflectorMaterial,
+  ContactShadows,
+  Backdrop,
+  Bounds,
+  useBounds,
+} from '@react-three/drei'
 
 function CoinMesh() {
   const mesh = useRef(null)
@@ -17,10 +25,10 @@ function CoinMesh() {
     <mesh
       ref={mesh}
       position={[0, 0, 0]}
-      scale={3}
+      scale={active ? 12 : 6}
       onClick={() => {
         setActive(!active)
-        console.log('clicked')
+        mesh.current.rotation.y += Math.PI
       }}>
       <boxGeometry attach="geometry" args={[1, 1.8, 0.005]} />
       <meshBasicMaterial attachArray="material" color="black" />
