@@ -4,7 +4,8 @@ import { useState } from 'react'
 
 export default function MintSetConcertData({ requestData, setRequestData }) {
   const [title, setTitle] = useState('')
-  const [status, setStatus] = useState(false)
+  const [status, setStatus] = useState('')
+  const [price, setPrice] = useState('')
   const [place, setPlace] = useState('')
   const [singer, setSinger] = useState('')
   const concertData = [
@@ -14,9 +15,14 @@ export default function MintSetConcertData({ requestData, setRequestData }) {
       callback: e => setTitle(e.target.value),
     },
     {
-      label: '상태',
+      label: '상태 (0: 오픈 예정, 1: 진행중, 2: 종료)',
       value: status,
       callback: e => setStatus(e.target.value),
+    },
+    {
+      label: '가격',
+      value: price,
+      callback: e => setPrice(e.target.value),
     },
     {
       label: '장소',
@@ -31,7 +37,14 @@ export default function MintSetConcertData({ requestData, setRequestData }) {
   ]
   const addData = () => {
     concertData.forEach(data =>
-      setRequestData({ ...requestData, title: title, status: status, place: place, singer: singer.split(' ') }),
+      setRequestData({
+        ...requestData,
+        title: title,
+        status: status,
+        place: place,
+        price: price,
+        singer: singer.split(' '),
+      }),
     )
   }
   return (

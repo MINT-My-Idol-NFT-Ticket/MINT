@@ -74,3 +74,17 @@ export default function MintConcertResist() {
     </Box>
   )
 }
+
+// {
+// 	"title":"테스트",
+// 	"status":"1",
+// 	"place":"테스트",
+//   "price":"1"
+// 	"singer":["테스트","테스트","테스트"],
+// 	"contractAddress": "0x36B7A67F5338654511576A5CB00392E76D2676E2"
+// 	"saleContractAddress": "0x36B7A67F5338654511576A5CB00392E76D2676E2"
+// 	"time":"3",
+// 	"timeTable":["0000","0000","0000"],
+// 	"sectionNum":"3",
+// 	"section":{"a":"1","b":"2","c":"3"}},
+// }
