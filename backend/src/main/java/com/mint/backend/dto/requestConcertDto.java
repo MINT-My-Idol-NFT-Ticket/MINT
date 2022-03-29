@@ -28,13 +28,13 @@ public class requestConcertDto {
     private MultipartFile descriptionsImage;
     private MultipartFile posterImage;
     private MultipartFile sectionImage;
-    private MultipartFile mainImage;
     private MultipartFile comingImage;
     private int sectionNum;
     private int time;
     private String[] timeTable;
     private String place;
     private String contractAddress;
+    private String saleContractAddress;
     private String price;
     private Map<String,Integer> section;
 

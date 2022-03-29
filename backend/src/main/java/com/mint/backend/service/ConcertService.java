@@ -60,6 +60,7 @@ public class ConcertService {
     public boolean create(requestConcertDto requestConcertDto) throws IOException {
         //기본경로
         String path = "backend/src/main/resources/image" + requestConcertDto.getTitle();
+
         String postPath = path + File.separator + requestConcertDto.getPosterImage().getOriginalFilename();
         String sectionPath = path + File.separator + requestConcertDto.getSectionImage().getOriginalFilename();
         String DescriptionPath = path + File.separator + requestConcertDto.getDescriptionsImage().getOriginalFilename();
@@ -123,6 +124,7 @@ public class ConcertService {
                 .title(requestConcertDto.getTitle())
                 .place(requestConcertDto.getPlace())
                 .contractAddress(requestConcertDto.getContractAddress())
+                .saleContractAddress(requestConcertDto.getSaleContractAddress())
                 .price(requestConcertDto.getPrice())
                 .status(requestConcertDto.getStatus())
                 .image(image)
