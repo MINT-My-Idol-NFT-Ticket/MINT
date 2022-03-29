@@ -26,6 +26,7 @@ import MintConcertDetail from './pages/MintConcertDetail'
 import Admin from './pages/Admin'
 import Test from './pages/Test'
 import Test2 from './pages/Test2'
+import MintTicket from './pages/MintTicket.jsx'
 import MintTradeDetail from './pages/MintTradeDetail.jsx'
 
 function App({ setMode }) {
@@ -38,18 +39,19 @@ function App({ setMode }) {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<MintSplash />} />
-        <Route exact path="/intro" element={<MintIntro />} />
-        <Route exact path="/home" element={<MintHome bright={bright} />} />
-        <Route exact path="/search" element={<MintSearch bright={bright} />} />
-        <Route exact path="/comming_soon" element={<MintSoon bright={bright} />} />
-        <Route exact path="/mypage" element={<MintMyPage bright={bright} />} />
-        <Route exact path="/admin" element={<Admin />} />
+        <Route path="/intro" element={<MintIntro />} />
+        <Route path="/home" element={<MintHome bright={bright} />} />
+        <Route path="/search" element={<MintSearch bright={bright} />} />
+        <Route path="/comming_soon" element={<MintSoon bright={bright} />} />
+        <Route path="/mypage" element={<MintMyPage bright={bright} />} />
+        <Route path="/mypage/ticket/:id" element={<MintTicket />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/concert/date" element={<MintConcertDate />} />
+        <Route path="/concert/area" element={<MintConcertArea />} />
+        <Route path="/concert/seat" element={<MintConcertSeat />} />
+        <Route path="/concert/payment" element={<MintConcertPayment />} />
         <Route exact path="/concert/detail" element={<MintConcertDetail bright={bright} />} />
-        <Route exact path="/concert/date" element={<MintConcertDate />} />
-        <Route exact path="/concert/area" element={<MintConcertArea />} />
-        <Route exact path="/concert/seat" element={<MintConcertSeat />} />
-        <Route exact path="/concert/payment" element={<MintConcertPayment />} />
-        <Route exact path="/address" element={<MintAddress />} />
+        <Route path="/address" element={<MintAddress />} />
         {/* 트랜젝션 테스트 페이지 */}
         <Route exact path="/test" element={<Test />} />
         <Route exact path="/test2" element={<Test2 />} />
@@ -112,6 +114,15 @@ export default function MINT() {
         },
         typography: {
           fontFamily: 'Spoqa Han Sans Neo',
+        },
+        components: {
+          MuiCalendarPicker: {
+            styleOverrides: {
+              root: {
+                color: '#222831',
+              },
+            },
+          },
         },
       }),
     [mode],

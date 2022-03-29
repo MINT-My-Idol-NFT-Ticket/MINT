@@ -4,21 +4,56 @@ import { Box, Button, Typography } from '@mui/material'
 import MintPageTemplate from '../components/common/MintPageTemplate'
 import MintConcertTimes from '../components/concert/MintConcertTimes'
 import MintBtnGroup from '../components/common/MintBtnGroup'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import LocalizationProvider from '@mui/lab/LocalizationProvider'
+import CalendarPicker from '@mui/lab/CalendarPicker'
+import '../styles/MintConcertProcess.css'
 
 function MintConcertDate() {
   const Header = () => {
+    const [date, setDate] = useState(new Date())
     return (
       <Box
         sx={{
+          minHeight: '440px',
           textAlign: 'center',
-          height: '400px',
           color: '#EEEEEE',
           backgroundImage: `url("${tempBg}")`,
+          position: 'relative',
         }}>
         <Typography variant="h6" sx={{ paddingTop: '20px' }}>
           {tourName}
         </Typography>
         <Typography>{concertName}</Typography>
+
+        <Box
+          sx={{
+            width: '320px',
+            height: '305px',
+            backgroundColor: '#eeeeee',
+            margin: '24px 10px 0 20px',
+            display: 'inlineBlock',
+            textAlign: 'center',
+            borderRadius: '8px',
+            position: 'absolute',
+            top: '50%',
+            left: '44.4%',
+            transform: 'translate(-50%, -50%)',
+          }}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <CalendarPicker
+              date={date}
+              onChange={newDate => {
+                setDate(newDate)
+              }}
+              views={['day', 'month']}
+              // shouldDisableDate={date => {
+              //   const dayDiff = diffDay(date)
+              //   return dayDiff < 0 || dayDiff > 15
+              // }}
+            />
+          </LocalizationProvider>
+        </Box>
       </Box>
     )
   }
@@ -40,6 +75,7 @@ function MintConcertDate() {
   const Footer = () => {
     return <MintBtnGroup next="concert/area" />
   }
+
   const [tourName, settourName] = useState('BTS WORLD TOUR')
   const [concertName, setConcertName] = useState("LOVE YOL'RSELF")
   const [concertInfo, setConcertInfo] = useState(tempdatas)
@@ -47,12 +83,14 @@ function MintConcertDate() {
   const [selectedId, setSelectedId] = useState(0)
 
   const pickTime = (time, idx) => {
+    console.log(time, '넘겨줄콘서트시간')
     setIsSelected(true)
     setSelectedId(idx)
   }
   return <MintPageTemplate header={<Header />} contents={<Contents />} footer={<Footer />} />
 }
 
+// test data
 const tempdatas = {
   status: 'true',
   code: 'number',

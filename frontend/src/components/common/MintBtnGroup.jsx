@@ -19,12 +19,7 @@ function MintBtnGroup({ position, prev, next }) {
     <Box
       sx={{
         display: 'flex',
-        position: position ? 'absolute' : '',
-        bottom: 0,
-        marginTop: '20px',
-        marginLeft: '31px',
-        marginRight: '31px',
-        marginBottom: '20px',
+        margin: '20px 31px',
       }}>
       <Box sx={{ flex: 1, marginRight: '16px' }}>
         <Button variant="contained" color="secondary" sx={btnStyle} onClick={handlePrev}>

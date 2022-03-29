@@ -1,41 +1,49 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Button, ButtonGroup, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 //components
 import MintBtnGroup from '../components/common/MintBtnGroup'
 import MintPageTemplate from '../components/common/MintPageTemplate'
-import MintConcertAreaContents from '../components/concert/MintConcertAreaContents'
 import MintConcertAreaList from '../components/concert/MintConcertAreaList'
 import MintSeatForm from '../components/concert/MintSeatForm'
 import tempArea from '../images/concert_area.png'
 
 function MintConcertArea(props) {
   const [showSection, setShowSection] = useState('구역을 선택해 주세요.')
+  const [selected, setSelected] = useState([0, false])
+  const [sections, setSections] = useState(tempSection)
+  const pickArea = (area, idx) => {
+    setSelected([idx, true])
+    setShowSection(area)
+  }
+
   const Header = () => {
     return (
       <>
         <Box sx={header}>
-          구역 내 상단이 무대와 가까운 쪽이며, 예매시 같은 열/연번을 선택하셔야 옆좌석 예매가 가능합니다.
+          <Typography sx={headerText}>
+            구역 내 상단이 무대와 가까운 쪽이며, 예매시 같은 열/연번을 선택하셔야 옆좌석 예매가 가능합니다.
+          </Typography>
         </Box>
         <Box sx={area}>구역그림</Box>
         <Box sx={seatFromContainer}>
           <MintSeatForm title="좌석등급/가격" section={showSection} />
         </Box>
+        <Typography sx={{ padding: '0 18px' }}>
+          <span>지정석</span>
+          <span>/</span>
+          <span>스탠딩</span>
+        </Typography>
       </>
     )
   }
   const Contents = () => {
-    const [isSelected, setIsSelected] = useState(false)
-    const [selectedId, setSelectedId] = useState(0)
-    const [sections, setSections] = useState(tempSection)
-    const pickArea = (area, idx) => {
-      setShowSection(area)
-      setIsSelected(true)
-      setSelectedId(idx)
-      console.log(area, idx, 'pickArea')
-    }
     return (
-      <Box>
-        <Typography sx={{ position: 'sticky', top: '0', backgroundColor: '#cacaca' }}>지정석</Typography>
+      <>
+        {/* <Typography sx={{ position: 'sticky', top: '0', padding: '0 18px' }}>
+          <span>지정석</span>
+          <span>/</span>
+          <span>스탠딩</span>
+        </Typography> */}
         {sections.map((section, idx) => (
           <MintConcertAreaList
             key={section.name}
@@ -43,10 +51,10 @@ function MintConcertArea(props) {
             leftover={section.seats}
             idx={idx}
             pick={pickArea}
-            selected={isSelected && idx === selectedId}
+            selected={selected[1] && selected[0] === idx}
           />
         ))}
-      </Box>
+      </>
     )
   }
   const Footer = () => <MintBtnGroup prev="concert/date" />
@@ -71,15 +79,17 @@ const tempSection = [
 
 // styles
 const header = {
-  display: 'table-cell',
-  verticalAlign: 'middle',
+  boxSizing: 'border-box',
   height: '62px',
-  paddingLeft: '30px',
-  paddingRight: '30px',
-  fontSize: '14px',
+  maxHeight: '72px',
+  padding: '10px 30px',
   textAlign: 'center',
-  lineHeight: '1.3',
-  color: 'text.primary',
+}
+const headerText = {
+  fontSize: '14px',
+  position: 'relative',
+  top: '50%',
+  transform: 'translateY(-50%)',
 }
 const area = {
   height: '220px',
