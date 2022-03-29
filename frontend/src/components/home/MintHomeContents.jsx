@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import '../../styles/MintHomeContents.css'
 //components
 import MintVerticalCard from '../common/MintVerticalCard'
+import { useEffect, useRef, useState } from 'react'
 
 export default function MintHomeContents() {
   const navigate = useNavigate()
@@ -43,19 +44,19 @@ export default function MintHomeContents() {
 const testData = [
   {
     img: 'poster_ho.png',
-    title: '1번 제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목',
+    title: '1번 제목',
     singer: '1번 가수',
     date: '1번 날짜',
   },
   {
     img: 'poster_ho.png',
-    title: '2번 제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목',
+    title: '2번 제목',
     singer: '2번 가수',
     date: '2번 날짜',
   },
   {
     img: 'poster_ho.png',
-    title: '3번 제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목',
+    title: '3번 제목',
     singer: '3번 가수',
     date: '3번 날짜',
   },
@@ -63,25 +64,25 @@ const testData = [
 const testData2 = [
   {
     img: 'poster_ver.gif',
-    title: '1번 제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목',
+    title: '1번 제목',
     singer: '1번 가수',
     date: '1번 날짜',
   },
   {
     img: 'poster_ver.gif',
-    title: '2번 제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목',
+    title: '2번 제목',
     singer: '2번 가수',
     date: '2번 날짜',
   },
   {
     img: 'poster_ver.gif',
-    title: '3번 제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목',
+    title: '3번 제목',
     singer: '3번 가수',
     date: '3번 날짜',
   },
   {
     img: 'poster_ver.gif',
-    title: '4번 제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목',
+    title: '4번 제목',
     singer: '4번 가수',
     date: '4번 날짜',
   },

@@ -26,6 +26,12 @@ import MintConcertDetail from './pages/MintConcertDetail'
 import Admin from './pages/Admin'
 import Test from './pages/Test'
 import Test2 from './pages/Test2'
+import MintTicket from './pages/MintTicket.jsx'
+import MintNotice from './pages/MintNotice.jsx'
+import MintNotice3 from './components/notice/MintNotice3.jsx'
+import MintNotice2 from './components/notice/MintNotice2.jsx'
+import MintNotice1 from './components/notice/MintNotice1.jsx'
+import MintTradeDetail from './pages/MintTradeDetail.jsx'
 
 function App({ setMode }) {
   const [bright, setBright] = useBrightness()
@@ -37,22 +43,28 @@ function App({ setMode }) {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<MintSplash />} />
-        <Route exact path="/intro" element={<MintIntro />} />
-        <Route exact path="/home" element={<MintHome bright={bright} />} />
-        <Route exact path="/search" element={<MintSearch bright={bright} />} />
-        <Route exact path="/comming_soon" element={<MintSoon bright={bright} />} />
-        <Route exact path="/mypage" element={<MintMyPage bright={bright} />} />
-        <Route exact path="/admin" element={<Admin />} />
+        <Route path="/intro" element={<MintIntro />} />
+        <Route path="/home" element={<MintHome bright={bright} />} />
+        <Route path="/search" element={<MintSearch bright={bright} />} />
+        <Route path="/comming_soon" element={<MintSoon bright={bright} />} />
+        <Route path="/mypage" element={<MintMyPage bright={bright} />} />
+        <Route path="/mypage/ticket/:id" element={<MintTicket />} />
+        <Route path="/admin" element={<Admin />} />
         <Route exact path="/concert/detail" element={<MintConcertDetail bright={bright} />} />
-        <Route exact path="/concert/date" element={<MintConcertDate />} />
-        <Route exact path="/concert/area" element={<MintConcertArea />} />
-        <Route exact path="/concert/seat" element={<MintConcertSeat />} />
-        <Route exact path="/concert/payment" element={<MintConcertPayment />} />
-        <Route exact path="/address" element={<MintAddress />} />
+        <Route path="/concert/date" element={<MintConcertDate />} />
+        <Route path="/concert/area" element={<MintConcertArea />} />
+        <Route path="/concert/seat" element={<MintConcertSeat />} />
+        <Route path="/concert/payment" element={<MintConcertPayment />} />
+        <Route path="/address" element={<MintAddress />} />
+        <Route path="/notice" element={<MintNotice />} />
+        <Route path="/notice/1" element={<MintNotice1 />} />
+        <Route path="/notice/2" element={<MintNotice2 />} />
+        <Route path="/notice/3" element={<MintNotice3 />} />
         {/* 트랜젝션 테스트 페이지 */}
         <Route exact path="/test" element={<Test />} />
         <Route exact path="/test2" element={<Test2 />} />
         <Route exact path="/trade" element={<MintTrade bright={bright} />} />
+        <Route exact path="/trade/ticket/:id" element={<MintTradeDetail bright={bright} />} />
       </Routes>
     </BrowserRouter>
   )
@@ -110,6 +122,15 @@ export default function MINT() {
         },
         typography: {
           fontFamily: 'Spoqa Han Sans Neo',
+        },
+        components: {
+          MuiCalendarPicker: {
+            styleOverrides: {
+              root: {
+                color: '#222831',
+              },
+            },
+          },
         },
       }),
     [mode],

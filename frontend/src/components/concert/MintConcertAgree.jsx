@@ -28,7 +28,7 @@ function MintConcertAgree(props) {
   )
 
   return (
-    <Box sx={{ height: '40%', padding: '20px 18px 0 18px' }}>
+    <Box sx={{ flex: 2, padding: '20px 18px 0 18px' }}>
       <Typography variant="h6" sx={{ marginBottom: '8px' }}>
         약관동의
       </Typography>

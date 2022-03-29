@@ -39,8 +39,8 @@ public class Concert {
     @NotNull
     private String contract_address;
     private String price;
-    @Column(columnDefinition = "integer default 0")
-    private boolean status;
+    @Column(columnDefinition = "Integer default 0")
+    private int status;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="image_id")
@@ -50,17 +50,7 @@ public class Concert {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Artist> artists;
 
-    public void addImage(Image image){
-        this.image=image;
-    }
 
-    public void addArtist(List<Artist> artist){
-        this.artists = artist;
-    }
-
-    public void addtimes(List<Times> times){
-        this.times = times;
-    }
 
 
 

@@ -1,8 +1,8 @@
 import Web3 from 'web3'
-import ERC721Transactions from './ERC721Transactions.js'
-import ERC721Calls from './ERC721Calls.js'
-import ERC20Transactions from './ERC20Transactions.js'
-import ERC20Calls from './ERC20Calls.js'
+import * as ERC721Transactions from './ERC721Transactions.js'
+import * as ERC721Calls from './ERC721Calls.js'
+import * as ERC20Transactions from './ERC20Transactions.js'
+import * as ERC20Calls from './ERC20Calls.js'
 
 const web3 = new Web3(process.env.REACT_APP_BLOCK_CHAIN_NODE_URL)
 
@@ -35,7 +35,7 @@ export const transferFromSSF = (operatorPK, from, to, amount) =>
 
 //////////////////////////////////////// ERC20Calls.js 참고///////////////////////////////////////////////////////
 //owner가 spender에게 [amount]만큼의 SSF 권한 부여
-export const approveSSF = (ownerPK, spender, amount) => ERC20Calls.approve(web3, ownerPK, spender, amount)
+// export const approveSSF = (ownerPK, spender, amount) => ERC20Calls.approve(web3, ownerPK, spender, amount)
 
 //spender에게 owner의 토큰 중 얼만큼의 권한이 있는지 확인
 export const allowanceSSF = (owner, spender) => ERC20Calls.allowance(web3, owner, spender)

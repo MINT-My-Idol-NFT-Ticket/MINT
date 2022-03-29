@@ -21,7 +21,7 @@ import java.util.Map;
 public class requestConcertDto {
 
     private String title;
-    private boolean status;
+    private int status;
     private String date;
     private String[] singer;
     private MultipartFile descriptionsImage;

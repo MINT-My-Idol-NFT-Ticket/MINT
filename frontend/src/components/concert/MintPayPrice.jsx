@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material'
 
 function MintPayPrice(props) {
   return (
-    <Box sx={{ height: '20%', padding: '0 18px 0 18px', paddingTop: '40px' }}>
+    <Box sx={{ flex: 1, padding: '0 18px 0 18px', paddingTop: '40px', paddingBottom: '10px' }}>
       <Typography variant="h6" sx={{ marginBottom: '8px' }}>
         결제 예정 금액
       </Typography>

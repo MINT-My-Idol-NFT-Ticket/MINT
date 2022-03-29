@@ -57,7 +57,7 @@ contract MintTicket is ERC721Enumerable, Ownable{
         uint256 newTokenId = totalSupply() + 1;
         _mint(msg.sender, newTokenId);
         tokenURIs[newTokenId] = _tokenURI;
-        approve(saleContractAddress, newTokenId);
+        //approve(saleContractAddress, newTokenId);
         return newTokenId;
     }
 

@@ -19,7 +19,6 @@ export default function MintHorizontalCard({ concertData, extra }) {
           }}
           textStyle={textStyle}
         />
-        {extra}
       </div>
     </div>
   )

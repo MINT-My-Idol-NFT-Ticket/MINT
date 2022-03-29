@@ -1,17 +1,28 @@
 import React from 'react'
-import { Button } from '@mui/material'
+import { Box, Button } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
-function MintBtn(props) {
+function MintBtn({ name, color, link }) {
   /*
     primary : main purple color
     secondary : main grey sub color
     info : black for information button
   */
+  const navigate = useNavigate()
+  const handleLink = () => {
+    if (link) {
+      navigate(`/${link}`)
+    } else {
+      alert('이동할 주소가 없습니다')
+    }
+  }
 
   return (
-    <Button variant="contained" color={props.color} sx={{ ...btnStyle }}>
-      {props.name}
-    </Button>
+    <Box sx={{ margin: '20px 31px' }}>
+      <Button variant="contained" color={color} sx={btnStyle} onClick={handleLink}>
+        {name}
+      </Button>
+    </Box>
   )
 }
 

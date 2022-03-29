@@ -1,9 +1,13 @@
 package com.mint.backend.controller;
 
+import com.mint.backend.domain.Concert;
 import com.mint.backend.service.ConcertService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @packageName : com.mint.backend.controller
@@ -16,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  * @submissions : 1
  * @description :
  **/
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/concert")
@@ -25,19 +29,19 @@ public class MemberController {
     private final ConcertService concertService;
 
     @GetMapping
-    public ResponseEntity findAll(@RequestParam int status){
-        //to do
-        return ResponseEntity.ok().body("콘서트 목록 조회");
+    public ResponseEntity<List<Concert>> findAll(@RequestParam int status){
+        List<Concert> list = concertService.getConcertList(status);
+        return new ResponseEntity<List<Concert>>(list, HttpStatus.OK);
     }
 
     @GetMapping("/{concertId}")
-    public ResponseEntity findone(@PathVariable Long concertId){
-        //to do
+    public ResponseEntity findOne(@PathVariable Long concertId){
+
         return ResponseEntity.ok().body("상세페이지");
     }
 
     @GetMapping("/search")
-    public ResponseEntity findAll(@RequestParam String keyword){
+    public ResponseEntity search(@RequestParam String keyword){
         //to do
         return ResponseEntity.ok().body("콘서트 검색");
     }

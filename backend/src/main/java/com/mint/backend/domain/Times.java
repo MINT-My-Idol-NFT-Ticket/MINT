@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -38,4 +39,8 @@ public class Times {
     public void addSections(List<Section> sections){
         this.sections = sections;
     }
+
+    @ManyToOne
+    @JoinColumn(name="concert_id")
+    private Concert concert;
 }
