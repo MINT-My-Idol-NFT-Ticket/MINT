@@ -40,10 +40,10 @@ public class ConcertService {
 
     //콘서트 목록 조회
     @Transactional
-    public List<Concert> getConcertList() {
-        //to do
-        List lsit = new ArrayList();
-        return lsit;
+    public List<Concert> getConcertList(int status) {
+        List<Concert> list =concertRepository.findConcert(status);
+
+        return list;
     }
 
     //콘서트 상세정보
@@ -121,7 +121,7 @@ public class ConcertService {
                 .place(requestConcertDto.getPlace())
                 .contract_address(requestConcertDto.getContract_address())
                 .price(requestConcertDto.getPrice())
-                .status(requestConcertDto.isStatus())
+                .status(requestConcertDto.getStatus())
                 .image(image)
                 .times(timesList)
                 .artists(artists)

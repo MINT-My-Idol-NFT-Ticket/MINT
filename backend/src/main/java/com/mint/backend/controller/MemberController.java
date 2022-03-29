@@ -25,12 +25,8 @@ public class MemberController {
     private final ConcertService concertService;
 
     @GetMapping
-    public ResponseEntity findAll(@RequestParam String status){
-        boolean flag =true;
-        if(status.equals(0)){
-            flag = false;
-        }
-        concertService.getConcertList(flag);
+    public ResponseEntity findAll(@RequestParam int status){
+        concertService.getConcertList(status);
         return ResponseEntity.ok().body("콘서트 목록 조회");
     }
 
