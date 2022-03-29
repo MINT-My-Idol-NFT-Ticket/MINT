@@ -32,6 +32,10 @@ public class Section {
     private Long id;
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name="times_id")
+    private Times times;
+
     @OneToMany
     private List<Seat> seats = new ArrayList<>();
 }
