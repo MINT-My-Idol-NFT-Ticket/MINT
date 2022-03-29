@@ -15,7 +15,7 @@ function GroupName({ name }) {
 
 function MintTicketMoveBanner({ position }) {
   return (
-    <Box sx={{ position: 'absolute', top: position == 'top' ? '0' : '95.5%' }}>
+    <Box sx={{ position: 'absolute', top: position == 'top' ? '1%' : '95.5%' }}>
       <Box className="track">
         <GroupName name="BTS" />
         <GroupName name="BTS" />
