@@ -9,7 +9,7 @@ export default function MintBuyList() {
       title: `${i}번 제목${i}번 제목${i}번 제목${i}번 제목${i}번 제목${i}번 제목${i}번 제목${i}번 제목${i}번 제목`,
       date: `${i}번 날짜`,
       singer: `${i}번 가수`,
-      img: `${i}번 포스터`,
+      img: 'poster_ver.gif',
     })
   }
 

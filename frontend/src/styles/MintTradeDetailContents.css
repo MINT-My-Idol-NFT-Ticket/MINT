@@ -1,0 +1,15 @@
+.MintTradeDetailContents {
+  width: 100%;
+}
+
+.MintTradeDetailContents__data {
+  display: flex;
+  flex-direction: column;
+  height: 15vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.MintTradeDetailContents__image {
+  height: 75vh;
+}

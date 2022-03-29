@@ -13,14 +13,14 @@ export default function MintHomeContents() {
   const navigate = useNavigate()
   const pushCommingSoon = () => navigate('/comming_soon')
   const makeOpenList = testData =>
-    testData.map(concert => <MintVerticalCard key={concert.date} concertData={concert} width="100%" height="50vw" />)
+    testData.map(concert => <MintVerticalCard key={concert.date} concertData={concert} notOpen={false} />)
 
   const makeNotOpenList = testData => {
     return (
-      <Grid container spacing={2}>
+      <Grid container>
         {testData.map(concert => (
           <Grid key={concert.date} item xs={6}>
-            <MintVerticalCard concertData={concert} width="100%" height="50vw" />
+            <MintVerticalCard concertData={concert} notOpen={true} />
           </Grid>
         ))}
       </Grid>
@@ -43,19 +43,19 @@ export default function MintHomeContents() {
 // 테스트 데이터
 const testData = [
   {
-    img: '1번 포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터',
+    img: 'poster_ho.png',
     title: '1번 제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목',
     singer: '1번 가수',
     date: '1번 날짜',
   },
   {
-    img: '2번 포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터',
+    img: 'poster_ho.png',
     title: '2번 제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목',
     singer: '2번 가수',
     date: '2번 날짜',
   },
   {
-    img: '3번 포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터',
+    img: 'poster_ho.png',
     title: '3번 제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목',
     singer: '3번 가수',
     date: '3번 날짜',
@@ -63,25 +63,25 @@ const testData = [
 ]
 const testData2 = [
   {
-    img: '1번 포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터',
+    img: 'poster_ver.gif',
     title: '1번 제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목',
     singer: '1번 가수',
     date: '1번 날짜',
   },
   {
-    img: '2번 포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터',
+    img: 'poster_ver.gif',
     title: '2번 제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목',
     singer: '2번 가수',
     date: '2번 날짜',
   },
   {
-    img: '3번 포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터',
+    img: 'poster_ver.gif',
     title: '3번 제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목',
     singer: '3번 가수',
     date: '3번 날짜',
   },
   {
-    img: '4번 포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터포스터',
+    img: 'poster_ver.gif',
     title: '4번 제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목',
     singer: '4번 가수',
     date: '4번 날짜',

@@ -23,8 +23,18 @@ export default function MintConnectWallet() {
 
   return (
     <Box>
-      <Box sx={{ textAlign: 'center', fontWeight: 700, fontSize: '24px', paddingTop: '70px' }}>
-        <Typography variant="h6" sx={{ paddingTop: '20px', color: bright === 'light' ? '#000000' : '#ffffff' }}>
+      <Box
+        sx={{
+          textAlign: 'center',
+          fontWeight: 700,
+          fontSize: '24px',
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100vh',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <Typography variant="h6" sx={{ color: bright === 'light' ? '#000000' : '#ffffff' }}>
           연결을 위해
           <br /> 지갑 주소를 연결해주세요
         </Typography>
@@ -32,10 +42,9 @@ export default function MintConnectWallet() {
           sx={{
             width: '306px',
             height: '260px',
-            mt: '50px',
             border: '1px solid gray',
-            marginLeft: '25px',
             borderRadius: 7,
+            margin: '50px auto',
           }}>
           <CardContent>
             <Typography sx={{ textAlign: 'center', fontWeight: 700, mt: '50px' }}>

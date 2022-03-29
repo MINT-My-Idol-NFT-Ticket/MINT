@@ -1,4 +1,4 @@
-import { Box, Divider, Typography } from '@mui/material'
+import { Box, Divider, Grid, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 
 function MintConcertTimes(props) {
@@ -9,45 +9,40 @@ function MintConcertTimes(props) {
     props.pick(props.times.date, props.idx)
   }
   return (
-    <>
-      <Box
+    <Grid
+      container
+      sx={{
+        color: 'text.primary',
+        cursor: 'pointer',
+        backgroundColor: props.selected ? 'rgba(136, 17, 221, .15)' : '',
+        padding: '10px',
+      }}
+      onClick={passTime}>
+      <Grid
+        item
+        xs={2}
         sx={{
-          color: 'text.primary',
-          display: 'flex',
-          cursor: 'pointer',
-          backgroundColor: props.selected ? 'rgba(136, 17, 221, .15)' : '',
-        }}
-        onClick={passTime}>
-        <Box
+          textAlign: 'center',
+        }}>
+        <Typography sx={{ fontSize: '1rem', lineHeight: '14px' }}>화</Typography>
+        <Typography sx={{ fontSize: '1.5rem', fontWeight: '800', lineHeight: '24px' }}>{props.times.date}</Typography>
+        <Typography sx={{ fontSize: '0.8rem' }}>03.2022</Typography>
+      </Grid>
+      <Grid item xs={10} sx={{ paddingLeft: '10px' }}>
+        <Typography
           sx={{
-            width: '86px',
-            textAlign: 'center',
+            fontSize: '16px',
+            fontWeight: '600',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
           }}>
-          <Typography sx={{ fontSize: '14px' }}>화</Typography>
-          <Typography sx={{ fontSize: '24px', fontWeight: '800' }}>{props.times.date}</Typography>
-          <Typography sx={{ fontSize: '12px' }}>03.2022</Typography>
-        </Box>
-        <Box
-          sx={{
-            width: '273px',
-            paddingLeft: '18px',
-          }}>
-          <Typography
-            sx={{
-              width: '250px',
-              fontSize: '16px',
-              fontWeight: '600',
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-            }}>
-            [BTS] Map of the soul길어지는글자테스트
-          </Typography>
-          <Typography>예스24 라이브홀, 서울</Typography>
-        </Box>
-      </Box>
+          [BTS] Map of the soul Map of the soul Map of the soul Map of the soul
+        </Typography>
+        <Typography sx={{ fontSize: '1rem' }}>예스24 라이브홀, 서울</Typography>
+      </Grid>
       <Divider />
-    </>
+    </Grid>
   )
 }
 
