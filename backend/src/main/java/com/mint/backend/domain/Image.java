@@ -29,13 +29,13 @@ public class Image {
     @Column(name="image_id")
     private Long id;
     @Column(name="thumbnail_mail")
-    private String main_url;
+    private String mainUrl;
     @Column(name="thumbnail_coming")
-    private String coming_url;
+    private String comingUrl;
     @Column(name="concert_poster")
-    private String poster_url;
+    private String posterUrl;
     @Column(name="concert_mail")
-    private String description_url;
+    private String descriptionUrl;
     @Column(name="concert_section")
-    private String section_url;
+    private String sectionUrl;
 }

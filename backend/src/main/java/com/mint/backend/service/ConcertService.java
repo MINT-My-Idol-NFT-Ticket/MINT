@@ -1,7 +1,9 @@
 package com.mint.backend.service;
 
 import com.mint.backend.domain.*;
-import com.mint.backend.dto.requestConcertDto;
+import com.mint.backend.dto.RequestConcertDto;
+import com.mint.backend.dto.ResponseFindOneDto;
+import com.mint.backend.dto.ResponseSearchDto;
 import com.mint.backend.repository.ArtistRepository;
 import com.mint.backend.repository.ConcertRepository;
 import com.mint.backend.repository.ImageRepository;
@@ -9,11 +11,11 @@ import com.mint.backend.repository.SectionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -37,34 +39,64 @@ public class ConcertService {
     private final ArtistRepository artistRepository;
     private final SectionRepository sectionRepository;
 
-
-    //콘서트 목록 조회
+    /**
+     * 콘서트 목록 조회
+     * @param status
+     * @return
+     */
     @Transactional
     public List<Concert> getConcertList(int status) {
         return concertRepository.findConcert(status);
     }
 
-    //콘서트 상세정보
-    public Concert getConcertDetail() {
-        //to do
-        return new Concert();
+
+    /**
+     * 콘서트 상세정보
+     * @param concertId
+     * @return
+     */
+    public ResponseFindOneDto getConcertDetail(Long concertId) {
+        return new ResponseFindOneDto()
+                .toDTO(concertRepository
+                        .findById(concertId)
+                        .orElseThrow(RuntimeException::new));
     }
 
-    //콘서트 검색
-    public Concert search() {
-        //to do
-        return new Concert();
+
+    /**
+     * 콘서트 검색
+     * @param keyword
+     * @return
+     */
+    public List<ResponseSearchDto> search(String keyword) {
+        return new ResponseSearchDto()
+                .toDto(concertRepository.searchConcert(keyword));
     }
 
-    //콘서트 등록
-    public boolean create(requestConcertDto requestConcertDto) throws IOException {
+
+
+    /**
+     *  콘서트 등록
+     * @param file1
+     * @param file2
+     * @param file3
+     * @param file4
+     * @param requestConcertDto
+     * @return
+     * @throws IOException
+     */
+    public boolean create(MultipartFile file1,
+                          MultipartFile file2,
+                          MultipartFile file3,
+                          MultipartFile file4,
+                          RequestConcertDto requestConcertDto) throws IOException {
         //기본경로
         String path = "backend/src/main/resources/image" + requestConcertDto.getTitle();
 
-        String postPath = path + File.separator + requestConcertDto.getPosterImage().getOriginalFilename();
-        String sectionPath = path + File.separator + requestConcertDto.getSectionImage().getOriginalFilename();
-        String DescriptionPath = path + File.separator + requestConcertDto.getDescriptionsImage().getOriginalFilename();
-        String comingPath = path + File.separator + requestConcertDto.getComingImage().getOriginalFilename();
+        String postPath = path + File.separator + file1.getOriginalFilename();
+        String sectionPath = path + File.separator + file2.getOriginalFilename();
+        String DescriptionPath = path + File.separator + file3.getOriginalFilename();
+        String comingPath = path + File.separator + file4.getOriginalFilename();
 
         //이미지 저장
         requestConcertDto.getPosterImage().transferTo(new File(postPath));
@@ -73,10 +105,10 @@ public class ConcertService {
         requestConcertDto.getComingImage().transferTo(new File(comingPath));
 
         Image image = Image.builder()
-                .coming_url(comingPath)
-                .description_url(DescriptionPath)
-                .poster_url(postPath)
-                .section_url(sectionPath)
+                .comingUrl(comingPath)
+                .descriptionUrl(DescriptionPath)
+                .posterUrl(postPath)
+                .sectionUrl(sectionPath)
                 .build();
 
         //시간등록
@@ -146,7 +178,11 @@ public class ConcertService {
         return new Concert();
     }
 
-    //콘서트 삭제
+    /**
+     * 콘서트 삭제
+     * @param ConcertId
+     * @return
+     */
     public boolean delete(Long ConcertId) {
         try {
             concertRepository.deleteById(ConcertId);

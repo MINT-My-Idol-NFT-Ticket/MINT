@@ -1,12 +1,13 @@
 package com.mint.backend.controller;
 
-import com.mint.backend.dto.requestConcertDto;
-import com.mint.backend.dto.requestExistAuthDto;
+import com.mint.backend.dto.RequestConcertDto;
+import com.mint.backend.dto.RequestExistAuthDto;
 import com.mint.backend.service.ConcertService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,15 +32,19 @@ public class AdminController {
     private final ConcertService concertService;
 
     @PostMapping("/concert")
-    public ResponseEntity<Boolean> create(@RequestPart requestConcertDto requestConcertDto) throws IOException {
+    public ResponseEntity<Boolean> create(@RequestPart(value ="file1") MultipartFile file1,
+                                          @RequestPart(value ="file2") MultipartFile file2,
+                                          @RequestPart(value ="file3") MultipartFile file3,
+                                          @RequestPart(value ="file4") MultipartFile file4,
+                                          @RequestPart(value="key") RequestConcertDto data) throws IOException {
         //디렉토리생성
-        String folderPath  = "backend/src/main/resources/image"+requestConcertDto.getTitle();
+        String folderPath  = "backend/src/main/resources/image"+data.getTitle();
         File makeFolder = new File(folderPath);
         if(!makeFolder.exists())makeFolder.mkdir();
-        //콘서트 등록
-        boolean result = concertService.create(requestConcertDto);
+//        콘서트 등록
+        boolean result = concertService.create(file1,file2,file3,file4,data);
 
-        return new ResponseEntity<Boolean>(result, HttpStatus.OK);
+        return new ResponseEntity<Boolean>(true, HttpStatus.OK);
     }
 
     @PutMapping("/concert")
@@ -55,7 +60,7 @@ public class AdminController {
     }
 
     @PostMapping("/concert/admin")
-    public ResponseEntity<Boolean> existAuth(@RequestBody requestExistAuthDto admin){
+    public ResponseEntity<Boolean> existAuth(@RequestBody RequestExistAuthDto admin){
         boolean flag = false;
         if(admin.getId().equals("admin")&&admin.getPassword().equals("admin")){
             flag =true;

@@ -3,7 +3,7 @@ package com.mint.backend.controller;
 import com.mint.backend.domain.Seat;
 import com.mint.backend.domain.Section;
 import com.mint.backend.domain.Times;
-import com.mint.backend.dto.responseExistSeatDto;
+import com.mint.backend.dto.ResponseExistSeatDto;
 import com.mint.backend.service.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -50,7 +50,7 @@ public class TicketController {
     }
 
     @GetMapping("/seat/{concertId}")
-    public ResponseEntity<responseExistSeatDto> existSeat(@PathVariable Long seatId){
-        return new ResponseEntity<responseExistSeatDto>(ticketService.getSeatStatus(seatId),HttpStatus.OK);
+    public ResponseEntity<ResponseExistSeatDto> existSeat(@PathVariable Long seatId){
+        return new ResponseEntity<ResponseExistSeatDto>(ticketService.getSeatStatus(seatId),HttpStatus.OK);
     }
 }

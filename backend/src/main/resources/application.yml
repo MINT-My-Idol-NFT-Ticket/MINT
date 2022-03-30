@@ -2,6 +2,9 @@ server:
   port: 8080
 
 spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   datasource:
     password:
     username: sa
@@ -29,6 +32,9 @@ server:
   port: 9090
 
 spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   jpa:
     show-sql: true
     hibernate:

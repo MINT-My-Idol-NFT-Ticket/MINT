@@ -36,13 +36,13 @@ public class MemberController {
 
     @GetMapping("/{concertId}")
     public ResponseEntity findOne(@PathVariable Long concertId){
-
+        concertService.getConcertDetail(concertId);
         return ResponseEntity.ok().body("상세페이지");
     }
 
     @GetMapping("/search")
     public ResponseEntity search(@RequestParam String keyword){
-        //to do
+        concertService.search(keyword);
         return ResponseEntity.ok().body("콘서트 검색");
     }
 }
