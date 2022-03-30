@@ -101,15 +101,10 @@ contract MintTicket is ERC721Enumerable, Ownable{
 
     // 보유하고 있는 토큰 소각 (요청자의 토큰 보유 여부 확인 후 소각 그리고 돈 환불)
     function cancelTicket(uint256 _tokenId) public {
-<<<<<<< HEAD
-        // msg.sender가 가지고 있는 tokenId인지 확인
-        address ticketOwner = ownerOf(_tokenId);
-=======
 
         // msg.sender가 가지고 있는 tokenId인지 확인
         address ticketOwner = ownerOf(_tokenId);
 
->>>>>>> 정채은/컨트랙트
         require(ticketOwner == msg.sender, "Caller is not ticket owner.");
 
         // NFT 소각
