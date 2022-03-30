@@ -45,8 +45,6 @@ function MintTicket3D(props) {
   return (
     <Canvas style={{ minHeight: '95vh' }} camera={{ position: [1, 1, 1], fov: 90 }} shadowMap>
       <color attach="background" args={['#222831']} />
-      {/* <fog attach="fog" args={['#222831', 0, 40]} /> */}
-      {/* <ambientLight intensity={0.5} /> */}
       <directionalLight position={[-1, -2, -5]} intensity={0.2} color="#0c8cbf" castShadow />
       <Suspense fallback={null}>
         <Bounds fit clip margin={1.2}>
