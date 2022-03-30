@@ -36,7 +36,7 @@ public class ResponseFindOneDto {
                 .place(concert.getPlace())
                 .contractAddress(concert.getContractAddress())
                 .price(concert.getPrice())
-                .artists(concert.getArtists())
+                .artists(concert.getArtist())
                 .status(concert.getStatus())
                 .build();
     }

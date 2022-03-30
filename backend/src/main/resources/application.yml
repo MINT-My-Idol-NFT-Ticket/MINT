@@ -6,26 +6,35 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
   datasource:
-    password:
-    username: sa
-    driverClassName: org.h2.Driver
-    hikari:
-      jdbc-url: jdbc:h2:mem:testdb;MODE=MYSQL
+#    driverClassName: org.h2.Driver
+#    url: jdbc:h2:mem:testdb
+#    username: sa
+#    password:
+    password: root
+    username: root
+    url: jdbc:mysql://localhost:3306/tt?serverTimezone=UTC&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   h2:
     console:
       enabled: true
   jpa:
     show-sql: true
+    format_sql: true
+    use_sql_comments: true
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL57Dialect
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    generate-ddl: true
 
   config:
     activate:
       on-profile: local
+  sql:
+    init:
+      mode: always
 ---
 
 server:

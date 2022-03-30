@@ -32,4 +32,7 @@ public class Artist {
     @NotNull
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name="concert_id")
+    private Concert concert;
 }
