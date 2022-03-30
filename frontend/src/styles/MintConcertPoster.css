@@ -6,6 +6,7 @@
 	align-items: center;
 	min-width: 80px;
 	min-height: 80px;
+	border-radius: 10px;
 	box-sizing: border-box;
 	overflow: hidden;
 }

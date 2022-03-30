@@ -14,7 +14,7 @@ import lombok.Getter;
  * @description :
  **/
 @Getter
-public class requestExistAuth {
+public class requestExistAuthDto {
     private String id;
     private String password;
 

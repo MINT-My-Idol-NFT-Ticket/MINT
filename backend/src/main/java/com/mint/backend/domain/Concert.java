@@ -37,10 +37,12 @@ public class Concert {
     @NotNull
     private String place;
     @NotNull
-    private String contract_address;
+    private String contractAddress;
+    @NotNull
+    private String saleContractAddress;
     private String price;
-    @Column(columnDefinition = "integer default 0")
-    private boolean status;
+    @Column(columnDefinition = "Integer default 0")
+    private int status;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="image_id")

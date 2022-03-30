@@ -15,6 +15,6 @@ import lombok.Setter;
  * @description :
  **/
 @AllArgsConstructor
-public class responseExistSeat {
-    boolean status;
+public class responseExistSeatDto {
+    int status;
 }

@@ -1,8 +1,8 @@
 .MintConcertDetailContents__btn {
 	position: absolute;
 	width: 100%;
-	bottom: 40px;
-	margin: 20px 0;
+	bottom: 0;
+	margin: 20px 0 0;
 	padding: 0 40px;
 	background-color: transparent;
 	box-sizing: border-box;
