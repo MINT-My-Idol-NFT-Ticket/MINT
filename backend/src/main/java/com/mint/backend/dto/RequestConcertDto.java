@@ -19,7 +19,7 @@ import java.util.Map;
  * @description :
  **/
 @Getter
-public class requestConcertDto {
+public class RequestConcertDto {
     @NotNull
     private String title;
     private int status;

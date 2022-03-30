@@ -3,6 +3,7 @@ package com.mint.backend.repository;
 import com.mint.backend.domain.Concert;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +20,10 @@ import java.util.Optional;
  * @description :
  **/
 public interface ConcertRepository extends JpaRepository<Concert,Long> {
-    @Query("select a from Concert a where a.status =  ?1 ")
-    public List<Concert> findConcert(int status);
+    @Query("select a from Concert a where a.status =  :status ")
+    public List<Concert> findConcert(@Param("status")int status);
+
+    @Query("select a from Concert a where a.title like %:keyword%")
+    public List<Concert> searchConcert(@Param("keyword")String keyword);
 
 }

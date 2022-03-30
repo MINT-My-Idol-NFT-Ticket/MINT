@@ -21,7 +21,7 @@ import java.util.List;
  **/
 @AllArgsConstructor
 @Builder
-public class responsefindAllDto {
+public class ResponseFindAllDto {
     private String title;
     private String thumnail;
     private List<Times> times;
