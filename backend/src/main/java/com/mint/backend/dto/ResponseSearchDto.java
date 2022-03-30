@@ -37,7 +37,7 @@ public class ResponseSearchDto {
                     .title(con.getTitle())
                     .comingUrl(con.getImage().getComingUrl())
                     .date(con.getTimes())
-                    .artists(con.getArtists())
+                    .artists(con.getArtist())
                     .build());
         }
         return list;

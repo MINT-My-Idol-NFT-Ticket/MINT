@@ -161,7 +161,7 @@ public class ConcertService {
                 .status(requestConcertDto.getStatus())
                 .image(image)
                 .times(timesList)
-                .artists(artists)
+                .artist(artists)
                 .build();
 
         try{
