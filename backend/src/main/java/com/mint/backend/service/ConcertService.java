@@ -101,11 +101,6 @@ public class ConcertService {
         String comingPath = path + File.separator + file4.getOriginalFilename();
 
         //이미지 저장
-//        requestConcertDto.getPosterImage().transferTo(new File(postPath));
-//        requestConcertDto.getSectionImage().transferTo(new File(sectionPath));
-//        requestConcertDto.getDescriptionsImage().transferTo(new File(DescriptionPath));
-//        requestConcertDto.getComingImage().transferTo(new File(comingPath));
-
         file1.transferTo(new File(path, file1.getOriginalFilename()));
         file2.transferTo(new File(path, file2.getOriginalFilename()));
         file3.transferTo(new File(path, file3.getOriginalFilename()));
