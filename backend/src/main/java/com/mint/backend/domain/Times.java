@@ -33,7 +33,7 @@ public class Times {
     private Long id;
     private String date;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "times",cascade = CascadeType.ALL)
     private List<Section> sections = new ArrayList<>();
 
     @ManyToOne

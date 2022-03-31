@@ -48,7 +48,7 @@ public class Concert {
     @JoinColumn(name="concert_id")
     private Image image;
 
-    @OneToMany(mappedBy = "concert")
+    @OneToMany(mappedBy = "concert",cascade =CascadeType.ALL)
     private List<Times> times= new ArrayList<>();
 
     @OneToMany(mappedBy = "concert",cascade = CascadeType.ALL)

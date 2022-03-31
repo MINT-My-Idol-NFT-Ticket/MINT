@@ -2,10 +2,12 @@ package com.mint.backend.service;
 
 import com.mint.backend.domain.*;
 import com.mint.backend.dto.RequestConcertDto;
+import com.mint.backend.dto.ResponseFindAllDto;
 import com.mint.backend.dto.ResponseFindOneDto;
 import com.mint.backend.dto.ResponseSearchDto;
 import com.mint.backend.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -44,9 +46,10 @@ public class ConcertService {
      * @param status
      * @return
      */
-    @Transactional
-    public List<Concert> getConcertList(int status) {
-        return concertRepository.findConcert(status);
+    @ReadOnlyProperty
+    public List<ResponseFindAllDto> getConcertList(int status) {
+        return new ResponseFindAllDto()
+                .toDTO(concertRepository.findConcert(status));
     }
 
 

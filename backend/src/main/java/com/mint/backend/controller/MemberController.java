@@ -1,7 +1,9 @@
 package com.mint.backend.controller;
 
 import com.mint.backend.domain.Concert;
+import com.mint.backend.dto.ResponseFindAllDto;
 import com.mint.backend.dto.ResponseFindOneDto;
+import com.mint.backend.dto.ResponseSearchDto;
 import com.mint.backend.service.ConcertService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -30,20 +32,17 @@ public class MemberController {
     private final ConcertService concertService;
 
     @GetMapping
-    public ResponseEntity<List<Concert>> findAll(@RequestParam int status){
-        List<Concert> list = concertService.getConcertList(status);
-        return new ResponseEntity<List<Concert>>(list, HttpStatus.OK);
+    public ResponseEntity<List<ResponseFindAllDto>> findAll(@RequestParam int status){
+        return new ResponseEntity<>(concertService.getConcertList(status), HttpStatus.OK);
     }
 
     @GetMapping("/{concertId}")
     public ResponseEntity<ResponseFindOneDto> findOne(@PathVariable Long concertId){
-        System.out.println(concertService.getConcertDetail(concertId).toString());
         return new ResponseEntity(concertService.getConcertDetail(concertId),HttpStatus.OK);
     }
 
     @GetMapping("/search")
-    public ResponseEntity search(@RequestParam String keyword){
-        concertService.search(keyword);
-        return ResponseEntity.ok().body("콘서트 검색");
+    public ResponseEntity<ResponseSearchDto> search(@RequestParam String keyword){
+        return new ResponseEntity(concertService.search(keyword),HttpStatus.OK);
     }
 }
