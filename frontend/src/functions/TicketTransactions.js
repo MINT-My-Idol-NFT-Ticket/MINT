@@ -1,6 +1,5 @@
 import Web3 from 'web3'
 import MintTicket from '../contract/MintTicket.json'
-import no_MintTicket from '../contract/no_MintTicket.json'
 
 const web3 = new Web3(process.env.REACT_APP_BLOCK_CHAIN_NODE_URL)
 
