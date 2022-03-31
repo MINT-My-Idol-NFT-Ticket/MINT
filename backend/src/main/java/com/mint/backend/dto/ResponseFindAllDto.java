@@ -3,9 +3,7 @@ package com.mint.backend.dto;
 import com.mint.backend.domain.Artist;
 import com.mint.backend.domain.Concert;
 import com.mint.backend.domain.Times;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.xml.crypto.Data;
 import java.util.ArrayList;
@@ -25,6 +23,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Getter
+
 public class ResponseFindAllDto {
     private String title;
     private String thumnail;
@@ -36,7 +36,7 @@ public class ResponseFindAllDto {
         for (Concert c : concert) {
             list.add(ResponseFindAllDto.builder()
                     .title(c.getTitle())
-                    .thumnail(c.getImage().getComingUrl())
+                    .thumnail(c.getImage().getThumbnailUrl())
                     .times(c.getTimes())
                     .artist(c.getArtist())
                     .build());

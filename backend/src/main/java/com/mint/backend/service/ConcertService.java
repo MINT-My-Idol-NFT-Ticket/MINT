@@ -82,35 +82,35 @@ public class ConcertService {
     /**
      * 콘서트 등록
      *
-     * @param file1
-     * @param file2
-     * @param file3
-     * @param file4
+     * @param poster
+     * @param thumnail
+     * @param description
+     * @param seats
      * @param requestConcertDto
      * @return
      * @throws IOException
      */
-    public boolean create(MultipartFile file1,
-                          MultipartFile file2,
-                          MultipartFile file3,
-                          MultipartFile file4,
+    public boolean create(MultipartFile poster,
+                          MultipartFile thumnail,
+                          MultipartFile description,
+                          MultipartFile seats,
                           RequestConcertDto requestConcertDto) throws IOException {
         //기본경로
         String path = System.getProperty("user.home") + File.separator + "img" + File.separator + requestConcertDto.getTitle();
 
-        String postPath = path + File.separator + file1.getOriginalFilename();
-        String sectionPath = path + File.separator + file2.getOriginalFilename();
-        String DescriptionPath = path + File.separator + file3.getOriginalFilename();
-        String comingPath = path + File.separator + file4.getOriginalFilename();
+        String postPath = path + File.separator + poster.getOriginalFilename();
+        String thumnailPath = path + File.separator + thumnail.getOriginalFilename();
+        String DescriptionPath = path + File.separator + description.getOriginalFilename();
+        String sectionPath = path + File.separator + seats.getOriginalFilename();
 
         //이미지 저장
-        file1.transferTo(new File(path, file1.getOriginalFilename()));
-        file2.transferTo(new File(path, file2.getOriginalFilename()));
-        file3.transferTo(new File(path, file3.getOriginalFilename()));
-        file4.transferTo(new File(path, file4.getOriginalFilename()));
+        poster.transferTo(new File(path, poster.getOriginalFilename()));
+        thumnail.transferTo(new File(path, thumnail.getOriginalFilename()));
+        description.transferTo(new File(path, description.getOriginalFilename()));
+        seats.transferTo(new File(path, seats.getOriginalFilename()));
         try {
             Image image = Image.builder()
-                    .comingUrl(comingPath)
+                    .thumbnailUrl(thumnailPath)
                     .descriptionUrl(DescriptionPath)
                     .posterUrl(postPath)
                     .sectionUrl(sectionPath)

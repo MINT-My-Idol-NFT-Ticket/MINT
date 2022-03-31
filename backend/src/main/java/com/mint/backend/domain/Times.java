@@ -1,5 +1,6 @@
 package com.mint.backend.domain;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -33,8 +34,10 @@ public class Times {
     private Long id;
     private String date;
 
+
     @OneToMany(mappedBy = "times",cascade = CascadeType.ALL)
     private List<Section> sections = new ArrayList<>();
+
 
     @ManyToOne
     @JoinColumn(name="concert_id")
