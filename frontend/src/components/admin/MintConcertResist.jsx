@@ -22,29 +22,20 @@ export default function MintConcertResist() {
   const resistConcert = () => {
     const formData = new FormData()
 
-    formData.append('mainImage', requestImg[0])
-    formData.append('comingImage', requestImg[1])
-    formData.append('sectionImage', requestImg[2])
-    formData.append('descriptionsImage', requestImg[3])
-    formData.append('contractAddress', contractAddress)
-    formData.append('saleContractAddress', contractAddress)
-    console.log(formData.get('mainImage'))
-    console.log(formData.get('comingImage'))
-    console.log(formData.get('sectionImage'))
-    console.log(formData.get('descriptionsImage'))
-    console.log(`${'contractAddress'}: ${formData.get('contractAddress')}`)
-    console.log(`${'saleContractAddress'}: ${formData.get('saleContractAddress')}`)
-    for (let item in requestData) {
-      formData.append(item, JSON.stringify(requestData[item]))
-      console.log(`${item}: ${formData.get(item)}`)
-    }
+    formData.append('file1', requestImg[0])
+    formData.append('file2', requestImg[1])
+    formData.append('file3', requestImg[2])
+    formData.append('file4', requestImg[3])
 
-    const result = postReqeust('api/concert', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
-    console.log(result)
+    const jsonData = {
+      ...requestData,
+      contractAddress: contractAddress,
+      saleContractAddress: contractAddress,
+    }
+    console.log(JSON.stringify(jsonData))
+    formData.append('key', new Blob([JSON.stringify(jsonData)], { type: 'application/json' }))
+
+    postReqeust('api/concert', formData).then(res => console.log(res))
   }
 
   return (
