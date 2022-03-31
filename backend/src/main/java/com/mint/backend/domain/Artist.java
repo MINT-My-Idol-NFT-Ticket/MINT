@@ -1,5 +1,7 @@
 package com.mint.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -32,6 +34,7 @@ public class Artist {
     @NotNull
     private String name;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="concert_id")
     private Concert concert;

@@ -32,10 +32,10 @@ public class AdminController {
     private final ConcertService concertService;
 
     @PostMapping("/concert")
-    public ResponseEntity<Boolean> create(@RequestPart(value = "file1") MultipartFile file1,
-                                          @RequestPart(value = "file2") MultipartFile file2,
-                                          @RequestPart(value = "file3") MultipartFile file3,
-                                          @RequestPart(value = "file4") MultipartFile file4,
+    public ResponseEntity<Boolean> create(@RequestPart(value = "poster") MultipartFile poster,
+                                          @RequestPart(value = "thumnail") MultipartFile thumnail,
+                                          @RequestPart(value = "description") MultipartFile description,
+                                          @RequestPart(value = "seats") MultipartFile seats,
                                           @RequestPart(value = "key") RequestConcertDto data) throws IOException {
         //디렉토리생성
         String folderPath = System.getProperty("user.home") + File.separator + "img" + File.separator + data.getTitle();
@@ -49,7 +49,7 @@ public class AdminController {
         }
 
         //콘서트 등록
-        boolean result = concertService.create(file1, file2, file3, file4, data);
+        boolean result = concertService.create(poster, thumnail, description, seats, data);
 
         return new ResponseEntity<Boolean>(result, HttpStatus.OK);
     }

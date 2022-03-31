@@ -2,9 +2,7 @@ package com.mint.backend.dto;
 
 import com.mint.backend.domain.Artist;
 import com.mint.backend.domain.Concert;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -22,6 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Getter
 public class ResponseFindOneDto {
     private String title;
     private String place;
