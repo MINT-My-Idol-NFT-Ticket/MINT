@@ -115,9 +115,4 @@ contract MintTicket is ERC721Enumerable, Ownable{
         erc20Contract.transferFrom(admin, msg.sender, ticketPrice);
     }   
 
-    modifier isTokenOwner() {
-        
-        //require(msg.sender == seller, "Sale: You are not seller.");
-        _;
-    }
 }
