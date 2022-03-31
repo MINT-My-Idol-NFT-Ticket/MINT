@@ -28,13 +28,11 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="image_id")
     private Long id;
-    @Column(name="thumbnail_mail")
-    private String mainUrl;
     @Column(name="thumbnail_coming")
     private String comingUrl;
     @Column(name="concert_poster")
     private String posterUrl;
-    @Column(name="concert_mail")
+    @Column(name="concert_description")
     private String descriptionUrl;
     @Column(name="concert_section")
     private String sectionUrl;

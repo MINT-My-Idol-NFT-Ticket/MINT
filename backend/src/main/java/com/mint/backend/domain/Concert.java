@@ -30,7 +30,7 @@ import java.util.List;
 public class Concert {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="conert_id")
+    @Column(name="concert_id")
     private Long id;
     @NotNull
     private String title;
@@ -45,12 +45,16 @@ public class Concert {
     private int status;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="image_id")
+    @JoinColumn(name="concert_id")
     private Image image;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Times> times;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Artist> artists;
+
+    @OneToMany(mappedBy = "concert")
+    private List<Times> times= new ArrayList<>();
+
+    @OneToMany(mappedBy = "concert",cascade = CascadeType.ALL)
+    private List<Artist> artist = new ArrayList<>();
+
+
 
 
 

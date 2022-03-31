@@ -1,6 +1,7 @@
 package com.mint.backend.controller;
 
 import com.mint.backend.domain.Concert;
+import com.mint.backend.dto.ResponseFindOneDto;
 import com.mint.backend.service.ConcertService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -35,9 +36,9 @@ public class MemberController {
     }
 
     @GetMapping("/{concertId}")
-    public ResponseEntity findOne(@PathVariable Long concertId){
-        concertService.getConcertDetail(concertId);
-        return ResponseEntity.ok().body("상세페이지");
+    public ResponseEntity<ResponseFindOneDto> findOne(@PathVariable Long concertId){
+        System.out.println(concertService.getConcertDetail(concertId).toString());
+        return new ResponseEntity(concertService.getConcertDetail(concertId),HttpStatus.OK);
     }
 
     @GetMapping("/search")
