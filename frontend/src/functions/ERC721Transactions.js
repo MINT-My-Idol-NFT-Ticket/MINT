@@ -5,6 +5,7 @@ const ABI = MintTicket.abi
 const BYTE_CODE = MintTicket.bytecode
 const OWNER = process.env.REACT_APP_ADMIN_WALLET_ADDRESS // 컨트랙트 owner
 const OWNER_PK = process.env.REACT_APP_ADMIN_PRIVATE_KEY // owner 개인키
+const ERC20ADDRESS = process.env.REACT_APP_ERC20_ADDRESS // owner 개인키
 
 // 컨트랙트 배포 함수
 export async function deploy(web3) {
@@ -12,9 +13,9 @@ export async function deploy(web3) {
   // deploy 트랜잭션 인스턴스
   const transaction = contract.deploy({
     data: BYTE_CODE,
-    arguments: [1],
+    arguments: [1, ERC20ADDRESS],
   })
-
+  console.log(transaction)
   const gas = await transaction.estimateGas({ from: OWNER })
   const options = {
     to: transaction._parent._address,
