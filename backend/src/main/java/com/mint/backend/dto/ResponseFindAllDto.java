@@ -24,7 +24,6 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Getter
-
 public class ResponseFindAllDto {
     private String title;
     private String thumnail;

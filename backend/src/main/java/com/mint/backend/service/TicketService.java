@@ -35,24 +35,37 @@ public class TicketService {
     private final TimesRepository timesRepository;
 
     //회차 조회
-    public List<Times> getTimes(Long concertId){
+    public List<Times> getTimes(Long concertId) {
         return timesRepository.findAllByConcert_Id(concertId);
     }
 
     //구역 조회
-    public List<Section> getSection(Long timesId){
+    public List<Section> getSection(Long timesId) {
         return sectionRepository.findAllByTimesId(timesId);
 
     }
+
     //좌석 조회
-    public List<Seat> getSeat(Long sectionId){
+    public List<Seat> getSeat(Long sectionId) {
         return seatRepository.findAllBySectionId(sectionId);
     }
+
     //예매가능여부
-    public ResponseExistSeatDto getSeatStatus(Long seatId){
-        Seat seat = seatRepository.findById(seatId).orElse(Seat.builder().status(0).build());
+    public ResponseExistSeatDto getSeatStatus(Long seatId) {
+        Seat seat = seatRepository.findById(seatId).orElseThrow(RuntimeException::new);
         return new ResponseExistSeatDto(seat.getStatus());
     }
-    //좌석 상태변경
 
+    //좌석 상태변경
+    public boolean updateSeatStatus(Long SeatId) {
+        try {
+            Seat seat = seatRepository.findById(SeatId).orElseThrow(RuntimeException::new);
+            seat.updateStatus();
+            seatRepository.save(seat);
+
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+    }
 }

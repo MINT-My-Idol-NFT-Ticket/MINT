@@ -5,7 +5,9 @@ import com.mint.backend.domain.Section;
 import com.mint.backend.domain.Times;
 import com.mint.backend.dto.ResponseExistSeatDto;
 import com.mint.backend.service.TicketService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,27 +32,42 @@ import java.util.List;
 public class TicketController {
 
     private final TicketService ticketService;
-
+    @ApiOperation(
+            value = "회차별 선택 가능 날짜 목록 조회"
+    )
     @GetMapping("/concert/{concertId}")
     public ResponseEntity<List<Times>> findDay(@PathVariable Long concertId){
         List<Times> list = ticketService.getTimes(concertId);
-        return new ResponseEntity<List<Times>>(list, HttpStatus.OK);
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
-
-    @GetMapping("/times/{concertId}")
+    @ApiOperation(
+            value = "날짜별 선택 가능 구역 목록 조회"
+    )
+    @GetMapping("/times/{timesId}")
     public ResponseEntity<List<Section>> findSection(@PathVariable Long timesId){
         List<Section> list= ticketService.getSection(timesId);
-        return new ResponseEntity<List<Section>>(list,HttpStatus.OK);
+        return new ResponseEntity<>(list,HttpStatus.OK);
     }
-
-    @GetMapping("/section/{concertId}")
+    @ApiOperation(
+            value = "구역별 선택 가능 좌석 목록 조회"
+    )
+    @GetMapping("/section/{sectionId}")
     public ResponseEntity<List<Seat>> findSeat(@PathVariable Long sectionId){
         List<Seat> list = ticketService.getSeat(sectionId);
-        return new ResponseEntity<List<Seat>>(list,HttpStatus.OK);
+        return new ResponseEntity<>(list,HttpStatus.OK);
     }
-
-    @GetMapping("/seat/{concertId}")
+    @ApiOperation(
+            value = "선택 좌석 예매 가능 여부 조회"
+    )
+    @GetMapping("/seat/{seatId}")
     public ResponseEntity<ResponseExistSeatDto> existSeat(@PathVariable Long seatId){
-        return new ResponseEntity<ResponseExistSeatDto>(ticketService.getSeatStatus(seatId),HttpStatus.OK);
+        return new ResponseEntity<>(ticketService.getSeatStatus(seatId),HttpStatus.OK);
+    }
+    @ApiOperation(
+            value = "좌석 상태 변경"
+    )
+    @GetMapping
+    public ResponseEntity<Boolean> updateSeatStatus(@RequestParam Long seatId){
+        return new ResponseEntity<>(ticketService.updateSeatStatus(seatId),HttpStatus.OK);
     }
 }

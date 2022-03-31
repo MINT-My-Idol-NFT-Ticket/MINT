@@ -96,7 +96,7 @@ public class ConcertService {
                           MultipartFile seats,
                           RequestConcertDto requestConcertDto) throws IOException {
         //기본경로
-        String path = System.getProperty("user.home") + File.separator + "img" + File.separator + requestConcertDto.getTitle();
+        String path = System.getProperty("user.dir")+File.separator + "src"+File.separator+"main"+File.separator + "resources"+File.separator+"image" + File.separator + requestConcertDto.getTitle();
 
         String postPath = path + File.separator + poster.getOriginalFilename();
         String thumnailPath = path + File.separator + thumnail.getOriginalFilename();

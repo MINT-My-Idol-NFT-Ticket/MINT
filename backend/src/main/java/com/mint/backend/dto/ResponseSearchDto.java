@@ -5,6 +5,7 @@ import com.mint.backend.domain.Concert;
 import com.mint.backend.domain.Times;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Getter
 public class ResponseSearchDto {
     private String title;
     private String comingUrl;
