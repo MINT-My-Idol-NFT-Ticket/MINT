@@ -38,13 +38,21 @@ public class AdminController {
                                           @RequestPart(value ="file4") MultipartFile file4,
                                           @RequestPart(value="key") RequestConcertDto data) throws IOException {
         //디렉토리생성
-        String folderPath  = "backend/src/main/resources/image"+data.getTitle();
+        String folderPath  = System.getProperty("user.home") + File.separator + "img"+File.separator+ data.getTitle();
         File makeFolder = new File(folderPath);
-        if(!makeFolder.exists())makeFolder.mkdir();
+        File makeFolder2 = new File(folderPath+File.separator + data.getTitle());
+        if(!makeFolder.exists()){
+            try {
+                makeFolder.mkdir();
+            }catch (Exception e){
+                e.getStackTrace();
+            }
+        }
+
 //        콘서트 등록
         boolean result = concertService.create(file1,file2,file3,file4,data);
 
-        return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+        return new ResponseEntity<Boolean>(result, HttpStatus.OK);
     }
 
     @PutMapping("/concert")
