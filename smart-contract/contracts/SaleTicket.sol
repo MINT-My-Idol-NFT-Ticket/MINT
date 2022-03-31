@@ -36,12 +36,14 @@ contract SaleTicket {
 
         uint256 price = ticketPrices[_tokenId];
         address ticketOwner = mintTicketAddress.ownerOf(_tokenId);
+        uint256 balanceLength = mintTicketAddress.balanceOf(msg.sender);
 
+        require(balanceLength == 0, "Caller already has a ticket.");
         require(price > 0, "Ticket not sale.");
         require(ticketOwner != msg.sender, "Caller is ticket owner.");
 
         erc20Contract.transferFrom(msg.sender, ticketOwner, price); // SSF 전송
-        mintTicketAddress.transferFrom(ticketOwner, msg.sender, _tokenId);  // NFT 양도 받기
+        mintTicketAddress.safeTransferFrom(ticketOwner, msg.sender, _tokenId);  // NFT 양도 받기
         ticketPrices[_tokenId] = 0;
 
         // 판매중인 티켓 배열에서 방금 거래된 티켓 제거

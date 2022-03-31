@@ -35,7 +35,7 @@ public class ResponseSearchDto {
         for (Concert con : concert) {
             list.add(ResponseSearchDto.builder()
                     .title(con.getTitle())
-                    .comingUrl(con.getImage().getComingUrl())
+                    .comingUrl(con.getImage().getThumbnailUrl())
                     .date(con.getTimes())
                     .artists(con.getArtist())
                     .build());

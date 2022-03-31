@@ -36,6 +36,6 @@ public class Section {
     @JoinColumn(name="times_id")
     private Times times;
 
-    @OneToMany
+    @OneToMany(mappedBy = "section",cascade = CascadeType.ALL)
     private List<Seat> seats = new ArrayList<>();
 }
