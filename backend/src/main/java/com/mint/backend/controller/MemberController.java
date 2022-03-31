@@ -5,6 +5,7 @@ import com.mint.backend.dto.ResponseFindAllDto;
 import com.mint.backend.dto.ResponseFindOneDto;
 import com.mint.backend.dto.ResponseSearchDto;
 import com.mint.backend.service.ConcertService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,16 +32,25 @@ public class MemberController {
 
     private final ConcertService concertService;
 
+    @ApiOperation(
+            value = "상태에 따른 콘서트 목록 조회"
+    )
     @GetMapping
     public ResponseEntity<List<ResponseFindAllDto>> findAll(@RequestParam int status){
         return new ResponseEntity<>(concertService.getConcertList(status), HttpStatus.OK);
     }
 
+    @ApiOperation(
+            value = "콘서트 상세 페이지 조회"
+    )
     @GetMapping("/{concertId}")
     public ResponseEntity<ResponseFindOneDto> findOne(@PathVariable Long concertId){
         return new ResponseEntity(concertService.getConcertDetail(concertId),HttpStatus.OK);
     }
 
+    @ApiOperation(
+            value = "콘서트 검색"
+    )
     @GetMapping("/search")
     public ResponseEntity<ResponseSearchDto> search(@RequestParam String keyword){
         return new ResponseEntity(concertService.search(keyword),HttpStatus.OK);
