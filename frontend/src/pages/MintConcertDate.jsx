@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import tempBg from '../images/concert_bg.png'
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import MintPageTemplate from '../components/common/MintPageTemplate'
 import MintConcertTimes from '../components/concert/MintConcertTimes'
 import MintBtnGroup from '../components/common/MintBtnGroup'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import LocalizationProvider from '@mui/lab/LocalizationProvider'
 import CalendarPicker from '@mui/lab/CalendarPicker'
+import isWeekend from 'date-fns/isWeekend'
 import '../styles/MintConcertProcess.css'
 
 function MintConcertDate() {
   const Header = () => {
-    const [date, setDate] = useState(new Date())
     return (
       <Box
         sx={{
@@ -43,14 +43,11 @@ function MintConcertDate() {
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <CalendarPicker
               date={date}
+              shouldDisableDate={isWeekend}
               onChange={newDate => {
                 setDate(newDate)
               }}
               views={['day', 'month']}
-              // shouldDisableDate={date => {
-              //   const dayDiff = diffDay(date)
-              //   return dayDiff < 0 || dayDiff > 15
-              // }}
             />
           </LocalizationProvider>
         </Box>
@@ -73,17 +70,20 @@ function MintConcertDate() {
     )
   }
   const Footer = () => {
-    return <MintBtnGroup next="concert/area" />
+    return <MintBtnGroup prev="concert/detail" next="concert/area" concertData={time} />
   }
 
   const [tourName, settourName] = useState('BTS WORLD TOUR')
   const [concertName, setConcertName] = useState("LOVE YOL'RSELF")
   const [concertInfo, setConcertInfo] = useState(tempdatas)
+  const [date, setDate] = useState(new Date())
+  const [time, setTime] = useState('')
   const [isSelected, setIsSelected] = useState(false)
   const [selectedId, setSelectedId] = useState(0)
 
   const pickTime = (time, idx) => {
-    console.log(time, '넘겨줄콘서트시간')
+    console.log(date, time, '넘겨줄콘서트날짜/시간')
+    setTime(time)
     setIsSelected(true)
     setSelectedId(idx)
   }

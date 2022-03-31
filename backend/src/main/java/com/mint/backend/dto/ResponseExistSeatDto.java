@@ -1,11 +1,12 @@
 package com.mint.backend.dto;
 
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Setter;
 
 /**
  * @packageName : com.mint.backend.dto
- * @fileName : requestExistAuth
- * @date : 2022-03-28
+ * @fileName : responseExistSesat
+ * @date : 2022-03-29
  * @language : JAVA
  * @classification :
  * @time_limit : 2sec
@@ -13,9 +14,7 @@ import lombok.Getter;
  * @submissions : 1
  * @description :
  **/
-@Getter
-public class requestExistAuthDto {
-    private String id;
-    private String password;
-
+@AllArgsConstructor
+public class ResponseExistSeatDto {
+    int status;
 }

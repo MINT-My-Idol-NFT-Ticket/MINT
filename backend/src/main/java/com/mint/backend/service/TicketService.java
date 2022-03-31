@@ -4,7 +4,7 @@ package com.mint.backend.service;
 import com.mint.backend.domain.Seat;
 import com.mint.backend.domain.Section;
 import com.mint.backend.domain.Times;
-import com.mint.backend.dto.responseExistSeatDto;
+import com.mint.backend.dto.ResponseExistSeatDto;
 import com.mint.backend.repository.SeatRepository;
 import com.mint.backend.repository.SectionRepository;
 import com.mint.backend.repository.TimesRepository;
@@ -49,9 +49,9 @@ public class TicketService {
         return seatRepository.findAllBySectionId(sectionId);
     }
     //예매가능여부
-    public responseExistSeatDto getSeatStatus(Long seatId){
+    public ResponseExistSeatDto getSeatStatus(Long seatId){
         Seat seat = seatRepository.findById(seatId).orElse(Seat.builder().status(0).build());
-        return new responseExistSeatDto(seat.getStatus());
+        return new ResponseExistSeatDto(seat.getStatus());
     }
     //좌석 상태변경
 

@@ -13,7 +13,7 @@ function MintConcertPayment(props) {
       <MintPayPrice />
       <Divider />
       <MintConcertAgree />
-      <MintBtnGroup />
+      <MintBtnGroup prev="concert/area" next="mypage" />
     </Box>
   )
 }
