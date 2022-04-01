@@ -33,7 +33,7 @@ public class Concert {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="concert_id")
     private Long id;
-    private String cid;
+
     @NotNull
     private String title;
     @NotNull
@@ -50,6 +50,7 @@ public class Concert {
     @JoinColumn(name="concert_id")
     private Image image;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "concert",cascade =CascadeType.ALL)
     private List<Times> times= new ArrayList<>();
 
@@ -57,10 +58,7 @@ public class Concert {
     @OneToMany(mappedBy = "concert",cascade = CascadeType.ALL)
     private List<Artist> artist = new ArrayList<>();
 
-
-
-
-
-
-
+    @JsonBackReference
+    @OneToMany(mappedBy = "concert",cascade = CascadeType.ALL)
+    private List<Cids> cids = new ArrayList<>();
 }

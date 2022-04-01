@@ -1,7 +1,5 @@
 package com.mint.backend.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,13 +7,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * @packageName : com.mint.backend.dto
- * @fileName : Times
- * @date : 2022-03-24
+ * @packageName : com.mint.backend.domain
+ * @fileName : Cid
+ * @date : 2022-04-01
  * @language : JAVA
  * @classification :
  * @time_limit : 2sec
@@ -28,17 +24,12 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Times {
+public class Cids {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="times_id")
+    @Column(name="cids_id")
     private Long id;
-    private String date;
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "times",cascade = CascadeType.ALL)
-    private List<Section> sections = new ArrayList<>();
-
+    private String cid;
     @JsonManagedReference
     @ManyToOne
     @JoinColumn(name="concert_id")
