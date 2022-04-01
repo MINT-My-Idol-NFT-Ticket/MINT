@@ -99,7 +99,7 @@ public class ConcertService {
         //실제저장경로
         String realPath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "image" + File.separator + requestConcertDto.getTitle();
         //DB저장경로
-        String Path = "files" + requestConcertDto.getTitle();
+        String Path = "files" +File.separator+ requestConcertDto.getTitle()+File.separator;
 
         //이미지 저장
         poster.transferTo(new File(realPath, poster.getOriginalFilename()));

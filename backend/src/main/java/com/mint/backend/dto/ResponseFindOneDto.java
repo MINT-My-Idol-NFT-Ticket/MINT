@@ -1,6 +1,7 @@
 package com.mint.backend.dto;
 
 import com.mint.backend.domain.Artist;
+import com.mint.backend.domain.Cids;
 import com.mint.backend.domain.Concert;
 import lombok.*;
 
@@ -24,6 +25,7 @@ import java.util.List;
 public class ResponseFindOneDto {
     private Long id;
     private String title;
+    private List<Cids> cids;
     private String place;
     private String contractAddress;
     private String price;
@@ -33,6 +35,7 @@ public class ResponseFindOneDto {
     public ResponseFindOneDto toDTO(Concert concert){
         return ResponseFindOneDto.builder()
                 .id(concert.getId())
+                .cids(concert.getCids())
                 .title(concert.getTitle())
                 .place(concert.getPlace())
                 .contractAddress(concert.getContractAddress())
