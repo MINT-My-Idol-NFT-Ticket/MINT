@@ -28,7 +28,7 @@ function Contents() {
           <Typography>2. 주소 복사를 클릭하거나 QR코드를 캡쳐하여 토큰 받을 주소를 전달할 수 있습니다.</Typography>
         </Box>
       </Box>
-      <MintBtn name="목록으로" link="notice" />
+      <MintBtn name="메인으로" link="home" />
     </Box>
   )
 }

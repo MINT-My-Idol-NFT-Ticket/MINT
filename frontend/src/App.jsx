@@ -33,6 +33,7 @@ import MintNotice3 from './components/notice/MintNotice3.jsx'
 import MintNotice2 from './components/notice/MintNotice2.jsx'
 import MintNotice1 from './components/notice/MintNotice1.jsx'
 import MintTradeDetail from './pages/MintTradeDetail.jsx'
+import MintConnectWallet from './pages/MintAddress'
 
 function App({ setMode }) {
   const [bright, setBright] = useBrightness()
@@ -45,6 +46,7 @@ function App({ setMode }) {
       <Routes>
         <Route exact path="/" element={<MintSplash />} />
         <Route path="/intro" element={<MintIntro />} />
+        <Route path="/wallet" element={<MintConnectWallet />} />
         <Route path="/home" element={<MintHome bright={bright} />} />
         <Route path="/search" element={<MintSearch bright={bright} />} />
         <Route path="/comming_soon" element={<MintSoon bright={bright} />} />
