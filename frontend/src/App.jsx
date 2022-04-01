@@ -88,7 +88,7 @@ export default function MINT() {
                 text: {
                   primary: '#222831',
                   secondary: '#222831',
-                  disabled: '#222831',
+                  // disabled: '#222831',
                 },
               }
             : {
@@ -100,7 +100,7 @@ export default function MINT() {
                 text: {
                   primary: '#EEEEEE',
                   secondary: '#EEEEEE',
-                  disabled: '#EEEEEE',
+                  // disabled: '#EEEEEE',
                 },
               }),
           // for button color
