@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -34,11 +35,11 @@ import java.util.Map;
 public class ConcertService {
 
     private final ConcertRepository concertRepository;
-    private final ImageRepository imageRepository;
     private final ArtistRepository artistRepository;
     private final TimesRepository timesRepository;
     private final SeatRepository seatRepository;
     private final SectionRepository sectionRepository;
+    private final CidsRepository cidsRepository;
 
     /**
      * 콘서트 목록 조회
@@ -95,28 +96,24 @@ public class ConcertService {
                           MultipartFile description,
                           MultipartFile seats,
                           RequestConcertDto requestConcertDto) throws IOException {
-        //기본경로
-        String path = System.getProperty("user.dir")+File.separator + "src"+File.separator+"main"+File.separator + "resources"+File.separator+"image" + File.separator + requestConcertDto.getTitle();
         //실제저장경로
-        String realPath ="/app/build/static/media/string";
-
-        String postPath = path + File.separator + poster.getOriginalFilename();
-        String thumnailPath = path + File.separator + thumnail.getOriginalFilename();
-        String DescriptionPath = path + File.separator + description.getOriginalFilename();
-        String sectionPath = path + File.separator + seats.getOriginalFilename();
+        String realPath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "image" + File.separator + requestConcertDto.getTitle();
+        //DB저장경로
+        String Path = "files" + requestConcertDto.getTitle();
 
         //이미지 저장
-        poster.transferTo(new File(path, poster.getOriginalFilename()));
-        thumnail.transferTo(new File(path, thumnail.getOriginalFilename()));
-        description.transferTo(new File(path, description.getOriginalFilename()));
-        seats.transferTo(new File(path, seats.getOriginalFilename()));
+        poster.transferTo(new File(realPath, poster.getOriginalFilename()));
+        thumnail.transferTo(new File(realPath, thumnail.getOriginalFilename()));
+        description.transferTo(new File(realPath, description.getOriginalFilename()));
+        seats.transferTo(new File(realPath, seats.getOriginalFilename()));
         try {
             Image image = Image.builder()
-                    .thumbnailUrl(thumnailPath)
-                    .descriptionUrl(DescriptionPath)
-                    .posterUrl(postPath)
-                    .sectionUrl(sectionPath)
+                    .thumbnailUrl(Path + thumnail.getOriginalFilename())
+                    .descriptionUrl(Path + description.getOriginalFilename())
+                    .posterUrl(Path + poster.getOriginalFilename())
+                    .sectionUrl(Path + seats.getOriginalFilename())
                     .build();
+
             //콘서트등록
             Concert concert = Concert.builder()
                     .title(requestConcertDto.getTitle())
@@ -129,18 +126,17 @@ public class ConcertService {
                     .build();
 
             concertRepository.save(concert);
+
             //가수등록
-            String[] str = requestConcertDto.getSinger();
-            List<Artist> artists = new ArrayList<>();
-            for (int i = 0; i < str.length; i++) {
-                artistRepository.save(Artist.builder()
-                        .name(str[i])
-                        .concert(concert)
-                        .build());
+            Arrays.stream(requestConcertDto.getSinger()).forEach(s -> artistRepository.save(Artist.builder()
+                    .name(s)
+                    .concert(concert)
+                    .build()));
 
-
-            }
-
+            //포토카드 등록
+            Arrays.stream(requestConcertDto.getCids()).forEach(s -> cidsRepository.save(Cids.builder()
+                    .cid(s)
+                    .build()));
 
             //시간등록
             int turn = requestConcertDto.getTime();
@@ -165,7 +161,7 @@ public class ConcertService {
                     //자리등록
                     for (int j = 0; j < map.get(s); j++) {
                         Seat seat = Seat.builder()
-                                .name(s+Integer.toString(j))
+                                .name(s + Integer.toString(j))
                                 .section(section)
                                 .build();
                         seatRepository.save(seat);

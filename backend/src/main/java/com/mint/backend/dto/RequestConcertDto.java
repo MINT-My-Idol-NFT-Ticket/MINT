@@ -23,6 +23,7 @@ public class RequestConcertDto {
     @NotNull
     private String title;
     private int status;
+    private String[] cids;
     @NotNull
     private String[] singer;
     private int sectionNum;

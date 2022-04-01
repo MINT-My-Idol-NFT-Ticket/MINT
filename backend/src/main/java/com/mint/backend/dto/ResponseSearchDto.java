@@ -37,6 +37,7 @@ public class ResponseSearchDto {
         List<ResponseSearchDto> list = new ArrayList<>();
         for (Concert con : concert) {
             list.add(ResponseSearchDto.builder()
+                    .id(con.getId())
                     .title(con.getTitle())
                     .comingUrl(con.getImage().getThumbnailUrl())
                     .date(con.getTimes())
