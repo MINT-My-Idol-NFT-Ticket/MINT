@@ -7,7 +7,6 @@ import com.mint.backend.dto.ResponseFindOneDto;
 import com.mint.backend.dto.ResponseSearchDto;
 import com.mint.backend.repository.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,23 +18,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @packageName : com.mint.backend.service
- * @fileName : ConcertService
- * @date : 2022-03-25
- * @language : JAVA
- * @classification :
- * @time_limit : 2sec
- * @required_time : 00:40 ~ 01:22
- * @submissions : 1
- * @description :
- **/
+
 @Service
 @RequiredArgsConstructor
 public class ConcertService {
 
     private final ConcertRepository concertRepository;
-    private final ImageRepository imageRepository;
     private final ArtistRepository artistRepository;
     private final TimesRepository timesRepository;
     private final SeatRepository seatRepository;
@@ -48,7 +36,7 @@ public class ConcertService {
      * @param status
      * @return
      */
-    @ReadOnlyProperty
+    @Transactional(readOnly = true)
     public List<ResponseFindAllDto> getConcertList(int status) {
 //        return new ResponseFindAllDto()
 //                .toDTO(concertRepository.findConcert(status));
@@ -75,6 +63,7 @@ public class ConcertService {
      * @param concertId
      * @return
      */
+    @Transactional(readOnly = true)
     public ResponseFindOneDto getConcertDetail(Long concertId) {
         return new ResponseFindOneDto()
                 .toDTO(concertRepository
@@ -89,6 +78,7 @@ public class ConcertService {
      * @param keyword
      * @return
      */
+    @Transactional(readOnly = true)
     public List<ResponseSearchDto> search(String keyword) {
         List<Concert> concert = concertRepository.searchConcert(keyword);
         List<ResponseSearchDto> list = new ArrayList<>();
@@ -121,6 +111,7 @@ public class ConcertService {
      * 이미지 저장 폴더 명을 컨트랙트 주소를 잘라 저장하게 변경했습니다
      * 106번, 108번 줄
      */
+    @Transactional
     public boolean create(MultipartFile poster,
                           MultipartFile thumnail,
                           MultipartFile description,
@@ -224,6 +215,7 @@ public class ConcertService {
      * @param ConcertId
      * @return
      */
+    @Transactional
     public boolean delete(Long ConcertId) {
         try {
             concertRepository.deleteById(ConcertId);
