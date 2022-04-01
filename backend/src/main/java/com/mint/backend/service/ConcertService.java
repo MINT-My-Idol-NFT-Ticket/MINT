@@ -49,8 +49,22 @@ public class ConcertService {
      */
     @ReadOnlyProperty
     public List<ResponseFindAllDto> getConcertList(int status) {
-        return new ResponseFindAllDto()
-                .toDTO(concertRepository.findConcert(status));
+//        return new ResponseFindAllDto()
+//                .toDTO(concertRepository.findConcert(status));
+        List<Concert> concert = concertRepository.findConcert(status);
+        List<ResponseFindAllDto> list = new ArrayList<>();
+        for (Concert con : concert) {
+            list.add(ResponseFindAllDto.builder()
+                    .id(con.getId())
+                    .title(con.getTitle())
+                    .thumnail(con.getImage().getThumbnailUrl())
+                    .poster(con.getImage().getPosterUrl())
+                    .startDate(timesRepository.findFirstByConcert_IdOrderByDateAsc(con.getId()).getDate())
+                    .endDate(timesRepository.findFirstByConcert_IdOrderByDateDesc(con.getId()).getDate())
+                    .artist(con.getArtist())
+                    .build());
+        }
+        return list;
     }
 
 
