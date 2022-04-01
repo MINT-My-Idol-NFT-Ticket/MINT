@@ -2,17 +2,17 @@ import { web3 } from "./ssafyConfig.js";
 import fs from "fs";
 
 const { abi: mintTicketAbi } = JSON.parse(
-  fs.readFileSync("./artifacts/contracts/MintTicket.sol/MintTicket.json")
+  fs.readFileSync("../../../../smart-contract/artifacts/contracts/MintTicket.sol/MintTicket.json")
 );
 const { bytecode: mintTicketBytecode } = JSON.parse(
-  fs.readFileSync("./artifacts/contracts/MintTicket.sol/MintTicket.json")
+  fs.readFileSync("../../../../smart-contract/artifacts/contracts/MintTicket.sol/MintTicket.json")
 );
 
 const { abi: saleTicketAbi } = JSON.parse(
-  fs.readFileSync("./artifacts/contracts/SaleTicket.sol/SaleTicket.json")
+  fs.readFileSync("../../../../smart-contract/artifacts/contracts/SaleTicket.sol/SaleTicket.json")
 );
 const { bytecode: saleTicketBytecode } = JSON.parse(
-  fs.readFileSync("./artifacts/contracts/SaleTicket.sol/SaleTicket.json")
+  fs.readFileSync("../../../../smart-contract/artifacts/contracts/SaleTicket.sol/SaleTicket.json")
 );
 
 // 관리자용 - 채은 지갑
@@ -36,7 +36,7 @@ const chPrivateKey =
 const chWalletAccount = web3.eth.accounts.privateKeyToAccount(chPrivateKey);
 
 const { abi: ssafyTokenAbi } = JSON.parse(
-  fs.readFileSync("./artifacts/contracts/SsafyToken.sol/SsafyToken.json")
+  fs.readFileSync("../../../../smart-contract/artifacts/contracts/SsafyToken.sol/SsafyToken.json")
 );
 const ssafyTokenAddr = "0x6C927304104cdaa5a8b3691E0ADE8a3ded41a333";
 export const ssafyTokenContract = new web3.eth.Contract(
