@@ -1,5 +1,5 @@
 import { Button } from '@mui/material'
-import { deployContract } from '../../functions/ERCfunctions.js'
+import { deployContract } from '../../functions/erc/ERCfunctions.js'
 
 export default function MintDeployContract({ contractAddress, setContractAddress }) {
   const deploy = async () => {

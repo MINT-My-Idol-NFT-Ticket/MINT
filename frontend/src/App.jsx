@@ -26,6 +26,7 @@ import MintConcertDetail from './pages/MintConcertDetail'
 import Admin from './pages/Admin'
 import Test from './pages/Test'
 import Test2 from './pages/Test2'
+import Test3 from './pages/Test3'
 import MintTicket from './pages/MintTicket.jsx'
 import MintNotice from './pages/MintNotice.jsx'
 import MintNotice3 from './components/notice/MintNotice3.jsx'
@@ -63,6 +64,7 @@ function App({ setMode }) {
         {/* 트랜젝션 테스트 페이지 */}
         <Route exact path="/test" element={<Test />} />
         <Route exact path="/test2" element={<Test2 />} />
+        <Route exact path="/test3" element={<Test3 />} />
         <Route exact path="/trade" element={<MintTrade bright={bright} />} />
         <Route exact path="/trade/ticket/:id" element={<MintTradeDetail bright={bright} />} />
       </Routes>

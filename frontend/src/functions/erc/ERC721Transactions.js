@@ -1,4 +1,4 @@
-import MintTicket from '../contract/MintTicket.json'
+import MintTicket from '../../contract/MintTicket.json'
 import send from './sendTransactions.js'
 
 const ABI = MintTicket.abi
