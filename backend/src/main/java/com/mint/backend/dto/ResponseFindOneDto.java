@@ -23,25 +23,29 @@ import java.util.List;
 @Builder
 @Getter
 public class ResponseFindOneDto {
-    private Long id;
-    private String title;
-    private List<Cids> cids;
-    private String place;
-    private String contractAddress;
-    private String price;
-    private List<Artist> artists;
-    private int status;
+//    private Long id;
+//    private String title;
+//    private List<Cids> cids;
+//    private String place;
+//    private String contractAddress;
+//    private String price;
+//    private List<Artist> artists;
+//    private int status;
+    private String poster;
+    private String detail;
 
     public ResponseFindOneDto toDTO(Concert concert){
         return ResponseFindOneDto.builder()
-                .id(concert.getId())
-                .cids(concert.getCids())
-                .title(concert.getTitle())
-                .place(concert.getPlace())
-                .contractAddress(concert.getContractAddress())
-                .price(concert.getPrice())
-                .artists(concert.getArtist())
-                .status(concert.getStatus())
+                .poster(concert.getImage().getPosterUrl())
+                .detail(concert.getImage().getDescriptionUrl())
+//                .id(concert.getId())
+//                .cids(concert.getCids())
+//                .title(concert.getTitle())
+//                .place(concert.getPlace())
+//                .contractAddress(concert.getContractAddress())
+//                .price(concert.getPrice())
+//                .artists(concert.getArtist())
+//                .status(concert.getStatus())
                 .build();
     }
 }

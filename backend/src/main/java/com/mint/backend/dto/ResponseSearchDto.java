@@ -30,20 +30,8 @@ public class ResponseSearchDto {
     private Long id;
     private String title;
     private String ThumnailUrl;
-    private List<Times> date;
+    private String startDate;
+    private String endDate;
     private List<Artist> artists;
 
-    public List<ResponseSearchDto> toDto(List<Concert> concert){
-        List<ResponseSearchDto> list = new ArrayList<>();
-        for (Concert con : concert) {
-            list.add(ResponseSearchDto.builder()
-                    .id(con.getId())
-                    .title(con.getTitle())
-                    .ThumnailUrl(con.getImage().getThumbnailUrl())
-                    .date(con.getTimes())
-                    .artists(con.getArtist())
-                    .build());
-        }
-        return list;
-    }
 }
