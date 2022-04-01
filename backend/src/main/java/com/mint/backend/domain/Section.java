@@ -34,8 +34,9 @@ public class Section {
     private Long id;
     private String name;
 
-    @JsonManagedReference
+
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="times_id")
     private Times times;
 

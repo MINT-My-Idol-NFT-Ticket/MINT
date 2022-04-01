@@ -29,7 +29,7 @@ import java.util.List;
 public class ResponseSearchDto {
     private Long id;
     private String title;
-    private String comingUrl;
+    private String ThumnailUrl;
     private List<Times> date;
     private List<Artist> artists;
 
@@ -39,7 +39,7 @@ public class ResponseSearchDto {
             list.add(ResponseSearchDto.builder()
                     .id(con.getId())
                     .title(con.getTitle())
-                    .comingUrl(con.getImage().getThumbnailUrl())
+                    .ThumnailUrl(con.getImage().getThumbnailUrl())
                     .date(con.getTimes())
                     .artists(con.getArtist())
                     .build());

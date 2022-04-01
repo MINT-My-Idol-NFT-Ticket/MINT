@@ -1,5 +1,6 @@
 package com.mint.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,8 +31,9 @@ public class Cids {
     @Column(name="cids_id")
     private Long id;
     private String cid;
-    @JsonManagedReference
+
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="concert_id")
     private Concert concert;
 

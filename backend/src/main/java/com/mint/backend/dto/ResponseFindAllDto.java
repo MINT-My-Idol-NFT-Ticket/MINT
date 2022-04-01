@@ -28,6 +28,7 @@ public class ResponseFindAllDto {
     private Long id;
     private String title;
     private String thumnail;
+    private String poster;
     private List<Times> times;
     private List<Artist> artist;
 
@@ -38,6 +39,7 @@ public class ResponseFindAllDto {
                     .id(c.getId())
                     .title(c.getTitle())
                     .thumnail(c.getImage().getThumbnailUrl())
+                    .poster(c.getImage().getPosterUrl())
                     .times(c.getTimes())
                     .artist(c.getArtist())
                     .build());
