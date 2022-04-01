@@ -56,7 +56,7 @@ function Contents() {
           </li>
         </ul>
       </Box>
-      <MintBtn name="목록으로" link="notice" />
+      <MintBtn name="메인으로" link="home" />
     </Box>
   )
 }

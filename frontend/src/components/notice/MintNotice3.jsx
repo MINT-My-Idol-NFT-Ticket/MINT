@@ -35,11 +35,11 @@ function Contents() {
         <Typography sx={{ ...subHeader, marginTop: '60px' }}>주의사항</Typography>
         <ul style={{ paddingLeft: '20px', marginBottom: '60px' }}>
           <li>
-            개인키를 무분별한 타인에게 노출하는 행위는 개인 계정이 위험에 노출될 수 있으므로 지양해주시기 바랍니다.
+            개인키를 무분별한 타인에게 공개하는 행위는 개인 계정이 위험에 노출될 수 있으므로 지양해주시기 바랍니다.
           </li>
         </ul>
       </Box>
-      <MintBtn name="목록으로" link="notice" />
+      <MintBtn name="메인으로" link="home" />
     </Box>
   )
 }
