@@ -25,10 +25,6 @@ public class RequestConcertDto {
     private int status;
     @NotNull
     private String[] singer;
-//    private MultipartFile descriptionsImage;
-//    private MultipartFile posterImage;
-//    private MultipartFile sectionImage;
-//    private MultipartFile comingImage;
     private int sectionNum;
     private int time;
     private String[] timeTable;

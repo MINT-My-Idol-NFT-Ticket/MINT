@@ -27,6 +27,7 @@ import java.util.List;
 @Builder
 @Getter
 public class ResponseSearchDto {
+    private Long id;
     private String title;
     private String comingUrl;
     private List<Times> date;
