@@ -101,6 +101,10 @@ public class ConcertService {
      * @param requestConcertDto
      * @return
      * @throws IOException
+     *
+     * @modified 박창현
+     * 이미지 저장 폴더 명을 컨트랙트 주소를 잘라 저장하게 변경했습니다
+     * 106번, 108번 줄
      */
     public boolean create(MultipartFile poster,
                           MultipartFile thumnail,
@@ -108,9 +112,11 @@ public class ConcertService {
                           MultipartFile seats,
                           RequestConcertDto requestConcertDto) throws IOException {
         //실제저장경로
-        String realPath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "image" + File.separator + requestConcertDto.getTitle();
+        String realPath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" +
+                File.separator + "resources" + File.separator + "image" + File.separator +
+                requestConcertDto.getContractAddress().substring(0, 15);
         //DB저장경로
-        String Path = "files" +File.separator+ requestConcertDto.getTitle()+File.separator;
+        String Path = "files" +File.separator + requestConcertDto.getContractAddress().substring(0, 15)+File.separator;
 
         //이미지 저장
         poster.transferTo(new File(realPath, poster.getOriginalFilename()));
