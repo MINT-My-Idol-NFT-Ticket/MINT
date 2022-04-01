@@ -75,8 +75,19 @@ public class ConcertService {
      * @return
      */
     public List<ResponseSearchDto> search(String keyword) {
-        return new ResponseSearchDto()
-                .toDto(concertRepository.searchConcert(keyword));
+        List<Concert> concert = concertRepository.searchConcert(keyword);
+        List<ResponseSearchDto> list = new ArrayList<>();
+        for (Concert con : concert) {
+            list.add(ResponseSearchDto.builder()
+                    .id(con.getId())
+                    .title(con.getTitle())
+                    .ThumnailUrl(con.getImage().getThumbnailUrl())
+                    .startDate(timesRepository.findFirstByConcert_IdOrderByDateAsc(con.getId()).getDate())
+                    .endDate(timesRepository.findFirstByConcert_IdOrderByDateDesc(con.getId()).getDate())
+                    .artists(con.getArtist())
+                    .build());
+        }
+        return list;
     }
 
 
