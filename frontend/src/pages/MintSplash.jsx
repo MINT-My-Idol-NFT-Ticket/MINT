@@ -1,7 +1,3 @@
-//modules
-import LogoLight from '../images/logo_light.png'
-import LogoDark from '../images/logo_dark.png'
-import DoDuck from '../images/do-duck.gif'
 //components
 import { Box, Typography } from '@mui/material'
 
@@ -13,10 +9,10 @@ export default function MintSplash() {
   return (
     <div style={style} onMouseUp={nextPage}>
       <Box sx={{ textAlign: 'center' }}>
-        <img src={DoDuck} width="150px" />
+        <img src="do-duck.gif" width="150px" />
       </Box>
       <Box sx={{ textAlign: 'center' }}>
-        <img src={LogoLight} alt="" width="100px" />
+        <img src="logo_light.png" alt="" width="100px" />
       </Box>
       <Box>
         <Typography sx={{ textAlign: 'center', mt: '10px', color: '#000000' }}>너에게 스며드는 시간</Typography>

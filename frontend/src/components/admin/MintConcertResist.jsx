@@ -11,26 +11,27 @@ import MintSetConcertImage from './MintSetConcertImage'
 import MintSetTimeTable from './MintSetTimeTable'
 import MintSetAreaData from './MintSetAreaData'
 import MintDeployContract from './MintDeployContract'
+import MintUploadCard from './MintUploadCard'
 
 export default function MintConcertResist() {
   const [requestData, setRequestData] = useState({})
   const [requestImg, setRequestImg] = useState([])
-  const [contractAddress, setContractAddress] = useState([])
+  const [contractAddresses, setContractAddresses] = useState([0, 0])
   const [check, setCheck] = useState('')
 
   const checkConcert = () => setCheck(JSON.stringify(requestData))
   const resistConcert = () => {
     const formData = new FormData()
 
-    formData.append('file1', requestImg[0])
-    formData.append('file2', requestImg[1])
-    formData.append('file3', requestImg[2])
-    formData.append('file4', requestImg[3])
+    formData.append('poster', requestImg[0])
+    formData.append('thumnail', requestImg[1])
+    formData.append('description', requestImg[2])
+    formData.append('seats', requestImg[3])
 
     const jsonData = {
       ...requestData,
-      contractAddress: contractAddress,
-      saleContractAddress: contractAddress,
+      contractAddress: contractAddresses[0],
+      saleContractAddress: contractAddresses[1],
     }
     console.log(JSON.stringify(jsonData))
     formData.append('key', new Blob([JSON.stringify(jsonData)], { type: 'application/json' }))
@@ -44,6 +45,8 @@ export default function MintConcertResist() {
         <Grid item xs={6}>
           <MintSetConcertData requestData={requestData} setRequestData={setRequestData} />
           <MintSetConcertImage requestImg={requestImg} setRequestImg={setRequestImg} />
+          <br />
+          <MintUploadCard requestData={requestData} setRequestData={setRequestData} />
         </Grid>
         <Grid item xs={6}>
           <MintSetTimeTable requestData={requestData} setRequestData={setRequestData} />
@@ -54,7 +57,7 @@ export default function MintConcertResist() {
           </Button>
           {check}
           <br />
-          <MintDeployContract contractAddress={contractAddress} setContractAddress={setContractAddress} />
+          <MintDeployContract contractAddresses={contractAddresses} setContractAddresses={setContractAddresses} />
           <Button variant="contained" component="span" onClick={resistConcert}>
             콘서트 등록
           </Button>
@@ -65,17 +68,3 @@ export default function MintConcertResist() {
     </Box>
   )
 }
-
-// {
-// 	"title":"테스트",
-// 	"status":"1",
-// 	"place":"테스트",
-//   "price":"1"
-// 	"singer":["테스트","테스트","테스트"],
-// 	"contractAddress": "0x36B7A67F5338654511576A5CB00392E76D2676E2"
-// 	"saleContractAddress": "0x36B7A67F5338654511576A5CB00392E76D2676E2"
-// 	"time":"3",
-// 	"timeTable":["0000","0000","0000"],
-// 	"sectionNum":"3",
-// 	"section":{"a":"1","b":"2","c":"3"}},
-// }
