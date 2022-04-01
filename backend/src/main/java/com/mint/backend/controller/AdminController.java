@@ -40,6 +40,10 @@ public class AdminController {
                                           @RequestPart(value = "description") MultipartFile description,
                                           @RequestPart(value = "seats") MultipartFile seats,
                                           @RequestPart(value = "key") RequestConcertDto data) throws IOException {
+        System.out.println("poster = " + poster);
+        System.out.println("thumnail = " + thumnail);
+        System.out.println("description = " + description);
+        System.out.println("seats = " + seats);
         //디렉토리생성
         String folderPath = System.getProperty("user.dir")+File.separator + "src"+File.separator+"main"+File.separator + "resources"+File.separator+"image" + File.separator + data.getTitle();
         File makeFolder = new File(folderPath);
