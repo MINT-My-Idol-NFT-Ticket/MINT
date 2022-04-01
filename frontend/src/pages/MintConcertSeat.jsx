@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Box, Typography } from '@mui/material'
 //components
+import MintPageTemplate from '../components/common/MintPageTemplate'
 import MintBtnGroup from '../components/common/MintBtnGroup'
 import MintSeatForm from '../components/concert/MintSeatForm'
 import MintConcertSeatSelect from '../components/concert/MintConcertSeatSelect'
@@ -18,30 +19,32 @@ function MintConcertSeat(props) {
     console.log(seat.name, '최상단')
     setSeat(seat.name)
   }
-  return (
-    <Box
-      sx={{
-        color: 'text.primary',
-        display: 'flex',
-        flexDirection: 'column',
-        alignContent: 'space-between',
-        height: '100%',
-      }}>
+  const Header = () => {
+    return (
       <Box sx={header}>
         <Typography sx={headerText}>{section}구역 좌석 배치도입니다.</Typography>
       </Box>
-      <Box sx={seatContainer}>
-        <MintConcertSeatSelect data={tempSeatLayout} handleSelect={handleSelect} />
-      </Box>
-      <Box sx={seatFromContainer}>
-        <MintSeatForm title="좌석등급/가격" />
-      </Box>
-      <Box sx={seatFromContainer}>
-        <MintSeatForm title="선택한 좌석" seat={seat} />
-      </Box>
-      <MintBtnGroup />
-    </Box>
-  )
+    )
+  }
+  const Contents = () => {
+    return (
+      <>
+        <Box sx={seatContainer}>
+          <MintConcertSeatSelect data={tempSeatLayout} handleSelect={handleSelect} />
+        </Box>
+        <Box sx={seatFromContainer}>
+          <MintSeatForm title="좌석등급/가격" />
+        </Box>
+        <Box sx={seatFromContainer}>
+          <MintSeatForm title="선택한 좌석" seat={seat} />
+        </Box>
+      </>
+    )
+  }
+  const Footer = () => {
+    return <MintBtnGroup prev="concert/area" next="concert/payment" />
+  }
+  return <MintPageTemplate header={<Header />} contents={<Contents />} footer={<Footer />} />
 }
 
 // temp datas
@@ -86,7 +89,7 @@ const headerText = {
   top: '50%',
   transform: 'translateY(-50%)',
 }
-const seatContainer = { height: '220px' }
+const seatContainer = { padding: '0 10px', height: '220px' }
 const seatFromContainer = { marginTop: '16px', height: '100px' }
 
 export default MintConcertSeat

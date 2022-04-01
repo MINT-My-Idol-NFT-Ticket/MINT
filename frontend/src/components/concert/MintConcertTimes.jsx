@@ -28,7 +28,7 @@ function MintConcertTimes(props) {
         <Typography sx={{ fontSize: '1.5rem', fontWeight: '800', lineHeight: '24px' }}>{props.times.date}</Typography>
         <Typography sx={{ fontSize: '0.8rem' }}>03.2022</Typography>
       </Grid>
-      <Grid item xs={10} sx={{ paddingLeft: '10px' }}>
+      <Grid item xs={10} sx={{ paddingLeft: '16px' }}>
         <Typography
           sx={{
             fontSize: '16px',

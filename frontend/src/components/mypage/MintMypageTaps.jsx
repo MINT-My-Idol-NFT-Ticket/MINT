@@ -8,7 +8,7 @@ import MintBuyList from './MintBuyList'
 export default function MintMypageTabs({ value }) {
   return (
     <>
-      <Box sx={{ width: '100%', padding: '0 15px', boxSizing: 'border-box' }}>
+      <Box sx={{ width: '100%', padding: '0 15px', boxSizing: 'border-box', marginTop: '40px' }}>
         <TabContext value={value}>
           <Box>
             <TabPanel style={{ padding: 0 }} value="1">

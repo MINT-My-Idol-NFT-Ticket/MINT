@@ -1,4 +1,4 @@
-import ERC20 from '../contract/ERC20.json'
+import ERC20 from '../../contract/ERC20.json'
 import send from './sendTransactions.js'
 
 const ABI = ERC20.abi

@@ -1,4 +1,4 @@
-import MintTicket from '../contract/MintTicket.json'
+import MintTicket from '../../contract/MintTicket.json'
 
 const ABI = MintTicket.abi
 

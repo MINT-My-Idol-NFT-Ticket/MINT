@@ -1,5 +1,4 @@
 //packages
-import SettingsIcon from '@mui/icons-material/Settings'
 import Box from '@mui/material/Box'
 import Tab from '@mui/material/Tab'
 import TabList from '@mui/lab/TabList'
@@ -16,7 +15,6 @@ export default function MintUserDate({ value, setValue }) {
     <div className="MintUserDate">
       <div className="MintUserData__balance">
         <p>13000 SSF</p>
-        <SettingsIcon />
       </div>
       <div className="MintUserData__walletAdress">
         <div className="MintUserData__wrapper">
@@ -25,7 +23,7 @@ export default function MintUserDate({ value, setValue }) {
         </div>
       </div>
       <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider', backgroundColor: '#EEEEEE' }}>
           <TabList onChange={handleChange}>
             <Tab label="구매 내역" value="1" />
             <Tab label="컬렉션" value="2" />

@@ -39,11 +39,6 @@ function MintConcertArea(props) {
   const Contents = () => {
     return (
       <>
-        {/* <Typography sx={{ position: 'sticky', top: '0', padding: '0 18px' }}>
-          <span>지정석</span>
-          <span>/</span>
-          <span>스탠딩</span>
-        </Typography> */}
         {sections.map((section, idx) => (
           <MintConcertAreaList
             key={section.name}
@@ -57,7 +52,7 @@ function MintConcertArea(props) {
       </>
     )
   }
-  const Footer = () => <MintBtnGroup prev="concert/date" />
+  const Footer = () => <MintBtnGroup prev="concert/date" next="concert/seat" />
   return <MintPageTemplate header={<Header />} contents={<Contents />} footer={<Footer />} />
 }
 
