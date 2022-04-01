@@ -1,5 +1,6 @@
 package com.mint.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jdk.nashorn.internal.ir.annotations.Ignore;
@@ -35,8 +36,8 @@ public class Artist {
     @NotNull
     private String name;
 
-    @JsonManagedReference
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="concert_id")
     private Concert concert;
 }

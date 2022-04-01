@@ -35,12 +35,13 @@ public class Times {
     private Long id;
     private String date;
 
-    @JsonBackReference
+
     @OneToMany(mappedBy = "times",cascade = CascadeType.ALL)
     private List<Section> sections = new ArrayList<>();
 
-    @JsonManagedReference
+
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="concert_id")
     private Concert concert;
 

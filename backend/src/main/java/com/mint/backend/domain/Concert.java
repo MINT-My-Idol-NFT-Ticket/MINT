@@ -50,15 +50,15 @@ public class Concert {
     @JoinColumn(name="concert_id")
     private Image image;
 
-    @JsonBackReference
+
     @OneToMany(mappedBy = "concert",cascade =CascadeType.ALL)
     private List<Times> times= new ArrayList<>();
 
-    @JsonBackReference
+
     @OneToMany(mappedBy = "concert",cascade = CascadeType.ALL)
     private List<Artist> artist = new ArrayList<>();
 
-    @JsonBackReference
+
     @OneToMany(mappedBy = "concert",cascade = CascadeType.ALL)
     private List<Cids> cids = new ArrayList<>();
 }
