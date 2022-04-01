@@ -33,6 +33,7 @@ public class Concert {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="concert_id")
     private Long id;
+    private String cid;
     @NotNull
     private String title;
     @NotNull

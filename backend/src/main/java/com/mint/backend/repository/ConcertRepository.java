@@ -23,7 +23,7 @@ public interface ConcertRepository extends JpaRepository<Concert,Long> {
     @Query("select a from Concert a where a.status =  :status ")
     public List<Concert> findConcert(@Param("status")int status);
 
-    @Query("select a from Concert a where a.title like %:keyword%")
+    @Query("select a from Concert a join a.artist b where a.title like %:keyword% or b.name like %:keyword%")
     public List<Concert> searchConcert(@Param("keyword")String keyword);
 
 }
