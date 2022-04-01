@@ -45,7 +45,7 @@ public class AdminController {
         System.out.println("description = " + description);
         System.out.println("seats = " + seats);
         //디렉토리생성
-        String folderPath = System.getProperty("user.dir")+File.separator + "src"+File.separator+"main"+File.separator + "resources"+File.separator+"image" + File.separator + data.getTitle().replaceAll(" ", "");
+        String folderPath = System.getProperty("user.dir")+File.separator + "src"+File.separator+"main"+File.separator + "resources"+File.separator+"image" + File.separator + data.getContractAddress().substring(0, data.getContractAddress().length() - 20);
         File makeFolder = new File(folderPath);
         if (!makeFolder.exists()) {
             try {
