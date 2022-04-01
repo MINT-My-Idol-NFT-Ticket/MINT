@@ -5,7 +5,7 @@ import com.mint.backend.domain.Concert;
 import com.mint.backend.domain.Times;
 import lombok.*;
 
-import javax.xml.crypto.Data;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +25,7 @@ import java.util.List;
 @Builder
 @Getter
 public class ResponseFindAllDto {
+    private Long id;
     private String title;
     private String thumnail;
     private List<Times> times;
@@ -34,6 +35,7 @@ public class ResponseFindAllDto {
         List<ResponseFindAllDto> list = new ArrayList<>();
         for (Concert c : concert) {
             list.add(ResponseFindAllDto.builder()
+                    .id(c.getId())
                     .title(c.getTitle())
                     .thumnail(c.getImage().getThumbnailUrl())
                     .times(c.getTimes())

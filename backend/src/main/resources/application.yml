@@ -2,6 +2,9 @@ server:
   port: 8080
 
 spring:
+  web:
+    resources:
+      static-locations: classpath:/image
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
@@ -41,6 +44,9 @@ server:
   port: 9090
 
 spring:
+  web:
+    resources:
+      static-locations: classpath:/image
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher

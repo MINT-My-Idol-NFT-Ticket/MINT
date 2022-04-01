@@ -1,7 +1,7 @@
 package com.mint.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,7 +34,7 @@ public class Times {
     private Long id;
     private String date;
 
-
+    @JsonBackReference
     @OneToMany(mappedBy = "times",cascade = CascadeType.ALL)
     private List<Section> sections = new ArrayList<>();
 

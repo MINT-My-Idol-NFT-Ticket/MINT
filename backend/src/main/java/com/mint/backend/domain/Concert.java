@@ -1,6 +1,7 @@
 package com.mint.backend.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -51,6 +52,7 @@ public class Concert {
     @OneToMany(mappedBy = "concert",cascade =CascadeType.ALL)
     private List<Times> times= new ArrayList<>();
 
+    @JsonBackReference
     @OneToMany(mappedBy = "concert",cascade = CascadeType.ALL)
     private List<Artist> artist = new ArrayList<>();
 

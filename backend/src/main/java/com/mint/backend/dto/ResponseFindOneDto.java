@@ -22,6 +22,7 @@ import java.util.List;
 @Builder
 @Getter
 public class ResponseFindOneDto {
+    private Long id;
     private String title;
     private String place;
     private String contractAddress;
@@ -31,6 +32,7 @@ public class ResponseFindOneDto {
 
     public ResponseFindOneDto toDTO(Concert concert){
         return ResponseFindOneDto.builder()
+                .id(concert.getId())
                 .title(concert.getTitle())
                 .place(concert.getPlace())
                 .contractAddress(concert.getContractAddress())

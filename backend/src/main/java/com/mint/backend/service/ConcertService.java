@@ -97,6 +97,8 @@ public class ConcertService {
                           RequestConcertDto requestConcertDto) throws IOException {
         //기본경로
         String path = System.getProperty("user.dir")+File.separator + "src"+File.separator+"main"+File.separator + "resources"+File.separator+"image" + File.separator + requestConcertDto.getTitle();
+        //실제저장경로
+        String realPath ="/app/build/static/media/string";
 
         String postPath = path + File.separator + poster.getOriginalFilename();
         String thumnailPath = path + File.separator + thumnail.getOriginalFilename();
@@ -163,7 +165,7 @@ public class ConcertService {
                     //자리등록
                     for (int j = 0; j < map.get(s); j++) {
                         Seat seat = Seat.builder()
-                                .name(Integer.toString(j))
+                                .name(s+Integer.toString(j))
                                 .section(section)
                                 .build();
                         seatRepository.save(seat);
