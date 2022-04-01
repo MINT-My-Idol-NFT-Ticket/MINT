@@ -35,6 +35,7 @@ import java.util.Map;
 public class ConcertService {
 
     private final ConcertRepository concertRepository;
+    private final ImageRepository imageRepository;
     private final ArtistRepository artistRepository;
     private final TimesRepository timesRepository;
     private final SeatRepository seatRepository;
@@ -157,7 +158,6 @@ public class ConcertService {
                     .build();
 
             concertRepository.save(concert);
-
             //가수등록
             Arrays.stream(requestConcertDto.getSinger()).forEach(s -> artistRepository.save(Artist.builder()
                     .name(s)
@@ -167,6 +167,7 @@ public class ConcertService {
             //포토카드 등록
             Arrays.stream(requestConcertDto.getCids()).forEach(s -> cidsRepository.save(Cids.builder()
                     .cid(s)
+                    .concert(concert)
                     .build()));
 
             //시간등록

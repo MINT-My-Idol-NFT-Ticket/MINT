@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * @packageName : com.mint.backend.dto
@@ -29,7 +30,7 @@ public class Seat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String date;
+    private Date date;
     @Column(columnDefinition = "Integer default 0")
     private int status;
 
@@ -40,5 +41,7 @@ public class Seat {
 
     public void updateStatus(){
         this.status=1;
+        this.date= new Date();
+
     }
 }
