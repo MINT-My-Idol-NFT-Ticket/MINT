@@ -84,7 +84,7 @@ function MintFooter(props) {
             open={open}
             onClose={toggleDrawer(false)}
             onOpen={toggleDrawer(true)}>
-            <MintFooterMenus />
+            <MintFooterMenus drawer={toggleDrawer(false)} />
           </SwipeableDrawer>
         </Box>
       </BottomNavigation>

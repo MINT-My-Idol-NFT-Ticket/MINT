@@ -23,6 +23,7 @@ function MintFooterMenus(props) {
     if (isLogin) {
       sessionStorage.removeItem('address')
       setIsLogin(false)
+      props.drawer()
       alert('로그아웃 되었습니다.')
     } else {
       alert('지갑 연동 페이지로 이동합니다.')
