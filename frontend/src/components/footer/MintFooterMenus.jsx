@@ -11,7 +11,6 @@ function MintFooterMenus(props) {
   const [isLogin, setIsLogin] = useState(false)
   useEffect(() => {
     const address = sessionStorage.getItem('address')
-    console.log(address, '세션address')
     if (address) {
       setIsLogin(true)
     } else {

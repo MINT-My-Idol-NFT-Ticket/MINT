@@ -10,7 +10,7 @@
 	box-sizing: border-box;
 }
 .MintSearchContents__searchBar.light {
-	background-color: #EEEEEE;
+	background-color: #FFF;
 }
 .MintSearchContents__searchBar.dark {
 	background-color: #222831;

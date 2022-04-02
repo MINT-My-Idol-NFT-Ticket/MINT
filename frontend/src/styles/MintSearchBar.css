@@ -1,11 +1,12 @@
 .MintSearchBar {
+	position: relative;
 	padding: 10px 0;
 	background-color: inherit;
 }
 .MintSearchBar .searchBar{
 	all: unset;
 	width: 100%;
-	padding: 5px 10px;
+	padding: 5px 40px;
 	font-size: 16px;
 	box-sizing: border-box;
 	border-radius: 10px;
@@ -16,7 +17,7 @@
 }
 
 .MintSearchBar .searchBar.dark{
-	border: 2px solid #EEEEEE;
+	border: 2px solid #FFF;
 }
 
 .MintSearchBar .searchBar:focus.light{
@@ -24,4 +25,16 @@
 }
 .MintSearchBar .searchBar:focus.dark{
 	background-color: rgba(50, 50, 50, .7);
+}
+
+.MintSearchBar__SearchIcon {
+	position: absolute;
+	top: 15px;
+	left: 5px;
+	cursor: pointer;
+}
+.MintSearchBar__CancelIcon {
+	position: absolute;
+	top: 17px;
+	right: 5px;
 }

@@ -1,13 +1,13 @@
 import { lightColor, darkColor, isLight, mainColor } from '../util/Color.js'
 
-export default function GenerateConfirm(swal, title, text, bright) {
+export default function GenerateConfirm(swal, title, text, callback, bright) {
   swal
     .fire({
       title: title,
       text: text ? text : 'no-text',
       icon: 'warning',
-      color: isLight('dark') ? darkColor : lightColor,
-      background: isLight('dark') ? lightColor : darkColor,
+      color: isLight(bright) ? darkColor : lightColor,
+      background: isLight(bright) ? lightColor : darkColor,
       showCancelButton: true,
       confirmButtonColor: '#cdcdcd',
       confirmButtonText: '예',
@@ -15,6 +15,6 @@ export default function GenerateConfirm(swal, title, text, bright) {
       cancelButtonText: '아니오',
     })
     .then(result => {
-      console.log(result)
+      if (result.isConfirmed) callback()
     })
 }

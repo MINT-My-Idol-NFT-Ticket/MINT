@@ -17,7 +17,7 @@ function MintConcertDate() {
         sx={{
           minHeight: '440px',
           textAlign: 'center',
-          color: '#EEEEEE',
+          color: '#FFF',
           backgroundImage: `url("${tempBg}")`,
           position: 'relative',
         }}>
@@ -30,7 +30,7 @@ function MintConcertDate() {
           sx={{
             width: '320px',
             height: '305px',
-            backgroundColor: '#eeeeee',
+            backgroundColor: '#FFF',
             margin: '24px 10px 0 20px',
             display: 'inlineBlock',
             textAlign: 'center',
@@ -70,7 +70,11 @@ function MintConcertDate() {
     )
   }
   const Footer = () => {
-    return <MintBtnGroup prev="concert/detail" next="concert/area" concertData={time} />
+    return (
+      <Box sx={{ padding: '20px 31px' }}>
+        <MintBtnGroup prev="concert/detail" next="concert/area" concertData={time} />
+      </Box>
+    )
   }
 
   const [tourName, settourName] = useState('BTS WORLD TOUR')

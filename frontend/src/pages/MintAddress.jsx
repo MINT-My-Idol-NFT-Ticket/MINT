@@ -2,24 +2,22 @@ import { Box, Typography, Card, CardContent, TextField, Button } from '@mui/mate
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import useBrightness from '../hooks/useBrightness.js'
+import { errorMessage, checkMessage, confirmMessage } from '../functions/alert/AlertFunctions.js'
+
 export default function MintConnectWallet() {
-  //이주현
-  //메인 페이지 이동 함수
   const navigate = useNavigate()
   const pushHome = () => navigate('/home')
-
+  const [bright, _] = useBrightness()
   const [address, setAddress] = useState('')
 
-  /**
-   * 박창현
-   * SSAFY WALLET 주소 연결 구현
-   */
   const connectWallet = () => {
-    // Todo
+    const displayCheck = () => checkMessage('지갑이 등록되었습니다', pushHome, bright)
+
     if (address.length === 42 && address.startsWith('0x')) {
       sessionStorage.setItem('address', address)
-      pushHome()
-    } else alert('잘못된 키 입력' + address)
+      confirmMessage('아래의 주소로 등록하시겠습니까?', address, displayCheck, bright)
+    } else errorMessage('유효하지 않은 지갑 주소 입니다', bright)
   }
 
   return (
@@ -46,7 +44,7 @@ export default function MintConnectWallet() {
             }}
           />
           <Box sx={{ mt: '30px' }}>
-            <Button onClick={connectWallet} sx={{ width: '250px' }}>
+            <Button variant="contained" onClick={connectWallet} sx={{ width: '250px' }}>
               연동하기
             </Button>
           </Box>
