@@ -1,9 +1,7 @@
 import React, { Suspense, useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
-import { Canvas, useFrame, useLoader } from '@react-three/fiber'
-import { TextureLoader } from 'three'
-import { OrbitControls, Stars, useGLTF, Bounds, Html, useProgress, Text, MeshDistortMaterial } from '@react-three/drei'
-import TicketModel from './mintticket3.glb'
+import { Canvas, useFrame } from '@react-three/fiber'
+import { OrbitControls, Stars, useGLTF, Bounds, Html, useProgress, useTexture } from '@react-three/drei'
 
 function MintTicket3D(props) {
   const Loader = () => {
@@ -13,12 +11,17 @@ function MintTicket3D(props) {
 
   const TicketMesh = () => {
     const group = useRef()
-    const { nodes, materials } = useGLTF(`${TicketModel}`)
-    const [front, back] = useLoader(TextureLoader, [
-      // 'https://img.sbs.co.kr/newsnet/etv/upload/2020/10/28/30000654805_1280.jpg',
+    const { nodes, materials } = useGLTF('/mintticket3.glb')
+    // const { nodes, materials } = useLoader(GLTFLoader, '/mintticket3.glb')
+    // const [front, back] = useLoader(TextureLoader, [
+    //   // 'https://img.sbs.co.kr/newsnet/etv/upload/2020/10/28/30000654805_1280.jpg',
+    //   'https://image.ytn.co.kr/general/jpg/2021/0507/202105071556373002_d.jpg',
+    //   'http://newsimg.hankookilbo.com/2019/05/08/201905082306085099_1.jpg',
+    //   // 'http://mrmaymay.com/wp-content/uploads/2017/10/MayMay-v%E1%BA%A3i-thun-k%E1%BA%BB-s%E1%BB%8Dc-viscose-00011-e1507747570434-180x180.jpg',
+    // ])
+    const [front, back] = useTexture([
       'https://image.ytn.co.kr/general/jpg/2021/0507/202105071556373002_d.jpg',
       'http://newsimg.hankookilbo.com/2019/05/08/201905082306085099_1.jpg',
-      // 'http://mrmaymay.com/wp-content/uploads/2017/10/MayMay-v%E1%BA%A3i-thun-k%E1%BA%BB-s%E1%BB%8Dc-viscose-00011-e1507747570434-180x180.jpg',
     ])
     useFrame(state => {
       const t = state.clock.getElapsedTime()
@@ -59,7 +62,7 @@ function MintTicket3D(props) {
       <color attach="background" args={['#222831']} />
       <ambientLight intensity={1} />
       <spotLight intensity={0.5} angle={0.1} penumbra={1} position={[10, 15, 10]} castShadow />
-      <Suspense fallback={<></>}>
+      <Suspense fallback={<Loader />}>
         <Bounds fit clip margin={1.2}>
           <TicketMesh />
         </Bounds>
@@ -78,3 +81,5 @@ function MintTicket3D(props) {
 }
 
 export default MintTicket3D
+
+useGLTF.preload('/mintticket3.glb')
