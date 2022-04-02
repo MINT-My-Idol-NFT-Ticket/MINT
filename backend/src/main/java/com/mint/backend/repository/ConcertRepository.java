@@ -26,7 +26,7 @@ public interface ConcertRepository extends JpaRepository<Concert,Long> {
 //    public Page<Concert> findConcert(@Param("status")int status);
     public Page<Concert> findAllByStatusIs(int status, Pageable pageable);
 
-    @Query("select a from Concert a join a.artist b where a.title like %:keyword% or b.name like %:keyword%")
+    @Query("select distinct a from Concert a join a.artist b where a.title like %:keyword% or b.name like %:keyword%")
     public Page<Concert> searchConcert(@Param("keyword")String keyword,Pageable pageable);
 
 }
