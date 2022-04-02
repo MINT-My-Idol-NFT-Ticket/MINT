@@ -4,24 +4,22 @@ import HomeIcon from '@mui/icons-material/Home'
 import MenuIcon from '@mui/icons-material/Menu'
 import AccountBoxIcon from '@mui/icons-material/AccountBox'
 import SearchIcon from '@mui/icons-material/Search'
-import { BottomNavigation, BottomNavigationAction, Box, styled, SwipeableDrawer, Typography } from '@mui/material'
+import { BottomNavigation, BottomNavigationAction, Box, styled, Drawer, Typography } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import LightModeIcon from '@mui/icons-material/LightMode'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 import { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+//modules
 import useBrightness from '../../hooks/useBrightness'
 import MintFooterMenus from './MintFooterMenus'
-// import MintFooterMenu from './SwipeableEdgeDrawer'
 
-function MintFooter(props) {
+function MintFooter() {
   const navigate = useNavigate()
   const pushHome = () => navigate('/home')
   const pushMypage = () => navigate('/mypage')
   const pushSearch = () => navigate('/search')
   const [bright, setBright] = useBrightness()
-  const { window } = props
   const [open, setOpen] = useState(false)
 
   const colorMode = useMemo(
@@ -46,8 +44,6 @@ function MintFooter(props) {
   }
 
   const style = bright === 'light' ? { color: '#222831' } : { color: '#EEEEEE' }
-
-  const container = window !== undefined ? () => window().document.body : undefined
   return (
     <>
       <IconButton
@@ -69,23 +65,15 @@ function MintFooter(props) {
         <BottomNavigationAction label="Menu" icon={<MenuIcon style={style} />} onClick={toggleDrawer(true)} />
         <BottomNavigationAction label="MyPage" icon={<AccountBoxIcon style={style} />} onClick={pushMypage} />
         <BottomNavigationAction label="Search" icon={<SearchIcon style={style} />} onClick={pushSearch} />
-        <Box
-          sx={{
-            position: 'absolute',
-            left: '0',
-            bottom: '0',
-            width: '100%',
-            maxWidth: '414px',
-            backgroundColor: 'red',
-          }}>
-          <SwipeableDrawer
-            container={container}
-            anchor="bottom"
+        <Box>
+          <Drawer
+            anchor="top"
             open={open}
             onClose={toggleDrawer(false)}
-            onOpen={toggleDrawer(true)}>
+            onOpen={toggleDrawer(true)}
+            PaperProps={{ style: { width: '100%', maxWidth: '414px', margin: '0 auto' } }}>
             <MintFooterMenus drawer={toggleDrawer(false)} />
-          </SwipeableDrawer>
+          </Drawer>
         </Box>
       </BottomNavigation>
     </>

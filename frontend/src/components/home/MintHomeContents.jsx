@@ -34,20 +34,22 @@ export default function MintHomeContents() {
   return (
     <>
       {notOpenConcerts.length === 0 ? <Skeleton variant="ractangular" sx={{ height: '100px' }} /> : <MintBanner />}
-      {openConcerts.length === 0 ? (
-        <MintVerticalSkeleton />
-      ) : (
-        openConcerts.map(concert => <MintVerticalCard key={concert.id} concertData={concert} notOpen={false} />)
-      )}
-      <div className="MintHome__subTitle">
-        <p>오픈 예정</p>
-        <ChevronRightIcon onClick={pushCommingSoon} />
+      <div className="MintHomeContents__openConcert">
+        {openConcerts.length === 0 ? (
+          <MintVerticalSkeleton />
+        ) : (
+          openConcerts.map(concert => <MintVerticalCard key={concert.id} concertData={concert} notOpen={false} />)
+        )}
       </div>
-      <div className="MintHome__notOpenList">
+      <div className="MintHomeContents__subTitle" onClick={pushCommingSoon}>
+        <p>오픈 예정</p>
+        <ChevronRightIcon />
+      </div>
+      <div className="MintHomeContents__notOpenList">
         {notOpenConcerts.length === 0 ? (
           <MintVerticalSkeleton />
         ) : (
-          <Grid container>
+          <Grid container spacing={2.5}>
             {notOpenConcerts.map(concert => (
               <Grid key={concert.id} item xs={6}>
                 <MintVerticalCard concertData={concert} notOpen={true} />

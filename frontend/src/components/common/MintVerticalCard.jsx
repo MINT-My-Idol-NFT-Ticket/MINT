@@ -11,29 +11,32 @@ export default function MintVerticalCard({ concertData, notOpen }) {
   const goDetail = () => {
     navigate(`/concert/detail/${concertData.id}`, { id: concertData.id })
   }
+  const makeDataString = str => str.split('.').slice(0, 3).join('.')
   return (
     <div className="MintVerticalCard" onClick={goDetail}>
       <div className={`MintVerticalCard__poster ${notOpen ? 'notOpen' : 'open'}`}>
         <MintConcertPoster imgUrl={`${BASE_URL}${notOpen ? concertData.thumnail : concertData.poster}`} />
       </div>
-      <MintConcertText
-        data={{
-          singer: concertData.artist[0].name,
-          title: concertData.title,
-          date: `${concertData.startData} - ${concertData.endDate}`,
-        }}
-        textStyle={textStyle}
-      />
+      <div className="MintVerticalCard__Texts">
+        <MintConcertText
+          data={{
+            singer: concertData.artist[0].name,
+            title: concertData.title,
+            date: `${makeDataString(concertData.startDate)} - ${makeDataString(concertData.endDate)}`,
+          }}
+          textStyle={textStyle}
+        />
+      </div>
     </div>
   )
 }
 
 const textStyle = {
   singer: {
-    fontSize: '16px',
+    fontSize: '18px',
   },
   title: {
-    fontSize: '16px',
+    fontSize: '18px',
   },
   date: {
     fontSize: '14px',

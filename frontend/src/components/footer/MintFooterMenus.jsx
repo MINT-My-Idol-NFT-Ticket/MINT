@@ -54,7 +54,7 @@ function MintFooterMenus(props) {
   }
 
   return (
-    <List>
+    <List sx={{ width: '100%', maxWidth: '414px' }}>
       {menus.map((menu, idx) => {
         return (
           <ListItem key={menu.title + idx} disablePadding>
