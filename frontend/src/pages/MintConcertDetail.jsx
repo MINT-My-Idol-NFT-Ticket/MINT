@@ -8,8 +8,11 @@ import MintBtn from '../components/common/MintBtn'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getRequest } from '../api/Request'
+import { Skeleton } from '@mui/material'
 
 export default function MintConcertDetail({ bright }) {
+  const [concertData, setConcertData] = useState(null)
+
   const Header = () => <MintSubHeader bright={bright} content="콘서트 상세" />
   const Contents = () => <MintConcertDetailContents />
   const Footer = () => (
@@ -20,14 +23,20 @@ export default function MintConcertDetail({ bright }) {
     </>
   )
 
-  const [concertData, setConcertData] = useState({})
   const id = useParams().id
   useEffect(async () => {
-    setConcertData(await getRequest(`api/concert/${id}`).data)
+    const response = await getRequest(`api/concert/${id}`)
+
+    console.log(response.data)
+    setConcertData(response.data)
   }, [])
   return (
     <div className={`${bright}`}>
-      <MintPageTemplate header={<Header />} contents={<Contents concertData={concertData} />} footer={<Footer />} />
+      {concertData === null ? (
+        <Skeleton />
+      ) : (
+        <MintPageTemplate header={<Header />} contents={<Contents />} footer={<Footer />} />
+      )}
     </div>
   )
 }
