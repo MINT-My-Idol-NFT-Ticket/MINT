@@ -70,7 +70,6 @@ function MintFooter() {
             anchor="top"
             open={open}
             onClose={toggleDrawer(false)}
-            onOpen={toggleDrawer(true)}
             PaperProps={{ style: { width: '100%', maxWidth: '414px', margin: '0 auto' } }}>
             <MintFooterMenus drawer={toggleDrawer(false)} />
           </Drawer>

@@ -1,28 +1,24 @@
+import { useState } from 'react'
+
 import '../../styles/MintSearchContents.css'
 import MintSearchBar from './MintSearchBar'
 import MintHorizontalCard from '../common/MintHorizontalCard'
 
 export default function MintSearchContents({ bright }) {
-  const testData = []
-
-  for (let i = 1; i <= 40; i++) {
-    testData.push({
-      title: `${i}번 제목${i}번 제목${i}번 제목${i}번 제목${i}번 제목${i}번 제목${i}번 제목${i}번 제목${i}번 제목`,
-      date: `${i}번 날짜`,
-      singer: `${i}번 가수`,
-      img: 'poster_ver.gif',
-    })
-  }
-
+  const [searchList, setSearchList] = useState([])
   const makeSearchList = () => {
-    return testData.map(concert => <MintHorizontalCard key={concert.date} concertData={concert} />)
+    return
   }
   return (
     <div className="MintSearchContents">
       <div className={`MintSearchContents__searchBar ${bright}`}>
-        <MintSearchBar bright={bright} />
+        <MintSearchBar bright={bright} setSearchList={setSearchList} />
       </div>
-      <div className="MintSearchContents__itemlist">{makeSearchList()}</div>
+      <div className="MintSearchContents__itemlist">
+        {searchList.map(concert => (
+          <MintHorizontalCard key={concert.date} concertData={concert} />
+        ))}
+      </div>
     </div>
   )
 }

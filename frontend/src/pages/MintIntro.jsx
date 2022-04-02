@@ -43,12 +43,12 @@ export default function Intro() {
         </CardContent>
       </Card>
       <Box sx={{ textAlign: 'center', mt: '30px' }}>
-        <Button variant="text" sx={{ width: '250px' }} onClick={moveToAccount}>
+        <Button variant="contained" sx={{ width: '250px' }} onClick={moveToAccount}>
           지갑 주소 입력하기
         </Button>
       </Box>
       <Box textAlign="center">
-        <Button variant="text" sx={{ width: '250px', mt: '10px' }} onClick={moveToSSAFYGit}>
+        <Button variant="contained" sx={{ width: '250px', mt: '10px' }} onClick={moveToSSAFYGit}>
           지갑 생성하기
         </Button>
       </Box>
