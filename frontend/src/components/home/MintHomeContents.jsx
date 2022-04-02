@@ -36,7 +36,7 @@ export default function MintHomeContents() {
       <Box sx={{ padding: '0 20px' }}>
         {openConcerts.length === 0
           ? [0, 0, 0, 0].map((v, i) => <MintVerticalSkeleton key={i} notOpen={false} />)
-          : openConcerts.map(concert => <MintVerticalCard key={concert.id} notOpen={false} />)}
+          : openConcerts.map(concert => <MintVerticalCard key={concert.id} concertData={concert} notOpen={false} />)}
       </Box>
       <Box
         sx={{
