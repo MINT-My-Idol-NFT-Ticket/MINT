@@ -3,7 +3,7 @@ import { useState } from 'react'
 import '../../styles/MintSearchBar.css'
 import SearchIcon from '@mui/icons-material/Search'
 import CancelIcon from '@mui/icons-material/Cancel'
-import { getRequest } from '../../api/Request.js'
+import { getRequest } from '../../api/requests.js'
 import { Box } from '@mui/material'
 
 export default function MintSearchBar({ bright, setSearchList }) {

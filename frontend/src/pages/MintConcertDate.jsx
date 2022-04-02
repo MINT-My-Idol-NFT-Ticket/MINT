@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
-import { BASE_URL, getRequest } from '../api/Request'
+import { BASE_URL, getRequest } from '../api/requests'
 import { Box, Typography } from '@mui/material'
 import tempBg from '../images/concert_bg.png'
 // components
@@ -11,30 +11,35 @@ import MintBtnGroup from '../components/common/MintBtnGroup'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import LocalizationProvider from '@mui/lab/LocalizationProvider'
 import CalendarPicker from '@mui/lab/CalendarPicker'
-// import isWeekend from 'date-fns/isWeekend'
 // css
 import '../styles/MintConcertProcess.css'
 
 function MintConcertDate() {
   const location = useLocation()
-  const [poster, setPoster] = useState(location.state.poster)
+  // console.log(location.state, '디테일->데이트')
+  const [state, setState] = useState(location.state)
   const [concertData, setConcertData] = useState([])
-  const [dates, setDates] = useState([])
+  const [dayConcertData, setDayConcertData] = useState([])
+  const [dates, setDates] = useState({})
   const concertId = useParams().id
 
   const getConcertDate = async () => {
     const response = await getRequest(`/api/ticket/concert/${concertId}`)
     setConcertData(response.data)
-    console.log(response.data)
-    setDates(response.data.map(({ date }) => date))
+    setDayConcertData(response.data)
+    // console.log(response.data, '콘서트 데이터 리퀘')
+    setDate(new Date(`20${response.data[0].date}`))
+    setDates({ min: `20${response.data[0].date}`, max: `20${response.data[response.data.length - 1].date}` })
+  }
+
+  const changeConcertByDate = newDate => {
+    const res = concertData.filter(concert => new Date(`22${concert.date}`).getDate() === newDate.getDate())
+    setDayConcertData(res)
   }
 
   useEffect(() => {
     getConcertDate()
   }, [])
-
-  // console.log(dates, '날짜')
-  // console.log(dates[0].slice(0, 8).replace(/\D/g, '-'))
 
   const Header = () => {
     return (
@@ -54,13 +59,13 @@ function MintConcertDate() {
             height: '100%',
             top: '0',
             bottom: '0',
-            backgroundImage: `url("${BASE_URL}${poster}")`,
+            backgroundImage: `url("${BASE_URL}${state.poster}")`,
             opacity: '0.5',
           }}></Box>
         <Typography variant="h6" sx={{ paddingTop: '20px', position: 'relative', zIndex: '100' }}>
-          {tourName}
+          {state.title}
         </Typography>
-        <Typography sx={{ position: 'relative', zIndex: '100' }}>{concertName}</Typography>
+        <Typography sx={{ position: 'relative', zIndex: '100' }}>{state.artists.map(a => a.name)}</Typography>
 
         <Box
           sx={{
@@ -79,12 +84,11 @@ function MintConcertDate() {
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <CalendarPicker
               date={date}
-              // minDate={new Date(`20${dates[0].slice(0, 8).replace(/\D/g, '-')}`)}
-              minDate={new Date('2022-04-01')}
-              maxDate={new Date('2022-04-04')}
-              // shouldDisableDate={isWeekend}
+              minDate={new Date(dates.min)}
+              maxDate={new Date(dates.max)}
               onChange={newDate => {
                 setDate(newDate)
+                changeConcertByDate(newDate)
               }}
               views={['day', 'month']}
             />
@@ -96,10 +100,11 @@ function MintConcertDate() {
   const Contents = () => {
     return (
       <Box>
-        {concertData.map(({ id, date, sections }) => (
+        {dayConcertData.map(({ id, date, time }) => (
           <MintConcertTimes
-            key={id + date}
-            times={date}
+            key={id}
+            info={{ title: state.title, place: state.place }}
+            times={{ date: date, time: time }}
             pick={pickTime}
             idx={id}
             selected={isSelected && id === selectedId}
@@ -112,23 +117,21 @@ function MintConcertDate() {
     return (
       <Box sx={{ padding: '20px 31px' }}>
         <MintBtnGroup
-          prev={`concert/detail/${concertId}`}
-          next={`${concertId}/concert/area`}
-          passData={{ date: date, time: time }}
+          prev={{ url: `concert/detail/${concertId}`, content: '이전' }}
+          next={{ url: `${concertId}/concert/area`, content: '다음' }}
+          passData={{ date: dates, time: time, timeId: selectedId }}
         />
       </Box>
     )
   }
 
-  const [tourName, settourName] = useState('BTS WORLD TOUR')
-  const [concertName, setConcertName] = useState("LOVE YOL'RSELF")
-  const [date, setDate] = useState(new Date())
+  const [date, setDate] = useState(dates.min)
   const [time, setTime] = useState('')
   const [isSelected, setIsSelected] = useState(false)
   const [selectedId, setSelectedId] = useState(0)
 
   const pickTime = (time, idx) => {
-    console.log(date.getDate(), time, '넘겨줄콘서트날짜/시간')
+    // console.log(time, idx, '넘겨줄콘서트날짜/시간')
     setTime(time)
     setIsSelected(true)
     setSelectedId(idx)

@@ -1,14 +1,5 @@
-import MintTicket from '../../contract/MintTicket.json'
-import SaleTicket from '../../contract/SaleTicket.json'
+import { MINT_ABI, MINT_BYTE_CODE, SALE_ABI, SALE_BYTE_CODE, ADMIN, ADMIN_PK, ERC20ADDRESS } from './index'
 import send from './sendTransactions.js'
-
-const MINT_ABI = MintTicket.abi
-const MINT_BYTE_CODE = MintTicket.bytecode
-const SALE_ABI = SaleTicket.abi
-const SALE_BYTE_CODE = SaleTicket.bytecode
-const OWNER = process.env.REACT_APP_ADMIN_WALLET_ADDRESS // 컨트랙트 owner
-const OWNER_PK = process.env.REACT_APP_ADMIN_PRIVATE_KEY // owner 개인키
-const ERC20ADDRESS = process.env.REACT_APP_ERC20_ADDRESS // erc20의 주소
 
 // 티켓 컨트랙트 배포 함수
 export async function deployTicketContract(web3, price) {
@@ -18,7 +9,7 @@ export async function deployTicketContract(web3, price) {
     data: MINT_BYTE_CODE,
     arguments: [price, ERC20ADDRESS],
   })
-  const gas = await transaction.estimateGas({ from: OWNER })
+  const gas = await transaction.estimateGas({ from: ADMIN })
   const options = {
     to: transaction._parent._address,
     data: transaction.encodeABI(),
@@ -26,7 +17,7 @@ export async function deployTicketContract(web3, price) {
   }
 
   try {
-    const result = await send(web3, options, OWNER_PK)
+    const result = await send(web3, options, ADMIN_PK)
     return result.contractAddress
   } catch {
     console.log('배포 실패')
@@ -41,7 +32,7 @@ export async function deploySaleContract(web3, mintTicketAddress) {
     data: SALE_BYTE_CODE,
     arguments: [mintTicketAddress, ERC20ADDRESS],
   })
-  const gas = await transaction.estimateGas({ from: OWNER })
+  const gas = await transaction.estimateGas({ from: ADMIN_PK })
   const options = {
     to: transaction._parent._address,
     data: transaction.encodeABI(),
@@ -49,7 +40,7 @@ export async function deploySaleContract(web3, mintTicketAddress) {
   }
 
   try {
-    const result = await send(web3, options, OWNER_PK)
+    const result = await send(web3, options, ADMIN_PK)
     return result.contractAddress
   } catch {
     console.log('배포 실패')
@@ -91,7 +82,7 @@ export async function safeTransferFrom(web3, contractAddress, from, to, tokenId)
   try {
     // 스마트 컨트랙트에서 민팅할 때마다 해당 토큰의 operator로 contract owner가 추가됩니다
     // 따라서 owner는 모든 토큰에 대한 transfer권한을 가지고 있습니다
-    const result = await send(web3, options, OWNER_PK)
+    const result = await send(web3, options, ADMIN_PK)
     return result.status ? true : false // NFT 전송 성공 여부 반환
   } catch {
     console.log('전송 실패')
@@ -110,7 +101,7 @@ export async function setSaleTicket(web3, ticketContractAddress, saleContractAdd
   }
 
   try {
-    await send(web3, options, OWNER_PK)
+    await send(web3, options, ADMIN_PK)
   } catch {
     console.log('전송 실패')
   }

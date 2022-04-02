@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import useBrightness from '../hooks/useBrightness.js'
-import { errorMessage, checkMessage, confirmMessage } from '../functions/alert/AlertFunctions.js'
+import { errorMessage, checkMessage, confirmMessage } from '../functions/alert/alertFunctions.js'
 
 export default function MintConnectWallet() {
   const navigate = useNavigate()

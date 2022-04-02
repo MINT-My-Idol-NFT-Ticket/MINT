@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import { isLight } from '../../functions/util/Color.js'
+import { isLight } from '../../functions/util/color.js'
 
 function MintHeader({ bright }) {
   return (

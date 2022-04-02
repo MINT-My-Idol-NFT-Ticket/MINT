@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 
-import { BASE_URL } from '../../api/Request'
+import { BASE_URL } from '../../api/requests'
 
 export default function MintConcertDetailContents({ concertData }) {
   console.log(concertData)

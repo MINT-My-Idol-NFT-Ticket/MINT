@@ -1,7 +1,5 @@
 import { axiosInstance } from './index.js'
-
-export const BASE_URL = 'http://j6b108.p.ssafy.io:9090/'
-// const BASE_URL = 'http://localhost:8080/'
+export const BASE_URL = process.env.REACT_APP_BASE_URL
 
 export const postRequest = async (url, data) => {
   const response = await axiosInstance.post(url, data)
@@ -17,7 +15,7 @@ export const getRequest = async (url, params = null) => {
     Object.keys(params).forEach(key => (parameter += `${key}=${params[key]}`))
   }
 
-  const response = await axiosInstance.get(BASE_URL + url + parameter)
+  const response = await axiosInstance.get(url + parameter)
 
   return response
 }
