@@ -17,7 +17,7 @@ function MintBtnGroup({ position, prev, next, passData, params = null }) {
     }
   }
   const handleNext = () => {
-    next ? navigate(`/${next}`, { state: { ...passData } }) : alert('이동할 다음 주소가 없습니다')
+    next ? navigate(`/${next.url}`, { state: { ...passData } }) : alert('이동할 다음 주소가 없습니다')
   }
   return (
     <Box
