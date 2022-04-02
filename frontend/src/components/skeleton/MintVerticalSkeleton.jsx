@@ -7,7 +7,6 @@ export default function MintVerticalSkeleton({ notOpen }) {
     <Box
       sx={{
         margin: '10px 0',
-        padding: '0 20px',
         boxSizing: 'border-box',
         overflow: 'hidden',
         cursor: 'pointer',
