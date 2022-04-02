@@ -1,6 +1,7 @@
 package com.mint.backend.repository;
 
 import com.mint.backend.domain.Seat;
+import com.mint.backend.dto.ResponseSeatAllDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,8 +21,6 @@ import java.util.List;
  **/
 public interface SeatRepository extends JpaRepository<Seat,Long> {
     List<Seat> findAllBySectionId(@Param(value = "scetionId")Long sectionId);
-
-    @Query("select a from Seat a where a.status = 0")
-    List<Seat> findAllBySectionIdAndStatus(@Param(value = "scetionId")Long sectionId);
+    Long countSeatBySectionIdAndStatus(Long sectionId,int status);
 
 }
