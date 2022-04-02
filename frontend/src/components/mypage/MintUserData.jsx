@@ -4,6 +4,7 @@ import TabList from '@mui/lab/TabList'
 import TabContext from '@mui/lab/TabContext'
 
 import { isLight, lightColor, darkColor } from '../../functions/util/Color.js'
+import { Typography } from '@mui/material'
 
 export default function MintUserDate({ value, setValue, bright }) {
   const handleChange = (e, newValue) => {
@@ -11,7 +12,7 @@ export default function MintUserDate({ value, setValue, bright }) {
   }
   const address = sessionStorage.getItem('address')
   return (
-    <Box sx={{ width: '100%', height: '160px' }}>
+    <Box sx={{ width: '100%', height: '160px', backgroundColor: `${isLight(bright) ? lightColor : darkColor}` }}>
       <Box
         sx={{
           display: 'flex',
@@ -21,7 +22,7 @@ export default function MintUserDate({ value, setValue, bright }) {
           fontWeight: 'bold',
           boxSizing: 'border-box',
         }}>
-        <p>13000 SSF</p>
+        <Typography sx={{ fontSize: '25px' }}>13000 SSF</Typography>
       </Box>
       <Box sx={{ padding: '0 60px' }}>
         <Box sx={{ position: 'relative' }}>

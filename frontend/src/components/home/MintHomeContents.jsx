@@ -52,7 +52,7 @@ export default function MintHomeContents() {
         <p style={{ fontSize: '20px' }}>오픈 예정</p>
         <ChevronRightIcon />
       </Box>
-      <div
+      <Box
         sx={{
           display: 'flex',
           flexWrap: 'wrap',
@@ -71,7 +71,7 @@ export default function MintHomeContents() {
             ))}
           </Grid>
         )}
-      </div>
+      </Box>
     </>
   )
 }
