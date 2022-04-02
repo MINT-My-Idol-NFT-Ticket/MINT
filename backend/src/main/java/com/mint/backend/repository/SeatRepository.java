@@ -20,8 +20,9 @@ import java.util.List;
  **/
 public interface SeatRepository extends JpaRepository<Seat,Long> {
     List<Seat> findAllBySectionId(@Param(value = "scetionId")Long sectionId);
+    Long countSeatBySectionIdAndStatus(Long sectionId,int status);
 
-    @Query(value = "select * from seat where status = 0 and section_id = :sectionId", nativeQuery = true)
-    List<Seat> findAllBySectionIdAndStatus(@Param(value = "sectionId")Long sectionId);
+//    @Query(value = "select * from seat where status = 0 and section_id = :sectionId", nativeQuery = true)
+//    List<Seat> findAllBySectionIdAndStatus(@Param(value = "sectionId")Long sectionId);
 
 }

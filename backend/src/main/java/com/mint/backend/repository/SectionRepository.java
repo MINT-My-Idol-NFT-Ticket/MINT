@@ -1,7 +1,9 @@
 package com.mint.backend.repository;
 
 import com.mint.backend.domain.Section;
+import com.mint.backend.dto.ResponseSeatAllDto;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
@@ -20,4 +22,6 @@ import java.util.List;
 public interface SectionRepository extends JpaRepository<Section,Long> {
     List<Section> findAllByTimesId(@Param(value = "time_id")Long timesId);
 
+//    @Query("select new com.mint.backend.dto.ResponseSeatAllDto( a.name , (select count(id) from Seat where section.id = a.id))   from Section a where Times.id =?1 ")
+//    List<ResponseSeatAllDto> findAllextraSeat(Long timesId);
 }

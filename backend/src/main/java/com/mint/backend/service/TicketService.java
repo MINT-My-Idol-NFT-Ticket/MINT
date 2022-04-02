@@ -79,16 +79,19 @@ public class TicketService {
         return true;
     }
 
-    // 구역별 잔여 좌석 전체 조회
+//     구역별 잔여 좌석 전체 조회
     @Transactional(readOnly = true)
     public List<ResponseSeatAllDto> getExtraSeat(Long timesId){
-        List<ResponseSeatAllDto> list = new ArrayList<>();
-        List<Section> sections = sectionRepository.findAllByTimesId(timesId);
-        for (Section s :
-                sections) {
-            List<Seat> seats = seatRepository.findAllBySectionIdAndStatus(s.getId());
-            list.add(new ResponseSeatAllDto(s.getName(), seats.size()));
+        List<Section> list = sectionRepository.findAllByTimesId(timesId);
+        List<ResponseSeatAllDto> result = new ArrayList<>();
+        for (Section section : list) {
+            result.add(ResponseSeatAllDto.builder()
+                    .name(section.getName())
+                    .extraSeat(seatRepository.countSeatBySectionIdAndStatus(section.getId(),0))
+                    .build());
+
+
         }
-        return list;
+        return result;
     }
 }
