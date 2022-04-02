@@ -3,7 +3,7 @@ import * as THREE from 'three'
 import { Canvas, useFrame, useLoader } from '@react-three/fiber'
 import { TextureLoader } from 'three'
 import { OrbitControls, Stars, useGLTF, Bounds, Html, useProgress, Text, MeshDistortMaterial } from '@react-three/drei'
-import TicketModel from '../../images/mintticket3.glb'
+import TicketModel from './mintticket3.glb'
 
 function Loader() {
   const { progress } = useProgress()
