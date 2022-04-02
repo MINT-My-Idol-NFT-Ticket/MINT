@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { Box } from '@mui/material'
 
 import '../../styles/MintVerticalCard.css'
-import { BASE_URL } from '../../api/Request'
+import { BASE_URL } from '../../api/requests'
 
 import MintConcertText from '../common/MintConcertText'
 import MintConcertPoster from '../common/MintConcertPoster'

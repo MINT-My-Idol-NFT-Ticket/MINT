@@ -3,7 +3,7 @@ import Tab from '@mui/material/Tab'
 import TabList from '@mui/lab/TabList'
 import TabContext from '@mui/lab/TabContext'
 
-import { isLight, lightColor, darkColor } from '../../functions/util/Color.js'
+import { isLight, lightColor, darkColor } from '../../functions/util/color.js'
 import { Typography } from '@mui/material'
 
 export default function MintUserDate({ value, setValue, bright }) {
