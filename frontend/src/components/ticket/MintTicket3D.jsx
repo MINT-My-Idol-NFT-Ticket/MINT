@@ -2,7 +2,6 @@ import React, { Suspense, useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Stars, useGLTF, Bounds, Html, useProgress, useTexture } from '@react-three/drei'
-import TicketModel from './mintticket3.glb'
 
 function MintTicket3D(props) {
   const Loader = () => {
@@ -12,7 +11,7 @@ function MintTicket3D(props) {
 
   const TicketMesh = () => {
     const group = useRef()
-    const { nodes, materials } = useGLTF(`${TicketModel}`)
+    const { nodes, materials } = useGLTF('/mintticket3.glb')
     // const { nodes, materials } = useLoader(GLTFLoader, '/mintticket3.glb')
     // const [front, back] = useLoader(TextureLoader, [
     //   // 'https://img.sbs.co.kr/newsnet/etv/upload/2020/10/28/30000654805_1280.jpg',
