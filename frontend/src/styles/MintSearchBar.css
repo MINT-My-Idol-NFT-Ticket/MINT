@@ -1,9 +1,4 @@
-.MintSearchBar {
-	position: relative;
-	padding: 10px 0;
-	background-color: inherit;
-}
-.MintSearchBar .searchBar{
+.searchBar{
 	all: unset;
 	width: 100%;
 	padding: 5px 40px;
@@ -12,29 +7,17 @@
 	border-radius: 10px;
 }
 
-.MintSearchBar .searchBar.light{
+.searchBar.light{
 	border: 2px solid #222831;
 }
 
-.MintSearchBar .searchBar.dark{
+.searchBar.dark{
 	border: 2px solid #FFF;
 }
 
-.MintSearchBar .searchBar:focus.light{
+.searchBar:focus.light{
 	background-color: rgba(100, 100, 100, .2);
 }
-.MintSearchBar .searchBar:focus.dark{
+.searchBar:focus.dark{
 	background-color: rgba(50, 50, 50, .7);
-}
-
-.MintSearchBar__SearchIcon {
-	position: absolute;
-	top: 15px;
-	left: 5px;
-	cursor: pointer;
-}
-.MintSearchBar__CancelIcon {
-	position: absolute;
-	top: 17px;
-	right: 5px;
 }

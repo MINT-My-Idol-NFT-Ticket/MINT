@@ -2,8 +2,6 @@ import { useState } from 'react'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Box from '@mui/material/Box'
-//moduels
-import '../../styles/MintControl.css'
 
 import MintConcertResist from './MintConcertResist'
 
@@ -14,7 +12,16 @@ export default function MintControl() {
     setValue(newValue)
   }
   return (
-    <div className="MintControl">
+    <Box
+      sx={{
+        position: 'fixed',
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: 100,
+        backgroundColor: 'antiquewhite',
+        overflowY: 'scroll',
+      }}>
       <Box>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
@@ -29,7 +36,7 @@ export default function MintControl() {
           <MintConcertResist />
         </TabPanel>
       </Box>
-    </div>
+    </Box>
   )
 }
 

@@ -1,5 +1,5 @@
 import { Button } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { deployTicketContract, deploySaleContract, setSaleTicket } from '../../functions/erc/ERCfunctions.js'
 
 export default function MintDeployContract({ contractAddresses, setContractAddresses }) {

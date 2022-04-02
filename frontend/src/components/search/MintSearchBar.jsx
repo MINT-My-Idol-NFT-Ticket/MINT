@@ -4,6 +4,7 @@ import '../../styles/MintSearchBar.css'
 import SearchIcon from '@mui/icons-material/Search'
 import CancelIcon from '@mui/icons-material/Cancel'
 import { getRequest } from '../../api/Request.js'
+import { Box } from '@mui/material'
 
 export default function MintSearchBar({ bright, setSearchList }) {
   const [searchQuery, setSearchQuery] = useState('')
@@ -14,19 +15,19 @@ export default function MintSearchBar({ bright, setSearchList }) {
   }
 
   return (
-    <div className="MintSearchBar">
+    <Box sx={{ position: 'relative', padding: '10px 0', backgroundColor: 'inherit' }}>
       <input
         className={`searchBar ${bright}`}
         type="text"
         value={searchQuery}
         onChange={e => setSearchQuery(e.target.value)}
       />
-      <div className="MintSearchBar__SearchIcon">
+      <Box sx={{ position: 'absolute', top: '15px', left: '5px', cursor: 'pointer' }}>
         <SearchIcon fontSize="medium" onClick={search} />
-      </div>
-      <div className="MintSearchBar__CancelIcon">
+      </Box>
+      <Box sx={{ position: 'absolute', top: '17px', right: '5px', cursor: 'pointer' }}>
         <CancelIcon fontSize="medium" />
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }
