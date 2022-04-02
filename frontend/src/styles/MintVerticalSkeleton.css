@@ -1,0 +1,27 @@
+.MintVerticalSkeleton {
+	margin: 10px 0;
+	padding: 0 20px;
+	box-sizing: border-box;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.MintVerticalSkeleton__poster {
+	width: 100%;
+	height: 200px;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.MintVerticalSkeleton__poster.notOpen {
+	width: 100%;
+	height: 150px;
+	/* margin: 0 auto; */
+}
+@media screen and (max-width: 390px) {
+	.MintVerticalSkeleton__poster.notOpen {
+		width: 100;
+		height: 130px;
+		/* margin: 0 auto; */
+	}
+}

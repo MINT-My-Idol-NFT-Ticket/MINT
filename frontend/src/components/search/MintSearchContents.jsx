@@ -1,6 +1,4 @@
-//modules
 import '../../styles/MintSearchContents.css'
-//components
 import MintSearchBar from './MintSearchBar'
 import MintHorizontalCard from '../common/MintHorizontalCard'
 

@@ -1,4 +1,3 @@
-//modules
 import '../../styles/MintHorizontalCard.css'
 //componentx
 import MintConcertText from './MintConcertText'

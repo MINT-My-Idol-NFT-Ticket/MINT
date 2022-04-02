@@ -1,7 +1,5 @@
 import * as React from 'react'
-//modules
-import useBrightness from '../hooks/useBrightness'
-//components
+
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
@@ -9,8 +7,6 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 
 export default function Intro() {
-  const [bright, setBright] = useBrightness()
-
   // 지갑 연동 페이지 이동
   const moveToAccount = () => {
     window.location.pathname = '/address'
@@ -21,34 +17,12 @@ export default function Intro() {
   }
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100vh',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-      <Typography
-        variant="h5"
-        component="div"
-        sx={{
-          textAlign: 'center',
-          fontWeight: '700',
-          paddingTop: '20px',
-          color: bright === 'light' ? '#000000' : '#ffffff',
-        }}>
+    <div style={style}>
+      <Typography variant="h5" component="div" sx={title}>
         안녕하세요~~
         <br /> 지갑 있으신가요~?
       </Typography>
-      <Card
-        sx={{
-          width: '306px',
-          height: '350px',
-          border: '1px solid gray',
-          borderRadius: 7,
-          margin: '20px auto',
-        }}>
+      <Card sx={card}>
         <CardContent>
           <Typography sx={{ textAlign: 'center', mt: '10px' }}>SSAFY WALLET 안내문</Typography>
           <Typography sx={{ mt: '10px' }}>
@@ -80,4 +54,25 @@ export default function Intro() {
       </Box>
     </div>
   )
+}
+
+//style
+const style = {
+  display: 'flex',
+  flexDirection: 'column',
+  height: '100vh',
+  alignItems: 'center',
+  justifyContent: 'center',
+}
+const title = {
+  textAlign: 'center',
+  fontWeight: '700',
+  paddingTop: '20px',
+}
+const card = {
+  width: '306px',
+  height: '350px',
+  border: '1px solid gray',
+  borderRadius: 7,
+  margin: '20px auto',
 }

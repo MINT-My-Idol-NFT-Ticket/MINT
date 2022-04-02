@@ -6,6 +6,11 @@ import { OrbitControls, Stars, useGLTF, Bounds, Html, useProgress } from '@react
 import TicketModel from './mintticket3.glb'
 
 function MintTicket3D(props) {
+  const Loader = () => {
+    const { progress } = useProgress()
+    return <Html center>{progress}% loaded</Html>
+  }
+
   const TicketMesh = () => {
     const group = useRef()
     const { nodes, materials } = useGLTF(`${TicketModel}`)
@@ -15,6 +20,12 @@ function MintTicket3D(props) {
       'http://newsimg.hankookilbo.com/2019/05/08/201905082306085099_1.jpg',
       // 'http://mrmaymay.com/wp-content/uploads/2017/10/MayMay-v%E1%BA%A3i-thun-k%E1%BA%BB-s%E1%BB%8Dc-viscose-00011-e1507747570434-180x180.jpg',
     ])
+    useFrame(state => {
+      const t = state.clock.getElapsedTime()
+      group.current.rotation.x = Math.cos(t / 4) / 8
+      group.current.rotation.y = Math.sin(t / 4) / 8
+      group.current.position.y = (1 + Math.sin(t / 1.5)) / 10
+    })
 
     return (
       <group ref={group} {...props} dispose={null}>
@@ -41,11 +52,6 @@ function MintTicket3D(props) {
         </mesh>
       </group>
     )
-  }
-
-  const Loader = () => {
-    const { progress } = useProgress()
-    return <Html center>{progress}% loaded</Html>
   }
 
   return (

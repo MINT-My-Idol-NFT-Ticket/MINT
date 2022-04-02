@@ -1,8 +1,7 @@
-//packages
 import Box from '@mui/material/Box'
 import TabContext from '@mui/lab/TabContext'
 import TabPanel from '@mui/lab/TabPanel'
-//components
+
 import MintBuyList from './MintBuyList'
 
 export default function MintMypageTabs({ value }) {

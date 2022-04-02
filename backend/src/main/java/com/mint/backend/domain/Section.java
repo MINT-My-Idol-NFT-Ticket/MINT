@@ -1,6 +1,7 @@
 package com.mint.backend.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -32,8 +33,10 @@ public class Section {
     @Column(name="section_id")
     private Long id;
     private String name;
-    @JsonIgnore
+
+
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="times_id")
     private Times times;
 

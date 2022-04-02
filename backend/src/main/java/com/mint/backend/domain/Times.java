@@ -1,7 +1,8 @@
 package com.mint.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jdk.nashorn.internal.ir.annotations.Ignore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -39,8 +40,9 @@ public class Times {
     @OneToMany(mappedBy = "times",cascade = CascadeType.ALL)
     private List<Section> sections = new ArrayList<>();
 
-    @JsonIgnore
+
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="concert_id")
     private Concert concert;
 

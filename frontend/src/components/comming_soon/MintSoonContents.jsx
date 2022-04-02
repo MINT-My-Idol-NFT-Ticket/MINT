@@ -1,6 +1,5 @@
-//modules
 import '../../styles/MintSoonContents.css'
-//components
+
 import MintHorizontalCard from '../common/MintHorizontalCard'
 
 export default function MintSoonContents() {

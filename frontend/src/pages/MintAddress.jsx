@@ -1,7 +1,6 @@
 import { Box, Typography, Card, CardContent, TextField, Button } from '@mui/material'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import useBrightness from '../hooks/useBrightness'
 
 export default function MintConnectWallet() {
   //이주현
@@ -9,8 +8,7 @@ export default function MintConnectWallet() {
   const navigate = useNavigate()
   const pushHome = () => navigate('/home')
 
-  const [bright, setBright] = useBrightness()
-  const [address, setAddress] = useState()
+  const [address, setAddress] = useState('')
 
   /**
    * 박창현
@@ -18,34 +16,20 @@ export default function MintConnectWallet() {
    */
   const connectWallet = () => {
     // Todo
-    address === undefined || address === '' ? alert('주소를 입력하세요') : console.log(address)
+    if (address.length === 42 && address.startsWith('0x')) {
+      sessionStorage.setItem('address', address)
+      pushHome()
+    } else alert('잘못된 키 입력' + address)
   }
 
   return (
     <Box>
-      <Box
-        sx={{
-          textAlign: 'center',
-          fontWeight: 700,
-          fontSize: '24px',
-          display: 'flex',
-          flexDirection: 'column',
-          height: '100vh',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        <Typography variant="h6" sx={{ color: bright === 'light' ? '#000000' : '#ffffff' }}>
+      <Box sx={title}>
+        <Typography variant="h6" sx={{ color: '#000000' }}>
           연결을 위해
           <br /> 지갑 주소를 연결해주세요
         </Typography>
-        <Card
-          sx={{
-            width: '306px',
-            height: '260px',
-            border: '1px solid gray',
-            borderRadius: 7,
-            margin: '50px auto',
-          }}>
+        <Card sx={card}>
           <CardContent>
             <Typography sx={{ textAlign: 'center', fontWeight: 700, mt: '50px' }}>
               SSAFY WALLET 지갑 주소 입력
@@ -62,7 +46,7 @@ export default function MintConnectWallet() {
             }}
           />
           <Box sx={{ mt: '30px' }}>
-            <Button onClick={([connectWallet], pushHome)} sx={{ width: '250px' }}>
+            <Button onClick={connectWallet} sx={{ width: '250px' }}>
               연동하기
             </Button>
           </Box>
@@ -70,4 +54,22 @@ export default function MintConnectWallet() {
       </Box>
     </Box>
   )
+}
+
+const title = {
+  textAlign: 'center',
+  fontWeight: 700,
+  fontSize: '24px',
+  display: 'flex',
+  flexDirection: 'column',
+  height: '100vh',
+  alignItems: 'center',
+  justifyContent: 'center',
+}
+const card = {
+  width: '306px',
+  height: '260px',
+  border: '1px solid gray',
+  borderRadius: 7,
+  margin: '50px auto',
 }

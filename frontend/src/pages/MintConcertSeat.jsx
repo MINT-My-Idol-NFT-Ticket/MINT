@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Box, Typography } from '@mui/material'
-//components
+
 import MintPageTemplate from '../components/common/MintPageTemplate'
 import MintBtnGroup from '../components/common/MintBtnGroup'
 import MintSeatForm from '../components/concert/MintSeatForm'

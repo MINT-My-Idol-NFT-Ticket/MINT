@@ -1,4 +1,3 @@
-//components
 import MintHorizontalCard from '../common/MintHorizontalCard'
 
 export default function MintBuyList() {

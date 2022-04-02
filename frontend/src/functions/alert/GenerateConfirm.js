@@ -1,4 +1,4 @@
-import { lightColor, darkColor, isLight, mainColor } from '../Color.js'
+import { lightColor, darkColor, isLight, mainColor } from '../util/Color.js'
 
 export default function GenerateConfirm(swal, title, text, bright) {
   swal

@@ -1,7 +1,6 @@
-//modules
 import '../../styles/MintTradeContents.css'
 import Doduck from '../../images/do-duck.gif'
-//components
+
 import MintCategory from './MintCategory'
 import MintTradeCard from './MintTradeCard'
 

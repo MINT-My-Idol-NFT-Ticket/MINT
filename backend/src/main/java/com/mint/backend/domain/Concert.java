@@ -1,6 +1,7 @@
 package com.mint.backend.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -32,6 +33,7 @@ public class Concert {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="concert_id")
     private Long id;
+
     @NotNull
     private String title;
     @NotNull
@@ -48,16 +50,15 @@ public class Concert {
     @JoinColumn(name="concert_id")
     private Image image;
 
+
     @OneToMany(mappedBy = "concert",cascade =CascadeType.ALL)
     private List<Times> times= new ArrayList<>();
+
 
     @OneToMany(mappedBy = "concert",cascade = CascadeType.ALL)
     private List<Artist> artist = new ArrayList<>();
 
 
-
-
-
-
-
+    @OneToMany(mappedBy = "concert",cascade = CascadeType.ALL)
+    private List<Cids> cids = new ArrayList<>();
 }

@@ -8,7 +8,8 @@ const web3 = new Web3(process.env.REACT_APP_BLOCK_CHAIN_NODE_URL)
 
 //////////////////////////////////////// ERC721Transactions.js 참고/////////////////////////////////////////////////
 // 컨트랙트 배포
-export const deployContract = () => ERC721Transactions.deploy(web3)
+export const deployTicketContract = price => ERC721Transactions.deployTicketContract(web3, price)
+export const deploySaleContract = mintTicketAddress => ERC721Transactions.deploySaleContract(web3, mintTicketAddress)
 
 // sender에게 tokenURI를 가지는 NFT 티켓 발권
 export const mintTicket = (contractAddress, sender, senderPK, tokenURI) =>
@@ -18,6 +19,8 @@ export const mintTicket = (contractAddress, sender, senderPK, tokenURI) =>
 export const transferTicket = (contractAddress, from, to, tokenId) =>
   ERC721Transactions.safeTransferFrom(web3, contractAddress, from, to, tokenId)
 
+export const setSaleTicket = (ticketContractAddress, saleContractAddress) =>
+  ERC721Transactions.setSaleTicket(web3, ticketContractAddress, saleContractAddress)
 //////////////////////////////////////// ERC721Calls.js 참고///////////////////////////////////////////////////////
 // sender의 티켓 수량 파악
 export const getTicketAmount = (contractAddress, sender) => ERC721Calls.getBalance(web3, contractAddress, sender)

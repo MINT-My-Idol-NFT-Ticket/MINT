@@ -1,6 +1,5 @@
-//modules
 import '../../styles/MintCard.css'
-//components
+
 import { Card, CardMedia, CardActions, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 

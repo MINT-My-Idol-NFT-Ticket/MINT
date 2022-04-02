@@ -1,8 +1,7 @@
-//packages
 import { useEffect, useState } from 'react'
-//modules
+
 import '../../styles/MintMypageContents.css'
-//components
+
 import MintUserDate from './MintUserData'
 import MintMypageTaps from './MintMypageTaps'
 
@@ -12,7 +11,7 @@ export default function MintMypageContents({ bright }) {
   return (
     <div className="MintMypageContents">
       <div className={`MintMypageContents__userData ${bright}`}>
-        <MintUserDate value={value} setValue={setValue} />
+        <MintUserDate value={value} setValue={setValue} bright={bright} />
       </div>
       <div className="MintMypageContents__taps">
         <MintMypageTaps value={value} />

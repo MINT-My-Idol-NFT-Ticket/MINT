@@ -2,7 +2,10 @@ package com.mint.backend.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.io.File;
 
 /**
  * @packageName : com.mint.backend.config
@@ -21,5 +24,15 @@ public class webConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins("*");
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
+        registry
+                .addResourceHandler("/files/**")
+                .addResourceLocations("file:/src/main/resources/image/");
+
+
     }
 }

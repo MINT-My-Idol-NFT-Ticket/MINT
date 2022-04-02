@@ -1,11 +1,13 @@
 package com.mint.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * @packageName : com.mint.backend.dto
@@ -28,15 +30,18 @@ public class Seat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String date;
+    private Date date;
     @Column(columnDefinition = "Integer default 0")
     private int status;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="section_id")
     private Section section;
 
     public void updateStatus(){
         this.status=1;
+        this.date= new Date();
+
     }
 }

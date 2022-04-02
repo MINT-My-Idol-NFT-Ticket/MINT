@@ -27,21 +27,11 @@ import java.util.List;
 @Builder
 @Getter
 public class ResponseSearchDto {
+    private Long id;
     private String title;
-    private String comingUrl;
-    private List<Times> date;
+    private String ThumnailUrl;
+    private String startDate;
+    private String endDate;
     private List<Artist> artists;
 
-    public List<ResponseSearchDto> toDto(List<Concert> concert){
-        List<ResponseSearchDto> list = new ArrayList<>();
-        for (Concert con : concert) {
-            list.add(ResponseSearchDto.builder()
-                    .title(con.getTitle())
-                    .comingUrl(con.getImage().getThumbnailUrl())
-                    .date(con.getTimes())
-                    .artists(con.getArtist())
-                    .build());
-        }
-        return list;
-    }
 }

@@ -1,4 +1,3 @@
-//components
 import MintSubHeader from '../components/header/MintSubHeader'
 import MintMypageContents from '../components/mypage/MintMypageContents'
 import MintFooter from '../components/footer/MintFooter'
