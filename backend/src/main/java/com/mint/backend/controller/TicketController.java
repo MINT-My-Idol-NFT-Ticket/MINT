@@ -75,7 +75,7 @@ public class TicketController {
             value = "구역별 선택 가능 좌석 목록 전체 조회"
     )
     @GetMapping("/section/{timesId}")
-    public ResponseEntity<List<ResponseSeatAllDto>> findSeatAll(@RequestParam Long timesId){
+    public ResponseEntity<List<ResponseSeatAllDto>> findSeatAll(@PathVariable Long timesId){
         return new ResponseEntity<>(ticketService.getExtraSeat(timesId), HttpStatus.OK);
     }
 }
