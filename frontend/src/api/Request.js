@@ -9,10 +9,10 @@ export const postRequest = async (url, data) => {
   return response
 }
 
-export const getRequest = async (url, params) => {
+export const getRequest = async (url, params = null) => {
   let parameter = ''
 
-  if (params !== undefined) {
+  if (params !== null) {
     parameter = '?'
     Object.keys(params).forEach(key => (parameter += `${key}=${params[key]}`))
   }

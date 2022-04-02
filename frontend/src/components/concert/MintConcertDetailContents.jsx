@@ -4,7 +4,6 @@ import detail from '../../images/detail.png'
 import { BASE_URL } from '../../api/Request'
 
 export default function MintConcertDetailContents({ concertData }) {
-  console.log(concertData)
   return (
     <div className="MintConcertDetailContents">
       <div className="MintConcertDetailContents__poster">

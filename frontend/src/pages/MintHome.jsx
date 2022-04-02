@@ -1,4 +1,3 @@
-
 import '../styles/MintHome.css'
 
 import MintHeader from '../components/header/MintHeader'
