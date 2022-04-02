@@ -86,6 +86,7 @@ public class TicketService {
         List<ResponseSeatAllDto> result = new ArrayList<>();
         for (Section section : list) {
             result.add(ResponseSeatAllDto.builder()
+                    .id(section.getId())
                     .name(section.getName())
                     .extraSeat(seatRepository.countSeatBySectionIdAndStatus(section.getId(),0))
                     .build());
