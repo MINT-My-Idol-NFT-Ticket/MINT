@@ -1,6 +1,6 @@
 import { Box, Button, ButtonGroup, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-//components
+
 import MintBtnGroup from '../components/common/MintBtnGroup'
 import MintPageTemplate from '../components/common/MintPageTemplate'
 import MintConcertAreaList from '../components/concert/MintConcertAreaList'

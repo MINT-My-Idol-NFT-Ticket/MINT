@@ -1,7 +1,6 @@
-//pakages
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import { useNavigate } from 'react-router-dom'
-//modules
+
 import '../../styles/MintSubHeader.css'
 
 function MintHeader({ content, bright }) {

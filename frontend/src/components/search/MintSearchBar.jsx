@@ -1,4 +1,3 @@
-//modules
 import '../../styles/MintSearchBar.css'
 
 export default function MintSearchBar({ bright }) {

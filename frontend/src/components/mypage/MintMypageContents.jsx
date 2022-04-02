@@ -1,8 +1,7 @@
-//packages
 import { useEffect, useState } from 'react'
-//modules
+
 import '../../styles/MintMypageContents.css'
-//components
+
 import MintUserDate from './MintUserData'
 import MintMypageTaps from './MintMypageTaps'
 

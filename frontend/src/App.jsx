@@ -1,14 +1,12 @@
-//packages
 import * as React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import Grid from '@mui/material/Grid'
 
-//modules
 import ModeContext from './contexts/ModeContexts.js'
 import useBrightness from './hooks/useBrightness'
 import { Box } from '@mui/system'
-//compoenents
+
 import MintInner from './components/common/MintInner'
 import MintSplash from './pages/MintSplash'
 import MintIntro from './pages/MintIntro'
@@ -53,7 +51,7 @@ function App({ setMode }) {
         <Route path="/mypage" element={<MintMyPage bright={bright} />} />
         <Route path="/mypage/ticket/:id" element={<MintTicket />} />
         <Route path="/admin" element={<Admin />} />
-        <Route exact path="/concert/detail" element={<MintConcertDetail bright={bright} />} />
+        <Route exact path="/concert/detail/:id" element={<MintConcertDetail bright={bright} />} />
         <Route path="/concert/date" element={<MintConcertDate />} />
         <Route path="/concert/area" element={<MintConcertArea />} />
         <Route path="/concert/seat" element={<MintConcertSeat />} />
