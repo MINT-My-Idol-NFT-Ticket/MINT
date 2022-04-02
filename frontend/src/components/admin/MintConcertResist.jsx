@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid'
 import Button from '@mui/material/Button'
 import { useState } from 'react'
 //modules
-import { postReqeust } from '../../api/Request.js'
+import { postRequest, getRequest } from '../../api/Request.js'
 //components
 import MintSetConcertData from './MintSetConcertData'
 import MintSetConcertImage from './MintSetConcertImage'
@@ -33,10 +33,13 @@ export default function MintConcertResist() {
       contractAddress: contractAddresses[0],
       saleContractAddress: contractAddresses[1],
     }
+    console.log(formData)
+    console.log(jsonData)
     console.log(JSON.stringify(jsonData))
     formData.append('key', new Blob([JSON.stringify(jsonData)], { type: 'application/json' }))
 
-    postReqeust('api/concert', formData).then(res => console.log(res))
+    postRequest('api/concert', formData).then(res => console.log(res))
+    getRequest('api/concert', '?status=1').then(res => console.log(res))
   }
 
   return (
