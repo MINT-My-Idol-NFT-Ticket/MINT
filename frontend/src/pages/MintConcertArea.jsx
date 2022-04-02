@@ -52,7 +52,11 @@ function MintConcertArea(props) {
       </>
     )
   }
-  const Footer = () => <MintBtnGroup prev="concert/date" next="concert/seat" />
+  const Footer = () => (
+    <Box sx={{ padding: '20px 31px' }}>
+      <MintBtnGroup prev="concert/date" next="concert/seat" />
+    </Box>
+  )
   return <MintPageTemplate header={<Header />} contents={<Contents />} footer={<Footer />} />
 }
 

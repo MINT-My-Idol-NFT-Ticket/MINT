@@ -70,7 +70,11 @@ function MintConcertDate() {
     )
   }
   const Footer = () => {
-    return <MintBtnGroup prev="concert/detail" next="concert/area" concertData={time} />
+    return (
+      <Box sx={{ padding: '20px 31px' }}>
+        <MintBtnGroup prev="concert/detail" next="concert/area" concertData={time} />
+      </Box>
+    )
   }
 
   const [tourName, settourName] = useState('BTS WORLD TOUR')

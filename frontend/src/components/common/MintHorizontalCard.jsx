@@ -3,7 +3,7 @@ import '../../styles/MintHorizontalCard.css'
 import MintConcertText from './MintConcertText'
 import MintConcertPoster from './MintConcertPoster'
 
-export default function MintHorizontalCard({ concertData, extra }) {
+export default function MintHorizontalCard({ concertData, children }) {
   return (
     <div className={`MintHorizontalCard`}>
       <div className="MintHorizontalCard__poster">
@@ -18,6 +18,7 @@ export default function MintHorizontalCard({ concertData, extra }) {
           }}
           textStyle={textStyle}
         />
+        <div className="MintHorizontalCard__extra">{children}</div>
       </div>
     </div>
   )

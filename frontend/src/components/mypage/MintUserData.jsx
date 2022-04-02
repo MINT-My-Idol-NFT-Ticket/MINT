@@ -4,13 +4,13 @@ import TabList from '@mui/lab/TabList'
 import TabContext from '@mui/lab/TabContext'
 
 import '../../styles/MintUserData.css'
-import currency from '../../images/currency.png'
 import { isLight, lightColor, darkColor } from '../../functions/util/Color.js'
 
 export default function MintUserDate({ value, setValue, bright }) {
   const handleChange = (e, newValue) => {
     setValue(newValue)
   }
+  const address = sessionStorage.getItem('address')
   return (
     <div className="MintUserDate">
       <div className="MintUserData__balance">
@@ -18,8 +18,8 @@ export default function MintUserDate({ value, setValue, bright }) {
       </div>
       <div className="MintUserData__walletAdress">
         <div className="MintUserData__wrapper">
-          <input type="text" value="asfsdfasdf" disabled />
-          <img src={currency} alt="" />
+          <input type="text" value={`${address.slice(0, 7)}...${address.slice(-4)}`} disabled />
+          <img src="currency.png" alt="" />
         </div>
       </div>
       <TabContext value={value}>

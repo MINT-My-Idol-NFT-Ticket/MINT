@@ -9,7 +9,7 @@ import GenerateTimer from './GenerateTimer.js'
 
 const swal = withReactContent(Swal)
 
-export const confirmMessage = (title, text, bright) => GenerateConfirm(swal, title, text, bright)
-export const checkMessage = title => GenerateCheck(swal, title)
-export const errorMessage = title => GenerateError(swal, title)
+export const confirmMessage = (title, text, callback, bright) => GenerateConfirm(swal, title, text, callback, bright)
+export const checkMessage = (title, callback, bright) => GenerateCheck(swal, title, callback, bright)
+export const errorMessage = (title, bright) => GenerateError(swal, title, bright)
 export const timerMessage = () => GenerateTimer(swal)
