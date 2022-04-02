@@ -1,27 +1,44 @@
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
+import { Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-
-import '../../styles/MintSubHeader.css'
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 
 function MintHeader({ content, bright }) {
   const navigate = useNavigate()
   const pushBack = () => navigate(-1)
   return (
     <>
-      <div
+      <Box
         className="MintSubHeader"
-        style={{
-          borderBottom: `2px solid ${bright === 'light' ? '#222831' : '#FFF'}`,
+        sx={{
+          display: 'flex',
+          width: '100%',
+          height: '50px',
+          boxShadow: '0 1px 3px 0 gray',
+          zIndex: 100,
         }}>
-        <a className="back__btn">
-          <div className="icon">
-            <ChevronLeftIcon onClick={pushBack} />
-          </div>
-          <div className="content">
-            <span>{content}</span>
-          </div>
+        <a
+          style={{
+            cursor: 'pointer',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginLeft: '10px',
+          }}>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Box>
+              <ChevronLeftIcon onClick={pushBack} />
+            </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <span>{content}</span>
+            </Box>
+          </Box>
         </a>
-      </div>
+      </Box>
     </>
   )
 }

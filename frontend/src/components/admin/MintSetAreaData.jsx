@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
-import { Grid } from '@mui/material'
 
 export default function MintSetConcertData({ requestData, setRequestData }) {
   const [areaNum, setAreaNum] = useState('')

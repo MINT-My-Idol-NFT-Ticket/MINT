@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = 'http://j6b108.p.ssafy.io:9090/'
+const BASE_URL = process.env.REACT_APP_BASE_URL
 
 const createAxiosInstance = () => {
   const axiosInstance = axios.create({

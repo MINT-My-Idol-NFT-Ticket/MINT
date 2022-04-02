@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import { useLocation, useParams } from 'react-router-dom'
-import { getRequest, postRequest } from '../api/Request'
+import { getRequest, postRequest } from '../api/requests'
 // components
 import MintBtnGroup from '../components/common/MintBtnGroup'
 import MintPageTemplate from '../components/common/MintPageTemplate'

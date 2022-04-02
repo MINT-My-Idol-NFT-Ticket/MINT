@@ -1,4 +1,4 @@
-import '../styles/MintHome.css'
+import { Box } from '@mui/material'
 
 import MintHeader from '../components/header/MintHeader'
 import MintFooter from '../components/footer/MintFooter'
@@ -11,8 +11,8 @@ export default function MintHome({ bright }) {
   const Footer = () => <MintFooter bright={bright} />
 
   return (
-    <div className={`${bright}`}>
+    <Box>
       <MintPageTemplate header={<Header />} contents={<Contents />} footer={<Footer />} />
-    </div>
+    </Box>
   )
 }

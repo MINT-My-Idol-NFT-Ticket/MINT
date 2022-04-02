@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import useBrightness from '../hooks/useBrightness.js'
-import { errorMessage, checkMessage, confirmMessage } from '../functions/alert/AlertFunctions.js'
+import { errorMessage, checkMessage, confirmMessage } from '../functions/alert/alertFunctions.js'
 
 export default function MintConnectWallet() {
   const navigate = useNavigate()
@@ -38,12 +38,12 @@ export default function MintConnectWallet() {
             id="address"
             label="지갑 주소 입력"
             variant="standard"
-            sx={{ width: '250px', mt: '20px', color: '#FFFFFF' }}
+            sx={{ width: '250px', mt: '10px', color: '#FFFFFF' }}
             onChange={e => {
               setAddress(e.target.value)
             }}
           />
-          <Box sx={{ mt: '30px' }}>
+          <Box sx={{ mt: '20px' }}>
             <Button variant="contained" onClick={connectWallet} sx={{ width: '250px' }}>
               연동하기
             </Button>

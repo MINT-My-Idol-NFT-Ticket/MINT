@@ -2,6 +2,7 @@ import { Box } from '@mui/material'
 
 import MintBtnGroup from '../common/MintBtnGroup'
 import MintHorizontalCard from '../common/MintHorizontalCard'
+import MintHorizontalSkeleton from '../skeleton/MintHorizontalSkeleton'
 
 export default function MintBuyList() {
   const testData = []
@@ -17,12 +18,13 @@ export default function MintBuyList() {
 
   const makeBuyList = () => {
     return testData.map(concert => (
-      <MintHorizontalCard key={concert.date} concertData={concert}>
-        <MintBtnGroup
-          prev={{ url: `home`, content: '상세 보기', color: 'primary' }}
-          next={{ url: `home`, content: '티켓 확인', color: 'primary' }}
-        />
-      </MintHorizontalCard>
+      // <MintHorizontalCard key={concert.date} concertData={concert}>
+      //   <MintBtnGroup
+      //     prev={{ url: `home`, content: '상세 보기', color: 'primary' }}
+      //     next={{ url: `home`, content: '티켓 확인', color: 'primary' }}
+      //   />
+      // </MintHorizontalCard>
+      <MintHorizontalSkeleton key={concert.singer} />
     ))
   }
   return <div>{makeBuyList()}</div>

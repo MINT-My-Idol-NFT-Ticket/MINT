@@ -1,9 +1,7 @@
-import MintTicket from '../../contract/MintTicket.json'
-
-const ABI = MintTicket.abi
+import { MINT_ABI } from './index'
 
 export async function getBalance(web3, contractAddress, sender) {
-  const contractInstance = new web3.eth.Contract(ABI, contractAddress)
+  const contractInstance = new web3.eth.Contract(MINT_ABI, contractAddress)
   const transactionInstance = contractInstance.methods.balanceOf(sender)
   try {
     const response = await transactionInstance.call()
@@ -14,7 +12,7 @@ export async function getBalance(web3, contractAddress, sender) {
 }
 
 export async function getTicketList(web3, contractAddress, sender) {
-  const contractInstance = new web3.eth.Contract(ABI, contractAddress)
+  const contractInstance = new web3.eth.Contract(MINT_ABI, contractAddress)
   const transactionInstance = contractInstance.methods.getTicketList(sender)
   try {
     const response = await transactionInstance.call()

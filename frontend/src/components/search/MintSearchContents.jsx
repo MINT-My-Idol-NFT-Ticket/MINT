@@ -1,6 +1,6 @@
 import { useState } from 'react'
+import { Box } from '@mui/material'
 
-import '../../styles/MintSearchContents.css'
 import MintSearchBar from './MintSearchBar'
 import MintHorizontalCard from '../common/MintHorizontalCard'
 
@@ -10,15 +10,16 @@ export default function MintSearchContents({ bright }) {
     return
   }
   return (
-    <div className="MintSearchContents">
-      <div className={`MintSearchContents__searchBar ${bright}`}>
+    <Box sx={{ padding: '0 20px' }}>
+      <Box
+        sx={{ position: 'absolute', padding: '0 20px', width: '100%', top: '52px', left: 0, boxSizing: 'border-box' }}>
         <MintSearchBar bright={bright} setSearchList={setSearchList} />
-      </div>
-      <div className="MintSearchContents__itemlist">
+      </Box>
+      <Box sx={{ marginTop: '55px' }}>
         {searchList.map(concert => (
           <MintHorizontalCard key={concert.date} concertData={concert} />
         ))}
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }

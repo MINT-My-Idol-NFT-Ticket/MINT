@@ -1,4 +1,4 @@
-import '../../styles/MintSoonContents.css'
+import { Box } from '@mui/material'
 
 import MintHorizontalCard from '../common/MintHorizontalCard'
 
@@ -18,8 +18,8 @@ export default function MintSoonContents() {
     return testData.map(concert => <MintHorizontalCard key={concert.date} concertData={concert} />)
   }
   return (
-    <div className="MintSoonContents">
-      <div className="MintSoonContents__itemlist">{makeSearchList()}</div>
-    </div>
+    <Box sx={{ padding: '0 20px' }}>
+      <Box>{makeSearchList()}</Box>
+    </Box>
   )
 }

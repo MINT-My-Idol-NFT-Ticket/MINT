@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom'
+import { Box } from '@mui/material'
 
 import '../../styles/MintVerticalCard.css'
-import { BASE_URL } from '../../api/Request'
+import { BASE_URL } from '../../api/requests'
 
 import MintConcertText from '../common/MintConcertText'
 import MintConcertPoster from '../common/MintConcertPoster'
@@ -13,11 +14,11 @@ export default function MintVerticalCard({ concertData, notOpen }) {
   }
   const makeDataString = str => str.split('.').slice(0, 3).join('.')
   return (
-    <div className="MintVerticalCard" onClick={goDetail}>
+    <Box sx={{ margin: '10px 0', boxSizing: 'border-box', overflow: 'hidden', cursor: 'pointer' }} onClick={goDetail}>
       <div className={`MintVerticalCard__poster ${notOpen ? 'notOpen' : 'open'}`}>
         <MintConcertPoster imgUrl={`${BASE_URL}${notOpen ? concertData.thumnail : concertData.poster}`} />
       </div>
-      <div className="MintVerticalCard__Texts">
+      <Box sx={{ marginBottom: '10px' }}>
         <MintConcertText
           data={{
             singer: concertData.artist[0].name,
@@ -26,8 +27,8 @@ export default function MintVerticalCard({ concertData, notOpen }) {
           }}
           textStyle={textStyle}
         />
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }
 
