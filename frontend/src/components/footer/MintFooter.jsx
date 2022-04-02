@@ -10,7 +10,7 @@ import LightModeIcon from '@mui/icons-material/LightMode'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 import { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-//modules
+
 import useBrightness from '../../hooks/useBrightness'
 import MintFooterMenus from './MintFooterMenus'
 // import MintFooterMenu from './SwipeableEdgeDrawer'

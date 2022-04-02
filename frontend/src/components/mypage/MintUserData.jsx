@@ -1,9 +1,8 @@
-//packages
 import Box from '@mui/material/Box'
 import Tab from '@mui/material/Tab'
 import TabList from '@mui/lab/TabList'
 import TabContext from '@mui/lab/TabContext'
-//modules
+
 import '../../styles/MintUserData.css'
 import currency from '../../images/currency.png'
 

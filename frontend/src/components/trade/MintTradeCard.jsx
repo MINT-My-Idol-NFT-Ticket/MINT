@@ -1,4 +1,3 @@
-//components
 import MintCard from '../common/MintCard'
 
 export default function MintTradeCard({ cardData }) {

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-// icons
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet'
 import KeyIcon from '@mui/icons-material/Key'
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber'

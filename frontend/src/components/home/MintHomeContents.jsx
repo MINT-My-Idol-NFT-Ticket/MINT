@@ -1,89 +1,61 @@
-//packages
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import MintBanner from './MintBanner'
 import Grid from '@mui/material/Grid'
 import { useNavigate } from 'react-router-dom'
-//modules
+import { useEffect, useState } from 'react'
+
 import '../../styles/MintHomeContents.css'
-//components
+import { getRequest } from '../../api/Request.js'
+
 import MintVerticalCard from '../common/MintVerticalCard'
-import { useEffect, useRef, useState } from 'react'
+import MintVerticalSkeleton from '../skeleton/MintVerticalSkeleton'
+import { Skeleton } from '@mui/material'
 
 export default function MintHomeContents() {
   const navigate = useNavigate()
   const pushCommingSoon = () => navigate('/comming_soon')
-  const makeOpenList = testData =>
-    testData.map(concert => <MintVerticalCard key={concert.date} concertData={concert} notOpen={false} />)
+  const [openConcerts, setOpenConcerts] = useState([])
+  const [notOpenConcerts, setNotOpenConcerts] = useState([])
 
-  const makeNotOpenList = testData => {
-    return (
-      <Grid container>
-        {testData.map(concert => (
-          <Grid key={concert.date} item xs={6}>
-            <MintVerticalCard concertData={concert} notOpen={true} />
-          </Grid>
-        ))}
-      </Grid>
-    )
+  const getOpenConcertList = async () => {
+    const response = await getRequest('api/concert', { status: 1 })
+    setOpenConcerts(response.data)
   }
+  const getNotOpenConcertList = async () => {
+    const response = await getRequest('api/concert', { status: 0 })
+    setNotOpenConcerts(response.data)
+  }
+
+  useEffect(() => {
+    getOpenConcertList()
+    getNotOpenConcertList()
+  }, [])
 
   return (
     <>
-      <MintBanner />
-      {makeOpenList(testData)}
+      {notOpenConcerts.length === 0 ? <Skeleton variant="ractangular" sx={{ height: '100px' }} /> : <MintBanner />}
+      {openConcerts.length === 0 ? (
+        <MintVerticalSkeleton />
+      ) : (
+        openConcerts.map(concert => <MintVerticalCard key={concert.id} concertData={concert} notOpen={false} />)
+      )}
       <div className="MintHome__subTitle">
         <p>오픈 예정</p>
         <ChevronRightIcon onClick={pushCommingSoon} />
       </div>
-      <div className="MintHome__notOpenList">{makeNotOpenList(testData2)}</div>
+      <div className="MintHome__notOpenList">
+        {notOpenConcerts.length === 0 ? (
+          <MintVerticalSkeleton />
+        ) : (
+          <Grid container>
+            {notOpenConcerts.map(concert => (
+              <Grid key={concert.id} item xs={6}>
+                <MintVerticalCard concertData={concert} notOpen={true} />
+              </Grid>
+            ))}
+          </Grid>
+        )}
+      </div>
     </>
   )
 }
-
-// 테스트 데이터
-const testData = [
-  {
-    img: 'poster_ho.png',
-    title: '1번 제목',
-    singer: '1번 가수',
-    date: '1번 날짜',
-  },
-  {
-    img: 'poster_ho.png',
-    title: '2번 제목',
-    singer: '2번 가수',
-    date: '2번 날짜',
-  },
-  {
-    img: 'poster_ho.png',
-    title: '3번 제목',
-    singer: '3번 가수',
-    date: '3번 날짜',
-  },
-]
-const testData2 = [
-  {
-    img: 'poster_ver.gif',
-    title: '1번 제목',
-    singer: '1번 가수',
-    date: '1번 날짜',
-  },
-  {
-    img: 'poster_ver.gif',
-    title: '2번 제목',
-    singer: '2번 가수',
-    date: '2번 날짜',
-  },
-  {
-    img: 'poster_ver.gif',
-    title: '3번 제목',
-    singer: '3번 가수',
-    date: '3번 날짜',
-  },
-  {
-    img: 'poster_ver.gif',
-    title: '4번 제목',
-    singer: '4번 가수',
-    date: '4번 날짜',
-  },
-]

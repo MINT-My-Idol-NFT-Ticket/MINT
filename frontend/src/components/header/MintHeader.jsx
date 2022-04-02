@@ -1,4 +1,3 @@
-//moduels
 import '../../styles/MintHeader.css'
 
 function MintHeader({ bright }) {

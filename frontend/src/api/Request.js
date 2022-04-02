@@ -1,12 +1,23 @@
-import axios from 'axios'
+import { axiosInstance } from './index.js'
 
-const BASE_URL = 'http://j6b108.p.ssafy.io:9090/'
+export const BASE_URL = 'http://j6b108.p.ssafy.io:9090/'
 // const BASE_URL = 'http://localhost:8080/'
 
-export async function postRequest(url, data) {
-  return await axios.post(BASE_URL + url, data)
+export const postRequest = async (url, data) => {
+  const response = await axiosInstance.post(url, data)
+
+  return response
 }
 
-export async function getRequest(url, params) {
-  return await axios.get(BASE_URL + url + params)
+export const getRequest = async (url, params) => {
+  let parameter = ''
+
+  if (params !== undefined) {
+    parameter = '?'
+    Object.keys(params).forEach(key => (parameter += `${key}=${params[key]}`))
+  }
+
+  const response = await axiosInstance.get(BASE_URL + url + parameter)
+
+  return response
 }
