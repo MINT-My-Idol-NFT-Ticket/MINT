@@ -52,8 +52,8 @@ function App({ setMode }) {
         <Route path="/mypage/ticket/:id" element={<MintTicket />} />
         <Route path="/admin" element={<Admin />} />
         <Route exact path="/concert/detail/:id" element={<MintConcertDetail bright={bright} />} />
-        <Route path="/concert/date" element={<MintConcertDate />} />
-        <Route path="/concert/area" element={<MintConcertArea />} />
+        <Route path="/:id/concert/date" element={<MintConcertDate />} />
+        <Route path="/:id/concert/area" element={<MintConcertArea />} />
         <Route path="/concert/seat" element={<MintConcertSeat />} />
         <Route path="/concert/payment" element={<MintConcertPayment />} />
         <Route path="/address" element={<MintAddress />} />

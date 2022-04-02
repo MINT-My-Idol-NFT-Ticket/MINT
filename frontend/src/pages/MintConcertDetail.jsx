@@ -27,7 +27,7 @@ export default function MintConcertDetail({ bright }) {
           backgroundColor: 'transparent',
           boxSizing: 'border-box',
         }}>
-        <MintBtn name="예매하기" link="concert/date" />
+        <MintBtn name="예매하기" link={`${id}/concert/date`} passData={concertData} />
       </Box>
     </>
   )

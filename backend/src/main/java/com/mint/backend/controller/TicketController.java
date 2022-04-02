@@ -5,6 +5,7 @@ import com.mint.backend.domain.Section;
 import com.mint.backend.domain.Times;
 import com.mint.backend.dto.ResponseExistSeatDto;
 import com.mint.backend.dto.ResponseFindDayDTO;
+import com.mint.backend.dto.ResponseSeatAllDto;
 import com.mint.backend.service.TicketService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -69,5 +70,12 @@ public class TicketController {
     @GetMapping
     public ResponseEntity<Boolean> updateSeatStatus(@RequestParam Long seatId){
         return new ResponseEntity<>(ticketService.updateSeatStatus(seatId),HttpStatus.OK);
+    }
+    @ApiOperation(
+            value = "구역별 선택 가능 좌석 목록 전체 조회"
+    )
+    @GetMapping("/section/{timesId}")
+    public ResponseEntity<List<ResponseSeatAllDto>> findSeatAll(@RequestParam Long timesId){
+        return new ResponseEntity<>(ticketService.getExtraSeat(timesId), HttpStatus.OK);
     }
 }

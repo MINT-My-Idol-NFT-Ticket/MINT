@@ -6,6 +6,7 @@ import com.mint.backend.domain.Section;
 import com.mint.backend.domain.Times;
 import com.mint.backend.dto.ResponseExistSeatDto;
 import com.mint.backend.dto.ResponseFindDayDTO;
+import com.mint.backend.dto.ResponseSeatAllDto;
 import com.mint.backend.repository.SeatRepository;
 import com.mint.backend.repository.SectionRepository;
 import com.mint.backend.repository.TimesRepository;
@@ -49,7 +50,6 @@ public class TicketService {
     @Transactional(readOnly = true)
     public List<Section> getSection(Long timesId) {
         return sectionRepository.findAllByTimesId(timesId);
-
     }
 
     //좌석 조회
@@ -77,5 +77,18 @@ public class TicketService {
             return false;
         }
         return true;
+    }
+
+    // 구역별 잔여 좌석 전체 조회
+    @Transactional(readOnly = true)
+    public List<ResponseSeatAllDto> getExtraSeat(Long timesId){
+        List<ResponseSeatAllDto> list = new ArrayList<>();
+        List<Section> sections = sectionRepository.findAllByTimesId(timesId);
+        for (Section s :
+                sections) {
+            List<Seat> seats = seatRepository.findAllBySectionIdAndStatus(s.getId());
+            list.add(new ResponseSeatAllDto(s.getName(), seats.size()));
+        }
+        return list;
     }
 }

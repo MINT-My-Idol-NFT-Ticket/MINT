@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
-function MintBtn({ name, color, link }) {
+function MintBtn({ name, color, link, passData }) {
   /*
     primary : main purple color
     secondary : main grey sub color
@@ -11,7 +11,7 @@ function MintBtn({ name, color, link }) {
   const navigate = useNavigate()
   const handleLink = () => {
     if (link) {
-      navigate(`/${link}`)
+      navigate(`/${link}`, { state: { ...passData } })
     } else {
       alert('이동할 주소가 없습니다')
     }

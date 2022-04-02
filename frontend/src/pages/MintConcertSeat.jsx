@@ -5,8 +5,10 @@ import MintPageTemplate from '../components/common/MintPageTemplate'
 import MintBtnGroup from '../components/common/MintBtnGroup'
 import MintSeatForm from '../components/concert/MintSeatForm'
 import MintConcertSeatSelect from '../components/concert/MintConcertSeatSelect'
+import { useParams } from 'react-router-dom'
 
 function MintConcertSeat(props) {
+  const concertId = useParams().id
   const [section, setSection] = useState('07')
   /*
    * 김정빈
@@ -44,7 +46,7 @@ function MintConcertSeat(props) {
   const Footer = () => {
     return (
       <Box sx={{ padding: '20px 31px' }}>
-        <MintBtnGroup prev="concert/area" next="concert/payment" />
+        <MintBtnGroup prev={`${concertId}/concert/area`} next={`${concertId}/concert/area`} />
       </Box>
     )
   }
