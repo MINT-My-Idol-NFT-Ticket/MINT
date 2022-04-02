@@ -43,8 +43,8 @@ function MintConcertDate() {
         sx={{
           minHeight: '440px',
           textAlign: 'center',
-          color: '#EEEEEE',
-          backgroundColor: '#000',
+          color: '#FFF',
+          backgroundImage: `url("${tempBg}")`,
           position: 'relative',
         }}>
         <Box
@@ -66,7 +66,7 @@ function MintConcertDate() {
           sx={{
             width: '320px',
             height: '305px',
-            backgroundColor: '#eeeeee',
+            backgroundColor: '#FFF',
             margin: '24px 10px 0 20px',
             display: 'inlineBlock',
             textAlign: 'center',

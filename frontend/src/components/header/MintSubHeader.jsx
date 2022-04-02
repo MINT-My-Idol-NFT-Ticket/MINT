@@ -11,7 +11,7 @@ function MintHeader({ content, bright }) {
       <div
         className="MintSubHeader"
         style={{
-          borderBottom: `2px solid ${bright === 'light' ? '#222831' : '#EEEEEE'}`,
+          borderBottom: `2px solid ${bright === 'light' ? '#222831' : '#FFF'}`,
         }}>
         <a className="back__btn">
           <div className="icon">

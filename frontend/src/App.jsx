@@ -84,8 +84,8 @@ export default function MINT() {
             ? {
                 // palette values for light mode
                 background: {
-                  default: '#EEEEEE',
-                  paper: '#EEEEEE',
+                  default: '#FFF',
+                  paper: '#FFF',
                 },
                 text: {
                   primary: '#222831',
@@ -100,9 +100,9 @@ export default function MINT() {
                   paper: '#222831',
                 },
                 text: {
-                  primary: '#EEEEEE',
-                  secondary: '#EEEEEE',
-                  // disabled: '#EEEEEE',
+                  primary: '#FFF',
+                  secondary: '#FFF',
+                  // disabled: '#FFF',
                 },
               }),
           // for button color
@@ -119,7 +119,7 @@ export default function MINT() {
           info: {
             // info black
             main: '#000000',
-            contrastText: '#EEEEEE',
+            contrastText: '#FFF',
           },
         },
         typography: {
@@ -156,7 +156,7 @@ export default function MINT() {
                 minWidth: '340px',
                 margin: '0 auto',
                 height: '100vh',
-                backgroundColor: mode === 'light' ? '#EEEEEE' : '#222831',
+                backgroundColor: mode === 'light' ? '#FFF' : '#222831',
               }}>
               <App setMode={setMode} />
             </Box>

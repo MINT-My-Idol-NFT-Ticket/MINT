@@ -43,7 +43,7 @@ function MintFooter() {
     boxShadow: '2px 2px 12px rgba(0,0,0,.4)',
   }
 
-  const style = bright === 'light' ? { color: '#222831' } : { color: '#EEEEEE' }
+  const style = bright === 'light' ? { color: '#222831' } : { color: '#FFF' }
   return (
     <>
       <IconButton
@@ -55,9 +55,9 @@ function MintFooter() {
         onClick={colorMode.toggleColorMode}
         color="inherit">
         {bright === 'dark' ? (
-          <LightModeIcon sx={{ ...modeStyle, backgroundColor: '#EEEEEE' }} style={{ color: '#222831' }} />
+          <LightModeIcon sx={{ ...modeStyle, backgroundColor: '#FFF' }} style={{ color: '#222831' }} />
         ) : (
-          <DarkModeIcon sx={{ ...modeStyle, backgroundColor: '#222831' }} style={{ color: '#EEEEEE' }} />
+          <DarkModeIcon sx={{ ...modeStyle, backgroundColor: '#222831' }} style={{ color: '#FFF' }} />
         )}
       </IconButton>
       <BottomNavigation sx={{ width: '100%', height: '58px', borderTop: '1px solid #dddddd', position: 'relative' }}>
