@@ -5,28 +5,6 @@ import { TextureLoader } from 'three'
 import { OrbitControls, Stars, useGLTF, Bounds, Html, useProgress } from '@react-three/drei'
 import TicketModel from './mintticket3.glb'
 
-<<<<<<< Updated upstream
-function Loader() {
-  const { progress } = useProgress()
-  return <Html center>{progress}% loaded</Html>
-}
-
-function TicketMesh(props) {
-  const group = useRef()
-  const { nodes, materials } = useGLTF(`${TicketModel}`)
-  const [front, back] = useLoader(TextureLoader, [
-    // 'https://img.sbs.co.kr/newsnet/etv/upload/2020/10/28/30000654805_1280.jpg',
-    'https://image.ytn.co.kr/general/jpg/2021/0507/202105071556373002_d.jpg',
-    'http://newsimg.hankookilbo.com/2019/05/08/201905082306085099_1.jpg',
-    // 'http://mrmaymay.com/wp-content/uploads/2017/10/MayMay-v%E1%BA%A3i-thun-k%E1%BA%BB-s%E1%BB%8Dc-viscose-00011-e1507747570434-180x180.jpg',
-  ])
-  useFrame(state => {
-    const t = state.clock.getElapsedTime()
-    group.current.rotation.x = Math.cos(t / 4) / 8
-    group.current.rotation.y = Math.sin(t / 4) / 8
-    group.current.position.y = (1 + Math.sin(t / 1.5)) / 10
-  })
-=======
 function MintTicket3D(props) {
   const TicketMesh = () => {
     const group = useRef()
@@ -37,44 +15,39 @@ function MintTicket3D(props) {
       'http://newsimg.hankookilbo.com/2019/05/08/201905082306085099_1.jpg',
       // 'http://mrmaymay.com/wp-content/uploads/2017/10/MayMay-v%E1%BA%A3i-thun-k%E1%BA%BB-s%E1%BB%8Dc-viscose-00011-e1507747570434-180x180.jpg',
     ])
->>>>>>> Stashed changes
 
-  return (
-    <group ref={group} {...props} dispose={null}>
-      <group position={[-0.1, 4.74, 0]} scale={[2.52, 2.52, 0.02]}>
-        <mesh castShadow receiveShadow geometry={nodes.Cube001_2.geometry} material={materials.Front}>
-          <meshBasicMaterial attach="material" transparent toneMapped={false} map={front} />
-        </mesh>
-        <mesh castShadow receiveShadow geometry={nodes.Cube001.geometry} material={materials.Side}>
-          <meshBasicMaterial attach="material" color="#13161B" />
-        </mesh>
-        <mesh castShadow receiveShadow geometry={nodes.Cube001_1.geometry} material={materials.Back}>
-          <meshBasicMaterial attach="material" color="#222831" />
+    return (
+      <group ref={group} {...props} dispose={null}>
+        <group position={[-0.1, 4.74, 0]} scale={[2.52, 2.52, 0.02]}>
+          <mesh castShadow receiveShadow geometry={nodes.Cube001_2.geometry} material={materials.Front}>
+            <meshBasicMaterial attach="material" transparent toneMapped={false} map={front} />
+          </mesh>
+          <mesh castShadow receiveShadow geometry={nodes.Cube001.geometry} material={materials.Side}>
+            <meshBasicMaterial attach="material" color="#13161B" />
+          </mesh>
+          <mesh castShadow receiveShadow geometry={nodes.Cube001_1.geometry} material={materials.Back}>
+            <meshBasicMaterial attach="material" color="#222831" />
+          </mesh>
+        </group>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Plane.geometry}
+          material={materials.img}
+          position={[-0.08, 4.8, -0.02]}
+          rotation={[-1.57, 0, 0]}
+          scale={[2.19, 2.19, 3.53]}>
+          <meshBasicMaterial attach="material" map={back} side={THREE.FrontSide} />
         </mesh>
       </group>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Plane.geometry}
-        material={materials.img}
-        position={[-0.08, 4.8, -0.02]}
-        rotation={[-1.57, 0, 0]}
-        scale={[2.19, 2.19, 3.53]}>
-        <meshBasicMaterial attach="material" map={back} side={THREE.FrontSide} />
-      </mesh>
-    </group>
-  )
-}
+    )
+  }
 
-<<<<<<< Updated upstream
-function MintTicket3D(props) {
-=======
   const Loader = () => {
     const { progress } = useProgress()
     return <Html center>{progress}% loaded</Html>
   }
 
->>>>>>> Stashed changes
   return (
     <Canvas style={{ minHeight: '95vh' }} camera={{ position: [-0.1, 4.74, 0], fov: 80 }} shadowMap>
       <color attach="background" args={['#222831']} />
