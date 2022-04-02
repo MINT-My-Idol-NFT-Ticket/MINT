@@ -1,6 +1,5 @@
 .MintVerticalCard {
 	margin: 10px 0;
-	padding: 0 20px;
 	box-sizing: border-box;
 	overflow: hidden;
 	cursor: pointer;
@@ -9,17 +8,20 @@
 .MintVerticalCard__poster {
 	width: 100%;
 	height: 200px;
+	margin-bottom: 10px;
+}
+
+.MintVerticalCard__Texts {
+	margin-bottom: 10px;
 }
 
 .MintVerticalCard__poster.notOpen {
-	width: 150px;
-	height: 150px;
-	margin: 0 auto;
+	width: 100%;
+	height: 170px;
 }
 @media screen and (max-width: 390px) {
 	.MintVerticalCard__poster.notOpen {
-		width: 130px;
-		height: 130px;
-		margin: 0 auto;
+		width: 100%;
+		height: 150px;
 	}
 }

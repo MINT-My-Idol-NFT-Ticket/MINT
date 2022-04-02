@@ -5,8 +5,9 @@ import TabContext from '@mui/lab/TabContext'
 
 import '../../styles/MintUserData.css'
 import currency from '../../images/currency.png'
+import { isLight, lightColor, darkColor } from '../../functions/util/Color.js'
 
-export default function MintUserDate({ value, setValue }) {
+export default function MintUserDate({ value, setValue, bright }) {
   const handleChange = (e, newValue) => {
     setValue(newValue)
   }
@@ -22,7 +23,12 @@ export default function MintUserDate({ value, setValue }) {
         </div>
       </div>
       <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider', backgroundColor: '#EEEEEE' }}>
+        <Box
+          sx={{
+            borderBottom: 1,
+            borderColor: 'divider',
+            backgroundColor: `${isLight(bright) ? lightColor : darkColor}`,
+          }}>
           <TabList onChange={handleChange}>
             <Tab label="구매 내역" value="1" />
             <Tab label="컬렉션" value="2" />
