@@ -54,6 +54,7 @@ public class TicketService {
     public boolean updateSeatStatus(Long SeatId) {
         try {
             Seat seat = seatRepository.findById(SeatId).orElseThrow(RuntimeException::new);
+            if(seat.getStatus()==1)return false;
             seat.updateStatus();
             seatRepository.save(seat);
 

@@ -74,7 +74,6 @@ public class AdminController {
 
         //콘서트 등록
         boolean result = concertService.create(poster, thumnail, description, seats, data);
-
         return new ResponseEntity<Boolean>(result, HttpStatus.OK);
     }
     @ApiOperation(

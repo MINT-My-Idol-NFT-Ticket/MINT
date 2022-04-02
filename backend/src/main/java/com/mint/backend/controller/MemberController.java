@@ -7,6 +7,8 @@ import com.mint.backend.dto.ResponseSearchDto;
 import com.mint.backend.service.ConcertService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,15 +38,16 @@ public class MemberController {
             value = "상태에 따른 콘서트 목록 조회"
     )
     @GetMapping
-    public ResponseEntity<List<ResponseFindAllDto>> findAll(@RequestParam int status){
-        return new ResponseEntity<>(concertService.getConcertList(status), HttpStatus.OK);
+    public ResponseEntity<List<ResponseFindAllDto>> findAll(@RequestParam int status,Pageable pageable){
+
+        return new ResponseEntity<>(concertService.getConcertList(status,pageable), HttpStatus.OK);
     }
 
     @ApiOperation(
             value = "콘서트 상세 페이지 조회"
     )
     @GetMapping("/{concertId}")
-    public ResponseEntity<ResponseFindOneDto> findOne(@PathVariable Long concertId){
+    public ResponseEntity<ResponseFindOneDto> findOne(@PathVariable Long concertId,Pageable pageable){
         return new ResponseEntity(concertService.getConcertDetail(concertId),HttpStatus.OK);
     }
 

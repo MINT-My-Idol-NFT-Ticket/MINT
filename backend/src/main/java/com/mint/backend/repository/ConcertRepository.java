@@ -1,6 +1,8 @@
 package com.mint.backend.repository;
 
 import com.mint.backend.domain.Concert;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,8 +22,9 @@ import java.util.Optional;
  * @description :
  **/
 public interface ConcertRepository extends JpaRepository<Concert,Long> {
-    @Query("select a from Concert a where a.status =  :status ")
-    public List<Concert> findConcert(@Param("status")int status);
+//    @Query("select a from Concert a where a.status =  :status ")
+//    public Page<Concert> findConcert(@Param("status")int status);
+    public Page<Concert> findAllByStatusIs(int status, Pageable pageable);
 
     @Query("select a from Concert a join a.artist b where a.title like %:keyword% or b.name like %:keyword%")
     public List<Concert> searchConcert(@Param("keyword")String keyword);
