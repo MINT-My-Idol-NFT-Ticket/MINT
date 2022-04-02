@@ -1,6 +1,8 @@
-import { Box, Button, ButtonGroup, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-
+import { Box, Typography } from '@mui/material'
+import { useLocation, useParams } from 'react-router-dom'
+import { getRequest, postRequest } from '../api/Request'
+// components
 import MintBtnGroup from '../components/common/MintBtnGroup'
 import MintPageTemplate from '../components/common/MintPageTemplate'
 import MintConcertAreaList from '../components/concert/MintConcertAreaList'
@@ -8,6 +10,10 @@ import MintSeatForm from '../components/concert/MintSeatForm'
 import tempArea from '../images/concert_area.png'
 
 function MintConcertArea(props) {
+  const concertId = useParams().id
+  const location = useLocation()
+  console.log(location.state, 'location state from date')
+
   const [showSection, setShowSection] = useState('구역을 선택해 주세요.')
   const [selected, setSelected] = useState([0, false])
   const [sections, setSections] = useState(tempSection)
@@ -15,6 +21,16 @@ function MintConcertArea(props) {
     setSelected([idx, true])
     setShowSection(area)
   }
+
+  const timesId = 3
+  const getConcertArea = async () => {
+    const response = await getRequest(`/api/ticket/times/${timesId}`)
+    console.log(response.data, 'available Seats by time')
+  }
+
+  useEffect(() => {
+    getConcertArea()
+  }, [])
 
   const Header = () => {
     return (
@@ -54,7 +70,7 @@ function MintConcertArea(props) {
   }
   const Footer = () => (
     <Box sx={{ padding: '20px 31px' }}>
-      <MintBtnGroup prev="concert/date" next="concert/seat" />
+      <MintBtnGroup prev={`${concertId}/concert/date`} next={`${concertId}/concert/seat`} />
     </Box>
   )
   return <MintPageTemplate header={<Header />} contents={<Contents />} footer={<Footer />} />
