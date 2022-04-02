@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { getRequest } from '../api/Request'
+import { getRequest } from '../api/requests'
 import { Box, Skeleton } from '@mui/material'
 
 import MintSubHeader from '../components/header/MintSubHeader'

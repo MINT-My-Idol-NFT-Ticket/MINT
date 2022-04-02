@@ -1,10 +1,9 @@
-import Web3 from 'web3'
+import { web3 } from './index'
+
 import * as ERC721Transactions from './ERC721Transactions.js'
 import * as ERC721Calls from './ERC721Calls.js'
 import * as ERC20Transactions from './ERC20Transactions.js'
 import * as ERC20Calls from './ERC20Calls.js'
-
-const web3 = new Web3(process.env.REACT_APP_BLOCK_CHAIN_NODE_URL)
 
 //////////////////////////////////////// ERC721Transactions.js 참고/////////////////////////////////////////////////
 // 컨트랙트 배포

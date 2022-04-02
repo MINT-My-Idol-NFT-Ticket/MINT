@@ -1,4 +1,4 @@
-import { confirmMessage, checkMessage, errorMessage, timerMessage } from '../functions/alert/AlertFunctions.js'
+import { confirmMessage, checkMessage, errorMessage, timerMessage } from '../functions/alert/alertFunctions.js'
 import useBrightness from '../hooks/useBrightness.js'
 
 export default function test3() {

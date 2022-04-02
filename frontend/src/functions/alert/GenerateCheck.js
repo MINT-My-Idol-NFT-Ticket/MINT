@@ -1,4 +1,4 @@
-import { lightColor, darkColor, isLight, mainColor } from '../util/Color.js'
+import { lightColor, darkColor, isLight, mainColor } from '../util/color.js'
 
 export default function GenerateCheck(swal, title, callback, bright) {
   swal

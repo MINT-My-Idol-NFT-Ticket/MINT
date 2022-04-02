@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
-import { BASE_URL, getRequest } from '../api/Request'
+import { BASE_URL, getRequest } from '../api/requests'
 import { Box, Typography } from '@mui/material'
 import tempBg from '../images/concert_bg.png'
 // components

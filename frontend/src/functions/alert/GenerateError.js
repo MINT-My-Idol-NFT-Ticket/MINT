@@ -1,4 +1,4 @@
-import { lightColor, darkColor, isLight } from '../util/Color.js'
+import { lightColor, darkColor, isLight } from '../util/color.js'
 
 export default function GenerateError(swal, title, bright) {
   swal.fire({

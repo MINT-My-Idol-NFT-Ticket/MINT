@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { Box, Skeleton } from '@mui/material'
 
-import { getRequest } from '../../api/Request.js'
+import { getRequest } from '../../api/requests.js'
 
 import MintVerticalCard from '../common/MintVerticalCard'
 import MintVerticalSkeleton from '../skeleton/MintVerticalSkeleton'
