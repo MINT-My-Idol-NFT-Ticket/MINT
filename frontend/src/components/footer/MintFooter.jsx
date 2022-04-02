@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
-//pakages
 import HomeIcon from '@mui/icons-material/Home'
 import MenuIcon from '@mui/icons-material/Menu'
 import AccountBoxIcon from '@mui/icons-material/AccountBox'
 import SearchIcon from '@mui/icons-material/Search'
-import { BottomNavigation, BottomNavigationAction, Box, styled, Drawer, Typography } from '@mui/material'
+import { BottomNavigation, BottomNavigationAction, Box, Drawer } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import LightModeIcon from '@mui/icons-material/LightMode'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 import { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-//modules
+
 import useBrightness from '../../hooks/useBrightness'
+
 import MintFooterMenus from './MintFooterMenus'
 
 function MintFooter() {
@@ -45,12 +45,12 @@ function MintFooter() {
 
   const style = bright === 'light' ? { color: '#222831' } : { color: '#FFF' }
   return (
-    <>
+    <Box sx={{ boxShadow: '0 -1px 3px 0 gray', zIndex: 100 }}>
       <IconButton
         sx={{
           position: 'absolute',
           right: '10px',
-          bottom: '55px',
+          bottom: '65px',
         }}
         onClick={colorMode.toggleColorMode}
         color="inherit">
@@ -60,7 +60,7 @@ function MintFooter() {
           <DarkModeIcon sx={{ ...modeStyle, backgroundColor: '#222831' }} style={{ color: '#FFF' }} />
         )}
       </IconButton>
-      <BottomNavigation sx={{ width: '100%', height: '58px', borderTop: '1px solid #dddddd', position: 'relative' }}>
+      <BottomNavigation sx={{ width: '100%', height: '58px', position: 'relative' }}>
         <BottomNavigationAction label="Home" icon={<HomeIcon style={style} />} onClick={pushHome} />
         <BottomNavigationAction label="Menu" icon={<MenuIcon style={style} />} onClick={toggleDrawer(true)} />
         <BottomNavigationAction label="MyPage" icon={<AccountBoxIcon style={style} />} onClick={pushMypage} />
@@ -75,7 +75,7 @@ function MintFooter() {
           </Drawer>
         </Box>
       </BottomNavigation>
-    </>
+    </Box>
   )
 }
 

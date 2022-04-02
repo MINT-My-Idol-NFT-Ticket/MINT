@@ -9,7 +9,7 @@ export default function MintMypageContents({ bright }) {
 
   return (
     <Box>
-      <Box sx={{ width: '100%', position: 'absolute', top: 30, zIndex: 100 }}>
+      <Box sx={{ width: '100%', position: 'absolute', top: '45px', zIndex: 100 }}>
         <MintUserDate value={value} setValue={setValue} bright={bright} />
       </Box>
       <Box sx={{ paddingTop: '160px' }}>
