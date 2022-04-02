@@ -2,6 +2,7 @@ package com.mint.backend.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -46,19 +47,20 @@ public class Concert {
     @Column(columnDefinition = "Integer default 0")
     private int status;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="concert_id")
     private Image image;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "concert",cascade =CascadeType.ALL)
     private List<Times> times= new ArrayList<>();
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "concert",cascade = CascadeType.ALL)
     private List<Artist> artist = new ArrayList<>();
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "concert",cascade = CascadeType.ALL)
     private List<Cids> cids = new ArrayList<>();
 }

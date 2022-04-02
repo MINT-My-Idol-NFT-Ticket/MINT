@@ -55,7 +55,7 @@ public class MemberController {
             value = "콘서트 검색"
     )
     @GetMapping("/search")
-    public ResponseEntity<ResponseSearchDto> search(@RequestParam String keyword){
-        return new ResponseEntity(concertService.search(keyword),HttpStatus.OK);
+    public ResponseEntity<ResponseSearchDto> search(@RequestParam String keyword,Pageable pageable){
+        return new ResponseEntity(concertService.search(keyword,pageable),HttpStatus.OK);
     }
 }

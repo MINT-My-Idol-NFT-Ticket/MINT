@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
-import java.util.Optional;
+
 
 /**
  * @packageName : com.mint.backend.repository
@@ -27,6 +27,6 @@ public interface ConcertRepository extends JpaRepository<Concert,Long> {
     public Page<Concert> findAllByStatusIs(int status, Pageable pageable);
 
     @Query("select a from Concert a join a.artist b where a.title like %:keyword% or b.name like %:keyword%")
-    public List<Concert> searchConcert(@Param("keyword")String keyword);
+    public Page<Concert> searchConcert(@Param("keyword")String keyword,Pageable pageable);
 
 }

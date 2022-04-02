@@ -5,6 +5,7 @@ import com.mint.backend.domain.Seat;
 import com.mint.backend.domain.Section;
 import com.mint.backend.domain.Times;
 import com.mint.backend.dto.ResponseExistSeatDto;
+import com.mint.backend.dto.ResponseFindDayDTO;
 import com.mint.backend.repository.SeatRepository;
 import com.mint.backend.repository.SectionRepository;
 import com.mint.backend.repository.TimesRepository;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -26,8 +28,21 @@ public class TicketService {
 
     //회차 조회
     @Transactional(readOnly = true)
-    public List<Times> getTimes(Long concertId) {
-        return timesRepository.findAllByConcert_Id(concertId);
+    public List<ResponseFindDayDTO> getTimes(Long concertId) {
+        List<Times> data = timesRepository.findAllByConcert_Id(concertId);
+        List<ResponseFindDayDTO> list = new ArrayList();
+        for (Times ti : data) {
+            String dateformat = ti.getDate().substring(0, 8);
+            dateformat = dateformat.replace('.', '-');
+            String timeformat = ti.getDate().substring(9, 11) + ":" + ti.getDate().substring(11);
+
+            list.add(ResponseFindDayDTO.builder()
+                    .id(ti.getId())
+                    .date(dateformat)
+                    .time(timeformat)
+                    .build());
+        }
+        return list;
     }
 
     //구역 조회
@@ -54,11 +69,11 @@ public class TicketService {
     public boolean updateSeatStatus(Long SeatId) {
         try {
             Seat seat = seatRepository.findById(SeatId).orElseThrow(RuntimeException::new);
-            if(seat.getStatus()==1)return false;
+            if (seat.getStatus() == 1) return false;
             seat.updateStatus();
             seatRepository.save(seat);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
         return true;

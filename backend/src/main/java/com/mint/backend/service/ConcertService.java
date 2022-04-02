@@ -8,13 +8,12 @@ import com.mint.backend.dto.ResponseSearchDto;
 import com.mint.backend.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.NotNull;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,8 +53,6 @@ public class ConcertService {
                     .poster(con.getImage().getPosterUrl())
                     .startDate(con.getTimes().get(0).getDate())
                     .endDate(con.getTimes().get(con.getTimes().size()-1).getDate())
-//                    .startDate(timesRepository.findFirstByConcert_IdOrderByDateAsc(con.getId()).getDate())
-//                    .endDate(timesRepository.findFirstByConcert_IdOrderByDateDesc(con.getId()).getDate())
                     .artist(con.getArtist())
                     .build());
         }
@@ -85,16 +82,16 @@ public class ConcertService {
      * @return
      */
     @Transactional(readOnly = true)
-    public List<ResponseSearchDto> search(String keyword) {
-        List<Concert> concert = concertRepository.searchConcert(keyword);
+    public List<ResponseSearchDto> search(String keyword,Pageable pageable) {
+        Page<Concert> concert = concertRepository.searchConcert(keyword,pageable);
         List<ResponseSearchDto> list = new ArrayList<>();
         for (Concert con : concert) {
             list.add(ResponseSearchDto.builder()
                     .id(con.getId())
                     .title(con.getTitle())
                     .ThumnailUrl(con.getImage().getThumbnailUrl())
-                    .startDate(timesRepository.findFirstByConcert_IdOrderByDateAsc(con.getId()).getDate())
-                    .endDate(timesRepository.findFirstByConcert_IdOrderByDateDesc(con.getId()).getDate())
+                    .startDate(con.getTimes().get(0).getDate())
+                    .endDate(con.getTimes().get(con.getTimes().size()-1).getDate())
                     .artists(con.getArtist())
                     .build());
         }
