@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
-
-import '../../styles/MintMypageContents.css'
+import { Box } from '@mui/material'
 
 import MintUserDate from './MintUserData'
 import MintMypageTaps from './MintMypageTaps'
@@ -9,13 +8,13 @@ export default function MintMypageContents({ bright }) {
   const [value, setValue] = useState('1')
 
   return (
-    <div className="MintMypageContents">
-      <div className={`MintMypageContents__userData ${bright}`}>
+    <Box>
+      <Box sx={{ width: '100%', position: 'absolute', top: 30, zIndex: 100 }}>
         <MintUserDate value={value} setValue={setValue} bright={bright} />
-      </div>
-      <div className="MintMypageContents__taps">
+      </Box>
+      <Box sx={{ paddingTop: '160px' }}>
         <MintMypageTaps value={value} />
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }

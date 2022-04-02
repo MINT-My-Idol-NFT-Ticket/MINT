@@ -1,6 +1,4 @@
-import '../../styles/MintCard.css'
-
-import { Card, CardMedia, CardActions, Typography } from '@mui/material'
+import { Card, CardMedia, CardActions, Typography, Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 export default function MintCard({ cardData, type }) {
@@ -27,12 +25,19 @@ export default function MintCard({ cardData, type }) {
   }
 
   return (
-    <div className={`MintCard`} onClick={handleDetail}>
+    <Box
+      sx={{
+        width: '50%',
+        margin: '10px 0',
+        padding: '0 10px',
+        boxSizing: 'border-box',
+      }}
+      onClick={handleDetail}>
       <Card sx={{ border: '1px solid grey' }}>
         <CardMedia component="img" image={cardData.imgUrl} alt="nft사진" sx={{ height: '175px' }} />
         {setType}
       </Card>
-    </div>
+    </Box>
   )
 }
 

@@ -1,17 +1,6 @@
-.MintVerticalCard {
-	margin: 10px 0;
-	box-sizing: border-box;
-	overflow: hidden;
-	cursor: pointer;
-}
-
 .MintVerticalCard__poster {
 	width: 100%;
 	height: 200px;
-	margin-bottom: 10px;
-}
-
-.MintVerticalCard__Texts {
 	margin-bottom: 10px;
 }
 

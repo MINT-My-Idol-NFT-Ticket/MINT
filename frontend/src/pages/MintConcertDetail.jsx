@@ -1,10 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getRequest } from '../api/Request'
-import { Skeleton } from '@mui/material'
-
-import '../styles/MintHome.css'
-import '../styles/MintConcertDetail.css'
+import { Box, Skeleton } from '@mui/material'
 
 import MintSubHeader from '../components/header/MintSubHeader'
 import MintConcertDetailContents from '../components/concert/MintConcertDetailContents'
@@ -20,9 +17,18 @@ export default function MintConcertDetail({ bright }) {
     concertData === null ? <MintDetailSkeleton /> : <MintConcertDetailContents concertData={concertData} />
   const Footer = () => (
     <>
-      <div className="MintConcertDetailContents__btn">
+      <Box
+        sx={{
+          position: 'absolute',
+          width: '100%',
+          bottom: 0,
+          margin: '20px 0 0',
+          padding: '0 40px',
+          backgroundColor: 'transparent',
+          boxSizing: 'border-box',
+        }}>
         <MintBtn name="예매하기" link={`${id}/concert/date`} passData={concertData} />
-      </div>
+      </Box>
     </>
   )
 
@@ -33,8 +39,8 @@ export default function MintConcertDetail({ bright }) {
     setConcertData(response.data)
   }, [])
   return (
-    <div className={`${bright}`}>
+    <Box className={`${bright}`}>
       <MintPageTemplate header={<Header />} contents={<Contents />} footer={<Footer />} />
-    </div>
+    </Box>
   )
 }

@@ -1,34 +1,3 @@
-::-webkit-scrollbar {
-  display: none;
-}
-.MintPageTemplate {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-.MintPageTemplate__header {
-  flex: 0 1 auto;
-  width: 100%;
-}
-.MintPageTemplate__contents {
-  flex: 1 1 auto;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
 .MintPageTemplate__contents::-webkit-scrollbar {
   display: none;
-}
-
-.MintPageTemplate__footer {
-  flex: 0 1 auto;
-  width: 100%;
-}
-.light {
-  color: #222831;
-}
-
-.dark {
-  color: #FFF;
 }

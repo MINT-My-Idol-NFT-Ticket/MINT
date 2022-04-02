@@ -1,10 +1,17 @@
-import { Skeleton } from '@mui/material'
+import { Box, Skeleton } from '@mui/material'
 
 import '../../styles/MintVerticalSkeleton.css'
 
 export default function MintVerticalSkeleton({ notOpen }) {
   return (
-    <div className="MintVerticalSkeleton">
+    <Box
+      sx={{
+        margin: '10px 0',
+        padding: '0 20px',
+        boxSizing: 'border-box',
+        overflow: 'hidden',
+        cursor: 'pointer',
+      }}>
       {[0, 0, 0, 0].map((v, i) => (
         <div key={i}>
           <div className={`MintVerticalSkeleton__poster ${notOpen ? 'notOpen' : 'open'}`}>
@@ -14,6 +21,6 @@ export default function MintVerticalSkeleton({ notOpen }) {
           <Skeleton animation="wave" sx={{ height: '20px', width: '50%' }} />
         </div>
       ))}
-    </div>
+    </Box>
   )
 }
