@@ -16,6 +16,9 @@ export default function MintSplash() {
       <Box>
         <Typography sx={{ textAlign: 'center', mt: '10px', color: '#000000' }}>너에게 스며드는 시간</Typography>
       </Box>
+      <Box>
+        <Typography sx={{ color: '#80808026', mt: '5px' }}>아무 곳이나 클릭하세요</Typography>
+      </Box>
     </div>
   )
 }
