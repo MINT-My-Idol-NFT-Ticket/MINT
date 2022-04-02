@@ -4,11 +4,6 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Stars, useGLTF, Bounds, Html, useProgress, useTexture } from '@react-three/drei'
 
 function MintTicket3D(props) {
-  const Loader = () => {
-    const { progress } = useProgress()
-    return <Html center>{progress}% loaded</Html>
-  }
-
   const TicketMesh = () => {
     const group = useRef()
     const { nodes, materials } = useGLTF('/mintticket3.glb')
@@ -23,12 +18,6 @@ function MintTicket3D(props) {
       'https://image.ytn.co.kr/general/jpg/2021/0507/202105071556373002_d.jpg',
       'http://newsimg.hankookilbo.com/2019/05/08/201905082306085099_1.jpg',
     ])
-    useFrame(state => {
-      const t = state.clock.getElapsedTime()
-      group.current.rotation.x = Math.cos(t / 4) / 8
-      group.current.rotation.y = Math.sin(t / 4) / 8
-      group.current.position.y = (1 + Math.sin(t / 1.5)) / 10
-    })
 
     return (
       <group ref={group} {...props} dispose={null}>
@@ -55,6 +44,11 @@ function MintTicket3D(props) {
         </mesh>
       </group>
     )
+  }
+
+  const Loader = () => {
+    const { progress } = useProgress()
+    return <Html center>{progress}% loaded</Html>
   }
 
   return (

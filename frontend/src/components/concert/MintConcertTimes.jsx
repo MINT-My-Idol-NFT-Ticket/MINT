@@ -4,9 +4,10 @@ import React, { useEffect, useState } from 'react'
 function MintConcertTimes(props) {
   const [time, setTime] = useState('')
   const [choice, setChoice] = useState('')
-
+  const days = ['일', '월', '화', '수', '목', '금', '토']
   const passTime = () => {
-    props.pick(props.times.date, props.idx)
+    console.log(props)
+    props.pick(props.times, props.id)
   }
   return (
     <Grid
@@ -24,9 +25,13 @@ function MintConcertTimes(props) {
         sx={{
           textAlign: 'center',
         }}>
-        <Typography sx={{ fontSize: '1rem', lineHeight: '14px' }}>화</Typography>
-        <Typography sx={{ fontSize: '1.5rem', fontWeight: '800', lineHeight: '24px' }}>{props.times.date}</Typography>
-        <Typography sx={{ fontSize: '0.8rem' }}>03.2022</Typography>
+        <Typography sx={{ fontSize: '1rem', lineHeight: '14px' }}>
+          {days[new Date(`20${props.times.slice(0, 8).replace(/\D/g, '-')}`).getDay()]}
+        </Typography>
+        <Typography sx={{ fontSize: '1.5rem', fontWeight: '800', lineHeight: '24px' }}>
+          {`${props.times.slice(9, 11)}:${props.times.slice(11)}`}
+        </Typography>
+        <Typography sx={{ fontSize: '0.8rem' }}>{props.times.slice(0, 8)}</Typography>
       </Grid>
       <Grid item xs={10} sx={{ paddingLeft: '16px' }}>
         <Typography
