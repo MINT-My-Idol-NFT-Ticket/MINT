@@ -21,7 +21,7 @@ import java.util.List;
 public interface SeatRepository extends JpaRepository<Seat,Long> {
     List<Seat> findAllBySectionId(@Param(value = "scetionId")Long sectionId);
 
-    @Query("select a from Seat a where a.status = 0")
-    List<Seat> findAllBySectionIdAndStatus(@Param(value = "scetionId")Long sectionId);
+    @Query(value = "select * from Seat where status = 0 and section_id = :sectionId", nativeQuery = true)
+    List<Seat> findAllBySectionIdAndStatus(@Param(value = "sectionId")Long sectionId);
 
 }
