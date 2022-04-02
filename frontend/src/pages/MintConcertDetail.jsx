@@ -21,7 +21,7 @@ export default function MintConcertDetail({ bright }) {
   const Footer = () => (
     <>
       <div className="MintConcertDetailContents__btn">
-        <MintBtn name="예매하기" link="concert/date" />
+        <MintBtn name="예매하기" link={`${id}/concert/date`} passData={concertData} />
       </div>
     </>
   )

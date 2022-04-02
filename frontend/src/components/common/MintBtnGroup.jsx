@@ -6,7 +6,7 @@ import { Box, Button, Typography } from '@mui/material'
 //next = {url: , content: 버튼 텍스트, color: 버튼 색상}
 //params = 라우팅시 사용할 파라미터(Optional)
 
-function MintBtnGroup({ position, prev, next, concertData, params = null }) {
+function MintBtnGroup({ position, prev, next, passData, params = null }) {
   const navigate = useNavigate()
 
   const handlePrev = () => {
@@ -17,7 +17,7 @@ function MintBtnGroup({ position, prev, next, concertData, params = null }) {
     }
   }
   const handleNext = () => {
-    next ? navigate(`/${next.url}`, params) : alert('이동할 다음 주소가 없습니다')
+    next ? navigate(`/${next}`, { state: { ...passData } }) : alert('이동할 다음 주소가 없습니다')
   }
   return (
     <Box
