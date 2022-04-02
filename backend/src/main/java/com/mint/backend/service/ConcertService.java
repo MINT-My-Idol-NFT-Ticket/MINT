@@ -7,9 +7,12 @@ import com.mint.backend.dto.ResponseFindOneDto;
 import com.mint.backend.dto.ResponseSearchDto;
 import com.mint.backend.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -37,10 +40,10 @@ public class ConcertService {
      * @return
      */
     @Transactional(readOnly = true)
-    public List<ResponseFindAllDto> getConcertList(int status) {
+    public List<ResponseFindAllDto> getConcertList(int status, Pageable pageable) {
 //        return new ResponseFindAllDto()
 //                .toDTO(concertRepository.findConcert(status));
-        List<Concert> concert = concertRepository.findConcert(status);
+        Page<Concert> concert = concertRepository.findAllByStatusIs(status,pageable);
         List<ResponseFindAllDto> list = new ArrayList<>();
         for (Concert con : concert) {
             list.add(ResponseFindAllDto.builder()
@@ -48,8 +51,8 @@ public class ConcertService {
                     .title(con.getTitle())
                     .thumnail(con.getImage().getThumbnailUrl())
                     .poster(con.getImage().getPosterUrl())
-                    .startDate(timesRepository.findFirstByConcert_IdOrderByDateAsc(con.getId()).getDate())
-                    .endDate(timesRepository.findFirstByConcert_IdOrderByDateDesc(con.getId()).getDate())
+                    .startDate(con.getTimes().get(0).getDate())
+                    .endDate(con.getTimes().get(con.getTimes().size()-1).getDate())
                     .artist(con.getArtist())
                     .build());
         }
@@ -79,16 +82,16 @@ public class ConcertService {
      * @return
      */
     @Transactional(readOnly = true)
-    public List<ResponseSearchDto> search(String keyword) {
-        List<Concert> concert = concertRepository.searchConcert(keyword);
+    public List<ResponseSearchDto> search(String keyword,Pageable pageable) {
+        Page<Concert> concert = concertRepository.searchConcert(keyword,pageable);
         List<ResponseSearchDto> list = new ArrayList<>();
         for (Concert con : concert) {
             list.add(ResponseSearchDto.builder()
                     .id(con.getId())
                     .title(con.getTitle())
                     .ThumnailUrl(con.getImage().getThumbnailUrl())
-                    .startDate(timesRepository.findFirstByConcert_IdOrderByDateAsc(con.getId()).getDate())
-                    .endDate(timesRepository.findFirstByConcert_IdOrderByDateDesc(con.getId()).getDate())
+                    .startDate(con.getTimes().get(0).getDate())
+                    .endDate(con.getTimes().get(con.getTimes().size()-1).getDate())
                     .artists(con.getArtist())
                     .build());
         }
@@ -105,7 +108,6 @@ public class ConcertService {
      * @param seats
      * @param requestConcertDto
      * @return
-     * @throws IOException
      *
      * @modified 박창현
      * 이미지 저장 폴더 명을 컨트랙트 주소를 잘라 저장하게 변경했습니다
@@ -163,6 +165,7 @@ public class ConcertService {
 
             //시간등록
             int turn = requestConcertDto.getTime();
+            Arrays.sort(requestConcertDto.getTimeTable());
             for (int i = 0; i < turn; i++) {
                 Times time = Times.builder()
                         .date(requestConcertDto.getTimeTable()[i])
@@ -184,7 +187,7 @@ public class ConcertService {
                     //자리등록
                     for (int j = 0; j < map.get(s); j++) {
                         Seat seat = Seat.builder()
-                                .name(s + Integer.toString(j))
+                                .name(s + j)
                                 .section(section)
                                 .build();
                         seatRepository.save(seat);
@@ -201,12 +204,6 @@ public class ConcertService {
             return false;
         }
         return true;
-    }
-
-    //콘서트 수정
-    public Concert update() {
-        //to do
-        return new Concert();
     }
 
     /**

@@ -33,19 +33,16 @@ public class ResponseFindAllDto {
     private String endDate;
     private List<Artist> artist;
 
-//    public List<ResponseFindAllDto> toDTO(List<Concert> concert) {
-//        List<ResponseFindAllDto> list = new ArrayList<>();
-//        for (Concert c : concert) {
-//            list.add(ResponseFindAllDto.builder()
-//                    .id(c.getId())
-//                    .title(c.getTitle())
-//                    .thumnail(c.getImage().getThumbnailUrl())
-//                    .poster(c.getImage().getPosterUrl())
-//                    .times(c.getTimes())
-//                    .artist(c.getArtist())
-//                    .build());
-//        }
-//        return list;
+//    public static ResponseFindAllDto from(Concert concert){
+//        return ResponseFindAllDto.builder()
+//                .id(concert.getId())
+//                .title(concert.getTitle())
+//                .thumnail(concert.getImage().getThumbnailUrl())
+//                .poster(concert.getImage().getThumbnailUrl())
+//                .startDate(concert.getTimes().get(0).getDate())
+//                .endDate(concert.getTimes().get(concert.getTimes().size()-1).getDate())
+//                .artist(concert.getArtist())
+//                .build();
 //    }
 
 }

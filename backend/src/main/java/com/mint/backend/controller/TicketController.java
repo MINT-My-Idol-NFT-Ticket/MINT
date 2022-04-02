@@ -4,6 +4,7 @@ import com.mint.backend.domain.Seat;
 import com.mint.backend.domain.Section;
 import com.mint.backend.domain.Times;
 import com.mint.backend.dto.ResponseExistSeatDto;
+import com.mint.backend.dto.ResponseFindDayDTO;
 import com.mint.backend.service.TicketService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -36,9 +37,8 @@ public class TicketController {
             value = "회차별 선택 가능 날짜 목록 조회"
     )
     @GetMapping("/concert/{concertId}")
-    public ResponseEntity<List<Times>> findDay(@PathVariable Long concertId){
-        List<Times> list = ticketService.getTimes(concertId);
-        return new ResponseEntity<>(list, HttpStatus.OK);
+    public ResponseEntity<List<ResponseFindDayDTO>> findDay(@PathVariable Long concertId){
+        return new ResponseEntity<>(ticketService.getTimes(concertId), HttpStatus.OK);
     }
     @ApiOperation(
             value = "날짜별 선택 가능 구역 목록 조회"

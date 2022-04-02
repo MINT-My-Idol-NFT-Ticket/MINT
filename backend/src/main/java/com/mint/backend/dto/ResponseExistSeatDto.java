@@ -1,6 +1,7 @@
 package com.mint.backend.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.Setter;
 
 /**
@@ -15,6 +16,7 @@ import lombok.Setter;
  * @description :
  **/
 @AllArgsConstructor
+@Getter
 public class ResponseExistSeatDto {
     int status;
 }
