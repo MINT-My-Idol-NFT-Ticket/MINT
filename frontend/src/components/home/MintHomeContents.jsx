@@ -34,11 +34,9 @@ export default function MintHomeContents() {
     <>
       {notOpenConcerts.length === 0 ? <Skeleton variant="ractangular" sx={{ height: '100px' }} /> : <MintBanner />}
       <Box sx={{ padding: '0 20px' }}>
-        {openConcerts.length === 0 ? (
-          <MintVerticalSkeleton />
-        ) : (
-          openConcerts.map(concert => <MintVerticalCard key={concert.id} concertData={concert} notOpen={false} />)
-        )}
+        {openConcerts.length === 0
+          ? [0, 0, 0, 0].map((v, i) => <MintVerticalSkeleton key={i} notOpen={false} />)
+          : openConcerts.map(concert => <MintVerticalCard key={concert.id} concertData={concert} notOpen={false} />)}
       </Box>
       <Box
         sx={{
@@ -61,7 +59,13 @@ export default function MintHomeContents() {
           boxSizing: 'border-box',
         }}>
         {notOpenConcerts.length === 0 ? (
-          <MintVerticalSkeleton />
+          <Grid container spacing={2.5}>
+            {[0, 0, 0, 0].map((v, i) => (
+              <Grid key={i} item xs={6}>
+                <MintVerticalSkeleton notOpen={true} />
+              </Grid>
+            ))}
+          </Grid>
         ) : (
           <Grid container spacing={2.5}>
             {notOpenConcerts.map(concert => (
