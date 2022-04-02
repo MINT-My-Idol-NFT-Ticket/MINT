@@ -12,15 +12,11 @@ export default function MintVerticalSkeleton({ notOpen }) {
         overflow: 'hidden',
         cursor: 'pointer',
       }}>
-      {[0, 0, 0, 0].map((v, i) => (
-        <div key={i}>
-          <div className={`MintVerticalSkeleton__poster ${notOpen ? 'notOpen' : 'open'}`}>
-            <Skeleton variant="rectangular" animation="wave" sx={{ height: '100%' }} />
-          </div>
-          <Skeleton animation="wave" sx={{ height: '25px' }} />
-          <Skeleton animation="wave" sx={{ height: '20px', width: '50%' }} />
-        </div>
-      ))}
+      <div className={`MintVerticalSkeleton__poster ${notOpen ? 'notOpen' : 'open'}`}>
+        <Skeleton variant="rectangular" animation="wave" sx={{ height: '100%' }} />
+      </div>
+      <Skeleton animation="wave" sx={{ height: '25px' }} />
+      <Skeleton animation="wave" sx={{ height: '20px', width: '50%' }} />
     </Box>
   )
 }
