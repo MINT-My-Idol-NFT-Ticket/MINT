@@ -15,6 +15,7 @@ import java.util.List;
 @Builder
 @Getter
 public class ResponseSeatAllDto {
+    private Long id;
     private String name;
     private Long extraSeat;
 
