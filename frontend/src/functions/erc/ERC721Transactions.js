@@ -65,10 +65,27 @@ export async function buyTicket(web3, contractAddress, sender, senderPK, tokenUR
   }
 }
 
-export async function safeTransferFrom(web3, contractAddress, from, to, tokenId) {
-  console.log(tokenId)
-  const contract = new web3.eth.Contract(MINT_ABI, contractAddress) // 배포되어 있는 컨트랙트 인스턴스
-  const transaction = contract.methods.safeTransferFrom(from, to, tokenId) // safeTransferFrom 트랜잭션 인스턴스
+export async function setSaleTicket(web3, ticketContractAddress, saleContractAddress) {
+  const contract = new web3.eth.Contract(MINT_ABI, ticketContractAddress)
+  const transaction = contract.methods.setSaleTicket(saleContractAddress)
+
+  const gas = '3000000'
+  const options = {
+    to: ticketContractAddress,
+    data: transaction.encodeABI(),
+    gas,
+  }
+
+  try {
+    await send(web3, options, ADMIN_PK)
+  } catch {
+    console.log('전송 실패')
+  }
+}
+
+export async function cancelTicket(web3, contractAddress, tokenId) {
+  const contract = new web3.eth.Contract(MINT_ABI, contractAddress)
+  const transaction = contract.methods.cancelTicket(tokenId)
 
   const gas = '3000000'
   const options = {
@@ -78,22 +95,37 @@ export async function safeTransferFrom(web3, contractAddress, from, to, tokenId)
   }
 
   try {
-    // 스마트 컨트랙트에서 민팅할 때마다 해당 토큰의 operator로 contract owner가 추가됩니다
-    // 따라서 owner는 모든 토큰에 대한 transfer권한을 가지고 있습니다
-    const result = await send(web3, options, ADMIN_PK)
-    return result.status ? true : false // NFT 전송 성공 여부 반환
+    await send(web3, options, ADMIN_PK)
   } catch {
     console.log('전송 실패')
   }
 }
 
-export async function setSaleTicket(web3, ticketContractAddress, saleContractAddress) {
-  const contract = new web3.eth.Contract(MINT_ABI, ticketContractAddress)
-  const transaction = contract.methods.setSaleTicket(saleContractAddress)
+export async function setForSaleTicket(web3, saleContractAddress, tokenId, price) {
+  const contract = new web3.eth.Contract(MINT_ABI, saleContractAddress)
+  const transaction = contract.methods.cancelTicket(tokenId, price)
 
   const gas = '3000000'
   const options = {
-    to: ticketContractAddress,
+    to: saleContractAddress,
+    data: transaction.encodeABI(),
+    gas,
+  }
+
+  try {
+    await send(web3, options, ADMIN_PK)
+  } catch {
+    console.log('전송 실패')
+  }
+}
+
+export async function purchaseTicket(web3, saleContractAddress, tokenId) {
+  const contract = new web3.eth.Contract(MINT_ABI, saleContractAddress)
+  const transaction = contract.methods.cancelTicket(tokenId)
+
+  const gas = '3000000'
+  const options = {
+    to: saleContractAddress,
     data: transaction.encodeABI(),
     gas,
   }
