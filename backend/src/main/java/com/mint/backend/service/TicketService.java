@@ -35,7 +35,7 @@ public class TicketService {
         for (Times ti : data) {
             String dateformat = ti.getDate().substring(0, 8);
             dateformat = dateformat.replace('.', '-');
-            String timeformat = ti.getDate().substring(9, 11) + ":" + ti.getDate().substring(11);
+            String timeformat = ti.getDate().substring(8, 10) + ":" + ti.getDate().substring(10);
 
             list.add(ResponseFindDayDTO.builder()
                     .id(ti.getId())
