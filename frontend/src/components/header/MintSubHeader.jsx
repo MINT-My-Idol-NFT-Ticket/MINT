@@ -13,7 +13,7 @@ function MintHeader({ content, bright }) {
           display: 'flex',
           width: '100%',
           height: '50px',
-          boxShadow: '0 1px 3px 0 gray',
+          boxShadow: `0 -1px 20px 0 rgba(0,0,0,.2)`,
           zIndex: 100,
         }}>
         <a

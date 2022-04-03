@@ -12,6 +12,7 @@ function MintHeader({ bright }) {
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'transparent',
+        boxShadow: `0 -1px 20px 0 rgba(0,0,0,.2)`,
       }}>
       <img src={isLight(bright) ? 'logo_light.png' : 'logo_dark.png'} style={{ width: '90px' }} alt="" />
     </Box>
