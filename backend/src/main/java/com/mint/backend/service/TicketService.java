@@ -33,9 +33,9 @@ public class TicketService {
         List<Times> data = timesRepository.findAllByConcert_Id(concertId);
         List<ResponseFindDayDTO> list = new ArrayList();
         for (Times ti : data) {
-            String dateformat = ti.getDate().substring(0, 8);
+            String dateformat = ti.getDate().substring(0, 10);
             dateformat = dateformat.replace('.', '-');
-            String timeformat = ti.getDate().substring(8, 10) + ":" + ti.getDate().substring(10);
+            String timeformat = ti.getDate().substring(10, 12) + ":" + ti.getDate().substring(12);
 
             list.add(ResponseFindDayDTO.builder()
                     .id(ti.getId())
