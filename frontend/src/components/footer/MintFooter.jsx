@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import HomeIcon from '@mui/icons-material/Home'
 import MenuIcon from '@mui/icons-material/Menu'
-import AccountBoxIcon from '@mui/icons-material/AccountBox'
+import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber'
+import PersonIcon from '@mui/icons-material/Person'
 import SearchIcon from '@mui/icons-material/Search'
 import { BottomNavigation, BottomNavigationAction, Box, Drawer } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
@@ -19,6 +20,7 @@ function MintFooter() {
   const pushHome = () => navigate('/home')
   const pushMypage = () => navigate('/mypage')
   const pushSearch = () => navigate('/search')
+  const pushTrade = () => navigate('/trade')
   const [bright, setBright] = useBrightness()
   const [open, setOpen] = useState(false)
 
@@ -50,7 +52,7 @@ function MintFooter() {
         sx={{
           position: 'absolute',
           right: '10px',
-          bottom: '65px',
+          bottom: '75px',
         }}
         onClick={colorMode.toggleColorMode}
         color="inherit">
@@ -63,8 +65,9 @@ function MintFooter() {
       <BottomNavigation sx={{ width: '100%', height: '58px', position: 'relative' }}>
         <BottomNavigationAction label="Home" icon={<HomeIcon style={style} />} onClick={pushHome} />
         <BottomNavigationAction label="Menu" icon={<MenuIcon style={style} />} onClick={toggleDrawer(true)} />
-        <BottomNavigationAction label="MyPage" icon={<AccountBoxIcon style={style} />} onClick={pushMypage} />
+        <BottomNavigationAction label="Trade" icon={<ConfirmationNumberIcon style={style} />} onClick={pushTrade} />
         <BottomNavigationAction label="Search" icon={<SearchIcon style={style} />} onClick={pushSearch} />
+        <BottomNavigationAction label="MyPage" icon={<PersonIcon style={style} />} onClick={pushMypage} />
         <Box>
           <Drawer
             anchor="top"
