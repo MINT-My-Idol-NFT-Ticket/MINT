@@ -33,11 +33,15 @@ public class ResponseFindOneDto {
     private int status;
     private String poster;
     private String detail;
+    private String section;
+    private String thumbnail;
 
     public ResponseFindOneDto toDTO(Concert concert){
         return ResponseFindOneDto.builder()
                 .poster(concert.getImage().getPosterUrl())
                 .detail(concert.getImage().getDescriptionUrl())
+                .section(concert.getImage().getSectionUrl())
+                .thumbnail(concert.getImage().getThumbnailUrl())
                 .id(concert.getId())
                 .cids(concert.getCids())
                 .title(concert.getTitle())
