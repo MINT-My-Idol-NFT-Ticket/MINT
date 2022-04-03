@@ -15,17 +15,38 @@ function MintTicket3D(props) {
     //   // 'http://mrmaymay.com/wp-content/uploads/2017/10/MayMay-v%E1%BA%A3i-thun-k%E1%BA%BB-s%E1%BB%8Dc-viscose-00011-e1507747570434-180x180.jpg',
     // ])
     const [front, back] = useTexture([
-      'https://image.ytn.co.kr/general/jpg/2021/0507/202105071556373002_d.jpg',
+      'https://t1.daumcdn.net/cfile/tistory/99BB43455E8108F209',
       'http://newsimg.hankookilbo.com/2019/05/08/201905082306085099_1.jpg',
     ])
-    //이미지 옮기는 법
-    const tmp = Object.assign(front, { offset: { x: 0.14, y: -0.1 } })
+    const [video] = useState(() =>
+      Object.assign(document.createElement('video'), {
+        // src: 'https://ipfs.io/ipfs/Qmdoj4Cua7KfroYi2DpDtdQs8HN1uxDBodUvuZN4KBzh7Z',
+        // src: 'https://ipfs.io/ipfs/QmSyAeBrGPazXFKGjqeH3zRTAG78tRoaV9mXDpLemr1Q6E',
+        src: 'https://ipfs.io/ipfs/QmXgF4TTBDGbso4p9QFVFfYao9uHDMk4o8Jujw8rEV33A6',
+        crossOrigin: 'Anonymous',
+        loop: true,
+        muted: true,
+        offset: { x: 1, y: 1 },
+      }),
+    )
+    const texture = Object.assign(new THREE.VideoTexture(video), { offset: { x: 0.2, y: 0 } })
+    console.log(texture)
+
+    useEffect(() => video.play(), [video])
 
     return (
       <group ref={group} {...props} dispose={null}>
         <group position={[-0.1, 4.74, 0]} scale={[2.52, 2.52, 0.02]}>
-          <mesh castShadow receiveShadow geometry={nodes.Cube001_2.geometry} material={materials.Front}>
-            <meshBasicMaterial attach="material" transparent toneMapped={false} map={tmp} />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Cube001_2.geometry}
+            material={materials.Front}
+            scale={[-1, 1, 1]}>
+            <meshBasicMaterial attach="material" transparent toneMapped={false} map={texture} />
+            {/* <meshBasicMaterial toneMapped={false}>
+              <videoTexture attach="map" args={[video]} encoding={THREE.sRGBEncoding} />
+            </meshBasicMaterial> */}
           </mesh>
           <mesh castShadow receiveShadow geometry={nodes.Cube001.geometry} material={materials.Side}>
             <meshBasicMaterial attach="material" color="#13161B" />
@@ -41,7 +62,7 @@ function MintTicket3D(props) {
           material={materials.img}
           position={[-0.08, 4.8, -0.02]}
           rotation={[-1.57, 0, 0]}
-          scale={[2.19, 2.19, 3.53]}>
+          scale={[-2.19, 2.19, 3.53]}>
           <meshBasicMaterial attach="material" map={back} side={THREE.FrontSide} />
         </mesh>
       </group>
