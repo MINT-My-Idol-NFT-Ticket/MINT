@@ -187,7 +187,7 @@ public class ConcertService {
                     //자리등록
                     for (int j = 0; j < map.get(s); j++) {
                         Seat seat = Seat.builder()
-                                .name(s + j)
+                                .name(s + "-" + (j+1))
                                 .section(section)
                                 .build();
                         seatRepository.save(seat);
