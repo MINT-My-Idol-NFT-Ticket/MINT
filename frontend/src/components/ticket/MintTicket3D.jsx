@@ -18,11 +18,13 @@ function MintTicket3D(props) {
       'https://t1.daumcdn.net/cfile/tistory/99BB43455E8108F209',
       'http://newsimg.hankookilbo.com/2019/05/08/201905082306085099_1.jpg',
     ])
+    const src = 'https://ipfs.io/ipfs/Qmdoj4Cua7KfroYi2DpDtdQs8HN1uxDBodUvuZN4KBzh7Z'
     const [video] = useState(() =>
       Object.assign(document.createElement('video'), {
-        // src: 'https://ipfs.io/ipfs/Qmdoj4Cua7KfroYi2DpDtdQs8HN1uxDBodUvuZN4KBzh7Z',
+        src: src,
+        // src: 'https://ipfs.io/ipfs/QmNxKwd5SBer93TSkm3mGU3wNsn5TdAdPDUumKrhoNLiVp',
         // src: 'https://ipfs.io/ipfs/QmSyAeBrGPazXFKGjqeH3zRTAG78tRoaV9mXDpLemr1Q6E',
-        src: 'https://ipfs.io/ipfs/QmXgF4TTBDGbso4p9QFVFfYao9uHDMk4o8Jujw8rEV33A6',
+        // src: 'https://ipfs.io/ipfs/QmXgF4TTBDGbso4p9QFVFfYao9uHDMk4o8Jujw8rEV33A6',
         crossOrigin: 'Anonymous',
         loop: true,
         muted: true,
