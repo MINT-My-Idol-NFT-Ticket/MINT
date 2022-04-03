@@ -5,6 +5,8 @@ export default function MintSplash() {
     window.location.pathname = '/intro'
   }
 
+  console.dir(document.createElement('video'))
+
   return (
     <div style={style} onMouseUp={nextPage}>
       <Box sx={{ textAlign: 'center' }}>

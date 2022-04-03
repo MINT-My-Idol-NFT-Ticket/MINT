@@ -20,6 +20,8 @@ function MintTicket3D(props) {
     ])
     const [video] = useState(() =>
       Object.assign(document.createElement('video'), {
+        // src: 'https://ipfs.io/ipfs/Qmdoj4Cua7KfroYi2DpDtdQs8HN1uxDBodUvuZN4KBzh7Z',
+        // src: 'https://ipfs.io/ipfs/QmSyAeBrGPazXFKGjqeH3zRTAG78tRoaV9mXDpLemr1Q6E',
         src: 'https://ipfs.io/ipfs/QmXgF4TTBDGbso4p9QFVFfYao9uHDMk4o8Jujw8rEV33A6',
         crossOrigin: 'Anonymous',
         loop: true,
@@ -27,6 +29,8 @@ function MintTicket3D(props) {
         offset: { x: 1, y: 1 },
       }),
     )
+    const texture = Object.assign(new THREE.VideoTexture(video), { offset: { x: 0.2, y: 0 } })
+    console.log(texture)
 
     useEffect(() => video.play(), [video])
 
@@ -39,10 +43,10 @@ function MintTicket3D(props) {
             geometry={nodes.Cube001_2.geometry}
             material={materials.Front}
             scale={[-1, 1, 1]}>
-            {/* <meshBasicMaterial attach="material" transparent toneMapped={false} map={front} /> */}
-            <meshBasicMaterial toneMapped={false}>
+            <meshBasicMaterial attach="material" transparent toneMapped={false} map={texture} />
+            {/* <meshBasicMaterial toneMapped={false}>
               <videoTexture attach="map" args={[video]} encoding={THREE.sRGBEncoding} />
-            </meshBasicMaterial>
+            </meshBasicMaterial> */}
           </mesh>
           <mesh castShadow receiveShadow geometry={nodes.Cube001.geometry} material={materials.Side}>
             <meshBasicMaterial attach="material" color="#13161B" />
