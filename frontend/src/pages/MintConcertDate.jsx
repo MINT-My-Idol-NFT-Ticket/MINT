@@ -15,18 +15,16 @@ import '../styles/MintConcertProcess.css'
 
 function MintConcertDate() {
   const location = useLocation()
-  // console.log(location.state, '디테일->데이트')
   const [state, setState] = useState(location.state)
   const [concertData, setConcertData] = useState([])
   const [dayConcertData, setDayConcertData] = useState([])
   const [dates, setDates] = useState({})
-  const concertId = useParams().id
+  const params = useParams()
 
   const getConcertDate = async () => {
-    const response = await getRequest(`/api/ticket/concert/${concertId}`)
+    const response = await getRequest(`/api/ticket/concert/${params.id}`)
     setConcertData(response.data)
     setDayConcertData(response.data)
-    console.log(response.data, '콘서트 데이터 리퀘')
     setDate(new Date(response.data[0].date))
     setDates({ min: response.data[0].date, max: response.data[response.data.length - 1].date })
   }
@@ -75,7 +73,7 @@ function MintConcertDate() {
           }}>
           {state.title}
         </Typography>
-        <Typography sx={{ position: 'relative', zIndex: '100' }}>{state.artists.map(a => a.name)}</Typography>
+        {/* <Typography sx={{ position: 'relative', zIndex: '100' }}>{state.artists.map(a => a.name)}</Typography> */}
 
         <Box
           sx={{
@@ -127,9 +125,9 @@ function MintConcertDate() {
     return (
       <Box sx={{ padding: '20px 31px' }}>
         <MintBtnGroup
-          prev={{ url: `concert/detail/${concertId}`, content: '이전', color: 'secondary' }}
-          next={{ url: `${concertId}/concert/area`, content: '다음' }}
-          passData={{ concertInfo: location.state, time: time, timeId: selectedId }}
+          prev={{ url: `/concert/detail/${params.id}`, content: '이전', color: 'secondary' }}
+          next={{ url: `/concert/area/${params.id}`, content: '다음' }}
+          passData={{ ...location.state, time: time, timeId: selectedId }}
         />
       </Box>
     )
@@ -141,7 +139,6 @@ function MintConcertDate() {
   const [selectedId, setSelectedId] = useState(0)
 
   const pickTime = (time, idx) => {
-    // console.log(time, idx, '넘겨줄콘서트날짜/시간')
     setTime(time)
     setIsSelected(true)
     setSelectedId(idx)

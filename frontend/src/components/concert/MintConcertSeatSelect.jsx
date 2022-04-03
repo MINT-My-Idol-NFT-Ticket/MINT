@@ -3,10 +3,8 @@ import { Box, Button, Checkbox } from '@mui/material'
 import MintConcertSeat from './MintConcertSeat'
 
 function MintConcertSeatSelect(props) {
-  console.log(props, 'MintConcertSeatSelect')
   const [seats, setSeat] = useState(props.data)
   const handleSelect = info => {
-    console.log(info, '자식이벤트')
     props.handleSelect(info)
   }
 

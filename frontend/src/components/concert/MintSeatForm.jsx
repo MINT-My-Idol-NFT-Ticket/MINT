@@ -2,7 +2,6 @@ import React from 'react'
 import { Box, Typography } from '@mui/material'
 
 function MintSeatForm({ title, section, seat }) {
-  console.log(section, 'mintseatform')
   return (
     <Box
       sx={{
@@ -11,7 +10,7 @@ function MintSeatForm({ title, section, seat }) {
       <Typography>{title}</Typography>
       <Box sx={content}>
         {seat ? seat : ''}
-        {/* {section.area.area ? section.area : ''} */}
+        {section ? section : ''}
       </Box>
     </Box>
   )

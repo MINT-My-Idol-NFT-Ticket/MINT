@@ -1,32 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import { useLocation, useParams } from 'react-router-dom'
-import { BASE_URL, getRequest, postRequest } from '../api/requests'
+import { BASE_URL, getRequest } from '../api/requests'
 // components
 import MintBtnGroup from '../components/common/MintBtnGroup'
 import MintPageTemplate from '../components/common/MintPageTemplate'
 import MintConcertAreaList from '../components/concert/MintConcertAreaList'
 import MintSeatForm from '../components/concert/MintSeatForm'
-import tempArea from '../images/concert_area.png'
 
-function MintConcertArea(props) {
+function MintConcertArea() {
   const concertId = useParams().id
   const location = useLocation()
-  // console.log(location.state, '데이트->구역')
-
+  console.log(location)
   const [showSection, setShowSection] = useState({ area: '구역을 선택해 주세요.' })
   const [selected, setSelected] = useState([0, false])
   const [sections, setSections] = useState([])
   const pickArea = (area, idx) => {
     setSelected([idx, true])
-    console.log(area, idx, 'area')
     setShowSection({ id: idx, area: area })
   }
 
   const getConcertArea = async () => {
     const response = await getRequest(`/api/ticket/extraSeat/${location.state.timeId}`)
     setSections(response.data)
-    console.log(response.data, 'available Seats by time')
   }
 
   useEffect(() => {
@@ -42,10 +38,10 @@ function MintConcertArea(props) {
           </Typography>
         </Box>
         <Box>
-          <img src={`${BASE_URL}${location.state.concertInfo.section}`} style={{ width: '100%' }} />
+          <img src={`${BASE_URL}${location.state.section}`} style={{ width: '100%' }} />
         </Box>
         <Box sx={seatFromContainer}>
-          <MintSeatForm title="선택된 구역" section={showSection} />
+          <MintSeatForm title="선택된 구역" section={showSection.area} />
         </Box>
       </>
     )
@@ -69,9 +65,9 @@ function MintConcertArea(props) {
   const Footer = () => (
     <Box sx={{ padding: '20px 31px' }}>
       <MintBtnGroup
-        prev={{ url: `${concertId}/concert/date`, content: '이전', color: 'secondary' }}
-        next={{ url: `${concertId}/concert/seat`, content: '다음' }}
-        passData={{ area: showSection }}
+        prev={{ url: `/concert/date/${concertId}`, content: '이전', color: 'secondary' }}
+        next={{ url: `/concert/seat/${concertId}`, content: '다음' }}
+        passData={{ ...location.state, area: showSection }}
       />
     </Box>
   )
