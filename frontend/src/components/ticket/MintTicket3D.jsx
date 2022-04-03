@@ -18,12 +18,14 @@ function MintTicket3D(props) {
       'https://image.ytn.co.kr/general/jpg/2021/0507/202105071556373002_d.jpg',
       'http://newsimg.hankookilbo.com/2019/05/08/201905082306085099_1.jpg',
     ])
+    //이미지 옮기는 법
+    const tmp = Object.assign(front, { offset: { x: 0.14, y: -0.1 } })
 
     return (
       <group ref={group} {...props} dispose={null}>
         <group position={[-0.1, 4.74, 0]} scale={[2.52, 2.52, 0.02]}>
           <mesh castShadow receiveShadow geometry={nodes.Cube001_2.geometry} material={materials.Front}>
-            <meshBasicMaterial attach="material" transparent toneMapped={false} map={front} />
+            <meshBasicMaterial attach="material" transparent toneMapped={false} map={tmp} />
           </mesh>
           <mesh castShadow receiveShadow geometry={nodes.Cube001.geometry} material={materials.Side}>
             <meshBasicMaterial attach="material" color="#13161B" />
