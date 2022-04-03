@@ -29,6 +29,7 @@ function MintConcertAreaList({ section, leftover, idx, pick, selected }) {
           top: '50%',
           transform: 'translateY(-15%)',
           padding: '0 20px 0 20px',
+          textAlign: 'center',
         }}>
         잔여 {leftover}석
       </Grid>

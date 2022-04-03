@@ -54,8 +54,8 @@ function App({ setMode }) {
         <Route exact path="/concert/detail/:id" element={<MintConcertDetail bright={bright} />} />
         <Route path="/:id/concert/date" element={<MintConcertDate />} />
         <Route path="/:id/concert/area" element={<MintConcertArea />} />
-        <Route path="/concert/seat" element={<MintConcertSeat />} />
-        <Route path="/concert/payment" element={<MintConcertPayment />} />
+        <Route path="/:id/concert/seat" element={<MintConcertSeat />} />
+        <Route path="/:id/concert/payment" element={<MintConcertPayment />} />
         <Route path="/address" element={<MintAddress />} />
         <Route path="/notice" element={<MintNotice />} />
         <Route path="/notice/1" element={<MintNotice1 />} />
@@ -157,6 +157,7 @@ export default function MINT() {
                 margin: '0 auto',
                 height: '100vh',
                 backgroundColor: mode === 'light' ? '#FFF' : '#222831',
+                overflow: 'hidden',
               }}>
               <App setMode={setMode} />
             </Box>

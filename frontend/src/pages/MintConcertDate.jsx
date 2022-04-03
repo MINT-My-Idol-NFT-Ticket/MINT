@@ -117,9 +117,9 @@ function MintConcertDate() {
     return (
       <Box sx={{ padding: '20px 31px' }}>
         <MintBtnGroup
-          prev={{ url: `concert/detail/${concertId}`, content: '이전' }}
+          prev={{ url: `concert/detail/${concertId}`, content: '이전', color: 'secondary' }}
           next={{ url: `${concertId}/concert/area`, content: '다음' }}
-          passData={{ date: dates, time: time, timeId: selectedId }}
+          passData={{ time: time, timeId: selectedId }}
         />
       </Box>
     )

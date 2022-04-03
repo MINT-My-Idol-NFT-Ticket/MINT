@@ -1,7 +1,8 @@
 import React from 'react'
 import { Box, Typography } from '@mui/material'
 
-function MintSeatForm({ title, section, seat, price }) {
+function MintSeatForm({ title, section, seat }) {
+  console.log(section, 'mintseatform')
   return (
     <Box
       sx={{
@@ -10,7 +11,7 @@ function MintSeatForm({ title, section, seat, price }) {
       <Typography>{title}</Typography>
       <Box sx={content}>
         {seat ? seat : ''}
-        {section ? section : ''}
+        {/* {section.area.area ? section.area : ''} */}
       </Box>
     </Box>
   )
@@ -23,11 +24,5 @@ const content = {
   textAlign: 'center',
   lineHeight: '58px',
 }
-
-// props default value for test
-// MintSeatForm.defaultProps = {
-//   seat: 'A',
-//   price: '0.2',
-// }
 
 export default MintSeatForm

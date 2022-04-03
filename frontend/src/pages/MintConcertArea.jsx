@@ -12,19 +12,20 @@ import tempArea from '../images/concert_area.png'
 function MintConcertArea(props) {
   const concertId = useParams().id
   const location = useLocation()
-  console.log(location.state, 'location state from date')
+  // console.log(location, 'location state from date')
 
   const [showSection, setShowSection] = useState('구역을 선택해 주세요.')
   const [selected, setSelected] = useState([0, false])
-  const [sections, setSections] = useState(tempSection)
+  const [sections, setSections] = useState([])
   const pickArea = (area, idx) => {
     setSelected([idx, true])
-    setShowSection(area)
+    console.log(area, idx, 'area')
+    setShowSection({ id: idx, area: area })
   }
 
-  const timesId = 3
   const getConcertArea = async () => {
-    const response = await getRequest(`/api/ticket/times/${timesId}`)
+    const response = await getRequest(`/api/ticket/extraSeat/${location.state.timeId}`)
+    setSections(response.data)
     console.log(response.data, 'available Seats by time')
   }
 
@@ -42,27 +43,22 @@ function MintConcertArea(props) {
         </Box>
         <Box sx={area}>구역그림</Box>
         <Box sx={seatFromContainer}>
-          <MintSeatForm title="좌석등급/가격" section={showSection} />
+          <MintSeatForm title="선택된 구역" section={showSection} />
         </Box>
-        <Typography sx={{ padding: '0 18px' }}>
-          <span>지정석</span>
-          <span>/</span>
-          <span>스탠딩</span>
-        </Typography>
       </>
     )
   }
   const Contents = () => {
     return (
       <>
-        {sections.map((section, idx) => (
+        {sections.map(section => (
           <MintConcertAreaList
-            key={section.name}
+            key={section.id + section.name}
             section={section.name}
-            leftover={section.seats}
-            idx={idx}
+            leftover={section.extraSeat}
+            idx={section.id}
             pick={pickArea}
-            selected={selected[1] && selected[0] === idx}
+            selected={selected[1] && selected[0] === section.id}
           />
         ))}
       </>
@@ -70,27 +66,15 @@ function MintConcertArea(props) {
   }
   const Footer = () => (
     <Box sx={{ padding: '20px 31px' }}>
-      <MintBtnGroup prev={`${concertId}/concert/date`} next={`${concertId}/concert/seat`} />
+      <MintBtnGroup
+        prev={{ url: `${concertId}/concert/date`, content: '이전', color: 'secondary' }}
+        next={{ url: `${concertId}/concert/seat`, content: '다음' }}
+        passData={{ area: showSection }}
+      />
     </Box>
   )
   return <MintPageTemplate header={<Header />} contents={<Contents />} footer={<Footer />} />
 }
-
-// temp data
-const tempSection = [
-  {
-    name: 'A',
-    seats: 150,
-  },
-  {
-    name: 'B',
-    seats: 100,
-  },
-  {
-    name: 'C',
-    seats: 200,
-  },
-]
 
 // styles
 const header = {

@@ -1,21 +1,37 @@
-import { Button } from '@mui/material'
+import { Button, createTheme, ThemeProvider } from '@mui/material'
 import React, { useState } from 'react'
 
 function MintConcertSeat(props) {
+  // console.log(props, '시트개별')
   const [isSelected, setIsSelected] = useState(false)
   const handleSelect = () => {
-    setIsSelected(!isSelected)
+    setIsSelected(true)
     props.select(props.data)
   }
 
+  const theme = createTheme({
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            minWidth: '50px',
+            maxWidth: '50px',
+          },
+        },
+      },
+    },
+  })
+
   return (
-    <Button
-      style={{ margin: '3px', width: '30px' }}
-      onClick={handleSelect}
-      disabled={props.data.status === 0 ? true : false}
-      variant={isSelected ? 'outlined' : 'contained'}>
-      {props.data.name}
-    </Button>
+    <ThemeProvider theme={theme}>
+      <Button
+        sx={{ margin: '3px' }}
+        onClick={handleSelect}
+        disabled={props.data.status === 0 ? false : true}
+        variant={isSelected ? 'outlined' : 'contained'}>
+        {props.data.name}
+      </Button>
+    </ThemeProvider>
   )
 }
 

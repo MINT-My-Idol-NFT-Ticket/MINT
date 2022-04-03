@@ -40,12 +40,12 @@ function MintFooter() {
     height: '28px',
     borderRadius: '100px',
     padding: '8px',
-    boxShadow: '2px 2px 12px rgba(0,0,0,.4)',
+    boxShadow: '2px 2px 12px rgba(0,0,0,.2)',
   }
 
   const style = bright === 'light' ? { color: '#222831' } : { color: '#FFF' }
   return (
-    <Box sx={{ boxShadow: '0 -1px 3px 0 gray', zIndex: 100 }}>
+    <Box sx={{ boxShadow: `0 -1px 20px 0 rgba(0,0,0,.2)`, zIndex: 100 }}>
       <IconButton
         sx={{
           position: 'absolute',
