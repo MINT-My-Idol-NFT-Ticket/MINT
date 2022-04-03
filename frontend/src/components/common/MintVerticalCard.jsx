@@ -12,7 +12,7 @@ export default function MintVerticalCard({ concertData, notOpen }) {
   const goDetail = () => {
     navigate(`/concert/detail/${concertData.id}`, { id: concertData.id })
   }
-  const makeDataString = str => str.split('.').slice(0, 3).join('.')
+  const makeDataString = str => str.slice(0, -4)
   return (
     <Box sx={{ margin: '10px 0', boxSizing: 'border-box', overflow: 'hidden', cursor: 'pointer' }} onClick={goDetail}>
       <div className={`MintVerticalCard__poster ${notOpen ? 'notOpen' : 'open'}`}>
@@ -23,7 +23,7 @@ export default function MintVerticalCard({ concertData, notOpen }) {
           data={{
             singer: concertData.artist[0].name,
             title: concertData.title,
-            date: `${makeDataString(concertData.startDate)} - ${makeDataString(concertData.endDate)}`,
+            date: `${makeDataString(concertData.startDate)} ~ ${makeDataString(concertData.endDate)}`,
           }}
           textStyle={textStyle}
         />

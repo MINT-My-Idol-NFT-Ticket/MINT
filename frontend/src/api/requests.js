@@ -12,7 +12,7 @@ export const getRequest = async (url, params = null) => {
 
   if (params !== null) {
     parameter = '?'
-    Object.keys(params).forEach(key => (parameter += `${key}=${params[key]}`))
+    Object.keys(params).forEach(key => (parameter += `${key}=${params[key]}&`))
   }
 
   const response = await axiosInstance.get(url + parameter)

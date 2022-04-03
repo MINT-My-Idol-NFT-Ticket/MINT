@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
-import Grid from '@mui/material/Grid'
 
 import ModeContext from './contexts/ModeContexts.js'
 import useBrightness from './hooks/useBrightness'
 import { Box } from '@mui/system'
+import { lightColor, darkColor } from './functions/util/color.js'
 
 import MintInner from './components/common/MintInner'
 import MintSplash from './pages/MintSplash'
@@ -22,9 +22,6 @@ import MintSoon from './pages/MintSoon'
 import MintTrade from './pages/MintTrade'
 import MintConcertDetail from './pages/MintConcertDetail'
 import Admin from './pages/Admin'
-import Test from './pages/Test'
-import Test2 from './pages/Test2'
-import Test3 from './pages/Test3'
 import MintTicket from './pages/MintTicket.jsx'
 import MintNotice from './pages/MintNotice.jsx'
 import MintNotice3 from './components/notice/MintNotice3.jsx'
@@ -34,7 +31,7 @@ import MintTradeDetail from './pages/MintTradeDetail.jsx'
 import MintConnectWallet from './pages/MintAddress'
 
 function App({ setMode }) {
-  const [bright, setBright] = useBrightness()
+  const [bright, _] = useBrightness()
 
   React.useEffect(() => {
     setMode(bright)
@@ -45,7 +42,7 @@ function App({ setMode }) {
         <Route exact path="/" element={<MintSplash />} />
         <Route path="/intro" element={<MintIntro />} />
         <Route path="/wallet" element={<MintConnectWallet />} />
-        <Route path="/home" element={<MintHome bright={bright} />} />
+        <Route path="/home" element={<MintHome />} />
         <Route path="/search" element={<MintSearch bright={bright} />} />
         <Route path="/comming_soon" element={<MintSoon bright={bright} />} />
         <Route path="/mypage" element={<MintMyPage bright={bright} />} />
@@ -61,10 +58,6 @@ function App({ setMode }) {
         <Route path="/notice/1" element={<MintNotice1 />} />
         <Route path="/notice/2" element={<MintNotice2 />} />
         <Route path="/notice/3" element={<MintNotice3 />} />
-        {/* 트랜젝션 테스트 페이지 */}
-        <Route exact path="/test" element={<Test />} />
-        <Route exact path="/test2" element={<Test2 />} />
-        <Route exact path="/test3" element={<Test3 />} />
         <Route exact path="/trade" element={<MintTrade bright={bright} />} />
         <Route exact path="/trade/ticket/:id" element={<MintTradeDetail bright={bright} />} />
       </Routes>
@@ -84,25 +77,23 @@ export default function MINT() {
             ? {
                 // palette values for light mode
                 background: {
-                  default: '#FFF',
-                  paper: '#FFF',
+                  default: lightColor,
+                  paper: lightColor,
                 },
                 text: {
-                  primary: '#222831',
-                  secondary: '#222831',
-                  // disabled: '#222831',
+                  primary: darkColor,
+                  secondary: darkColor,
                 },
               }
             : {
                 // palette values for dark mode
                 background: {
-                  default: '#222831',
-                  paper: '#222831',
+                  default: darkColor,
+                  paper: darkColor,
                 },
                 text: {
-                  primary: '#FFF',
-                  secondary: '#FFF',
-                  // disabled: '#FFF',
+                  primary: lightColor,
+                  secondary: lightColor,
                 },
               }),
           // for button color
@@ -114,12 +105,12 @@ export default function MINT() {
           secondary: {
             // secondary grey
             main: '#C4C4C4',
-            contrastText: '#222831',
+            contrastText: darkColor,
           },
           info: {
             // info black
             main: '#000000',
-            contrastText: '#FFF',
+            contrastText: lightColor,
           },
         },
         typography: {
@@ -129,7 +120,7 @@ export default function MINT() {
           MuiCalendarPicker: {
             styleOverrides: {
               root: {
-                color: '#222831',
+                color: darkColor,
               },
             },
           },
@@ -145,7 +136,7 @@ export default function MINT() {
           position: 'relative',
           width: '100vw',
           height: '100vh',
-          backgroundColor: 'gray',
+          backgroundColor: 'black',
         }}>
         <ModeContext>
           <MintInner>
@@ -156,7 +147,7 @@ export default function MINT() {
                 minWidth: '340px',
                 margin: '0 auto',
                 height: '100vh',
-                backgroundColor: mode === 'light' ? '#FFF' : '#222831',
+                backgroundColor: mode === 'light' ? lightColor : darkColor,
                 overflow: 'hidden',
               }}>
               <App setMode={setMode} />

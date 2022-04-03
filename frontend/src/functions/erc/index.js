@@ -5,17 +5,18 @@ import ERC20 from '../../contract/ERC20.json'
 
 export const web3 = new Web3(process.env.REACT_APP_BLOCK_CHAIN_NODE_URL)
 
+const getAdminWalletAddress = () => process.env.REACT_APP_ADMIN_WALLET_ADDRESS
+const getAdminPK = () => process.env.REACT_APP_ADMIN_PRIVATE_KEY
+const getERC20Address = () => process.env.REACT_APP_ERC20_ADDRESS
+
 export const MINT_ABI = MintTicket.abi
 export const MINT_BYTE_CODE = MintTicket.bytecode
 
 export const SALE_ABI = SaleTicket.abi
 export const SALE_BYTE_CODE = SaleTicket.bytecode
 
-// export const ADMIN = '0xb2FF8d3Cb3759CD4F3841816Fc0e646C5A9AC40b'
-// export const ADMIN_PK = '0x2268d80094b1dcbfcb3785c0940d06ed14d941efe4a80145aced37037833cb7a'
-export const ADMIN = process.env.REACT_APP_ADMIN_WALLET_ADDRESS
-export const ADMIN_PK = process.env.REACT_APP_ADMIN_PRIVATE_KEY
-export const ERC20ADDRESS = process.env.REACT_APP_ERC20_ADDRESS
-
 export const ERC20_ABI = ERC20.abi
-export const SSAFY_CONTRACT_ADDRESS = process.env.REACT_APP_ERC20_ADDRESS
+
+export const ADMIN = getAdminWalletAddress()
+export const ADMIN_PK = getAdminPK()
+export const ERC20ADDRESS = getERC20Address()
