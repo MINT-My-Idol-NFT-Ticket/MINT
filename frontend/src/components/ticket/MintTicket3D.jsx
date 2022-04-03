@@ -18,7 +18,7 @@ function MintTicket3D(props) {
       'https://t1.daumcdn.net/cfile/tistory/99BB43455E8108F209',
       'http://newsimg.hankookilbo.com/2019/05/08/201905082306085099_1.jpg',
     ])
-    const src = 'https://ipfs.io/ipfs/Qmdoj4Cua7KfroYi2DpDtdQs8HN1uxDBodUvuZN4KBzh7Z'
+    const src = 'https://ipfs.io/ipfs/bafybeibtrru6iihmdssfwrt246eponso7vkpx6jzqjda7zd4u4lqfz6eh4/v-regeno.mp4'
     const [video] = useState(() =>
       Object.assign(document.createElement('video'), {
         src: src,

@@ -1,20 +1,21 @@
-import { create } from 'ipfs-http-client'
 import { useEffect, useState } from 'react'
 import { Button } from '@mui/material'
-
-const ipfs = create({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
+import { Web3Storage } from 'web3.storage'
 
 export default function MintUploadCard({ requestData, setRequestData }) {
   const [files, setFiles] = useState([])
   const [cids, setCids] = useState([])
-  const selectFiles = e => setFiles(e.target.files)
+  const selectFiles = e => {
+    setFiles(e.target.files)
+    console.log(e.target.files)
+  }
   const uploadFiles = async () => {
-    const list = []
-    for (let file of files) {
-      const tmp = await ipfs.add(file)
-      list.push(tmp.path)
-    }
-    setCids(list)
+    const client = new Web3Storage({ token: process.env.REACT_APP_WEB3_STORAGE_API })
+    const cid = await client.put(files)
+    const tmp = []
+    for (const file of files) tmp.push(`${cid}/${file.name}`)
+
+    setCids(tmp)
   }
 
   useEffect(() => {
