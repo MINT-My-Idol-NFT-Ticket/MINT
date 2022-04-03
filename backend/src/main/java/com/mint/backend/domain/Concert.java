@@ -63,4 +63,8 @@ public class Concert {
     @JsonIgnore
     @OneToMany(mappedBy = "concert",cascade = CascadeType.ALL)
     private List<Cids> cids = new ArrayList<>();
+
+    public void update(int status){
+        this.status = status;
+    }
 }

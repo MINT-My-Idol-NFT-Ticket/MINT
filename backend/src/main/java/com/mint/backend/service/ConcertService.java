@@ -43,7 +43,7 @@ public class ConcertService {
     public List<ResponseFindAllDto> getConcertList(int status, Pageable pageable) {
 //        return new ResponseFindAllDto()
 //                .toDTO(concertRepository.findConcert(status));
-        Page<Concert> concert = concertRepository.findAllByStatusIs(status,pageable);
+        Page<Concert> concert = concertRepository.findAllByStatusIs(status, pageable);
         List<ResponseFindAllDto> list = new ArrayList<>();
         for (Concert con : concert) {
             list.add(ResponseFindAllDto.builder()
@@ -52,7 +52,7 @@ public class ConcertService {
                     .thumnail(con.getImage().getThumbnailUrl())
                     .poster(con.getImage().getPosterUrl())
                     .startDate(con.getTimes().get(0).getDate())
-                    .endDate(con.getTimes().get(con.getTimes().size()-1).getDate())
+                    .endDate(con.getTimes().get(con.getTimes().size() - 1).getDate())
                     .artist(con.getArtist())
                     .build());
         }
@@ -82,8 +82,8 @@ public class ConcertService {
      * @return
      */
     @Transactional(readOnly = true)
-    public List<ResponseSearchDto> search(String keyword,Pageable pageable) {
-        Page<Concert> concert = concertRepository.searchConcert(keyword,pageable);
+    public List<ResponseSearchDto> search(String keyword, Pageable pageable) {
+        Page<Concert> concert = concertRepository.searchConcert(keyword, pageable);
         List<ResponseSearchDto> list = new ArrayList<>();
         for (Concert con : concert) {
             list.add(ResponseSearchDto.builder()
@@ -91,7 +91,7 @@ public class ConcertService {
                     .title(con.getTitle())
                     .ThumnailUrl(con.getImage().getThumbnailUrl())
                     .startDate(con.getTimes().get(0).getDate())
-                    .endDate(con.getTimes().get(con.getTimes().size()-1).getDate())
+                    .endDate(con.getTimes().get(con.getTimes().size() - 1).getDate())
                     .artists(con.getArtist())
                     .build());
         }
@@ -108,7 +108,6 @@ public class ConcertService {
      * @param seats
      * @param requestConcertDto
      * @return
-     *
      * @modified 박창현
      * 이미지 저장 폴더 명을 컨트랙트 주소를 잘라 저장하게 변경했습니다
      * 106번, 108번 줄
@@ -124,7 +123,7 @@ public class ConcertService {
                 File.separator + "resources" + File.separator + "image" + File.separator +
                 requestConcertDto.getContractAddress().substring(0, 15);
         //DB저장경로
-        String Path = "files" +File.separator + requestConcertDto.getContractAddress().substring(0, 15)+File.separator;
+        String Path = "files" + File.separator + requestConcertDto.getContractAddress().substring(0, 15) + File.separator;
 
         //이미지 저장
         poster.transferTo(new File(realPath, poster.getOriginalFilename()));
@@ -216,6 +215,25 @@ public class ConcertService {
     public boolean delete(Long ConcertId) {
         try {
             concertRepository.deleteById(ConcertId);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 콘서트 상태 변경
+     *
+     * @param concert
+     * @param status
+     * @return
+     */
+    public boolean update(Long concert, int status) {
+        try {
+            Concert data = concertRepository.findById(concert).orElseThrow(RuntimeException::new);
+            data.update(status);
+            concertRepository.save(data);
+
         } catch (Exception e) {
             return false;
         }
