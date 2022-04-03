@@ -23,6 +23,8 @@ export const setSaleTicket = (ticketContractAddress, saleContractAddress) =>
 export const getTicketAmount = (contractAddress, sender) => ERC721Calls.getBalance(web3, contractAddress, sender)
 // sender의 티켓 목록 파악
 export const getTicketList = (contractAddress, sender) => ERC721Calls.getTicketList(web3, contractAddress, sender)
+// 판매 등록된 토큰id 배열 반환
+export const getSaleList = contractAddress => ERC721Calls.getSaleList(web3, contractAddress)
 
 // from으로부터 to로 [amount] SSF 전송
 export const transferSSF = (from, fromPK, to, amount) => ERC20Transactions.transfer(web3, from, fromPK, to, amount)

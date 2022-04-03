@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import { useLocation, useParams } from 'react-router-dom'
-import { getRequest, postRequest } from '../api/requests'
+import { BASE_URL, getRequest, postRequest } from '../api/requests'
 // components
 import MintBtnGroup from '../components/common/MintBtnGroup'
 import MintPageTemplate from '../components/common/MintPageTemplate'
@@ -12,9 +12,9 @@ import tempArea from '../images/concert_area.png'
 function MintConcertArea(props) {
   const concertId = useParams().id
   const location = useLocation()
-  // console.log(location, 'location state from date')
+  // console.log(location.state, '데이트->구역')
 
-  const [showSection, setShowSection] = useState('구역을 선택해 주세요.')
+  const [showSection, setShowSection] = useState({ area: '구역을 선택해 주세요.' })
   const [selected, setSelected] = useState([0, false])
   const [sections, setSections] = useState([])
   const pickArea = (area, idx) => {
@@ -41,7 +41,9 @@ function MintConcertArea(props) {
             구역 내 상단이 무대와 가까운 쪽이며, 예매시 같은 열/연번을 선택하셔야 옆좌석 예매가 가능합니다.
           </Typography>
         </Box>
-        <Box sx={area}>구역그림</Box>
+        <Box>
+          <img src={`${BASE_URL}${location.state.concertInfo.section}`} style={{ width: '100%' }} />
+        </Box>
         <Box sx={seatFromContainer}>
           <MintSeatForm title="선택된 구역" section={showSection} />
         </Box>
@@ -73,6 +75,7 @@ function MintConcertArea(props) {
       />
     </Box>
   )
+
   return <MintPageTemplate header={<Header />} contents={<Contents />} footer={<Footer />} />
 }
 
@@ -89,10 +92,6 @@ const headerText = {
   position: 'relative',
   top: '50%',
   transform: 'translateY(-50%)',
-}
-const area = {
-  height: '220px',
-  backgroundImage: `url("${tempArea}")`,
 }
 const seatFromContainer = { height: '100px' }
 
