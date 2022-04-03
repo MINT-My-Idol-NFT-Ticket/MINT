@@ -4,7 +4,6 @@ import send from './sendTransactions.js'
 // 티켓 컨트랙트 배포 함수
 export async function deployTicketContract(web3, price) {
   const contract = new web3.eth.Contract(MINT_ABI) // 배포하고자 하는 컨트랙트 인스턴스
-  // deploy 트랜잭션 인스턴스
   const transaction = contract.deploy({
     data: MINT_BYTE_CODE,
     arguments: [price, ERC20ADDRESS],
@@ -15,7 +14,6 @@ export async function deployTicketContract(web3, price) {
     data: transaction.encodeABI(),
     gas,
   }
-
   try {
     const result = await send(web3, options, ADMIN_PK)
     return result.contractAddress
@@ -32,7 +30,7 @@ export async function deploySaleContract(web3, mintTicketAddress) {
     data: SALE_BYTE_CODE,
     arguments: [mintTicketAddress, ERC20ADDRESS],
   })
-  const gas = await transaction.estimateGas({ from: ADMIN_PK })
+  const gas = await transaction.estimateGas({ from: ADMIN })
   const options = {
     to: transaction._parent._address,
     data: transaction.encodeABI(),

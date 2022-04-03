@@ -6,6 +6,7 @@ export default function MintDeployContract({ contractAddresses, setContractAddre
   const [price, setPrice] = useState(1)
   const deploy = async () => {
     const ticketTmp = await deployTicketContract(price)
+    console.log(ticketTmp)
     const saleTmp = await deploySaleContract(ticketTmp)
     await setSaleTicket(ticketTmp, saleTmp)
     setContractAddresses([ticketTmp, saleTmp])

@@ -30,7 +30,7 @@ export async function deployContract() {
   const contractInstance = new web3.eth.Contract(compiledContract.get('MintTicket').ABI) // 배포하고자 하는 컨트랙트 인스턴스
   const transactionInstance = contractInstance.deploy({
     data: compiledContract.get('MintTicket').BYTE_CODE,
-    arguments: [1],
+    arguments: [1, '0x6C927304104CDAA5A8B3691E0ADE8A3DED41A333'],
   }) // 트랜잭션 인스턴스
 
   const gas = await transactionInstance.estimateGas({ from: process.env.REACT_APP_ADMIN_WALLET_ADDRESS })

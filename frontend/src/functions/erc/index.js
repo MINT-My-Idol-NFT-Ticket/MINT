@@ -11,6 +11,8 @@ export const MINT_BYTE_CODE = MintTicket.bytecode
 export const SALE_ABI = SaleTicket.abi
 export const SALE_BYTE_CODE = SaleTicket.bytecode
 
+// export const ADMIN = '0xb2FF8d3Cb3759CD4F3841816Fc0e646C5A9AC40b'
+// export const ADMIN_PK = '0x2268d80094b1dcbfcb3785c0940d06ed14d941efe4a80145aced37037833cb7a'
 export const ADMIN = process.env.REACT_APP_ADMIN_WALLET_ADDRESS
 export const ADMIN_PK = process.env.REACT_APP_ADMIN_PRIVATE_KEY
 export const ERC20ADDRESS = process.env.REACT_APP_ERC20_ADDRESS
