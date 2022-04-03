@@ -55,6 +55,12 @@ contract SaleTicket {
         }
     }
 
+    // 해당 콘서트 티켓 중 판매 등록된 토큰 아이디 등록 순으로 반환
+    function getSaleList() public view returns (uint256[] memory) {  
+         
+        return onSaleTicketArray;
+    }
+
     // 해당 콘서트 티켓 중 판매 등록된 수 반환
     function getOnSaleTicketArrayLength() view public returns (uint256) {
         

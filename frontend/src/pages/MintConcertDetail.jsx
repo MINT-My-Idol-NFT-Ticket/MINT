@@ -23,7 +23,6 @@ export default function MintConcertDetail({ bright }) {
           width: '100%',
           bottom: 0,
           margin: '20px 0 0',
-          padding: '0 40px',
           backgroundColor: 'transparent',
           boxSizing: 'border-box',
         }}>
