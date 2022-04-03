@@ -80,9 +80,8 @@ public class AdminController {
             value = "콘서트 수정"
     )
     @PutMapping("/concert")
-    public ResponseEntity update(@RequestParam Long concertId) {
-        //to do
-        return ResponseEntity.ok().body("콘서트 정보 수정");
+    public ResponseEntity<Boolean> update(@RequestParam Long concertId,int status) {
+        return new ResponseEntity(concertService.update(concertId,status),HttpStatus.OK);
     }
 
     @ApiOperation(
