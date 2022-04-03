@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { BASE_URL, getRequest } from '../api/requests'
 import { Box, Typography } from '@mui/material'
-import tempBg from '../images/concert_bg.png'
 // components
 import MintPageTemplate from '../components/common/MintPageTemplate'
 import MintConcertTimes from '../components/concert/MintConcertTimes'
@@ -27,13 +26,13 @@ function MintConcertDate() {
     const response = await getRequest(`/api/ticket/concert/${concertId}`)
     setConcertData(response.data)
     setDayConcertData(response.data)
-    // console.log(response.data, '콘서트 데이터 리퀘')
-    setDate(new Date(`20${response.data[0].date}`))
-    setDates({ min: `20${response.data[0].date}`, max: `20${response.data[response.data.length - 1].date}` })
+    console.log(response.data, '콘서트 데이터 리퀘')
+    setDate(new Date(response.data[0].date))
+    setDates({ min: response.data[0].date, max: response.data[response.data.length - 1].date })
   }
 
   const changeConcertByDate = newDate => {
-    const res = concertData.filter(concert => new Date(`22${concert.date}`).getDate() === newDate.getDate())
+    const res = concertData.filter(concert => new Date(concert.date).getDate() === newDate.getDate())
     setDayConcertData(res)
   }
 
@@ -49,7 +48,7 @@ function MintConcertDate() {
           minHeight: '440px',
           textAlign: 'center',
           color: '#FFF',
-          backgroundImage: `url("${tempBg}")`,
+          backgroundColor: '#000',
           position: 'relative',
         }}>
         <Box
@@ -60,9 +59,20 @@ function MintConcertDate() {
             top: '0',
             bottom: '0',
             backgroundImage: `url("${BASE_URL}${state.poster}")`,
+            backgroundPosition: 'center center',
             opacity: '0.5',
+            overflow: 'hidden',
           }}></Box>
-        <Typography variant="h6" sx={{ paddingTop: '20px', position: 'relative', zIndex: '100' }}>
+        <Typography
+          variant="h6"
+          sx={{
+            padding: '20px 31px 0 31px',
+            position: 'relative',
+            zIndex: '100',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+          }}>
           {state.title}
         </Typography>
         <Typography sx={{ position: 'relative', zIndex: '100' }}>{state.artists.map(a => a.name)}</Typography>
@@ -119,7 +129,7 @@ function MintConcertDate() {
         <MintBtnGroup
           prev={{ url: `concert/detail/${concertId}`, content: '이전', color: 'secondary' }}
           next={{ url: `${concertId}/concert/area`, content: '다음' }}
-          passData={{ time: time, timeId: selectedId }}
+          passData={{ concertInfo: location.state, time: time, timeId: selectedId }}
         />
       </Box>
     )
