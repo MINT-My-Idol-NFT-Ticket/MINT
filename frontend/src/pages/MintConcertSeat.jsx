@@ -1,26 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Typography } from '@mui/material'
-
+import { useLocation, useParams } from 'react-router-dom'
+import { getRequest } from '../api/requests'
+// components
 import MintPageTemplate from '../components/common/MintPageTemplate'
 import MintBtnGroup from '../components/common/MintBtnGroup'
 import MintSeatForm from '../components/concert/MintSeatForm'
 import MintConcertSeatSelect from '../components/concert/MintConcertSeatSelect'
-import { useParams } from 'react-router-dom'
 
 function MintConcertSeat(props) {
   const concertId = useParams().id
-  const [section, setSection] = useState('07')
-  /*
-   * 김정빈
-   * 이후 routing에 따라 props를 받아 사용할
-   * seat select layout state
-   */
-  const [seatLayout, setSeatLayout] = useState({})
+  const location = useLocation()
+  console.log(concertId, location.state, '/ passed data from area to seat')
+  const [section, setSection] = useState(location.state.area.area)
+  const [seatLayout, setSeatLayout] = useState([])
   const [seat, setSeat] = useState('좌석을 선택해주세요.')
+
   const handleSelect = seat => {
     console.log(seat.name, '최상단')
     setSeat(seat.name)
   }
+
+  const getSeatAvailable = async () => {
+    const response = await getRequest(`api/ticket/section/${location.state.area.id}`)
+    console.log(response.data, 'seatLayout')
+    setSeatLayout(response.data)
+  }
+
+  useEffect(() => {
+    getSeatAvailable()
+  }, [])
   const Header = () => {
     return (
       <Box sx={header}>
@@ -32,7 +41,7 @@ function MintConcertSeat(props) {
     return (
       <>
         <Box sx={seatContainer}>
-          <MintConcertSeatSelect data={tempSeatLayout} handleSelect={handleSelect} />
+          <MintConcertSeatSelect data={seatLayout} handleSelect={handleSelect} />
         </Box>
         <Box sx={seatFromContainer}>
           <MintSeatForm title="좌석등급/가격" />
@@ -46,39 +55,14 @@ function MintConcertSeat(props) {
   const Footer = () => {
     return (
       <Box sx={{ padding: '20px 31px' }}>
-        <MintBtnGroup prev={`${concertId}/concert/area`} next={`${concertId}/concert/area`} />
+        <MintBtnGroup
+          prev={{ url: `${concertId}/concert/area`, content: '이전', color: 'secondary' }}
+          next={{ url: `${concertId}/concert/payment`, content: '다음' }}
+        />
       </Box>
     )
   }
   return <MintPageTemplate header={<Header />} contents={<Contents />} footer={<Footer />} />
-}
-
-// temp datas
-const tempSeatLayout = {
-  status: true,
-  code: 200,
-  seats: [
-    {
-      name: 'A1',
-      status: 0, // 0 예매 가능, 1 예매 불가능
-      date: '??',
-    },
-    {
-      name: 'A2',
-      status: 1,
-      date: '??',
-    },
-    {
-      name: 'A3',
-      status: 0,
-      date: '??',
-    },
-    {
-      name: 'A4',
-      status: 1,
-      date: '??',
-    },
-  ],
 }
 
 // styles

@@ -22,7 +22,7 @@ function MintConcertTimes({ info, times, pick, idx, selected }) {
       onClick={passTime}>
       <Grid
         item
-        xs={2}
+        xs={3}
         sx={{
           textAlign: 'center',
         }}>
@@ -32,7 +32,7 @@ function MintConcertTimes({ info, times, pick, idx, selected }) {
         <Typography sx={{ fontSize: '1.5rem', fontWeight: '800', lineHeight: '24px' }}>{times.time}</Typography>
         <Typography sx={{ fontSize: '0.8rem' }}>{times.date}</Typography>
       </Grid>
-      <Grid item xs={10} sx={{ paddingLeft: '16px' }}>
+      <Grid item xs={9} sx={{ paddingLeft: '36px' }}>
         <Typography
           sx={{
             fontSize: '16px',
