@@ -69,7 +69,6 @@ contract MintTicket is ERC721Enumerable, Ownable{
         erc20Contract.transferFrom(msg.sender, admin, ticketPrice); // SSF 전송
         _mint(msg.sender, newTokenId);  // NFT 발행
         tokenURIs[newTokenId] = _tokenURI;  
-        approve(saleContractAddress, newTokenId);   // NFT 전송 권한 부여
         return newTokenId;
     }
 
