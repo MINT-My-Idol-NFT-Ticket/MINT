@@ -11,19 +11,17 @@ import MintConcertSeatSelect from '../components/concert/MintConcertSeatSelect'
 function MintConcertSeat(props) {
   const concertId = useParams().id
   const location = useLocation()
-  console.log(concertId, location.state, '/ passed data from area to seat')
   const [section, setSection] = useState(location.state.area.area)
   const [seatLayout, setSeatLayout] = useState([])
   const [seat, setSeat] = useState('좌석을 선택해주세요.')
 
   const handleSelect = seat => {
-    console.log(seat.name, '최상단')
-    setSeat(seat.name)
+    const tmp = seat.name.split('-')
+    setSeat(tmp[tmp.length - 1])
   }
 
   const getSeatAvailable = async () => {
     const response = await getRequest(`api/ticket/section/${location.state.area.id}`)
-    console.log(response.data, 'seatLayout')
     setSeatLayout(response.data)
   }
 
@@ -44,10 +42,10 @@ function MintConcertSeat(props) {
           <MintConcertSeatSelect data={seatLayout} handleSelect={handleSelect} />
         </Box>
         <Box sx={seatFromContainer}>
-          <MintSeatForm title="좌석등급/가격" />
+          <MintSeatForm title="좌석등급/가격" section={`${location.state.area.area} 구역`} />
         </Box>
         <Box sx={seatFromContainer}>
-          <MintSeatForm title="선택한 좌석" seat={seat} />
+          <MintSeatForm title="선택한 좌석" seat={`좌석 번호: ${seat}`} />
         </Box>
       </>
     )
@@ -56,8 +54,9 @@ function MintConcertSeat(props) {
     return (
       <Box sx={{ padding: '20px 31px' }}>
         <MintBtnGroup
-          prev={{ url: `${concertId}/concert/area`, content: '이전', color: 'secondary' }}
-          next={{ url: `${concertId}/concert/payment`, content: '다음' }}
+          prev={{ url: `/concert/area/${concertId}`, content: '이전', color: 'secondary' }}
+          next={{ url: `/concert/payment/${concertId}`, content: '다음' }}
+          passData={{ ...location.state, seat: seat }}
         />
       </Box>
     )
