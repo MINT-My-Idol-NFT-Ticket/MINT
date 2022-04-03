@@ -1,3 +1,4 @@
+//modules
 import { Card, CardMedia, CardActions, Typography, Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
@@ -11,7 +12,7 @@ export default function MintCard({ cardData, type }) {
   const setType =
     type === 'trade' ? (
       <CardActions sx={{ padding: '1px', height: '30px' }}>
-        <CardMedia component="img" image={etherIcon} sx={{ width: '10px', ml: '3px', mr: '5px' }} />
+        <CardMedia component="img" image={etherIcon} sx={{ width: '15px', ml: '3px', mr: '5px' }} />
         <Typography>{cardData.price}</Typography>
       </CardActions>
     ) : (
@@ -42,4 +43,4 @@ export default function MintCard({ cardData, type }) {
 }
 
 //etherium 아이콘 이미지
-const etherIcon = 'https://openseauserdata.com/files/6f8e2979d428180222796ff4a33ab929.svg'
+const etherIcon = 'currency.png'
