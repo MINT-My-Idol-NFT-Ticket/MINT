@@ -14,8 +14,11 @@ export default function MintConcertPoster({ imgUrl }) {
         borderRadius: '10px',
         boxSizing: 'border-box',
         overflow: 'hidden',
+        backgroundImage: `url("${imgUrl}")`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center center',
       }}>
-      <img src={imgUrl} style={{ width: '100%' }} alt="" />
+      {/* <img src={imgUrl} style={{ width: '100%' }} alt="" /> */}
     </Box>
   )
 }
