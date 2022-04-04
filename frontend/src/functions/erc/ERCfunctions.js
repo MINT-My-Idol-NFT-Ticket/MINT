@@ -27,6 +27,8 @@ export const getTicketList = (contractAddress, sender) => ERC721Calls.getTicketL
 // 판매 등록된 토큰id 배열 반환
 export const getSaleList = contractAddress => ERC721Calls.getSaleList(web3, contractAddress)
 
+export const getTokenURI = (contractAddress, tokenId) => ERC721Calls.tokenURI(web3, contractAddress, tokenId)
+
 //잔액확인
 export const balanceOfSSF = owner => ERC20Calls.balanceOf(web3, owner)
 // from으로부터 to로 [amount] SSF 전송
