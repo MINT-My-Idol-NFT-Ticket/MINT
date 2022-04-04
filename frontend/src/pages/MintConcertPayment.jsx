@@ -20,10 +20,14 @@ function MintConcertPayment() {
   const concertInfo = {
     img: location.state.poster,
     title: location.state.title,
-    date: `${location.state.time.date} ${location.state.time.time}`,
+    place: location.state.place,
+    date: location.state.time.date,
+    time: location.state.time.time,
     area: location.state.area.area,
     seat: location.state.seat,
+    price: location.state.price,
   }
+
   return (
     <Box sx={container}>
       <MintPayConcertInfo concertInfo={concertInfo} />
@@ -31,6 +35,7 @@ function MintConcertPayment() {
       <Divider />
       <MintConcertAgree />
       <Box sx={{ padding: '20px 31px' }}>
+<<<<<<< HEAD
         <MintConcertPaymentModal
           open={payOpen}
           handleClose={handlePayClose}
@@ -45,6 +50,12 @@ function MintConcertPayment() {
         <MintBtnGroup
           prev={{ url: `/concert/seat/${concertId}`, content: '이전', color: 'secondary' }}
           next={{ url: ``, content: '결제' }}
+=======
+        <MintConcertPaymentModal open={payOpen} handleClose={handlePayClose} />
+        <MintBtnGroup
+          prev={{ url: `/concert/seat/${concertId}`, content: '이전', color: 'secondary' }}
+          next={{ url: `/mypage`, content: '결제', handleClick: handlePayOpen }}
+>>>>>>> c650fc5b704b8f9469d53a13c7f20e4582b132f9
           passData={location.state}
         />
       </Box>

@@ -1,13 +1,13 @@
 package com.mint.backend.controller;
 
-import com.mint.backend.domain.Concert;
+
+
 import com.mint.backend.dto.ResponseFindAllDto;
 import com.mint.backend.dto.ResponseFindOneDto;
 import com.mint.backend.dto.ResponseSearchDto;
 import com.mint.backend.service.ConcertService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,5 +57,9 @@ public class MemberController {
     @GetMapping("/search")
     public ResponseEntity<ResponseSearchDto> search(@RequestParam String keyword,Pageable pageable){
         return new ResponseEntity(concertService.search(keyword,pageable),HttpStatus.OK);
+    }
+    @GetMapping("/contracts")
+    public ResponseEntity<List<?>> findContracts(String contract){
+        return new ResponseEntity<>(concertService.findContracts(contract),HttpStatus.OK);
     }
 }

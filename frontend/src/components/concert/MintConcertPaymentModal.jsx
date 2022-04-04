@@ -1,8 +1,9 @@
-import { Modal, Box, Typography, TextField, Button } from '@mui/material'
+import { Modal, Box, Typography, TextField, Button, Grid } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { Web3Storage } from 'web3.storage'
+import { useLocation } from 'react-router-dom'
 
-import { mintTicket, balanceOfSSF, getTicketAmount, approveSSF } from '../../functions/erc/ERCfunctions.js'
+import { mintTicket, balanceOfSSF, approveSSF } from '../../functions/erc/ERCfunctions.js'
 import { checkMessage, errorMessage } from '../../functions/alert/alertFunctions.js'
 
 const getTocken = () => process.env.REACT_APP_WEB3_STORAGE_API
@@ -13,17 +14,17 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  // border: '2px solid #000',
+  borderRadius: '8px',
   boxShadow: 24,
   pt: 2,
-  px: 4,
+  px: 2,
   pb: 3,
 }
 
 export default function MintConcertPaymentModal({ open, handleClose, concertInfo }) {
   const userAddress = sessionStorage.getItem('address')
   const contractAddress = concertInfo.contractAddress
-
   const [wallet, setWellet] = useState(0)
   const [userWalletPK, setUserWalletPK] = useState('')
   const [tokenURI, setTokenURI] = useState(false)
@@ -72,7 +73,6 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
   useEffect(() => {
     checkWalletBalance()
   })
-
   return (
     <Modal
       open={open}
@@ -80,18 +80,43 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
       aria-labelledby="parent-modal-title"
       aria-describedby="parent-modal-description">
       <Box sx={{ ...style, minWidth: '340px', maxWidth: '414px' }}>
-        <Typography>지갑 잔액: {wallet} SSF</Typography>
-        <Typography>결제 후 예상 잔액: {wallet - concertInfo.price} SSF</Typography>
+        <Typography variant="h6" sx={{ marginBottom: '20px' }}>
+          결제를 진행합니다.
+        </Typography>
+        <Grid container sx={{ margin: '10px 0' }}>
+          <Grid item xs={5.5} sx={itemStyle}>
+            <Typography sx={itemTypo}>현재 잔액</Typography>
+            <Typography>{'얼마'} SSF</Typography>
+          </Grid>
+          <Grid item xs={1} sx={{ textAlign: 'center' }}>
+            <Typography sx={{ fontSize: '12px', lineHeight: '44px' }}>➡</Typography>
+          </Grid>
+          <Grid item xs={5.5} sx={itemStyle}>
+            <Typography sx={itemTypo}>결제 후 예상 잔액</Typography>
+            <Typography>{'얼마'} SSF</Typography>
+          </Grid>
+        </Grid>
         <TextField
-          label="개인키"
-          value={userWalletPK}
+          size="small"
+          label="개인키를 입력해주세요."
           placeholder="0xabcd1234abcd1234abcd1234abcd1234abcd1234"
-          onChange={e => setUserWalletPK(e.target.value)}
-          sx={{ width: '100%' }}></TextField>
-        <Button variant="contained" onClick={payForTicket}>
-          결제
-        </Button>
+          sx={{ width: '100%', margin: '16px 0' }}></TextField>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Typography sx={{ fontWeight: '600' }}>Total</Typography>
+          <Typography>{concertInfo.price} SSF</Typography>
+        </Box>
+        <Box sx={{ marginTop: '16px', float: 'right' }}>
+          <Button variant="contained" color="secondary" onClick={handleClose}>
+            취소
+          </Button>
+          <Button variant="contained" sx={{ marginLeft: '10px' }} onClick={payForTicket}>
+            결제
+          </Button>
+        </Box>
       </Box>
     </Modal>
   )
 }
+
+const itemStyle = { display: 'flex', flexDirection: 'column', textAlign: 'center' }
+const itemTypo = { fontSize: '12px', color: '#C4C4C4' }

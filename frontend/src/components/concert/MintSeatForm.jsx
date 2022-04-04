@@ -19,7 +19,9 @@ function MintSeatForm({ title, section, seat }) {
 // styles
 const content = {
   height: '58px',
-  border: '1px solid #5F6369',
+  border: '1px solid rgba(0, 0, 0, .2)',
+  borderRadius: '4px',
+  backgroundColor: 'rgba(0,0,0,.05)',
   textAlign: 'center',
   lineHeight: '58px',
 }

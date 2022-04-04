@@ -12,13 +12,20 @@ function MintPayConcertInfo({ concertInfo }) {
         boxSizing: 'border-box',
         padding: '20px',
       }}>
-      <Box sx={{ boxSizing: 'border-box', marginRight: '20px', width: '50px', backgroundColor: 'red' }}>
-        <img src={`${BASE_URL}${concertInfo.img}`} alt="" style={{ width: '100px' }} />
-      </Box>
-      <Box sx={{ flex: '1 auto' }}>
+      <Box
+        sx={{
+          width: '150px',
+          boxSizing: 'border-box',
+          backgroundImage: `url("${BASE_URL}${concertInfo.img}")`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
+      <Box sx={{ flex: '1 auto', paddingLeft: '20px' }}>
         <Typography variant="h6">{concertInfo.title}</Typography>
+        <Typography>{concertInfo.place}</Typography>
         <Typography>
-          {concertInfo.date}, {concertInfo.area}, {concertInfo.seat}, {concertInfo.price}
+          {concertInfo.date} {concertInfo.area}구역 {concertInfo.seat}석
         </Typography>
       </Box>
     </Box>
