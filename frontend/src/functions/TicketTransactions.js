@@ -1,6 +1,6 @@
 import Web3 from 'web3'
 import MintTicket from '../contract/MintTicket.json'
-
+import { MINT_ABI } from './erc/index.js'
 const web3 = new Web3(process.env.REACT_APP_BLOCK_CHAIN_NODE_URL)
 
 // 사용하는 컨트랙트 타입 정의
@@ -49,9 +49,10 @@ export async function deployContract() {
   return responseObject
 }
 
-export async function mintTicket(contractType, contractAddress, senderAddress, senderPK) {
-  const contractInstance = new web3.eth.Contract(compiledContract.get(contractType).ABI, contractAddress)
-  const transactionInstance = contractInstance.methods.buyTicket('민팅 테스트')
+export async function mintTicket(contractType, contractAddress, senderAddress, senderPK, tokenURI) {
+  const contractInstance = new web3.eth.Contract(MINT_ABI, contractAddress)
+  const transactionInstance = contractInstance.methods.buyTicket(tokenURI)
+  console.log(contractAddress, transactionInstance)
 
   const gas = '3000000'
   const options = {
@@ -59,7 +60,6 @@ export async function mintTicket(contractType, contractAddress, senderAddress, s
     to: contractAddress,
     data: transactionInstance.encodeABI(),
     gas,
-    value: 1,
   }
 
   const responseObject = await send(options, senderAddress, senderPK)
