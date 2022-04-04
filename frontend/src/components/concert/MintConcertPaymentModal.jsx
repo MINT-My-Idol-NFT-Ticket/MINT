@@ -1,5 +1,12 @@
 import { Modal, Box, Typography, TextField, Button, Grid } from '@mui/material'
+import { useEffect, useState } from 'react'
+import { Web3Storage } from 'web3.storage'
 import { useLocation } from 'react-router-dom'
+
+import { mintTicket, balanceOfSSF, approveSSF } from '../../functions/erc/ERCfunctions.js'
+import { checkMessage, errorMessage } from '../../functions/alert/alertFunctions.js'
+
+const getTocken = () => process.env.REACT_APP_WEB3_STORAGE_API
 
 const style = {
   position: 'absolute',
@@ -7,7 +14,6 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   bgcolor: 'background.paper',
-  // border: '2px solid #000',
   borderRadius: '8px',
   boxShadow: 24,
   pt: 2,
@@ -15,9 +21,57 @@ const style = {
   pb: 3,
 }
 
-export default function MintConcertPaymentModal({ open, handleClose }) {
-  const location = useLocation()
-  console.log(location.state, '모달데이터')
+export default function MintConcertPaymentModal({ open, handleClose, concertInfo }) {
+  const userAddress = sessionStorage.getItem('address')
+  const contractAddress = concertInfo.contractAddress
+  const [wallet, setWellet] = useState(0)
+  const [userWalletPK, setUserWalletPK] = useState('')
+  const [tokenURI, setTokenURI] = useState(false)
+
+  const checkWalletBalance = async () => {
+    const response = await balanceOfSSF(userAddress)
+    setWellet(response)
+  }
+  const makeTokenURI = async () => {
+    const client = new Web3Storage({ token: getTocken() })
+    const max = concertInfo.cids.length
+    const random = Math.floor(Math.random() * max)
+
+    const data = {
+      title: concertInfo.title,
+      section: concertInfo.area,
+      date: concertInfo.date,
+      seat: concertInfo.seat,
+      userAddress: userAddress,
+      img: `https://ipfs.io/ipfs/${concertInfo.cids[random].cid}`,
+    }
+    const blob = new Blob([JSON.stringify(data)], { type: 'application/json' })
+    const files = [new File([blob], 'tokenURI.json')]
+    const cid = await client.put(files)
+    console.log(`https://ipfs.io/ipfs/${cid}/tokenURI.json`)
+
+    return `https://ipfs.io/ipfs/${cid}/tokenURI.json`
+  }
+
+  const payForTicket = async () => {
+    if (tokenURI === false) {
+      const URI = await makeTokenURI()
+      setTokenURI(URI)
+    }
+    await approveSSF(userWalletPK, contractAddress, concertInfo.price)
+    //티켓 발급
+    const result = await mintTicket(contractAddress, userAddress, userWalletPK, tokenURI)
+
+    if (result) {
+      checkMessage('티켓이 발급되었습니다', null, 'light')
+    } else {
+      errorMessage('티켓을 발급할 수 없습니다', 'light')
+    }
+  }
+
+  useEffect(() => {
+    checkWalletBalance()
+  })
   return (
     <Modal
       open={open}
@@ -48,13 +102,13 @@ export default function MintConcertPaymentModal({ open, handleClose }) {
           sx={{ width: '100%', margin: '16px 0' }}></TextField>
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Typography sx={{ fontWeight: '600' }}>Total</Typography>
-          <Typography>{location.state.price} SSF</Typography>
+          <Typography>{concertInfo.price} SSF</Typography>
         </Box>
         <Box sx={{ marginTop: '16px', float: 'right' }}>
           <Button variant="contained" color="secondary" onClick={handleClose}>
             취소
           </Button>
-          <Button variant="contained" sx={{ marginLeft: '10px' }}>
+          <Button variant="contained" sx={{ marginLeft: '10px' }} onClick={payForTicket}>
             결제
           </Button>
         </Box>

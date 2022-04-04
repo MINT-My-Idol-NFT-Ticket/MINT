@@ -11,6 +11,7 @@ import MintConcertPaymentModal from '../components/concert/MintConcertPaymentMod
 function MintConcertPayment() {
   const concertId = useParams().id
   const location = useLocation()
+  console.log(location, 'location')
 
   const [payOpen, setPayOpen] = useState(false)
   const handlePayOpen = () => setPayOpen(true)
