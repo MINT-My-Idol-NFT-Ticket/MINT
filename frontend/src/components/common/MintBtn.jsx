@@ -10,10 +10,10 @@ function MintBtn({ name, color, link, passData, available }) {
   */
   const navigate = useNavigate()
   const handleLink = () => {
-    if (link) {
-      navigate(`/${link}`, { state: { ...passData } })
+    if (link.handleClick) {
+      link.handleClick()
     } else {
-      alert('이동할 주소가 없습니다')
+      link ? navigate(`/${link}`, { state: { ...passData } }) : alert('이동할 주소가 없습니다')
     }
   }
 
