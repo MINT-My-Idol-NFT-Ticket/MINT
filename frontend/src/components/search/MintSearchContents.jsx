@@ -12,7 +12,14 @@ export default function MintSearchContents() {
   return (
     <Box sx={{ padding: '0 20px' }}>
       <Box
-        sx={{ position: 'absolute', padding: '0 20px', width: '100%', top: '52px', left: 0, boxSizing: 'border-box' }}>
+        sx={{
+          position: 'absolute',
+          padding: '10px 20px 0 20px',
+          width: '100%',
+          top: '52px',
+          left: 0,
+          boxSizing: 'border-box',
+        }}>
         <MintSearchBar setSearchList={setSearchList} />
       </Box>
       <Box sx={{ marginTop: '55px' }}>
