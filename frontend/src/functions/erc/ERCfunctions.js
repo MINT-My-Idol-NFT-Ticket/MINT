@@ -27,7 +27,7 @@ export const getTicketList = (contractAddress, sender) => ERC721Calls.getTicketL
 export const getSaleList = contractAddress => ERC721Calls.getSaleList(web3, contractAddress)
 
 //잔액확인
-export const balanceOfSSF = (owner, spender) => ERC20Calls.balanceOf(web3, owner)
+export const balanceOfSSF = owner => ERC20Calls.balanceOf(web3, owner)
 // from으로부터 to로 [amount] SSF 전송
 export const transferSSF = (from, fromPK, to, amount) => ERC20Transactions.transfer(web3, from, fromPK, to, amount)
 // operator가 from으로부터 to로 [amount] SSF 전송
