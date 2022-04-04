@@ -6,8 +6,8 @@ export async function getBalance(web3, contractAddress, sender) {
   try {
     const response = await transactionInstance.call()
     return response
-  } catch {
-    console.log('토큰 개수 조회 실패')
+  } catch (err) {
+    return false
   }
 }
 
@@ -16,9 +16,9 @@ export async function getTicketList(web3, contractAddress, sender) {
   const transactionInstance = contractInstance.methods.getTicketList(sender)
   try {
     const response = await transactionInstance.call()
-    return response ? response.toString() : 'no token'
+    return response ? response.toString() : 0
   } catch {
-    console.log('토큰 목록 조회 실패')
+    return false
   }
 }
 
@@ -27,8 +27,8 @@ export async function getSaleList(web3, contractAddress) {
   const transactionInstance = contractInstance.methods.getSaleList()
   try {
     const response = await transactionInstance.call()
-    return response ? response.toString() : 'no sale'
+    return response ? response.toString() : 0
   } catch {
-    console.log('판매 토큰 목록 조회 실패')
+    return false
   }
 }

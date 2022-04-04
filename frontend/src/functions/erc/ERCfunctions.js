@@ -26,14 +26,15 @@ export const getTicketList = (contractAddress, sender) => ERC721Calls.getTicketL
 // 판매 등록된 토큰id 배열 반환
 export const getSaleList = contractAddress => ERC721Calls.getSaleList(web3, contractAddress)
 
+//잔액확인
+export const balanceOfSSF = (owner, spender) => ERC20Calls.balanceOf(web3, owner)
 // from으로부터 to로 [amount] SSF 전송
 export const transferSSF = (from, fromPK, to, amount) => ERC20Transactions.transfer(web3, from, fromPK, to, amount)
 // operator가 from으로부터 to로 [amount] SSF 전송
 export const transferFromSSF = (operatorPK, from, to, amount) =>
   ERC20Transactions.transfer(web3, operatorPK, from, to, amount)
 // SSF 전송권한 부여
-export const approveSSF = (from, ownerPK, spender, amount) =>
-  ERC20Transactions.approve(web3, from, ownerPK, spender, amount)
+export const approveSSF = (ownerPK, spender, amount) => ERC20Transactions.approve(web3, ownerPK, spender, amount)
 //spender에게 owner의 토큰 중 얼만큼의 권한이 있는지 확인
 export const allowanceSSF = (owner, spender) => ERC20Calls.allowance(web3, owner, spender)
 

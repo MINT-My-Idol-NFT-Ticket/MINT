@@ -3,8 +3,6 @@ import React, { useState } from 'react'
 import { BASE_URL } from '../../api/requests'
 
 function MintPayConcertInfo({ concertInfo }) {
-  console.log(concertInfo)
-
   return (
     <Box
       sx={{
