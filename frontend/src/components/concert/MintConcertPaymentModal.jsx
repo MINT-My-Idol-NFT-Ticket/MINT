@@ -2,7 +2,7 @@ import { Modal, Box, Typography, TextField, Button, Grid } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { Web3Storage } from 'web3.storage'
 import { mintTicket, balanceOfSSF, approveSSF, getTicketAmount } from '../../functions/erc/ERCfunctions.js'
-import { checkMessage, errorMessage } from '../../functions/alert/alertFunctions.js'
+import { checkMessage, errorMessage, timerMessage } from '../../functions/alert/alertFunctions.js'
 import useBrightness from '../../hooks/useBrightness.js'
 
 const getTocken = () => process.env.REACT_APP_WEB3_STORAGE_API
@@ -54,7 +54,9 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
     return `https://ipfs.io/ipfs/${cid}/tokenURI.json`
   }
 
-  const payForTicket = async () => {
+  // const wait = () => new Promise(resolve => setTimeout(resolve, 1000))
+
+  const paying = async () => {
     if (tokenURI === false) {
       const URI = await makeTokenURI()
       setTokenURI(URI)
@@ -75,6 +77,8 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
       errorMessage('티켓을 발급할 수 없습니다', bright)
     }
   }
+
+  const doMint = () => timerMessage('잠시만 기다려주세요', '티켓을 발급하고 있습니다', paying, bright)
 
   useEffect(() => {
     checkWalletBalance()
@@ -117,7 +121,7 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
           <Button variant="contained" color="secondary" onClick={handleClose}>
             취소
           </Button>
-          <Button variant="contained" sx={{ marginLeft: '10px' }} onClick={payForTicket}>
+          <Button variant="contained" sx={{ marginLeft: '10px' }} onClick={doMint}>
             결제
           </Button>
         </Box>
