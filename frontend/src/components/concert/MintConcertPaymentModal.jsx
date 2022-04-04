@@ -1,8 +1,6 @@
 import { Modal, Box, Typography, TextField, Button, Grid } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { Web3Storage } from 'web3.storage'
-import { useLocation } from 'react-router-dom'
-
 import { mintTicket, balanceOfSSF, approveSSF } from '../../functions/erc/ERCfunctions.js'
 import { checkMessage, errorMessage } from '../../functions/alert/alertFunctions.js'
 
@@ -22,6 +20,7 @@ const style = {
 }
 
 export default function MintConcertPaymentModal({ open, handleClose, concertInfo }) {
+  console.log(concertInfo)
   const userAddress = sessionStorage.getItem('address')
   const contractAddress = concertInfo.contractAddress
   const [wallet, setWellet] = useState(0)
@@ -85,14 +84,14 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
         <Grid container sx={{ margin: '10px 0' }}>
           <Grid item xs={5.5} sx={itemStyle}>
             <Typography sx={itemTypo}>현재 잔액</Typography>
-            <Typography>{'얼마'} SSF</Typography>
+            <Typography>{wallet} SSF</Typography>
           </Grid>
           <Grid item xs={1} sx={{ textAlign: 'center' }}>
             <Typography sx={{ fontSize: '12px', lineHeight: '44px' }}>➡</Typography>
           </Grid>
           <Grid item xs={5.5} sx={itemStyle}>
             <Typography sx={itemTypo}>결제 후 예상 잔액</Typography>
-            <Typography>{'얼마'} SSF</Typography>
+            <Typography>{wallet - concertInfo.price} SSF</Typography>
           </Grid>
         </Grid>
         <TextField

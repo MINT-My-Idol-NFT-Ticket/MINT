@@ -2,9 +2,9 @@ import { Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 
-function MintHeader({ content, bright }) {
+function MintHeader({ content }) {
   const navigate = useNavigate()
-  const pushBack = () => navigate(-1)
+  const pushHome = () => navigate('/home')
   return (
     <>
       <Box
@@ -31,7 +31,7 @@ function MintHeader({ content, bright }) {
               alignItems: 'center',
             }}>
             <Box>
-              <ChevronLeftIcon onClick={pushBack} />
+              <ChevronLeftIcon onClick={pushHome} />
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <span>{content}</span>

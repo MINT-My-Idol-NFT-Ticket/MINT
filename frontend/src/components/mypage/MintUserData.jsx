@@ -5,8 +5,10 @@ import TabContext from '@mui/lab/TabContext'
 
 import { isLight, lightColor, darkColor } from '../../functions/util/color.js'
 import { Typography } from '@mui/material'
+import useBrightness from '../../hooks/useBrightness.js'
 
-export default function MintUserDate({ value, setValue, bright }) {
+export default function MintUserDate({ value, setValue }) {
+  const [bright, _] = useBrightness()
   const handleChange = (e, newValue) => {
     setValue(newValue)
   }
