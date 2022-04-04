@@ -58,6 +58,9 @@ public class MemberController {
     public ResponseEntity<ResponseSearchDto> search(@RequestParam String keyword,Pageable pageable){
         return new ResponseEntity(concertService.search(keyword,pageable),HttpStatus.OK);
     }
+    @ApiOperation(
+            value = " 계약서 조회"
+    )
     @GetMapping("/contracts")
     public ResponseEntity<List<?>> findContracts(String contract){
         return new ResponseEntity<>(concertService.findContracts(contract),HttpStatus.OK);
