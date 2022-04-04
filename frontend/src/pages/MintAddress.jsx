@@ -24,8 +24,8 @@ export default function MintConnectWallet() {
     <Box>
       <Box sx={title}>
         <Typography variant="h6" sx={{ color: '#000000' }}>
-          연결을 위해
-          <br /> 지갑 주소를 연결해주세요
+          지갑 주소를 연결해주세요
+          <br />
         </Typography>
         <Card sx={card}>
           <CardContent>
