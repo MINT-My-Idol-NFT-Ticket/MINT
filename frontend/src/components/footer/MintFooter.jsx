@@ -12,6 +12,7 @@ import { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import useBrightness from '../../hooks/useBrightness'
+import { lightColor, darkColor, isLight } from '../../functions/util/color'
 
 import MintFooterMenus from './MintFooterMenus'
 
@@ -45,7 +46,7 @@ function MintFooter() {
     boxShadow: '2px 2px 12px rgba(0,0,0,.2)',
   }
 
-  const style = bright === 'light' ? { color: '#222831' } : { color: '#FFF' }
+  const style = isLight(bright) ? { color: darkColor } : { color: lightColor }
   return (
     <Box sx={{ boxShadow: `0 -1px 20px 0 rgba(0,0,0,.2)`, zIndex: 100 }}>
       <IconButton
@@ -56,10 +57,10 @@ function MintFooter() {
         }}
         onClick={colorMode.toggleColorMode}
         color="inherit">
-        {bright === 'dark' ? (
-          <LightModeIcon sx={{ ...modeStyle, backgroundColor: '#FFF' }} style={{ color: '#222831' }} />
+        {isLight(bright) ? (
+          <LightModeIcon sx={{ ...modeStyle, backgroundColor: lightColor }} style={{ color: darkColor }} />
         ) : (
-          <DarkModeIcon sx={{ ...modeStyle, backgroundColor: '#222831' }} style={{ color: '#FFF' }} />
+          <DarkModeIcon sx={{ ...modeStyle, backgroundColor: darkColor }} style={{ color: lightColor }} />
         )}
       </IconButton>
       <BottomNavigation sx={{ width: '100%', height: '58px', position: 'relative' }}>

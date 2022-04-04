@@ -4,7 +4,7 @@ import { Box } from '@mui/material'
 import MintSearchBar from './MintSearchBar'
 import MintHorizontalCard from '../common/MintHorizontalCard'
 
-export default function MintSearchContents({ bright }) {
+export default function MintSearchContents() {
   const [searchList, setSearchList] = useState([])
   const makeSearchList = () => {
     return
@@ -13,7 +13,7 @@ export default function MintSearchContents({ bright }) {
     <Box sx={{ padding: '0 20px' }}>
       <Box
         sx={{ position: 'absolute', padding: '0 20px', width: '100%', top: '52px', left: 0, boxSizing: 'border-box' }}>
-        <MintSearchBar bright={bright} setSearchList={setSearchList} />
+        <MintSearchBar setSearchList={setSearchList} />
       </Box>
       <Box sx={{ marginTop: '55px' }}>
         {searchList.map(concert => (
