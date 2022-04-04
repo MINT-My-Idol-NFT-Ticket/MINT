@@ -1,25 +1,38 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { BASE_URL, getRequest } from '../api/requests'
 import { Box, Typography } from '@mui/material'
-// components
-import MintPageTemplate from '../components/common/MintPageTemplate'
-import MintConcertTimes from '../components/concert/MintConcertTimes'
-import MintBtnGroup from '../components/common/MintBtnGroup'
-// calanders
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import LocalizationProvider from '@mui/lab/LocalizationProvider'
 import CalendarPicker from '@mui/lab/CalendarPicker'
-// css
+
 import '../styles/MintConcertProcess.css'
+import { confirmMessageNoBtn } from '../functions/alert/alertFunctions'
+import useBrightness from '../hooks/useBrightness'
+
+import MintPageTemplate from '../components/common/MintPageTemplate'
+import MintConcertTimes from '../components/concert/MintConcertTimes'
+import MintBtnGroup from '../components/common/MintBtnGroup'
 
 function MintConcertDate() {
   const location = useLocation()
+  const params = useParams()
+  const [bright, _] = useBrightness()
+
   const [state, setState] = useState(location.state)
   const [concertData, setConcertData] = useState([])
   const [dayConcertData, setDayConcertData] = useState([])
   const [dates, setDates] = useState({})
-  const params = useParams()
+  const [date, setDate] = useState(dates.min)
+  const [time, setTime] = useState('')
+  const [isSelected, setIsSelected] = useState(false)
+  const [selectedId, setSelectedId] = useState(0)
+
+  const pickTime = (time, idx) => {
+    setTime(time)
+    setIsSelected(true)
+    setSelectedId(idx)
+  }
 
   const getConcertDate = async () => {
     const response = await getRequest(`/api/ticket/concert/${params.id}`)
@@ -122,27 +135,23 @@ function MintConcertDate() {
     )
   }
   const Footer = () => {
+    const nextWithoutTime = () => confirmMessageNoBtn('날짜와 시간을 선택하세요', null, bright)
+
     return (
       <Box sx={{ padding: '20px 31px' }}>
         <MintBtnGroup
           prev={{ url: `/concert/detail/${params.id}`, content: '이전', color: 'secondary' }}
-          next={{ url: `/concert/area/${params.id}`, content: '다음' }}
+          next={{
+            url: `/concert/area/${params.id}`,
+            content: '다음',
+            handleClick: time === '' ? nextWithoutTime : null,
+          }}
           passData={{ ...location.state, time: time, timeId: selectedId }}
         />
       </Box>
     )
   }
 
-  const [date, setDate] = useState(dates.min)
-  const [time, setTime] = useState('')
-  const [isSelected, setIsSelected] = useState(false)
-  const [selectedId, setSelectedId] = useState(0)
-
-  const pickTime = (time, idx) => {
-    setTime(time)
-    setIsSelected(true)
-    setSelectedId(idx)
-  }
   return <MintPageTemplate header={<Header />} contents={<Contents />} footer={<Footer />} />
 }
 

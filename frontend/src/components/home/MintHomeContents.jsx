@@ -33,7 +33,7 @@ export default function MintHomeContents() {
   return (
     <>
       {notOpenConcerts.length === 0 ? <Skeleton variant="ractangular" sx={{ height: '100px' }} /> : <MintBanner />}
-      <Box sx={{ padding: '0 20px' }}>
+      <Box sx={{ padding: '10px 20px 0 20px' }}>
         {openConcerts.length === 0
           ? [0, 0, 0, 0].map((v, i) => <MintVerticalSkeleton key={i} notOpen={false} />)
           : openConcerts.map(concert => <MintVerticalCard key={concert.id} concertData={concert} notOpen={false} />)}
@@ -42,7 +42,7 @@ export default function MintHomeContents() {
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
-          padding: '0 20px',
+          padding: '10px 20px 0 20px',
           margin: '80px 0 10px',
           fontWeight: 'bold',
           cursor: 'pointer',

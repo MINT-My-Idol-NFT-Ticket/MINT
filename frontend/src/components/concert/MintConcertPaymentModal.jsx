@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 import { Web3Storage } from 'web3.storage'
 import { mintTicket, balanceOfSSF, approveSSF, getTicketAmount } from '../../functions/erc/ERCfunctions.js'
 import { checkMessage, errorMessage, timerMessage } from '../../functions/alert/alertFunctions.js'
+import { useNavigate } from 'react-router-dom'
+
 import useBrightness from '../../hooks/useBrightness.js'
 
 const getTocken = () => process.env.REACT_APP_WEB3_STORAGE_API
@@ -23,10 +25,14 @@ const style = {
 export default function MintConcertPaymentModal({ open, handleClose, concertInfo }) {
   const userAddress = sessionStorage.getItem('address')
   const contractAddress = concertInfo.contractAddress
+  const navigate = useNavigate()
   const [bright, _] = useBrightness()
   const [wallet, setWellet] = useState(0)
   const [userWalletPK, setUserWalletPK] = useState('')
   const [tokenURI, setTokenURI] = useState(false)
+
+  const pushHome = () => navigate('/home')
+  const pushMypage = () => navigate('/mypage')
 
   const checkWalletBalance = async () => {
     const response = await balanceOfSSF(userAddress)
@@ -57,7 +63,14 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
   const paying = async () => {
     const amount = await getTicketAmount(contractAddress, userAddress)
     if (amount > 0) {
-      errorMessage('해당 콘서트를 이미 예매했습니다', handleClose, bright)
+      errorMessage(
+        '해당 콘서트를 이미 예매했습니다',
+        () => {
+          handleClose()
+          pushMypage()
+        },
+        bright,
+      )
       return
     }
     await approveSSF(userWalletPK, contractAddress, concertInfo.price)
@@ -70,9 +83,9 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
     const result = await mintTicket(contractAddress, userAddress, userWalletPK, tokenURI)
 
     if (result) {
-      checkMessage('티켓이 발급되었습니다', null, bright)
+      checkMessage('티켓이 발급되었습니다', pushHome, bright)
     } else {
-      errorMessage('티켓을 발급할 수 없습니다', null, bright)
+      errorMessage('티켓을 발급할 수 없습니다', pushMypage, bright)
     }
   }
 

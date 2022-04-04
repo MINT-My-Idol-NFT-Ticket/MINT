@@ -17,9 +17,9 @@ export async function getTicketList(web3, contractAddress, sender) {
   const transactionInstance = contractInstance.methods.getTicketList(sender)
   try {
     const response = await transactionInstance.call()
-    return response ? response.toString() : 0
+    return response
   } catch {
-    return false
+    return []
   }
 }
 
@@ -39,6 +39,17 @@ export async function getSaleList(web3, contractAddress) {
   try {
     const response = await transactionInstance.call()
     return response ? response.toString() : 0
+  } catch {
+    return false
+  }
+}
+
+export async function tokenURI(web3, contractAddress, tokenId) {
+  const contractInstance = new web3.eth.Contract(MINT_ABI, contractAddress)
+  const transactionInstance = contractInstance.methods.tokenURI(tokenId)
+  try {
+    const response = await transactionInstance.call()
+    return response
   } catch {
     return false
   }

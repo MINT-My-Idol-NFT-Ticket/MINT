@@ -4,7 +4,7 @@ plugins {
     id 'java'
     id 'war'
     id 'jacoco'
-    id 'com.google.cloud.tools.jib' version '3.1.4'
+//    id 'com.google.cloud.tools.jib' version '3.1.4'
 }
 
 group = 'com.mint'
@@ -27,6 +27,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+
 
     // Database
     runtimeOnly 'com.h2database:h2'
@@ -52,16 +53,16 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
-jib {
-    from {
-        image = "adoptopenjdk/openjdk8"
-    }
-    to {
-        image = "${project.name}-${project.version.toString().toLowerCase()}"
-        tags = ["latest"]
-    }
-    container {
-        jvmFlags = ["-Xms128m", "-Xmx128m"]
-        ports = ['9090']
-    }
-}
+//jib {
+//    from {
+//        image = "adoptopenjdk/openjdk8"
+//    }
+//    to {
+//        image = "${project.name}-${project.version.toString().toLowerCase()}"
+//        tags = ["latest"]
+//    }
+//    container {
+//        jvmFlags = ["-Xms128m", "-Xmx128m"]
+//        ports = ['9090']
+//    }
+//}

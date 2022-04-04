@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import { useLocation, useParams } from 'react-router-dom'
 import { BASE_URL, getRequest } from '../api/requests'
-// components
+
+import { confirmMessageNoBtn } from '../functions/alert/alertFunctions'
+import useBrightness from '../hooks/useBrightness'
+
 import MintBtnGroup from '../components/common/MintBtnGroup'
 import MintPageTemplate from '../components/common/MintPageTemplate'
 import MintConcertAreaList from '../components/concert/MintConcertAreaList'
@@ -11,7 +14,8 @@ import MintSeatForm from '../components/concert/MintSeatForm'
 function MintConcertArea() {
   const concertId = useParams().id
   const location = useLocation()
-  console.log(location)
+  const [bright, _] = useBrightness()
+
   const [showSection, setShowSection] = useState({ area: '구역을 선택해 주세요.' })
   const [selected, setSelected] = useState([0, false])
   const [sections, setSections] = useState([])
@@ -62,15 +66,23 @@ function MintConcertArea() {
       </>
     )
   }
-  const Footer = () => (
-    <Box sx={{ padding: '20px 31px' }}>
-      <MintBtnGroup
-        prev={{ url: `/concert/date/${concertId}`, content: '이전', color: 'secondary' }}
-        next={{ url: `/concert/seat/${concertId}`, content: '다음' }}
-        passData={{ ...location.state, area: showSection }}
-      />
-    </Box>
-  )
+  const Footer = () => {
+    const nextWithoutSection = () => confirmMessageNoBtn('관람 구역을 선택해주세요', null, bright)
+
+    return (
+      <Box sx={{ padding: '20px 31px' }}>
+        <MintBtnGroup
+          prev={{ url: `/concert/date/${concertId}`, content: '이전', color: 'secondary' }}
+          next={{
+            url: `/concert/seat/${concertId}`,
+            content: '다음',
+            handleClick: selected[1] === false ? nextWithoutSection : null,
+          }}
+          passData={{ ...location.state, area: showSection }}
+        />
+      </Box>
+    )
+  }
 
   return <MintPageTemplate header={<Header />} contents={<Contents />} footer={<Footer />} />
 }

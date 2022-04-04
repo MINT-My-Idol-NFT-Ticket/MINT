@@ -1,23 +1,23 @@
-.searchBar{
-	all: unset;
-	width: 100%;
-	padding: 5px 40px;
-	font-size: 16px;
-	box-sizing: border-box;
-	border-radius: 10px;
+.searchBar {
+  all: unset;
+  width: 100%;
+  padding: 5px 40px;
+  font-size: 16px;
+  box-sizing: border-box;
+  border-radius: 30px;
 }
 
-.searchBar.light{
-	border: 2px solid #222831;
+.searchBar.light {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
-.searchBar.dark{
-	border: 2px solid #FFF;
+.searchBar.dark {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-.searchBar:focus.light{
-	background-color: rgba(100, 100, 100, .2);
+.searchBar:focus.light {
+  border: 1px solid #222831;
 }
-.searchBar:focus.dark{
-	background-color: rgba(50, 50, 50, .7);
+.searchBar:focus.dark {
+  border: 1px solid #fff;
 }

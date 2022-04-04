@@ -11,6 +11,7 @@ import com.mint.backend.repository.SeatRepository;
 import com.mint.backend.repository.SectionRepository;
 import com.mint.backend.repository.TimesRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class TicketService {
@@ -74,6 +75,7 @@ public class TicketService {
             seatRepository.save(seat);
 
         } catch (Exception e) {
+            log.error("좌석 상태 변경 실패",e);
             return false;
         }
         return true;

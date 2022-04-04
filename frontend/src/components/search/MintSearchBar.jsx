@@ -25,11 +25,18 @@ export default function MintSearchBar({ setSearchList }) {
         value={searchQuery}
         onChange={e => setSearchQuery(e.target.value)}
       />
-      <Box sx={{ position: 'absolute', top: '15px', left: '5px', cursor: 'pointer' }}>
-        <SearchIcon fontSize="medium" onClick={search} />
+      <Box sx={{ position: 'absolute', top: '17px', left: '10px', cursor: 'pointer' }}>
+        <SearchIcon
+          fontSize="small"
+          onClick={search}
+          sx={{ color: bright === 'light' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 1)' }}
+        />
       </Box>
-      <Box sx={{ position: 'absolute', top: '17px', right: '5px', cursor: 'pointer' }}>
-        <CancelIcon fontSize="medium" />
+      <Box sx={{ position: 'absolute', top: '17px', right: '10px', cursor: 'pointer' }}>
+        <CancelIcon
+          fontSize="small"
+          sx={{ color: bright === 'light' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 1)' }}
+        />
       </Box>
     </Box>
   )

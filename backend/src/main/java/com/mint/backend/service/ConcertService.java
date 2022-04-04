@@ -4,6 +4,7 @@ import com.mint.backend.domain.*;
 import com.mint.backend.dto.*;
 import com.mint.backend.repository.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ConcertService {
@@ -33,7 +34,7 @@ public class ConcertService {
      * 콘서트 목록 조회
      *
      * @param status
-     * @return
+     * @return List<ResponseFindAllDto>
      */
     @Transactional(readOnly = true)
     public List<ResponseFindAllDto> getConcertList(int status, Pageable pageable) {
@@ -60,7 +61,7 @@ public class ConcertService {
      * 콘서트 상세정보
      *
      * @param concertId
-     * @return
+     * @return ResponseFindOneDto
      */
     @Transactional(readOnly = true)
     public ResponseFindOneDto getConcertDetail(Long concertId) {
@@ -75,7 +76,7 @@ public class ConcertService {
      * 콘서트 검색
      *
      * @param keyword
-     * @return
+     * @return List<ResponseSearchDto>
      */
     @Transactional(readOnly = true)
     public List<ResponseSearchDto> search(String keyword, Pageable pageable) {
@@ -196,6 +197,7 @@ public class ConcertService {
             }
 
         } catch (Exception e) {
+            log.error("콘서트 등록실패",e);
             return false;
         }
         return true;
@@ -212,6 +214,7 @@ public class ConcertService {
         try {
             concertRepository.deleteById(ConcertId);
         } catch (Exception e) {
+            log.error("콘서트삭제실패",e);
             return false;
         }
         return true;
@@ -231,20 +234,27 @@ public class ConcertService {
             concertRepository.save(data);
 
         } catch (Exception e) {
+            log.error("콘서트 상태 수정 실패",e);
             return false;
         }
         return true;
     }
 
+    /**
+     * contract 주소 조회
+     * @param contract
+     * @return
+     */
     public List<?> findContracts(String contract) {
         contract = contract.toLowerCase(Locale.ROOT);
         if (contract.equals("contractaddress")) {
 
             return concertRepository.<ResponseContract>findAllBy(ResponseContract.class);
         } else if(contract.equals("salecontractaddress")){
-
+            log.info("salecontractaddress");
             return concertRepository.findAllBy(ResponseSaleContract.class);
         }else{
+            log.error("주소 조회 실패");
             throw new RuntimeException();
         }
     }

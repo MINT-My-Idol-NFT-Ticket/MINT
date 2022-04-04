@@ -12,7 +12,7 @@ import { balanceOfSSF } from '../../functions/erc/ERCfunctions'
 
 export default function MintUserDate({ value, setValue }) {
   const [bright, _] = useBrightness()
-  const [balance, setBalance] = useState()
+  const [balance, setBalance] = useState('undefined')
   const userAddress = getUserAddress()
 
   const getBalance = async () => {
@@ -33,18 +33,18 @@ export default function MintUserDate({ value, setValue }) {
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
-          padding: '40px 60px 20px',
+          padding: '40px 60px 14px 60px',
           fontSize: '26px',
           fontWeight: 'bold',
           boxSizing: 'border-box',
         }}>
-        <Typography sx={{ fontSize: '25px' }}>{balance} SSF</Typography>
+        <Typography sx={{ fontSize: '25px', fontWeight: '800' }}>{balance} SSF</Typography>
       </Box>
       <Box sx={{ padding: '0 60px' }}>
-        <Box sx={{ position: 'relative' }}>
+        <Box sx={{ position: 'relative', color: 'text.primary' }}>
           <input
             type="text"
-            value={`${userAddress.slice(0, 7)}...${userAddress.slice(-4)}`}
+            value={userAddress ? `${userAddress.slice(0, 7)}...${userAddress.slice(-4)}` : 'undefined'}
             disabled
             style={{
               width: '100%',
@@ -52,9 +52,8 @@ export default function MintUserDate({ value, setValue }) {
               borderRadius: '50px',
               padding: '0 30px',
               boxSizing: 'border-box',
-              color: '#201f1f',
               border: 'none',
-              backgroundColor: 'rgb(195, 189, 189)',
+              backgroundColor: 'rgba(0,0,0,.15)',
               marginBottom: '20px',
             }}
           />

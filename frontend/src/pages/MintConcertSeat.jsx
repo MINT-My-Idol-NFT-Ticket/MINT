@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import { useLocation, useParams } from 'react-router-dom'
+
 import { getRequest } from '../api/requests'
-// components
+import { confirmMessageNoBtn } from '../functions/alert/alertFunctions'
+import useBrightness from '../hooks/useBrightness'
+
 import MintPageTemplate from '../components/common/MintPageTemplate'
 import MintBtnGroup from '../components/common/MintBtnGroup'
 import MintSeatForm from '../components/concert/MintSeatForm'
@@ -11,15 +14,17 @@ import MintConcertSeatSelect from '../components/concert/MintConcertSeatSelect'
 function MintConcertSeat(props) {
   const concertId = useParams().id
   const location = useLocation()
-  console.log(location.state, 'seat에서 받음')
+  const [bright, _] = useBrightness()
+  const [isSelected, setSelected] = useState(-1)
+  // console.log(location.state, 'seat에서 받음')
 
   const [section, setSection] = useState(location.state.area.area)
   const [seatLayout, setSeatLayout] = useState([])
   const [seat, setSeat] = useState('아직 선택한 좌석이 없습니다.')
-
-  const handleSelect = seat => {
-    const tmp = seat.name.split('-')
-    setSeat(tmp[tmp.length - 1])
+  const handleSelect = idx => {
+    setSelected(idx)
+    const tmp = seatLayout[idx].name.split('-')
+    setSeat(tmp[tmp.length - 1]) // 좌석 set
   }
 
   const getSeatAvailable = async () => {
@@ -30,6 +35,7 @@ function MintConcertSeat(props) {
   useEffect(() => {
     getSeatAvailable()
   }, [])
+
   const Header = () => {
     return (
       <Box sx={header}>
@@ -41,7 +47,12 @@ function MintConcertSeat(props) {
     return (
       <>
         <Box sx={seatContainer}>
-          <MintConcertSeatSelect data={seatLayout} handleSelect={handleSelect} />
+          <MintConcertSeatSelect
+            data={seatLayout}
+            handleSelect={handleSelect}
+            selected={isSelected}
+            handleSeat={setSeat}
+          />
         </Box>
         <Box sx={seatFromContainer}>
           <MintSeatForm title="좌석등급/가격" section={`${location.state.area.area} 구역`} />
@@ -53,11 +64,17 @@ function MintConcertSeat(props) {
     )
   }
   const Footer = () => {
+    const nextWithoutSeat = () => confirmMessageNoBtn('좌석을 선택하세요', null, bright)
+
     return (
       <Box sx={{ padding: '20px 31px' }}>
         <MintBtnGroup
           prev={{ url: `/concert/area/${concertId}`, content: '이전', color: 'secondary' }}
-          next={{ url: `/concert/payment/${concertId}`, content: '다음' }}
+          next={{
+            url: `/concert/payment/${concertId}`,
+            content: '다음',
+            handleClick: seat.length > 5 ? nextWithoutSeat : null,
+          }}
           passData={{ ...location.state, seat: seat }}
         />
       </Box>
@@ -80,7 +97,7 @@ const headerText = {
   top: '50%',
   transform: 'translateY(-50%)',
 }
-const seatContainer = { padding: '0 10px', height: '220px' }
+const seatContainer = { padding: '0 10px', minHeight: '220px' }
 const seatFromContainer = { marginTop: '16px', height: '100px' }
 
 export default MintConcertSeat
