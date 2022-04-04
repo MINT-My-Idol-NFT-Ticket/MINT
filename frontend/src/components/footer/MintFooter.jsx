@@ -58,9 +58,9 @@ function MintFooter() {
         onClick={colorMode.toggleColorMode}
         color="inherit">
         {isLight(bright) ? (
-          <LightModeIcon sx={{ ...modeStyle, backgroundColor: lightColor }} style={{ color: darkColor }} />
-        ) : (
           <DarkModeIcon sx={{ ...modeStyle, backgroundColor: darkColor }} style={{ color: lightColor }} />
+        ) : (
+          <LightModeIcon sx={{ ...modeStyle, backgroundColor: lightColor }} style={{ color: darkColor }} />
         )}
       </IconButton>
       <BottomNavigation sx={{ width: '100%', height: '58px', position: 'relative' }}>
