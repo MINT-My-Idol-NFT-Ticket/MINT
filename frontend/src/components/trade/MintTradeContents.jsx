@@ -27,6 +27,8 @@ const testData = [
     date: '220212',
     number: 1,
     ownerAccount: 'dafadfaqwer1',
+    concert: 'BTS Permission To Dance Concert',
+    title: '[BTS] V Permission To Dance Edition #33',
   },
   {
     imgUrl:
