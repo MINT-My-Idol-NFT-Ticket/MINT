@@ -15,7 +15,6 @@ function MintPayPrice({ price }) {
 const content = {
   height: '90px',
   border: '1px solid #5F6369',
-  fontSize: '24px',
   textAlign: 'center',
   lineHeight: '90px',
   fontSize: '18px',

@@ -1,15 +1,29 @@
 // div 영역 스타일은 배너 리소스 확보시 삭제
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/navigation'
+
+// import required modules
+import { Autoplay } from 'swiper'
 
 export default function MintBanner() {
   return (
-    <>
-      <div
-        style={{
-          width: '100%',
-          height: '100px',
-          backgroundColor: 'royalblue',
-        }}
-        className="MintBanner__img"></div>
-    </>
+    <Swiper
+      speed={1500}
+      loop={true}
+      autoplay={{
+        delay: 7000,
+      }}
+      modules={[Autoplay]}
+      // onSwiper={swiper => console.log(swiper)}
+      // onSlideChange={() => console.log('slide change')}
+    >
+      <SwiperSlide>
+        <img src={`/banner1.png`} />
+      </SwiperSlide>
+      <SwiperSlide>
+        <img src={`/banner2.png`} />
+      </SwiperSlide>
+    </Swiper>
   )
 }
