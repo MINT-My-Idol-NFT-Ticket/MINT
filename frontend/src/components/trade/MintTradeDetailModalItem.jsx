@@ -16,20 +16,22 @@ export default function MintTradeDetailModalItem({ state }) {
         </Card>
         <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', ml: '5px' }}>
           <Typography
-            sx={{
-              fontSize: '7px',
-              boxSizing: 'border-box',
-              padding: '3px',
-              color: 'rgb(32, 129, 226)',
-            }}>
+            sx={
+              ({
+                fontSize: '7px',
+                color: 'rgb(32, 129, 226)',
+              },
+              text)
+            }>
             {state.ownerAccount}
           </Typography>
           <Typography
-            sx={{
-              fontSize: '9px',
-              boxSizing: 'border-box',
-              padding: '3px',
-            }}>
+            sx={
+              ({
+                fontSize: '9px',
+              },
+              text)
+            }>
             {state.title}
           </Typography>
         </Box>
@@ -40,3 +42,6 @@ export default function MintTradeDetailModalItem({ state }) {
     </Box>
   )
 }
+
+//styles
+const text = { boxSizing: 'border-box', padding: '3px' }
