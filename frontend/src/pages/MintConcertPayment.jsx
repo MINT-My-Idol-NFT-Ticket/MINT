@@ -35,10 +35,9 @@ function MintConcertPayment() {
       <MintConcertAgree />
       <Box sx={{ padding: '20px 31px' }}>
         <MintConcertPaymentModal open={payOpen} handleClose={handlePayClose} />
-        <button onClick={handlePayOpen}>모달 켜줘</button>
         <MintBtnGroup
           prev={{ url: `/concert/seat/${concertId}`, content: '이전', color: 'secondary' }}
-          next={{ url: `/mypage`, content: '결제' }}
+          next={{ url: `/mypage`, content: '결제', handleClick: handlePayOpen }}
           passData={location.state}
         />
       </Box>
