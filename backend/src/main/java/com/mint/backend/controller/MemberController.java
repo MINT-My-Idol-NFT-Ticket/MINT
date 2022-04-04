@@ -1,6 +1,7 @@
 package com.mint.backend.controller;
 
 import com.mint.backend.domain.Concert;
+import com.mint.backend.dto.ResponseContract;
 import com.mint.backend.dto.ResponseFindAllDto;
 import com.mint.backend.dto.ResponseFindOneDto;
 import com.mint.backend.dto.ResponseSearchDto;
@@ -57,5 +58,9 @@ public class MemberController {
     @GetMapping("/search")
     public ResponseEntity<ResponseSearchDto> search(@RequestParam String keyword,Pageable pageable){
         return new ResponseEntity(concertService.search(keyword,pageable),HttpStatus.OK);
+    }
+    @GetMapping("/contracts")
+    public ResponseEntity<List<?>> findContracts(String contract){
+        return new ResponseEntity<>(concertService.findContracts(contract),HttpStatus.OK);
     }
 }
