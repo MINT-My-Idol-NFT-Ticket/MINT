@@ -1,7 +1,10 @@
 import { Box } from '@mui/material'
 import { isLight } from '../../functions/util/color.js'
 
-function MintHeader({ bright }) {
+import useBrightness from '../../hooks/useBrightness'
+
+function MintHeader() {
+  const [bright, _] = useBrightness()
   return (
     <Box
       className="MintHeader__logo"
