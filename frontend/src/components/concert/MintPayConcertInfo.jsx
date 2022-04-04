@@ -1,16 +1,8 @@
 import { Box, Grid, Typography } from '@mui/material'
 import React, { useState } from 'react'
+import { BASE_URL } from '../../api/requests'
 
-function MintPayConcertInfo(props) {
-  const [info, setInfo] = useState({
-    img: '콘서트이미지',
-    title: '콘서트타이틀',
-    descrip: '콘서트설명',
-    date: '2022-03-13',
-    area: 'A',
-    seat: '11',
-    price: '0.35',
-  })
+function MintPayConcertInfo({ concertInfo }) {
   return (
     <Box
       sx={{
@@ -20,14 +12,20 @@ function MintPayConcertInfo(props) {
         boxSizing: 'border-box',
         padding: '20px',
       }}>
-      <Box sx={{ boxSizing: 'border-box', marginRight: '20px', width: '15vh', height: '15vh', backgroundColor: 'red' }}>
-        {info.img}
-      </Box>
-      <Box sx={{ flex: '1 auto' }}>
-        <Typography variant="h6">{info.title}</Typography>
-        <Typography>{info.descrip}</Typography>
+      <Box
+        sx={{
+          width: '150px',
+          boxSizing: 'border-box',
+          backgroundImage: `url("${BASE_URL}${concertInfo.img}")`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
+      <Box sx={{ flex: '1 auto', paddingLeft: '20px' }}>
+        <Typography variant="h6">{concertInfo.title}</Typography>
+        <Typography>{concertInfo.place}</Typography>
         <Typography>
-          {info.date}, {info.area}, {info.seat}, {info.price}
+          {concertInfo.date} {concertInfo.area}구역 {concertInfo.seat}석
         </Typography>
       </Box>
     </Box>

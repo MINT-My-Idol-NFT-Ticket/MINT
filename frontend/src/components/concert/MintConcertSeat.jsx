@@ -2,7 +2,6 @@ import { Button, createTheme, ThemeProvider } from '@mui/material'
 import React, { useState } from 'react'
 
 function MintConcertSeat(props) {
-  // console.log(props, '시트개별')
   const [isSelected, setIsSelected] = useState(false)
   const handleSelect = () => {
     setIsSelected(true)
@@ -10,6 +9,12 @@ function MintConcertSeat(props) {
   }
 
   const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#8811DD',
+        light: '#DECAEB',
+      },
+    },
     components: {
       MuiButton: {
         styleOverrides: {
@@ -29,7 +34,7 @@ function MintConcertSeat(props) {
         onClick={handleSelect}
         disabled={props.data.status === 0 ? false : true}
         variant={isSelected ? 'outlined' : 'contained'}>
-        {props.data.name}
+        {props.data.name.slice(props.data.name.lastIndexOf('-') + 1)}
       </Button>
     </ThemeProvider>
   )
