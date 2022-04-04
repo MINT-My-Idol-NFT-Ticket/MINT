@@ -11,7 +11,13 @@ export async function transfer(web3, from, fromPK, to, amount) {
     data: transactionInstance.encodeABI(),
     gas,
   }
-  return await send(web3, options, fromPK)
+
+  try {
+    const result = await send(web3, options, fromPK)
+    return result
+  } catch {
+    console.log('전송 실패')
+  }
 }
 
 // operator가 from으로부터 to로 토큰 전송
@@ -24,7 +30,13 @@ export async function transferFrom(web3, operatorPK, from, to, amount) {
     data: transactionInstance.encodeABI(),
     gas,
   }
-  return await send(web3, options, operatorPK)
+
+  try {
+    const result = await await send(web3, options, operatorPK)
+    return result
+  } catch {
+    console.log('전송 실패')
+  }
 }
 
 //owner가 spender에게 amount의 토큰 권한 부여
@@ -37,5 +49,11 @@ export async function approve(web3, ownerPK, spender, amount) {
     data: transactionInstance.encodeABI(),
     gas,
   }
-  return await send(web3, options, ownerPK)
+
+  try {
+    const result = await send(web3, options, ownerPK)
+    return result
+  } catch {
+    console.log('전송 실패')
+  }
 }

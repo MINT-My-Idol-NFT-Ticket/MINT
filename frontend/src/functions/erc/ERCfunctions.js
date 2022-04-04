@@ -18,6 +18,7 @@ export const burnTicket = (contractAddress, tokenId) => ERC721Transactions.cance
 // 컨트랙트 배포 시 sale 컨트랙트 연동
 export const setSaleTicket = (ticketContractAddress, saleContractAddress) =>
   ERC721Transactions.setSaleTicket(web3, ticketContractAddress, saleContractAddress)
+export const getPrice = contractAddress => ERC721Calls.getTicketPrice(web3, contractAddress)
 
 // sender의 티켓 수량 파악
 export const getTicketAmount = (contractAddress, sender) => ERC721Calls.getBalance(web3, contractAddress, sender)
