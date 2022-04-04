@@ -1,12 +1,10 @@
 package com.mint.backend.service;
 
 import com.mint.backend.domain.*;
-import com.mint.backend.dto.RequestConcertDto;
-import com.mint.backend.dto.ResponseFindAllDto;
-import com.mint.backend.dto.ResponseFindOneDto;
-import com.mint.backend.dto.ResponseSearchDto;
+import com.mint.backend.dto.*;
 import com.mint.backend.repository.*;
 import lombok.RequiredArgsConstructor;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -16,10 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Service
@@ -32,6 +27,7 @@ public class ConcertService {
     private final SeatRepository seatRepository;
     private final SectionRepository sectionRepository;
     private final CidsRepository cidsRepository;
+
 
     /**
      * 콘서트 목록 조회
@@ -186,7 +182,7 @@ public class ConcertService {
                     //자리등록
                     for (int j = 0; j < map.get(s); j++) {
                         Seat seat = Seat.builder()
-                                .name(s + "-" + (j+1))
+                                .name(s + "-" + (j + 1))
                                 .section(section)
                                 .build();
                         seatRepository.save(seat);
@@ -239,4 +235,18 @@ public class ConcertService {
         }
         return true;
     }
+
+    public List<?> findContracts(String contract) {
+        contract = contract.toLowerCase(Locale.ROOT);
+        if (contract.equals("contractaddress")) {
+
+            return concertRepository.<ResponseContract>findAllBy(ResponseContract.class);
+        } else {
+
+            return concertRepository.findAllBy(ResponseSaleContract.class);
+        }
+
+
+    }
+
 }

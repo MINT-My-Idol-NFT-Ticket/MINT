@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
-function MintBtn({ name, color, link, passData }) {
+function MintBtn({ name, color, link, passData, available }) {
   /*
     primary : main purple color
     secondary : main grey sub color
@@ -19,7 +19,7 @@ function MintBtn({ name, color, link, passData }) {
 
   return (
     <Box sx={{ margin: '20px 31px' }}>
-      <Button variant="contained" color={color} sx={btnStyle} onClick={handleLink}>
+      <Button variant="contained" color={color} sx={btnStyle} onClick={handleLink} disabled={available}>
         {name}
       </Button>
     </Box>

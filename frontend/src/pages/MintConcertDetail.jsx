@@ -11,12 +11,14 @@ import MintDetailSkeleton from '../components/skeleton/MintDetailSkeleton'
 
 export default function MintConcertDetail({ bright }) {
   const [concertData, setConcertData] = useState(null)
+  const [status, setStatus] = useState(false)
   const id = useParams().id
 
   useEffect(async () => {
     const response = await getRequest(`api/concert/${id}`)
 
     setConcertData(response.data)
+    setStatus(response.data.status === 1 ? false : true)
   }, [])
 
   const Header = () => <MintSubHeader bright={bright} content="콘서트 상세" />
@@ -33,7 +35,7 @@ export default function MintConcertDetail({ bright }) {
           backgroundColor: 'transparent',
           boxSizing: 'border-box',
         }}>
-        <MintBtn name="예매하기" link={`concert/date/${id}`} passData={concertData} />
+        <MintBtn name="예매하기" link={`concert/date/${id}`} passData={concertData} available={status} />
       </Box>
     </>
   )
