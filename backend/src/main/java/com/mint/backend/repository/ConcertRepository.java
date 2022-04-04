@@ -1,6 +1,7 @@
 package com.mint.backend.repository;
 
 import com.mint.backend.domain.Concert;
+import com.mint.backend.dto.ResponseContract;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -29,4 +30,5 @@ public interface ConcertRepository extends JpaRepository<Concert,Long> {
     @Query("select distinct a from Concert a join a.artist b where a.title like %:keyword% or b.name like %:keyword%")
     public Page<Concert> searchConcert(@Param("keyword")String keyword,Pageable pageable);
 
+    public <T>List<T> findAllBy(Class<T> type);
 }
