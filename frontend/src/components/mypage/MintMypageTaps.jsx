@@ -8,6 +8,7 @@ import { getTicketList } from '../../functions/erc/ERCfunctions'
 import getUserAddress from '../../functions/util/getUserAddress'
 
 import MintBuyList from './MintBuyList'
+import MintCollections from './MintCollections'
 
 export default function MintMypageTabs({ value }) {
   const userAddress = getUserAddress
@@ -36,7 +37,7 @@ export default function MintMypageTabs({ value }) {
               <MintBuyList />
             </TabPanel>
             <TabPanel style={{ padding: 0 }} value="2">
-              컬렉션
+              <MintCollections />
             </TabPanel>
           </Box>
         </TabContext>
