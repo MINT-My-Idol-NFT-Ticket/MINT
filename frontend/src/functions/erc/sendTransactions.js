@@ -4,6 +4,7 @@ export default async function sendTransaction(web3, options, senderPK) {
     await web3.eth.sendSignedTransaction(signedTransaction.rawTransaction)
     return true
   } catch (err) {
+    console.log(err)
     return false
   }
 }
