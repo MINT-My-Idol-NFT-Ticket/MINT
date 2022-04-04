@@ -1,17 +1,14 @@
 import '../../styles/MintTradeContents.css'
 import Doduck from '../../images/do-duck.gif'
 
-import MintCategory from './MintCategory'
-import MintTradeCard from './MintTradeCard'
+import MintCard from '../common/MintCard'
 
 export default function MintTradeContents() {
-  const makeCardList = testData => testData.map(ticket => <MintTradeCard key={ticket.number} cardData={ticket} />)
-  const makeCategory = testCategory =>
-    testCategory.map(category => <MintCategory key={category.number} category={category} />)
+  const makeCardList = testData =>
+    testData.map(ticket => <MintCard key={`${ticket.ownerAccount}-${ticket.tokenId}`} cardData={ticket} type="trade" />)
 
   return (
     <>
-      <div className="MintTrade__category">{makeCategory(testCategory)}</div>
       <div className="MintTrade__cardList">{makeCardList(testData)}</div>
     </>
   )
@@ -86,38 +83,5 @@ const testData = [
     date: '220212',
     number: 7,
     ownerAccount: 'dafadfaqwer1',
-  },
-]
-
-const testCategory = [
-  {
-    number: 1,
-    icon: '아이콘 링크',
-    categoryname: 'Concert',
-  },
-  {
-    number: 2,
-    icon: '아이콘 링크',
-    categoryname: 'Musical',
-  },
-  {
-    number: 3,
-    icon: '아이콘 링크',
-    categoryname: 'Art',
-  },
-  {
-    number: 4,
-    icon: '아이콘 링크',
-    categoryname: 'Ticket',
-  },
-  {
-    number: 5,
-    icon: '아이콘 링크',
-    categoryname: 'BTS',
-  },
-  {
-    number: 6,
-    icon: '아이콘 링크',
-    categoryname: 'Event',
   },
 ]
