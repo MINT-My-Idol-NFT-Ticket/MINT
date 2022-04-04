@@ -2,6 +2,8 @@ import React, { Suspense, useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Stars, useGLTF, Bounds, Html, useProgress, useTexture } from '@react-three/drei'
+// components
+import MintQR from '../../pages/MintQR'
 
 function MintTicket3D(props) {
   const TicketMesh = () => {
@@ -32,7 +34,6 @@ function MintTicket3D(props) {
       }),
     )
     const texture = Object.assign(new THREE.VideoTexture(video), { offset: { x: 0.2, y: 0 } })
-    console.log(texture)
 
     useEffect(() => video.play(), [video])
 
@@ -65,7 +66,10 @@ function MintTicket3D(props) {
           position={[-0.08, 4.8, -0.02]}
           rotation={[-1.57, 0, 0]}
           scale={[-2.19, 2.19, 3.53]}>
-          <meshBasicMaterial attach="material" map={back} side={THREE.FrontSide} />
+          {/* <meshBasicMaterial attach="material" map={back} /> */}
+          <Html rotation-x={Math.PI / 2} position={[0, 0.01, 0]} transform occlude>
+            <MintQR />
+          </Html>
         </mesh>
       </group>
     )
