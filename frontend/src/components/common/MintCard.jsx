@@ -1,5 +1,6 @@
 import { Card, CardMedia, CardActions, Typography, Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import '../../styles/MintTradeContents.css'
 
 export default function MintCard({ cardData, type }) {
   const navigate = useNavigate()
@@ -19,7 +20,9 @@ export default function MintCard({ cardData, type }) {
         boxSizing: 'border-box',
       }}
       onClick={handleDetail}>
-      <Card sx={{ border: '1px solid grey' }}>
+      <Card
+        className="tradeCard__container"
+        sx={{ border: '1px solid rgba(0, 0, 0, 0.2)', boxShadow: '0', cursor: 'pointer' }}>
         <CardMedia component="img" image={cardData.imgUrl} alt="nft사진" sx={{ height: '175px' }} />
         {type === 'trade' ? (
           <CardActions sx={{ padding: '1px', height: '30px' }}>
