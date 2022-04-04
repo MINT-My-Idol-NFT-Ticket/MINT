@@ -11,7 +11,6 @@ import MintConcertPaymentModal from '../components/concert/MintConcertPaymentMod
 function MintConcertPayment() {
   const concertId = useParams().id
   const location = useLocation()
-  console.log(location, 'location')
 
   const [payOpen, setPayOpen] = useState(false)
   const handlePayOpen = () => setPayOpen(true)
@@ -35,7 +34,11 @@ function MintConcertPayment() {
       <Divider />
       <MintConcertAgree />
       <Box sx={{ padding: '20px 31px' }}>
-        <MintConcertPaymentModal open={payOpen} handleClose={handlePayClose} concertInfo={concertInfo} />
+        <MintConcertPaymentModal
+          open={payOpen}
+          handleClose={handlePayClose}
+          concertInfo={{ ...concertInfo, contractAddress: location.state.contractAddress, cids: location.state.cids }}
+        />
         <MintBtnGroup
           prev={{ url: `/concert/seat/${concertId}`, content: '이전', color: 'secondary' }}
           next={{ url: `/mypage`, content: '결제', handleClick: handlePayOpen }}

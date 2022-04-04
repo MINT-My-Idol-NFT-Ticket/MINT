@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import Box from '@mui/material/Box'
 import Tab from '@mui/material/Tab'
 import TabList from '@mui/lab/TabList'
@@ -6,13 +7,26 @@ import TabContext from '@mui/lab/TabContext'
 import { isLight, lightColor, darkColor } from '../../functions/util/color.js'
 import { Typography } from '@mui/material'
 import useBrightness from '../../hooks/useBrightness.js'
+import getUserAddress from '../../functions/util/getUserAddress'
+import { balanceOfSSF } from '../../functions/erc/ERCfunctions'
 
 export default function MintUserDate({ value, setValue }) {
   const [bright, _] = useBrightness()
+  const [balance, setBalance] = useState()
+  const userAddress = getUserAddress()
+
+  const getBalance = async () => {
+    const response = await balanceOfSSF(userAddress)
+    setBalance(response)
+  }
+
+  useEffect(() => {
+    getBalance()
+  }, [])
+
   const handleChange = (e, newValue) => {
     setValue(newValue)
   }
-  const address = sessionStorage.getItem('address')
   return (
     <Box sx={{ width: '100%', height: '160px', backgroundColor: `${isLight(bright) ? lightColor : darkColor}` }}>
       <Box
@@ -24,13 +38,13 @@ export default function MintUserDate({ value, setValue }) {
           fontWeight: 'bold',
           boxSizing: 'border-box',
         }}>
-        <Typography sx={{ fontSize: '25px' }}>13000 SSF</Typography>
+        <Typography sx={{ fontSize: '25px' }}>{balance} SSF</Typography>
       </Box>
       <Box sx={{ padding: '0 60px' }}>
         <Box sx={{ position: 'relative' }}>
           <input
             type="text"
-            value={`${address.slice(0, 7)}...${address.slice(-4)}`}
+            value={`${userAddress.slice(0, 7)}...${userAddress.slice(-4)}`}
             disabled
             style={{
               width: '100%',

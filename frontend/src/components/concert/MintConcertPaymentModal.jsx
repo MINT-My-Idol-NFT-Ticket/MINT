@@ -1,8 +1,9 @@
 import { Modal, Box, Typography, TextField, Button, Grid } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { Web3Storage } from 'web3.storage'
-import { mintTicket, balanceOfSSF, approveSSF } from '../../functions/erc/ERCfunctions.js'
+import { mintTicket, balanceOfSSF, approveSSF, getTicketAmount } from '../../functions/erc/ERCfunctions.js'
 import { checkMessage, errorMessage } from '../../functions/alert/alertFunctions.js'
+import useBrightness from '../../hooks/useBrightness.js'
 
 const getTocken = () => process.env.REACT_APP_WEB3_STORAGE_API
 
@@ -20,9 +21,9 @@ const style = {
 }
 
 export default function MintConcertPaymentModal({ open, handleClose, concertInfo }) {
-  console.log(concertInfo)
   const userAddress = sessionStorage.getItem('address')
   const contractAddress = concertInfo.contractAddress
+  const [bright, _] = useBrightness()
   const [wallet, setWellet] = useState(0)
   const [userWalletPK, setUserWalletPK] = useState('')
   const [tokenURI, setTokenURI] = useState(false)
@@ -34,6 +35,7 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
   const makeTokenURI = async () => {
     const client = new Web3Storage({ token: getTocken() })
     const max = concertInfo.cids.length
+    console.log(max)
     const random = Math.floor(Math.random() * max)
 
     const data = {
@@ -57,14 +59,20 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
       const URI = await makeTokenURI()
       setTokenURI(URI)
     }
+    const amount = await getTicketAmount(contractAddress, userAddress)
+    if (amount > 0) {
+      errorMessage('해당 콘서트를 이미 예매했습니다', handleClose, bright)
+      return
+    }
+
     await approveSSF(userWalletPK, contractAddress, concertInfo.price)
     //티켓 발급
     const result = await mintTicket(contractAddress, userAddress, userWalletPK, tokenURI)
 
     if (result) {
-      checkMessage('티켓이 발급되었습니다', null, 'light')
+      checkMessage('티켓이 발급되었습니다', null, bright)
     } else {
-      errorMessage('티켓을 발급할 수 없습니다', 'light')
+      errorMessage('티켓을 발급할 수 없습니다', bright)
     }
   }
 
@@ -77,7 +85,7 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
       onClose={handleClose}
       aria-labelledby="parent-modal-title"
       aria-describedby="parent-modal-description">
-      <Box sx={{ ...style, minWidth: '340px', maxWidth: '414px' }}>
+      <Box sx={{ ...style, minWidth: '340px', maxWidth: '414px', zIndex: '-1' }}>
         <Typography variant="h6" sx={{ marginBottom: '20px' }}>
           결제를 진행합니다.
         </Typography>
@@ -98,6 +106,8 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
           size="small"
           label="개인키를 입력해주세요."
           placeholder="0xabcd1234abcd1234abcd1234abcd1234abcd1234"
+          value={userWalletPK}
+          onChange={e => setUserWalletPK(e.target.value)}
           sx={{ width: '100%', margin: '16px 0' }}></TextField>
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Typography sx={{ fontWeight: '600' }}>Total</Typography>

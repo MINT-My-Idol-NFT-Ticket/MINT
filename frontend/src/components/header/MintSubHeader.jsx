@@ -17,6 +17,7 @@ function MintHeader({ content }) {
           zIndex: 100,
         }}>
         <a
+          onClick={pushHome}
           style={{
             cursor: 'pointer',
             display: 'flex',
@@ -31,7 +32,7 @@ function MintHeader({ content }) {
               alignItems: 'center',
             }}>
             <Box>
-              <ChevronLeftIcon onClick={pushHome} />
+              <ChevronLeftIcon />
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <span>{content}</span>
