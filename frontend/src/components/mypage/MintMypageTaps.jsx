@@ -8,36 +8,30 @@ import { getTicketList } from '../../functions/erc/ERCfunctions'
 import getUserAddress from '../../functions/util/getUserAddress'
 
 import MintBuyList from './MintBuyList'
-import { tokenURI } from '../../functions/erc/ERC721Calls'
 import MintCollections from './MintCollections'
 
 export default function MintMypageTabs({ value }) {
   const userAddress = getUserAddress()
   const [contractList, setContractList] = useState()
-  const [tokenIds, setTokenIds] = useState({})
+  const [tokenIds, setTokenIds] = useState([])
 
   const getContractList = async () => {
     const response = await getRequest('api/concert/contracts', { contract: 'contractAddress' })
     const result = response.data.map(address => address.contractAddress[0])
-    setContractList(result)
+    const tmpTokenIds = []
     for (let idx = 0; idx < result.length; idx++) {
       const tokenList = await getTicketList(result[idx], userAddress)
       if (tokenList.length === 0) continue
-      const obj = {}
-      const arr = []
-
-      for (let i = 0; i < tokenList.length; i++) {
-        arr.push(tokenList[i].tokenId)
-      }
-      obj[result[idx]] = arr
-      setTokenIds(Object.assign(tokenIds, obj))
+      for (let i = 0; i < tokenList.length; i++)
+        tmpTokenIds.push({ contractAddress: result[idx], tokenIds: tokenList[i].tokenId })
     }
+    setContractList(result)
+    setTokenIds(tmpTokenIds)
   }
 
   useEffect(() => {
     getContractList()
   }, [])
-
   return (
     <>
       <Box sx={{ width: '100%', padding: '0 15px', boxSizing: 'border-box', marginTop: '40px' }}>
@@ -47,7 +41,7 @@ export default function MintMypageTabs({ value }) {
               <MintBuyList />
             </TabPanel>
             <TabPanel style={{ padding: 0 }} value="2">
-              <MintCollections />
+              <MintCollections tokenIds={tokenIds} />
             </TabPanel>
           </Box>
         </TabContext>
