@@ -45,6 +45,7 @@ export default function MintHomeContents() {
           padding: '0 20px',
           margin: '80px 0 10px',
           fontWeight: 'bold',
+          cursor: 'pointer',
         }}
         onClick={pushCommingSoon}>
         <p style={{ fontSize: '20px' }}>오픈 예정</p>
