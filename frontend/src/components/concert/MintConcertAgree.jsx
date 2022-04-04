@@ -1,31 +1,21 @@
-import React, { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Box, Checkbox, FormControlLabel, Typography } from '@mui/material'
 
-function MintConcertAgree(props) {
-  const [checked, setChecked] = useState([false, false])
-  const handleChange1 = event => {
-    setChecked([event.target.checked, event.target.checked])
+function MintConcertAgree({ setAgreement }) {
+  const [checked, setChecked] = useState({ info: false, cancelRule: false })
+  const handleChangeAll = e => {
+    setChecked({ info: e.target.checked, cancelRule: e.target.checked })
   }
 
-  const handleChange2 = event => {
-    setChecked([event.target.checked, checked[1]])
+  const handleChangeInfo = e => {
+    setChecked({ info: e.target.checked, cancelRule: checked.cancelRule })
   }
 
-  const handleChange3 = event => {
-    setChecked([checked[0], event.target.checked])
+  const handleChangeCancelRule = e => {
+    setChecked({ info: checked.info, cancelRule: e.target.checked })
   }
-  const children = (
-    <Box sx={{ display: 'flex', flexDirection: 'column', ml: 3 }}>
-      <FormControlLabel
-        label="[필수] 제3자 정보제공 동의"
-        control={<Checkbox checked={checked[0]} onChange={handleChange2} />}
-      />
-      <FormControlLabel
-        label="[필수] 취소 규정 동의"
-        control={<Checkbox checked={checked[1]} onChange={handleChange3} />}
-      />
-    </Box>
-  )
+
+  useEffect(() => setAgreement(checked.info && checked.cancelRule), [checked])
 
   return (
     <Box sx={{ flex: 2, padding: '20px 18px 0 18px' }}>
@@ -34,9 +24,18 @@ function MintConcertAgree(props) {
       </Typography>
       <FormControlLabel
         label="전체동의"
-        control={<Checkbox checked={checked[0] && checked[1]} onChange={handleChange1} />}
+        control={<Checkbox checked={checked.info && checked.cancelRule} onChange={handleChangeAll} />}
       />
-      {children}
+      <Box sx={{ display: 'flex', flexDirection: 'column', ml: 3 }}>
+        <FormControlLabel
+          label="[필수] 제3자 정보제공 동의"
+          control={<Checkbox checked={checked.info} onChange={handleChangeInfo} />}
+        />
+        <FormControlLabel
+          label="[필수] 취소 규정 동의"
+          control={<Checkbox checked={checked.cancelRule} onChange={handleChangeCancelRule} />}
+        />
+      </Box>
     </Box>
   )
 }

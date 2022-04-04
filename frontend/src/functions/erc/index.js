@@ -17,6 +17,6 @@ export const SALE_BYTE_CODE = SaleTicket.bytecode
 
 export const ERC20_ABI = ERC20.abi
 
-export const ADMIN = getAdminWalletAddress()
-export const ADMIN_PK = getAdminPK()
-export const ERC20ADDRESS = getERC20Address()
+export const ADMIN = process.env.REACT_APP_ADMIN_WALLET_ADDRESS
+export const ADMIN_PK = process.env.REACT_APP_ADMIN_PRIVATE_KEY
+export const ERC20ADDRESS = process.env.REACT_APP_ERC20_ADDRESS

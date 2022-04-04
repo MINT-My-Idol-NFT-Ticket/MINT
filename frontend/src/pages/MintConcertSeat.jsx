@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import { useLocation, useParams } from 'react-router-dom'
+
 import { getRequest } from '../api/requests'
-// components
+import { confirmMessageNoBtn } from '../functions/alert/alertFunctions'
+import useBrightness from '../hooks/useBrightness'
+
 import MintPageTemplate from '../components/common/MintPageTemplate'
 import MintBtnGroup from '../components/common/MintBtnGroup'
 import MintSeatForm from '../components/concert/MintSeatForm'
 import MintConcertSeatSelect from '../components/concert/MintConcertSeatSelect'
 
-// 맨위
 function MintConcertSeat(props) {
   const concertId = useParams().id
   const location = useLocation()
+  const [bright, _] = useBrightness()
   const [isSelected, setSelected] = useState(-1)
-  console.log(location.state, 'seat에서 받음')
+  // console.log(location.state, 'seat에서 받음')
 
   const [section, setSection] = useState(location.state.area.area)
   const [seatLayout, setSeatLayout] = useState([])
@@ -61,11 +64,17 @@ function MintConcertSeat(props) {
     )
   }
   const Footer = () => {
+    const nextWithoutSeat = () => confirmMessageNoBtn('좌석을 선택하세요', null, bright)
+
     return (
       <Box sx={{ padding: '20px 31px' }}>
         <MintBtnGroup
           prev={{ url: `/concert/area/${concertId}`, content: '이전', color: 'secondary' }}
-          next={{ url: `/concert/payment/${concertId}`, content: '다음' }}
+          next={{
+            url: `/concert/payment/${concertId}`,
+            content: '다음',
+            handleClick: seat.length > 5 ? nextWithoutSeat : null,
+          }}
           passData={{ ...location.state, seat: seat }}
         />
       </Box>

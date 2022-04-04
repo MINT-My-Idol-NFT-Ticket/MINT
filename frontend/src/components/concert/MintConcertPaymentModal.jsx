@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 import { Web3Storage } from 'web3.storage'
 import { mintTicket, balanceOfSSF, approveSSF, getTicketAmount } from '../../functions/erc/ERCfunctions.js'
 import { checkMessage, errorMessage, timerMessage } from '../../functions/alert/alertFunctions.js'
+import { useNavigate } from 'react-router-dom'
+
 import useBrightness from '../../hooks/useBrightness.js'
 
 const getTocken = () => process.env.REACT_APP_WEB3_STORAGE_API
@@ -23,10 +25,14 @@ const style = {
 export default function MintConcertPaymentModal({ open, handleClose, concertInfo }) {
   const userAddress = sessionStorage.getItem('address')
   const contractAddress = concertInfo.contractAddress
+  const navigate = useNavigate()
   const [bright, _] = useBrightness()
   const [wallet, setWellet] = useState(0)
   const [userWalletPK, setUserWalletPK] = useState('')
   const [tokenURI, setTokenURI] = useState(false)
+
+  const pushHome = () => navigate('/home')
+  const pushMypage = () => navigate('/mypage')
 
   const checkWalletBalance = async () => {
     const response = await balanceOfSSF(userAddress)
@@ -54,31 +60,38 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
     return `https://ipfs.io/ipfs/${cid}/tokenURI.json`
   }
 
-  // const wait = () => new Promise(resolve => setTimeout(resolve, 1000))
-
   const paying = async () => {
+    const amount = await getTicketAmount(contractAddress, userAddress)
+    if (amount > 0) {
+      errorMessage(
+        '해당 콘서트를 이미 예매했습니다',
+        () => {
+          handleClose()
+          pushMypage()
+        },
+        bright,
+      )
+      return
+    }
+    await approveSSF(userWalletPK, contractAddress, concertInfo.price)
     if (tokenURI === false) {
       const URI = await makeTokenURI()
       setTokenURI(URI)
     }
-    const amount = await getTicketAmount(contractAddress, userAddress)
-    if (amount > 0) {
-      errorMessage('해당 콘서트를 이미 예매했습니다', handleClose, bright)
-      return
-    }
 
-    await approveSSF(userWalletPK, contractAddress, concertInfo.price)
     //티켓 발급
     const result = await mintTicket(contractAddress, userAddress, userWalletPK, tokenURI)
 
     if (result) {
-      checkMessage('티켓이 발급되었습니다', null, bright)
+      checkMessage('티켓이 발급되었습니다', pushHome, bright)
     } else {
-      errorMessage('티켓을 발급할 수 없습니다', bright)
+      errorMessage('티켓을 발급할 수 없습니다', pushMypage, bright)
     }
   }
 
-  const doMint = () => timerMessage('잠시만 기다려주세요', '티켓을 발급하고 있습니다', paying, bright)
+  const minting = () => {
+    timerMessage('잠깐 기다려 주세요', '티켓을 발급하고 있습니다', paying, bright)
+  }
 
   useEffect(() => {
     checkWalletBalance()
@@ -121,7 +134,7 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
           <Button variant="contained" color="secondary" onClick={handleClose}>
             취소
           </Button>
-          <Button variant="contained" sx={{ marginLeft: '10px' }} onClick={doMint}>
+          <Button variant="contained" sx={{ marginLeft: '10px' }} onClick={minting}>
             결제
           </Button>
         </Box>

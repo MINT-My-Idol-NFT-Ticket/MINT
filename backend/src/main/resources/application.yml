@@ -1,6 +1,5 @@
 server:
   port: 8080
-
 spring:
   web:
     resources:
@@ -38,8 +37,12 @@ spring:
   sql:
     init:
       mode: always
----
 
+logging:
+  level:
+    com.mint.backend: error
+    com.mint.backend.controller: debug
+---
 server:
   port: 9090
 
@@ -69,3 +72,14 @@ spring:
   config:
     activate:
       on-profile: dev
+logging:
+  file:
+    name: ${user.dir}/log/test.log
+
+  logback:
+    rollingpolicy:
+      max-history: 2 #2일간 로그기록 유지
+      max-file-size: 10MB #최대 파일 사이즈
+  level:
+    com.mint.backend : error
+    com.mint.backend.controller: debug
