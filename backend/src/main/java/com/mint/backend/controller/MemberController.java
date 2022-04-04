@@ -8,6 +8,7 @@ import com.mint.backend.dto.ResponseSearchDto;
 import com.mint.backend.service.ConcertService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ import java.util.List;
  * @submissions : 1
  * @description :
  **/
+@Slf4j
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequiredArgsConstructor
@@ -58,6 +60,9 @@ public class MemberController {
     public ResponseEntity<ResponseSearchDto> search(@RequestParam String keyword,Pageable pageable){
         return new ResponseEntity(concertService.search(keyword,pageable),HttpStatus.OK);
     }
+    @ApiOperation(
+            value = " 계약서 조회"
+    )
     @GetMapping("/contracts")
     public ResponseEntity<List<?>> findContracts(String contract){
         return new ResponseEntity<>(concertService.findContracts(contract),HttpStatus.OK);
