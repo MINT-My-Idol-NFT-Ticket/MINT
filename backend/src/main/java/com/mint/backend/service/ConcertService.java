@@ -241,12 +241,12 @@ public class ConcertService {
         if (contract.equals("contractaddress")) {
 
             return concertRepository.<ResponseContract>findAllBy(ResponseContract.class);
-        } else {
+        } else if(contract.equals("salecontractaddress")){
 
             return concertRepository.findAllBy(ResponseSaleContract.class);
+        }else{
+            throw new RuntimeException();
         }
-
-
     }
 
 }
