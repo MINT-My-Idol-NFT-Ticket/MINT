@@ -1,12 +1,9 @@
-import { Grid } from '@mui/material'
+import MintCollectionsSkeleton from '../skeleton/MintCollectionsSkeleton'
 
-export default function MintCollections({ tokenIds }) {
-  const collectionList = () => {
-    tokenIds.map()
-  }
+export default function MintCollections() {
   return (
-    <Grid container sx={{ border: '1px solid red' }}>
-      {collectionList}
-    </Grid>
+    <>
+      <MintCollectionsSkeleton />
+    </>
   )
 }

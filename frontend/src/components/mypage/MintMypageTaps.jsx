@@ -47,7 +47,7 @@ export default function MintMypageTabs({ value }) {
               <MintBuyList />
             </TabPanel>
             <TabPanel style={{ padding: 0 }} value="2">
-              <MintCollections props={tokenIds} />
+              <MintCollections />
             </TabPanel>
           </Box>
         </TabContext>

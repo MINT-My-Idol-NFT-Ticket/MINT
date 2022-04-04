@@ -4,7 +4,7 @@ export default function GenerateConfirm(swal, title, text, callback, bright) {
   swal
     .fire({
       title: title,
-      text: text ? text : 'no-text',
+      text: text ? text : '',
       icon: 'warning',
       color: isLight(bright) ? darkColor : lightColor,
       background: isLight(bright) ? lightColor : darkColor,

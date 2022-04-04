@@ -1,18 +1,33 @@
 import React, { useState } from 'react'
 import { Box, Button, Checkbox } from '@mui/material'
-import MintConcertSeat from './MintConcertSeat'
+import MintConcertSeatBtn from './MintConcertSeatBtn'
 
+//
 function MintConcertSeatSelect(props) {
   const [seats, setSeat] = useState(props.data)
-  const handleSelect = info => {
-    props.handleSelect(info)
-  }
 
   return (
     <Box sx={{ margin: '0 auto' }}>
-      {seats.map(seat => (
-        <MintConcertSeat key={seat.name} data={seat} select={handleSelect} />
-      ))}
+      {seats.map((seat, idx) =>
+        props.selected === idx ? (
+          <MintConcertSeatBtn
+            key={seat.name}
+            data={seat}
+            handleSelect={props.handleSelect}
+            handleSeat={props.handleSeat}
+            selected={true}
+            idx={idx}
+          />
+        ) : (
+          <MintConcertSeatBtn
+            key={seat.name}
+            data={seat}
+            handleSelect={props.handleSelect}
+            handleSeat={props.handleSeat}
+            idx={idx}
+          />
+        ),
+      )}
     </Box>
   )
 }

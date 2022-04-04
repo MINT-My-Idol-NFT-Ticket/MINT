@@ -36,9 +36,7 @@ contract SaleTicket {
 
         uint256 price = ticketPrices[_tokenId];
         address ticketOwner = mintTicketAddress.ownerOf(_tokenId);
-        uint256 balanceLength = mintTicketAddress.balanceOf(msg.sender);
 
-        require(balanceLength == 0, "Caller already has a ticket.");
         require(price > 0, "Ticket not sale.");
         require(ticketOwner != msg.sender, "Caller is ticket owner.");
 
