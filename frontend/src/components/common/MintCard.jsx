@@ -1,3 +1,4 @@
+//modules
 import { Card, CardMedia, CardActions, Typography, Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import '../../styles/MintTradeContents.css'
@@ -38,4 +39,4 @@ export default function MintCard({ cardData, type }) {
 }
 
 //etherium 아이콘 이미지
-const etherIcon = 'https://openseauserdata.com/files/6f8e2979d428180222796ff4a33ab929.svg'
+const etherIcon = 'currency.png'
