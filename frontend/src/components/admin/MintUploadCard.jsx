@@ -21,7 +21,7 @@ export default function MintUploadCard({ requestData, setRequestData }) {
     const client = new Web3Storage({ token: getTocken() })
     const gifCID = await client.put(GIF)
     const mp4CID = await client.put(MP4)
-    cids.push({ gif: `${gifCID}/${GIF[0].name}`, mp4: `${mp4CID}/${MP4[0].name}` })
+    cids.push(JSON.stringify({ gif: `${gifCID}/${GIF[0].name}`, mp4: `${mp4CID}/${MP4[0].name}` }))
     console.log(cids)
   }
   const resetCID = () => {
