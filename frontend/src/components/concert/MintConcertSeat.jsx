@@ -9,6 +9,12 @@ function MintConcertSeat(props) {
   }
 
   const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#8811DD',
+        light: '#DECAEB',
+      },
+    },
     components: {
       MuiButton: {
         styleOverrides: {

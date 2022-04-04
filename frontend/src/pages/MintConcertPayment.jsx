@@ -19,10 +19,14 @@ function MintConcertPayment() {
   const concertInfo = {
     img: location.state.poster,
     title: location.state.title,
-    date: `${location.state.time.date} ${location.state.time.time}`,
+    place: location.state.place,
+    date: location.state.time.date,
+    time: location.state.time.time,
     area: location.state.area.area,
     seat: location.state.seat,
+    price: location.state.price,
   }
+
   return (
     <Box sx={container}>
       <MintPayConcertInfo concertInfo={concertInfo} />

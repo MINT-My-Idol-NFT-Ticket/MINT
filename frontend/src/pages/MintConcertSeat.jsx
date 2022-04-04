@@ -11,9 +11,11 @@ import MintConcertSeatSelect from '../components/concert/MintConcertSeatSelect'
 function MintConcertSeat(props) {
   const concertId = useParams().id
   const location = useLocation()
+  console.log(location.state, 'seat에서 받음')
+
   const [section, setSection] = useState(location.state.area.area)
   const [seatLayout, setSeatLayout] = useState([])
-  const [seat, setSeat] = useState('좌석을 선택해주세요.')
+  const [seat, setSeat] = useState('아직 선택한 좌석이 없습니다.')
 
   const handleSelect = seat => {
     const tmp = seat.name.split('-')
@@ -45,7 +47,7 @@ function MintConcertSeat(props) {
           <MintSeatForm title="좌석등급/가격" section={`${location.state.area.area} 구역`} />
         </Box>
         <Box sx={seatFromContainer}>
-          <MintSeatForm title="선택한 좌석" seat={`좌석 번호: ${seat}`} />
+          <MintSeatForm title="선택한 좌석" seat={`${seat}`} />
         </Box>
       </>
     )

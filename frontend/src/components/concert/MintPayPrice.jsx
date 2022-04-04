@@ -18,6 +18,7 @@ const content = {
   fontSize: '24px',
   textAlign: 'center',
   lineHeight: '90px',
+  fontSize: '18px',
 }
 
 export default MintPayPrice
