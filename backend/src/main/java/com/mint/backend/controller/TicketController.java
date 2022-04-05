@@ -67,7 +67,7 @@ public class TicketController {
     @ApiOperation(
             value = "좌석 상태 변경"
     )
-    @GetMapping
+    @PutMapping
     public ResponseEntity<Boolean> updateSeatStatus(@RequestParam Long seatId){
         return new ResponseEntity<>(ticketService.updateSeatStatus(seatId),HttpStatus.OK);
     }
