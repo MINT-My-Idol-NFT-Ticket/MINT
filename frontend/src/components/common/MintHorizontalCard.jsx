@@ -31,7 +31,7 @@ export default function MintHorizontalCard({ concertData, passDetail, children }
             variant="contained"
             color="info"
             size="small"
-            sx={{ width: '45%', marginRight: '16px' }}
+            sx={{ width: '45%', marginRight: '16px', float: 'right' }}
             onClick={() => {
               passDetail(concertData.id)
             }}>

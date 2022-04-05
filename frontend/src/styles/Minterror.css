@@ -1,0 +1,16 @@
+.doduck {
+  top: 200px;
+  left: -200px;
+  animation: flying 3s infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes flying {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+    left: 400px;
+  }
+}
