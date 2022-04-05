@@ -55,7 +55,7 @@ function MintTicket3D({ concertData }) {
           rotation={[-1.57, 0, 0]}
           scale={[-2.19, 2.19, 3.53]}>
           <meshBasicMaterial attach="material" color="#222831" />
-          <Html rotation-x={Math.PI / 2} position={[-0.2, 0.008, 0]} transform occlude>
+          <Html rotation-x={Math.PI / 2} position={[-0, 0.008, 0]} transform occlude>
             <MintTicketInfo concertData={concertData} />
           </Html>
         </mesh>

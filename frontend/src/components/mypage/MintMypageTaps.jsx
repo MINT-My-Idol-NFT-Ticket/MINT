@@ -13,7 +13,7 @@ import MintCollections from './MintCollections'
 export default function MintMypageTabs({ value }) {
   const userAddress = getUserAddress()
   const [contractList, setContractList] = useState()
-  const [tokenIds, setTokenIds] = useState({})
+  const [tokenIds, setTokenIds] = useState([])
 
   const getContractList = async () => {
     const response = await getRequest('api/concert/contracts', { contract: 'contractAddress' })

@@ -1,4 +1,4 @@
-import { Card, CardMedia, CardActions, Typography, Box } from '@mui/material'
+import { Card, CardMedia, Box } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -15,7 +15,11 @@ export default function MintCard2({ tokenId }) {
   }
   const getURI = async () => {
     const uri = await getTokenURI(tokenId.contractAddress, tokenId.tokenId)
+<<<<<<< HEAD
     let response = ''
+=======
+    let response
+>>>>>>> ae3a69b9494a99a919bd6209374dc7bcd470f41f
     if (uri) response = await getRequest(uri)
     setTokenURI(response)
   }
@@ -26,7 +30,7 @@ export default function MintCard2({ tokenId }) {
 
   return (
     <Box onClick={showTicket}>
-      {tokenURI === null ? (
+      {tokenURI == null || !tokenURI ? (
         <MintCollectionSingleSkeletion />
       ) : (
         <Card>

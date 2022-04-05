@@ -12,32 +12,27 @@ export default function MintConnectWallet() {
   const [address, setAddress] = useState('')
 
   const connectWallet = () => {
-    const displayCheck = () => checkMessage('지갑이 등록되었습니다', pushHome, bright)
+    const displayCheck = () => checkMessage('지갑이 연결되었습니다', pushHome, bright)
 
     if (address.length === 42 && address.startsWith('0x')) {
       sessionStorage.setItem('address', address)
-      confirmMessage('아래의 주소로 등록하시겠습니까?', address, displayCheck, bright)
+      confirmMessage('아래의 주소로 연결하시겠습니까?', address, displayCheck, bright)
     } else errorMessage('유효하지 않은 지갑 주소 입니다', bright)
   }
 
   return (
     <Box>
       <Box sx={title}>
-        <Typography variant="h6" sx={{ color: '#000000' }}>
+        <Typography variant="h6" component="div" sx={{ fontWeight: 700, fontSize: '22px', marginBottom: '20px' }}>
           지갑 주소를 연결해주세요
           <br />
         </Typography>
-        <Card sx={card}>
-          <CardContent>
-            <Typography sx={{ textAlign: 'center', fontWeight: 700, mt: '50px' }}>
-              SSAFY WALLET 지갑 주소 입력
-            </Typography>
-            <Typography sx={{ mt: '10px' }}></Typography>
-          </CardContent>
+        <Box>
           <TextField
             id="address"
-            label="지갑 주소 입력"
-            variant="standard"
+            // label="지갑 주소 입력"
+            variant="outlined"
+            placeholder="지갑주소 입력"
             sx={{ width: '250px', mt: '10px', color: '#FFFFFF' }}
             onChange={e => {
               setAddress(e.target.value)
@@ -48,7 +43,8 @@ export default function MintConnectWallet() {
               연동하기
             </Button>
           </Box>
-        </Card>
+        </Box>
+        {/* </Card> */}
       </Box>
     </Box>
   )
@@ -67,7 +63,8 @@ const title = {
 const card = {
   width: '306px',
   height: '260px',
-  border: '1px solid gray',
+  border: '1px solid rgba(0, 0, 0, .2)',
   borderRadius: 7,
   margin: '50px auto',
+  backgroundColor: 'rgba(0, 0, 0, .05)',
 }

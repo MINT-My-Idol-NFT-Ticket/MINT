@@ -2,9 +2,11 @@ import { Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 
-function MintHeader({ content }) {
+function MintHeader({ content, where }) {
   const navigate = useNavigate()
-  const pushHome = () => navigate('/home')
+  const pushHome = () => {
+    where ? navigate(`${where}`) : navigate('/home')
+  }
   return (
     <>
       <Box
