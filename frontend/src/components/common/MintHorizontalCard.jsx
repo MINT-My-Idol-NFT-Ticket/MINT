@@ -36,9 +36,9 @@ export default function MintHorizontalCard({ concertData, passDetail, children }
             }}>
             콘서트 상세
           </Button>
-          <Button variant="contained" disabled size="small" sx={{ width: '45%' }}>
+          {/* <Button variant="contained" disabled size="small" sx={{ width: '45%' }}>
             예매하기
-          </Button>
+          </Button> */}
         </Box>
       </Box>
     </Box>
