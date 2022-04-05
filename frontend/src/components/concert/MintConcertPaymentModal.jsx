@@ -68,6 +68,7 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
     if (amount > 0) {
       errorMessage(
         '해당 콘서트를 이미 예매했습니다',
+        null,
         () => {
           handleClose()
           pushMypage()
@@ -76,8 +77,9 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
       )
       return
     }
-    const seatState = await await getRequest(`api/ticket/seat/${seatId}`)
-    if (seatState !== 0) {
+    const seatState = await getRequest(`api/ticket/seat/${seatId}`)
+    console.log(seatState)
+    if (seatState.data.status !== 0) {
       errorMessage('티켓을 발급할 수 없습니다', '이미 선택된 좌석입니다', () => navigate(-1), bright)
       return
     }
@@ -92,6 +94,7 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
 
     if (result) {
       checkMessage('티켓이 발급되었습니다', pushHome, bright)
+      getRequest('api/ticket/', { seatId })
       return
     } else {
       errorMessage('티켓을 발급할 수 없습니다', pushMypage, bright)
