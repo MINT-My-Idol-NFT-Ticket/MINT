@@ -12,7 +12,7 @@ import MintCollections from './MintCollections'
 
 export default function MintMypageTabs({ value }) {
   const userAddress = getUserAddress()
-  const [contractList, setContractList] = useState()
+  const [contractList, setContractList] = useState([])
   const [tokenIds, setTokenIds] = useState([])
 
   const getContractList = async () => {
@@ -29,7 +29,7 @@ export default function MintMypageTabs({ value }) {
         cts.add(result[idx])
       }
     }
-    setContractList(result)
+    setContractList([...cts])
     setTokenIds(tks)
   }
 
@@ -42,7 +42,7 @@ export default function MintMypageTabs({ value }) {
         <TabContext value={value}>
           <Box>
             <TabPanel style={{ padding: 0 }} value="1">
-              <MintBuyList tokenIds={tokenIds} />
+              <MintBuyList contractList={contractList} />
             </TabPanel>
             <TabPanel style={{ padding: 0 }} value="2">
               <MintCollections tokenIds={tokenIds} />

@@ -4,6 +4,7 @@ import { Box, Button } from '@mui/material'
 import { BASE_URL } from '../../api/requests'
 
 export default function MintHorizontalCard({ concertData, passDetail, children }) {
+  console.log(concertData)
   return (
     <Box
       sx={{
@@ -36,9 +37,7 @@ export default function MintHorizontalCard({ concertData, passDetail, children }
             }}>
             콘서트 상세
           </Button>
-          {/* <Button variant="contained" disabled size="small" sx={{ width: '45%' }}>
-            예매하기
-          </Button> */}
+          {children}
         </Box>
       </Box>
     </Box>
