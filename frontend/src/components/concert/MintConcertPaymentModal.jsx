@@ -8,7 +8,8 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import useBrightness from '../../hooks/useBrightness.js'
 import { getRequest } from '../../api/requests.js'
 
-const getTocken = () => process.env.REACT_APP_WEB3_STORAGE_API
+const getTocken = () =>
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEE2RDQzQWFEMTMzMmZiRDFjNUM2NzMwNEYxZkJhNTdGRjJkRTYzNDIiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NDg5Nzg3MTE1NDUsIm5hbWUiOiJTU0FZRl9NSU5UIn0.2R4MBp59c8W3ds0aTMSD89XM1Rp2XTHHYk8ratza72M'
 
 const style = {
   position: 'absolute',
