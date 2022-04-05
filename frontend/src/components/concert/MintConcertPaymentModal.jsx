@@ -3,9 +3,10 @@ import { useEffect, useState } from 'react'
 import { Web3Storage } from 'web3.storage'
 import { mintTicket, balanceOfSSF, approveSSF, getTicketAmount } from '../../functions/erc/ERCfunctions.js'
 import { checkMessage, errorMessage, timerMessage } from '../../functions/alert/alertFunctions.js'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import useBrightness from '../../hooks/useBrightness.js'
+import { getRequest } from '../../api/requests.js'
 
 const getTocken = () => process.env.REACT_APP_WEB3_STORAGE_API
 
@@ -26,6 +27,8 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
   const userAddress = sessionStorage.getItem('address')
   const contractAddress = concertInfo.contractAddress
   const navigate = useNavigate()
+  const seatId = useLocation().state.seat.id
+
   const [bright, _] = useBrightness()
   const [wallet, setWellet] = useState(0)
   const [userWalletPK, setUserWalletPK] = useState('')
@@ -73,6 +76,11 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
       )
       return
     }
+    const seatState = await await getRequest(`api/ticket/seat/${seatId}`)
+    if (seatState !== 0) {
+      errorMessage('티켓을 발급할 수 없습니다', '이미 선택된 좌석입니다', () => navigate(-1), bright)
+      return
+    }
     await approveSSF(userWalletPK, contractAddress, concertInfo.price)
     if (tokenURI === false) {
       const URI = await makeTokenURI()
@@ -84,8 +92,10 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
 
     if (result) {
       checkMessage('티켓이 발급되었습니다', pushHome, bright)
+      return
     } else {
       errorMessage('티켓을 발급할 수 없습니다', pushMypage, bright)
+      return
     }
   }
 

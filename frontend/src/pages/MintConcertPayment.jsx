@@ -14,13 +14,13 @@ import useBrightness from '../hooks/useBrightness'
 function MintConcertPayment() {
   const concertId = useParams().id
   const location = useLocation()
+  console.log(location)
   const [bright, _] = useBrightness()
 
   const [payOpen, setPayOpen] = useState(false)
   const [agreement, setAgreement] = useState(false)
 
   const handlePayOpen = () => {
-    console.log(agreement)
     if (agreement === true) {
       setPayOpen(true)
     } else {
@@ -36,7 +36,7 @@ function MintConcertPayment() {
     date: location.state.time.date,
     time: location.state.time.time,
     area: location.state.area.area,
-    seat: location.state.seat,
+    // seat: location.state.seat,
     price: location.state.price,
   }
 

@@ -10,6 +10,7 @@ export default function GenerateConfirmNoBtn(swal, title, callback, bright) {
       showConfirmButton: false,
     })
     .then(result => {
-      if (result.isConfirmed) callback()
+      console.log(result)
+      if (callback && result.isDismissed) callback()
     })
 }
