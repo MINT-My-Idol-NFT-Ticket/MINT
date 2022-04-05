@@ -4,6 +4,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-* { 
+* {
   font-family: 'Spoqa Han Sans Neo', 'sans-serif' !important;
+}
+::selection {
+  background-color: #8811dd;
+  color: white;
 }

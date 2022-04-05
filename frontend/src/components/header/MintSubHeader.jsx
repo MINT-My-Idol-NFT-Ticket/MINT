@@ -4,7 +4,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 
 function MintHeader({ content }) {
   const navigate = useNavigate()
-  const pushHome = () => navigate(-1)
+  const pushHome = () => navigate('/home')
   return (
     <>
       <Box

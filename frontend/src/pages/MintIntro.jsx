@@ -19,12 +19,12 @@ export default function Intro() {
   return (
     <div style={style}>
       <Typography variant="h5" component="div" sx={title}>
-        안녕하세요~~
-        <br /> 지갑 있으신가요~?
+        MINT 이용을 위한
+        <br /> 지갑을 연동해주세요
       </Typography>
       <Card sx={card}>
         <CardContent>
-          <Typography sx={{ textAlign: 'center', mt: '10px' }}>SSAFY WALLET 안내문</Typography>
+          {/* <Typography sx={{ textAlign: 'center', mt: '10px' }}>SSAFY WALLET 안내문</Typography> */}
           <Typography sx={{ mt: '10px' }}>
             [다운로드 및 인증]
             <br />
@@ -73,6 +73,6 @@ const card = {
   width: '306px',
   height: '350px',
   border: '1px solid gray',
-  borderRadius: 7,
+  // borderRadius: 7,
   margin: '20px auto',
 }
