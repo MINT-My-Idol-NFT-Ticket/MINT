@@ -5,8 +5,10 @@ import { useNavigate } from 'react-router-dom'
 import { getTokenURI } from '../../functions/erc/ERCfunctions'
 import { getRequest } from '../../api/requests'
 
-export default function MintCard2({ cardData, type, tokenId }) {
-  const [tokenURI, setTokenURI] = useState('')
+import MintCollectionSingleSkeletion from '../skeleton/MintCollectionSingleSkeletion'
+
+export default function MintCard2({ tokenId }) {
+  const [tokenURI, setTokenURI] = useState(null)
   const navigate = useNavigate()
   const showTicket = () => {
     navigate(`/mypage/ticket`, { state: { ...tokenURI.data } })
@@ -15,7 +17,6 @@ export default function MintCard2({ cardData, type, tokenId }) {
     const uri = await getTokenURI(tokenId.contractAddress, tokenId.tokenId)
     let response = 'dfaqs'
     if (uri) response = await getRequest(uri)
-    console.log(response, 'token URI')
     setTokenURI(response)
   }
 
@@ -24,21 +25,18 @@ export default function MintCard2({ cardData, type, tokenId }) {
   }, [])
 
   return (
-    <Box
-      sx={{
-        width: '50%',
-        margin: '10px 0',
-        padding: '0 10px',
-        boxSizing: 'border-box',
-      }}
-      onClick={showTicket}>
-      <Card sx={{ border: '1px solid grey', cursor: 'pointer' }}>
-        {tokenURI === '' ? (
-          <></>
-        ) : (
-          <CardMedia component="img" image={tokenURI.data.img.gif} alt="nft사진" sx={{ height: '175px' }} />
-        )}
-      </Card>
+    <Box onClick={showTicket}>
+      {tokenURI === null ? (
+        <MintCollectionSingleSkeletion />
+      ) : (
+        <Card>
+          {tokenURI === '' ? (
+            <></>
+          ) : (
+            <CardMedia component="img" image={tokenURI.data.img.gif} alt="nft사진" sx={{ height: '175px' }} />
+          )}
+        </Card>
+      )}
     </Box>
   )
 }

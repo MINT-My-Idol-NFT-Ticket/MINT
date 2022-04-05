@@ -5,10 +5,10 @@ import ERC20 from '../../contract/ERC20.json'
 
 export const web3 = new Web3(process.env.REACT_APP_BLOCK_CHAIN_NODE_URL)
 
-const getSsafyNet = () => 'http://20.196.209.2:8545'
-const getAdminWalletAddress = () => '0x2418B0cea93A6efC494DB419A24a0186d4C6065F'
-const getAdminPK = () => '0xb492301336976866218b482de63c470efec9749fefa9e5317b16de00bd73f511'
-const getERC20Address = () => '0x6C927304104CDAA5A8B3691E0ADE8A3DED41A333'
+const getSsafyNet = () => process.env.REACT_APP_BASE_URL
+const getAdminWalletAddress = () => process.env.REACT_APP_ADMIN_WALLET_ADDRESS
+const getAdminPK = () => process.env.REACT_APP_ADMIN_PRIVATE_KEY
+const getERC20Address = () => process.env.REACT_APP_ERC20_ADDRESS
 
 export const SSAFY_NET = getSsafyNet()
 

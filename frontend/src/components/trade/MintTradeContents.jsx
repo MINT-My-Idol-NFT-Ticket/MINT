@@ -1,21 +1,17 @@
 import '../../styles/MintTradeContents.css'
 import Doduck from '../../images/do-duck.gif'
 
-import MintCard from '../common/MintCard'
+import MintCard2 from '../common/MintCard2'
 import { getRequest } from '../../api/requests'
 import { useEffect, useState } from 'react'
 import { getSaleList } from '../../functions/erc/ERC721Calls'
 
 export default function MintTradeContents() {
   const [saleContractAddress, setSaleContractAddress] = useState([])
-  const makeCardList = testData =>
-    testData.map(ticket => <MintCard key={`${ticket.ownerAccount}-${ticket.tokenId}`} cardData={ticket} type="trade" />)
 
   const getSaleContractList = async () => {
     const response = await getRequest(`/api/concert/contracts`, { contract: 'salecontractaddress' })
-    console.log('salecontract : ', response)
     setSaleContractAddress(response.data)
-    console.log(response.data)
     getOnSaleTicketTokens()
   }
 
@@ -42,7 +38,11 @@ export default function MintTradeContents() {
 
   return (
     <>
-      <div className="MintTrade__cardList">{makeCardList(testData)}</div>
+      <div className="MintTrade__cardList">
+        {testData.map(tokenId => (
+          <MintCard2 key={`${tokenId.ownerAccount}-${tokenId.tokenId}`} tokenId={tokenId} type="trade" />
+        ))}
+      </div>
     </>
   )
 }

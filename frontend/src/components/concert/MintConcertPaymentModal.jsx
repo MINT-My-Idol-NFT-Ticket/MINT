@@ -1,7 +1,7 @@
 import { Modal, Box, Typography, TextField, Button, Grid } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { Web3Storage } from 'web3.storage'
-import { mintTicket, balanceOfSSF, approveSSF, getTicketAmount, getTokenURI } from '../../functions/erc/ERCfunctions.js'
+import { mintTicket, balanceOfSSF, approveSSF, getTicketAmount } from '../../functions/erc/ERCfunctions.js'
 import { checkMessage, errorMessage, timerMessage } from '../../functions/alert/alertFunctions.js'
 import { useLocation, useNavigate } from 'react-router-dom'
 
@@ -27,9 +27,9 @@ const style = {
 export default function MintConcertPaymentModal({ open, handleClose, concertInfo }) {
   const userAddress = sessionStorage.getItem('address')
   const contractAddress = concertInfo.contractAddress
+  console.log(concertInfo)
   const navigate = useNavigate()
   const seatId = useLocation().state.seat.id
-  console.log(JSON.parse(concertInfo.cids[0].cid))
 
   const [bright, _] = useBrightness()
   const [wallet, setWellet] = useState(0)
@@ -52,6 +52,7 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
       title: concertInfo.title,
       section: concertInfo.area,
       date: concertInfo.date,
+      time: concertInfo.time,
       seat: concertInfo.seat,
       userAddress: userAddress,
       img: {

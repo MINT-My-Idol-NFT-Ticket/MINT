@@ -13,6 +13,6 @@ function MintCollectionsSkeleton(props) {
   )
 }
 
-const skeletonStyle = { height: '200px', borderRadius: '5px' }
+const skeletonStyle = { height: '175px', borderRadius: '5px' }
 
 export default MintCollectionsSkeleton
