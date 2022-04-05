@@ -9,28 +9,34 @@ import getUserAddress from '../../functions/util/getUserAddress'
 
 import MintBuyList from './MintBuyList'
 import MintCollections from './MintCollections'
+import { useNavigate } from 'react-router-dom'
 
 export default function MintMypageTabs({ value }) {
   const userAddress = getUserAddress()
+  const navigate = useNavigate()
   const [contractList, setContractList] = useState([])
   const [tokenIds, setTokenIds] = useState([])
 
   const getContractList = async () => {
-    const response = await getRequest('api/concert/contracts', { contract: 'contractAddress' })
-    const result = response.data.map(address => address.contractAddress[0])
-    const tks = []
-    const cts = new Set()
-    for (let idx = 0; idx < result.length; idx++) {
-      const tokenList = await getTicketList(result[idx], userAddress)
+    try {
+      const response = await getRequest('api/concert/contracts', { contract: 'contractAddress' })
+      const result = response.data.map(address => address.contractAddress[0])
+      const tks = []
+      const cts = new Set()
+      for (let idx = 0; idx < result.length; idx++) {
+        const tokenList = await getTicketList(result[idx], userAddress)
 
-      if (tokenList.length === 0) continue
-      for (let i = 0; i < tokenList.length; i++) {
-        tks.push({ contractAddress: result[idx], tokenId: tokenList[i].tokenId })
-        cts.add(result[idx])
+        if (tokenList.length === 0) continue
+        for (let i = 0; i < tokenList.length; i++) {
+          tks.push({ contractAddress: result[idx], tokenId: tokenList[i].tokenId })
+          cts.add(result[idx])
+        }
       }
+      setContractList([...cts])
+      setTokenIds(tks)
+    } catch {
+      navigate('/error404')
     }
-    setContractList([...cts])
-    setTokenIds(tks)
   }
 
   useEffect(() => {

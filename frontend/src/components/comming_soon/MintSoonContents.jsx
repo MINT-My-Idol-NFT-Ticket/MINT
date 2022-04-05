@@ -11,8 +11,12 @@ export default function MintSoonContents() {
   const [notOpenConcerts, setNotOpenConcerts] = useState([])
 
   const getNotOpenConcertList = async () => {
-    const response = await getRequest('api/concert', { status: 0, size: 10 })
-    setNotOpenConcerts(response.data)
+    try {
+      const response = await getRequest('api/concert', { status: 0, size: 10 })
+      setNotOpenConcerts(response.data)
+    } catch {
+      navigate('/error404')
+    }
   }
   useEffect(() => {
     getNotOpenConcertList()

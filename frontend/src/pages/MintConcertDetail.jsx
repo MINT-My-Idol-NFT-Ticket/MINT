@@ -1,7 +1,7 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getRequest } from '../api/requests'
-import { Box, Skeleton } from '@mui/material'
+import { Box } from '@mui/material'
 
 import MintSubHeader from '../components/header/MintSubHeader'
 import MintConcertDetailContents from '../components/concert/MintConcertDetailContents'
@@ -10,15 +10,21 @@ import MintBtn from '../components/common/MintBtn'
 import MintDetailSkeleton from '../components/skeleton/MintDetailSkeleton'
 
 export default function MintConcertDetail({ bright }) {
+  const navigate = useNavigate()
+
   const [concertData, setConcertData] = useState(null)
   const [status, setStatus] = useState(false)
   const id = useParams().id
 
   useEffect(async () => {
-    const response = await getRequest(`api/concert/${id}`)
+    try {
+      const response = await getRequest(`api/concert/${id}`)
 
-    setConcertData(response.data)
-    setStatus(response.data.status === 1 ? false : true)
+      setConcertData(response.data)
+      setStatus(response.data.status === 1 ? false : true)
+    } catch {
+      navigate('/error404')
+    }
   }, [])
 
   const Header = () => <MintSubHeader bright={bright} content="콘서트 상세" />

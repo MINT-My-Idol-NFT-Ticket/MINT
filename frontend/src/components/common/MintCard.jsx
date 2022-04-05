@@ -14,10 +14,14 @@ export default function MintCard2({ tokenId }) {
     navigate(`/trade/ticket`, { state: { ...tokenURI.data } })
   }
   const getURI = async () => {
-    const uri = await getTokenURI(tokenId.contractAddress, tokenId.tokenId)
-    let response = ''
-    if (uri) response = await getRequest(uri)
-    setTokenURI(response)
+    try {
+      const uri = await getTokenURI(tokenId.contractAddress, tokenId.tokenId)
+      let response = ''
+      if (uri) response = await getRequest(uri)
+      setTokenURI(response)
+    } catch {
+      navigate('/error404')
+    }
   }
 
   useEffect(() => {

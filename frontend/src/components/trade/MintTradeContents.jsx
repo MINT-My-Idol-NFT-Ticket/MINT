@@ -7,14 +7,20 @@ import { getSaleList } from '../../functions/erc/ERC721Calls'
 
 import MintCard from '../common/MintCard'
 import MintCollectionsSkeleton from '../skeleton/MintCollectionsSkeleton'
+import { useNavigate } from 'react-router-dom'
 
 export default function MintTradeContents() {
   const [saleContractAddress, setSaleContractAddress] = useState([])
+  const navigate = useNavigate()
 
   const getSaleContractList = async () => {
-    const response = await getRequest(`/api/concert/contracts`, { contract: 'salecontractaddress' })
-    setSaleContractAddress(response.data)
-    getOnSaleTicketTokens()
+    try {
+      const response = await getRequest(`/api/concert/contracts`, { contract: 'salecontractaddress' })
+      setSaleContractAddress(response.data)
+      getOnSaleTicketTokens()
+    } catch {
+      navigate('/error404')
+    }
   }
 
   const getOnSaleTicketTokens = async () => {
