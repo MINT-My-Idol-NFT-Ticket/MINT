@@ -1,15 +1,15 @@
-version: 3
+version: '3'
 services:
   react:
     build:
-      context: /frontend
-      dockerfile: ./frontend/Dockerfile
+      context: frontend
+      dockerfile: Dockerfile
     ports:
     - 80:80
 
   spring:
     build:
-      context: /backend
-      dockerfile: ./backend/Dockerfile
+      context: backend
+      dockerfile: Dockerfile
     ports:
     - 9090:9090
