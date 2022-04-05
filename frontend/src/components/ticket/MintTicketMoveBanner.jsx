@@ -13,26 +13,26 @@ function GroupName({ name }) {
   )
 }
 
-function MintTicketMoveBanner({ position }) {
+function MintTicketMoveBanner({ position, name }) {
   return (
     <Box sx={{ position: 'absolute', top: position == 'top' ? '1%' : '95.5%' }}>
       <Box className="track">
-        <GroupName name="BTS" />
-        <GroupName name="BTS" />
-        <GroupName name="BTS" />
-        <GroupName name="BTS" />
-        <GroupName name="BTS" />
-        <GroupName name="BTS" />
-        <GroupName name="BTS" />
-        <GroupName name="BTS" />
-        <GroupName name="BTS" />
-        <GroupName name="BTS" />
-        <GroupName name="BTS" />
-        <GroupName name="BTS" />
-        <GroupName name="BTS" />
-        <GroupName name="BTS" />
-        <GroupName name="BTS" />
-        <GroupName name="BTS" />
+        <GroupName name={name} />
+        <GroupName name={name} />
+        <GroupName name={name} />
+        <GroupName name={name} />
+        <GroupName name={name} />
+        <GroupName name={name} />
+        <GroupName name={name} />
+        <GroupName name={name} />
+        <GroupName name={name} />
+        <GroupName name={name} />
+        <GroupName name={name} />
+        <GroupName name={name} />
+        <GroupName name={name} />
+        <GroupName name={name} />
+        <GroupName name={name} />
+        <GroupName name={name} />
       </Box>
     </Box>
   )
