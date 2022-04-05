@@ -25,7 +25,7 @@ function MintPayConcertInfo({ concertInfo }) {
         <Typography variant="h6">{concertInfo.title}</Typography>
         <Typography>{concertInfo.place}</Typography>
         <Typography>
-          {concertInfo.date} {concertInfo.area}구역 {concertInfo.seat}석
+          {concertInfo.date} {concertInfo.area}구역 {concertInfo.seat.seat}석
         </Typography>
       </Box>
     </Box>

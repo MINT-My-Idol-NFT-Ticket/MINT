@@ -14,7 +14,6 @@ import useBrightness from '../hooks/useBrightness'
 function MintConcertPayment() {
   const concertId = useParams().id
   const location = useLocation()
-  console.log(location)
   const [bright, _] = useBrightness()
 
   const [payOpen, setPayOpen] = useState(false)
@@ -29,6 +28,8 @@ function MintConcertPayment() {
   }
   const handlePayClose = () => setPayOpen(false)
 
+  console.log(location.state.seat)
+
   const concertInfo = {
     img: location.state.poster,
     title: location.state.title,
@@ -36,7 +37,7 @@ function MintConcertPayment() {
     date: location.state.time.date,
     time: location.state.time.time,
     area: location.state.area.area,
-    // seat: location.state.seat,
+    seat: location.state.seat,
     price: location.state.price,
   }
 

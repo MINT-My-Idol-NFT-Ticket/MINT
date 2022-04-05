@@ -104,7 +104,7 @@ function MintConcertSeat() {
             content: '다음',
             handleClick,
           }}
-          passData={{ ...location.state }}
+          passData={{ ...location.state, seat }}
         />
       </Box>
     )

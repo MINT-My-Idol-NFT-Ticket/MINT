@@ -7,7 +7,7 @@ import { getRequest } from '../../api/requests'
 
 import MintCollectionSingleSkeletion from '../skeleton/MintCollectionSingleSkeletion'
 
-export default function MintCard2({ cardData, type, tokenId }) {
+export default function MintCard2({ tokenId }) {
   const [tokenURI, setTokenURI] = useState(null)
   const navigate = useNavigate()
   const showTicket = () => {
@@ -17,7 +17,6 @@ export default function MintCard2({ cardData, type, tokenId }) {
     const uri = await getTokenURI(tokenId.contractAddress, tokenId.tokenId)
     let response = 'dfaqs'
     if (uri) response = await getRequest(uri)
-    console.log(response)
     setTokenURI(response)
   }
 
