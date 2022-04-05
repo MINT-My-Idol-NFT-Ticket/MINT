@@ -27,7 +27,7 @@ import java.util.List;
  * @submissions : 1
  * @description :
  **/
-@Slf4j
+
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequiredArgsConstructor
@@ -61,10 +61,17 @@ public class MemberController {
         return new ResponseEntity(concertService.search(keyword,pageable),HttpStatus.OK);
     }
     @ApiOperation(
-            value = " 계약서 조회"
+            value = " 컨트렉트주소 조회"
     )
     @GetMapping("/contracts")
     public ResponseEntity<List<?>> findContracts(String contract){
         return new ResponseEntity<>(concertService.findContracts(contract),HttpStatus.OK);
+    }
+    @ApiOperation(
+            value = "컨트렉트주소로 콘서트조회"
+    )
+    @GetMapping("contracts{contract}")
+    public ResponseEntity<List<ResponseFindAllDto>> findConcertby(@PathVariable String contract){
+        return new ResponseEntity<>(concertService.findconcertby(contract),HttpStatus.OK);
     }
 }

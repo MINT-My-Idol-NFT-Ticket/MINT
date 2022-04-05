@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -30,5 +31,8 @@ public interface ConcertRepository extends JpaRepository<Concert,Long> {
     @Query("select distinct a from Concert a join a.artist b where a.title like %:keyword% or b.name like %:keyword%")
     public Page<Concert> searchConcert(@Param("keyword")String keyword,Pageable pageable);
 
+    @Query("select m from Concert m where m.status=1")
     public <T>List<T> findAllBy(Class<T> type);
+
+    public Optional<List<Concert>> findAllByContractAddress(String contractaddress);
 }
