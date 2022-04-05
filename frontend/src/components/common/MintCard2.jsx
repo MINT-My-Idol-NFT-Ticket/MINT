@@ -15,7 +15,11 @@ export default function MintCard2({ tokenId }) {
   }
   const getURI = async () => {
     const uri = await getTokenURI(tokenId.contractAddress, tokenId.tokenId)
+<<<<<<< HEAD
     let response
+=======
+    let response = ''
+>>>>>>> 901d7182168fad75a3fde95e14fb3ae113bbf53b
     if (uri) response = await getRequest(uri)
     setTokenURI(response)
   }
