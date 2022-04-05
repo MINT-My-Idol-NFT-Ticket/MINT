@@ -17,7 +17,7 @@ export default function MintHomeContents() {
   const [notOpenConcerts, setNotOpenConcerts] = useState([])
 
   const getOpenConcertList = async () => {
-    const response = await getRequest('api/concert', { status: 1, size: 3, page: 1 })
+    const response = await getRequest('api/concert', { status: 1, size: 3, page: 0 })
     setOpenConcerts(response.data)
   }
   const getNotOpenConcertList = async () => {

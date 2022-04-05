@@ -13,14 +13,13 @@ import MintCollections from './MintCollections'
 export default function MintMypageTabs({ value }) {
   const userAddress = getUserAddress()
   const [contractList, setContractList] = useState()
-  const [tokenIds, setTokenIds] = useState([])
+  const [tokenIds, setTokenIds] = useState({})
 
   const getContractList = async () => {
     const response = await getRequest('api/concert/contracts', { contract: 'contractAddress' })
-    console.log(response)
     const result = response.data.map(address => address.contractAddress[0])
     const tks = []
-    const cts = []
+    const cts = new Set()
     for (let idx = 0; idx < result.length; idx++) {
       const tokenList = await getTicketList(result[idx], userAddress)
       // console.log('list', tokenList)
@@ -28,12 +27,12 @@ export default function MintMypageTabs({ value }) {
       // console.log('balance', ba)
       if (tokenList.length === 0) continue
       for (let i = 0; i < tokenList.length; i++) {
-        tks.push({ contractAddress: result[idx], tokenIds: tokenList[i].tokenId })
-        cts.push(result[idx])
+        tks.push({ contractAddress: result[idx], tokenId: tokenList[i].tokenId })
+        cts.add(result[idx])
       }
     }
     setContractList(result)
-    setTokenIds(cts)
+    setTokenIds(tks)
   }
 
   useEffect(() => {

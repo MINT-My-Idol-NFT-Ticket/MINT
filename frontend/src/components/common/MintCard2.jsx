@@ -7,10 +7,13 @@ import { getRequest } from '../../api/requests'
 
 export default function MintCard2({ cardData, type, tokenId }) {
   const [tokenURI, setTokenURI] = useState('')
-
+  const navigate = useNavigate()
+  const showTicket = () => {
+    navigate(`/mypage/ticket`, { state: { tokenURI } })
+  }
   const getURI = async () => {
-    const uri = await getTokenURI(tokenId.contractAddress, tokenId.tokenIds)
-    let response = ''
+    const uri = await getTokenURI(tokenId.contractAddress, tokenId.tokenId)
+    let response = 'dfaqs'
     if (uri) response = await getRequest(uri)
     console.log(response)
     setTokenURI(response)
@@ -20,12 +23,6 @@ export default function MintCard2({ cardData, type, tokenId }) {
     getURI()
   }, [])
 
-  // const handleDetail = () => {
-  //   type === 'trade'
-  //     ? navigate(`/trade/ticket/${cardData.number}`, { state: cardData })
-  //     : alert('잘못된 페이지 접근 MintCard.jsx의 handleDetail()')
-  // }
-
   return (
     <Box
       sx={{
@@ -33,12 +30,13 @@ export default function MintCard2({ cardData, type, tokenId }) {
         margin: '10px 0',
         padding: '0 10px',
         boxSizing: 'border-box',
-      }}>
+      }}
+      onClick={showTicket}>
       <Card sx={{ border: '1px solid grey' }}>
         {tokenURI === '' ? (
           <></>
         ) : (
-          <CardMedia component="video" image={tokenURI.data.img} alt="nft사진" sx={{ height: '175px' }} />
+          <CardMedia component="img" image={tokenURI.data.img.gif} alt="nft사진" sx={{ height: '175px' }} />
         )}
       </Card>
     </Box>
