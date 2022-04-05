@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
@@ -8,8 +9,10 @@ import Typography from '@mui/material/Typography'
 
 export default function Intro() {
   // 지갑 연동 페이지 이동
+  const navigate = useNavigate()
   const moveToAccount = () => {
-    window.location.pathname = '/address'
+    // window.location.pathname = '/address'
+    navigate('/address')
   }
 
   const moveToSSAFYGit = () => {
@@ -24,7 +27,6 @@ export default function Intro() {
       </Typography>
       <Card sx={card}>
         <CardContent>
-          {/* <Typography sx={{ textAlign: 'center', mt: '10px' }}>SSAFY WALLET 안내문</Typography> */}
           <Typography sx={{ mt: '10px' }}>
             [다운로드 및 인증]
             <br />
