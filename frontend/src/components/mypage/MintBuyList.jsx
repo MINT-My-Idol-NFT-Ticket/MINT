@@ -1,31 +1,47 @@
 import { Box } from '@mui/material'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { getRequest } from '../../api/requests'
 
 import MintBtnGroup from '../common/MintBtnGroup'
 import MintHorizontalCard from '../common/MintHorizontalCard'
 import MintHorizontalSkeleton from '../skeleton/MintHorizontalSkeleton'
 
-export default function MintBuyList() {
-  const testData = []
+export default function MintBuyList({ tokenIds }) {
+  const navigate = useNavigate()
+  const [buyList, setBuyList] = useState([])
 
-  for (let i = 1; i <= 40; i++) {
-    testData.push({
-      title: `${i}번 제목${i}번 제목${i}번 제목${i}번 제목${i}번 제목${i}번 제목${i}번 제목${i}번 제목${i}번 제목`,
-      date: `${i}번 날짜`,
-      singer: `${i}번 가수`,
-      img: 'poster_ver.gif',
-    })
+  const getBuyList = async () => {
+    const arr = []
+    for (let i = 0; i < tokenIds.length; i++) {
+      const response = await getRequest(`api/concert/contracts${tokenIds[i].contractAddress}`)
+      console.log(response)
+      arr.push(response.data)
+    }
+    setBuyList(buyList)
+    console.log(buyList)
   }
 
-  const makeBuyList = () => {
-    return testData.map(concert => (
-      // <MintHorizontalCard key={concert.date} concertData={concert}>
-      //   <MintBtnGroup
-      //     prev={{ url: `home`, content: '상세 보기', color: 'primary' }}
-      //     next={{ url: `home`, content: '티켓 확인', color: 'primary' }}
-      //   />
-      // </MintHorizontalCard>
-      <MintHorizontalSkeleton key={concert.singer} />
-    ))
+  useEffect(() => {
+    console.log(tokenIds)
+    getBuyList()
+  }, [tokenIds])
+
+  const handleNavigation = id => {
+    navigate(`/concert/detail/${id}`)
   }
-  return <div>{makeBuyList()}</div>
+
+  return (
+    <Box>
+      {buyList.length === 0
+        ? [0, 0, 0, 0, 0].map((v, i) => <MintHorizontalSkeleton key={i} notOpen={false} />)
+        : buyList &&
+          buyList.map(concert => {
+            ;<MintHorizontalCard
+              key={concert.id}
+              concertData={concert}
+              passDetail={handleNavigation}></MintHorizontalCard>
+          })}
+    </Box>
+  )
 }

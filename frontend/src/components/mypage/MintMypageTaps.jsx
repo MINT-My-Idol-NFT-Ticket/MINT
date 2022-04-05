@@ -44,7 +44,7 @@ export default function MintMypageTabs({ value }) {
         <TabContext value={value}>
           <Box>
             <TabPanel style={{ padding: 0 }} value="1">
-              <MintBuyList />
+              <MintBuyList tokenIds={tokenIds} />
             </TabPanel>
             <TabPanel style={{ padding: 0 }} value="2">
               <MintCollections tokenIds={tokenIds} />
