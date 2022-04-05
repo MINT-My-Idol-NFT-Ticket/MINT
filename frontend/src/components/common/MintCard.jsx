@@ -1,42 +1,42 @@
-//modules
 import { Card, CardMedia, CardActions, Typography, Box } from '@mui/material'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import '../../styles/MintTradeContents.css'
 
-export default function MintCard({ cardData, type }) {
+import { getTokenURI } from '../../functions/erc/ERCfunctions'
+import { getRequest } from '../../api/requests'
+
+import MintCollectionSingleSkeletion from '../skeleton/MintCollectionSingleSkeletion'
+
+export default function MintCard2({ tokenId }) {
+  const [tokenURI, setTokenURI] = useState(null)
   const navigate = useNavigate()
-
-  const handleDetail = () => {
-    type === 'trade'
-      ? navigate(`/trade/ticket/${cardData.number}`, { state: cardData })
-      : alert('잘못된 페이지 접근 MintCard.jsx의 handleDetail()')
+  const showTicket = () => {
+    navigate(`/trade/ticket`, { state: { ...tokenURI.data } })
+  }
+  const getURI = async () => {
+    const uri = await getTokenURI(tokenId.contractAddress, tokenId.tokenId)
+    let response = ''
+    if (uri) response = await getRequest(uri)
+    setTokenURI(response)
   }
 
+  useEffect(() => {
+    getURI()
+  }, [])
+
   return (
-    <Box
-      sx={{
-        width: '50%',
-        margin: '10px 0',
-        padding: '0 10px',
-        boxSizing: 'border-box',
-      }}
-      onClick={handleDetail}>
-      <Card
-        className="tradeCard__container"
-        sx={{ border: '1px solid rgba(0, 0, 0, 0.2)', boxShadow: '0', cursor: 'pointer' }}>
-        <CardMedia component="img" image={cardData.imgUrl} alt="nft사진" sx={{ height: '175px' }} />
-        {type === 'trade' ? (
-          <CardActions sx={{ padding: '1px', height: '30px' }}>
-            <CardMedia component="img" image={etherIcon} sx={{ width: '10px', ml: '3px', mr: '5px' }} />
-            <Typography>{cardData.price}</Typography>
-          </CardActions>
-        ) : (
-          ''
-        )}
-      </Card>
+    <Box onClick={showTicket}>
+      {tokenURI === null ? (
+        <MintCollectionSingleSkeletion />
+      ) : (
+        <Card>
+          {tokenURI === '' ? (
+            <></>
+          ) : (
+            <CardMedia component="img" image={tokenURI.data.img.gif} alt="nft사진" sx={{ height: '175px' }} />
+          )}
+        </Card>
+      )}
     </Box>
   )
 }
-
-//etherium 아이콘 이미지
-const etherIcon = 'currency.png'

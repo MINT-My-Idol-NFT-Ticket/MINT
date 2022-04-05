@@ -5,7 +5,7 @@ import { getRequest } from '../../api/requests'
 import { useEffect, useState } from 'react'
 import { getSaleList } from '../../functions/erc/ERC721Calls'
 
-import MintCard2 from '../common/MintCard2'
+import MintCard from '../common/MintCard'
 import MintCollectionsSkeleton from '../skeleton/MintCollectionsSkeleton'
 
 export default function MintTradeContents() {
@@ -45,10 +45,10 @@ export default function MintTradeContents() {
           {testData.map(tokenId => (
             <Grid
               item
-              key={`${tokenId.tokenIds}-${tokenId.contractAddress}`}
+              key={`${tokenId.tokenId}-${tokenId.contractAddress}`}
               xs={4}
               sx={{ width: '33.33%', height: '200px', borderRadius: '5px' }}>
-              <MintCard2 tokenId={tokenId} />
+              <MintCard tokenId={tokenId} />
             </Grid>
           ))}
         </Grid>

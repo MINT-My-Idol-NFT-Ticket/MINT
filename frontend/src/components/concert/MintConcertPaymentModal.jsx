@@ -47,12 +47,14 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
     const random = Math.floor(Math.random() * max)
     const images = JSON.parse(concertInfo.cids[random].cid)
     const data = {
-      title: concertInfo.title,
-      section: concertInfo.area,
-      date: concertInfo.date,
-      time: concertInfo.time,
-      seat: concertInfo.seat,
-      userAddress: userAddress,
+      title: location.state.title,
+      place: location.state.place,
+      date: location.state.time.date,
+      time: location.state.time.time,
+      area: location.state.area.area,
+      seat: location.state.seat,
+      price: location.state.price,
+      artists: location.state.artists,
       img: {
         gif: `https://ipfs.io/ipfs/${images.gif}`,
         mp4: `https://ipfs.io/ipfs/${images.mp4}`,
