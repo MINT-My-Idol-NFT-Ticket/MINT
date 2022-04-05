@@ -17,10 +17,8 @@ export default function MintTradeContents() {
 
   const getOnSaleTicketTokens = async () => {
     for (let i = 0; i < saleContractAddress.length; i++) {
-      console.log(saleContractAddress[i])
       try {
         const saleList = await getSaleList(saleContractAddress[i])
-        console.log(saleList)
         const tempOnSaleArray = []
 
         // for (let j = 0; j < parseInt(onSaleTicketArrayLength, 10).length; j++) {

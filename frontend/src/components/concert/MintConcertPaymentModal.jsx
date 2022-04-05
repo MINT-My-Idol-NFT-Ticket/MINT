@@ -27,7 +27,6 @@ const style = {
 export default function MintConcertPaymentModal({ open, handleClose, concertInfo }) {
   const userAddress = sessionStorage.getItem('address')
   const contractAddress = concertInfo.contractAddress
-  console.log(concertInfo)
   const navigate = useNavigate()
   const seatId = useLocation().state.seat.id
 
@@ -45,7 +44,6 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
   const makeTokenURI = async () => {
     const client = new Web3Storage({ token: getTocken() })
     const max = concertInfo.cids.length
-    console.log(max)
     const random = Math.floor(Math.random() * max)
     const images = JSON.parse(concertInfo.cids[random].cid)
     const data = {
@@ -63,7 +61,6 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
     const blob = new Blob([JSON.stringify(data)], { type: 'application/json' })
     const files = [new File([blob], 'tokenURI.json')]
     const cid = await client.put(files)
-    console.log(`https://ipfs.io/ipfs/${cid}/tokenURI.json`)
 
     return `https://ipfs.io/ipfs/${cid}/tokenURI.json`
   }
@@ -83,14 +80,12 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
       return
     }
     const seatState = await getRequest(`api/ticket/seat/${seatId}`)
-    console.log(seatState)
     if (seatState.data.status !== 0) {
       errorMessage('티켓을 발급할 수 없습니다', '이미 선택된 좌석입니다', () => navigate(-1), bright)
       return
     }
     await approveSSF(userWalletPK, contractAddress, concertInfo.price)
     const tokenURI = await makeTokenURI()
-    console.log(tokenURI)
 
     //티켓 발급
     const result = await mintTicket(contractAddress, userAddress, userWalletPK, tokenURI)

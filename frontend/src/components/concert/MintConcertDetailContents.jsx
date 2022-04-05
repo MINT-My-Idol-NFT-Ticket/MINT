@@ -3,7 +3,6 @@ import { Box } from '@mui/material'
 import { BASE_URL } from '../../api/requests'
 
 export default function MintConcertDetailContents({ concertData }) {
-  // console.log(concertData)
   return (
     <Box sx={{ position: 'relative' }}>
       <Box sx={{ width: '100%' }}>

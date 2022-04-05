@@ -5,7 +5,6 @@ import { OrbitControls, Stars, useGLTF, Bounds, Html, useProgress, useTexture } 
 import MintTicketInfo from './MintTicketInfo'
 
 function MintTicket3D({ concertData }) {
-  // console.log(concertData, '3D')
   const TicketMesh = () => {
     const group = useRef()
     const { nodes, materials } = useGLTF('/mintticket3.glb')

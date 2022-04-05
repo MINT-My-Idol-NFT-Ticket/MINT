@@ -12,7 +12,6 @@ export default function MintSetConcertData({ requestImg, setRequestImg }) {
 
   const addImg = () => {
     setRequestImg([poster, thumnail, description, seats])
-    console.log([poster, thumnail, description, seats])
   }
 
   return (

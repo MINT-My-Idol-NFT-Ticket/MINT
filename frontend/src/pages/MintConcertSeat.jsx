@@ -24,8 +24,6 @@ function MintConcertSeat() {
 
   const handleSelect = idx => {
     const seatData = seatLayout[idx]
-    console.log(seatData)
-
     const tmp = seatData.name.split('-')
     const seatNum = tmp[tmp.length - 1]
 

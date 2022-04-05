@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom'
 
 function MintTicket(props) {
   const location = useLocation()
-  console.log(location, '컬렉션에서 받아온 데이터')
   return (
     <Box sx={{ position: 'relative', overflow: 'hidden', height: '100vh' }}>
       <MintTicketMoveBanner position="top" name={'OHMYGIRL'} />
