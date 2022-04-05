@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid'
 import Button from '@mui/material/Button'
 import { useState } from 'react'
 
-import { postRequest, getRequest } from '../../api/requests.js'
+import { postRequest } from '../../api/requests.js'
 
 import MintSetConcertData from './MintSetConcertData'
 import MintSetConcertImage from './MintSetConcertImage'
