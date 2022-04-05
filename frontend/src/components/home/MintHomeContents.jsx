@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { Box, Skeleton } from '@mui/material'
 
 import { getRequest } from '../../api/requests.js'
+import getRandomItem from '../../functions/util/getRandomItem'
 
 import MintVerticalCard from '../common/MintVerticalCard'
 import MintVerticalSkeleton from '../skeleton/MintVerticalSkeleton'
@@ -17,12 +18,12 @@ export default function MintHomeContents() {
   const [notOpenConcerts, setNotOpenConcerts] = useState([])
 
   const getOpenConcertList = async () => {
-    const response = await getRequest('api/concert', { status: 1, size: 3, page: 0 })
-    setOpenConcerts(response.data)
+    const response = await getRequest('api/concert', { status: 1, size: 20, page: 0 })
+    setOpenConcerts(getRandomItem(response.data, 3))
   }
   const getNotOpenConcertList = async () => {
-    const response = await getRequest('api/concert', { status: 0, size: 4 })
-    setNotOpenConcerts(response.data)
+    const response = await getRequest('api/concert', { status: 0, size: 20, page: 0 })
+    setNotOpenConcerts(getRandomItem(response.data, 4))
   }
 
   useEffect(() => {

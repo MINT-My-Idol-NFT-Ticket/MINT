@@ -32,9 +32,6 @@ export default function MintConcertResist() {
       contractAddress: contractAddresses[0],
       saleContractAddress: contractAddresses[1],
     }
-    console.log(formData)
-    console.log(jsonData)
-    console.log(JSON.stringify(jsonData))
     formData.append('key', new Blob([JSON.stringify(jsonData)], { type: 'application/json' }))
 
     postRequest('api/concert', formData).then(res => console.log(res))

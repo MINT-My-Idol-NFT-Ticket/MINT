@@ -14,10 +14,7 @@ export default function MintBanner() {
       autoplay={{
         delay: 7000,
       }}
-      modules={[Autoplay]}
-      // onSwiper={swiper => console.log(swiper)}
-      // onSlideChange={() => console.log('slide change')}
-    >
+      modules={[Autoplay]}>
       <SwiperSlide>
         <img src={`/banner1.png`} />
       </SwiperSlide>

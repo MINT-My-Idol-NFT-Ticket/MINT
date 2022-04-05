@@ -7,7 +7,6 @@ function MintConcertTimes({ info, times, pick, idx, selected }) {
   const dayChecker = ['일', '월', '화', '수', '목', '금', '토']
 
   const passTime = () => {
-    // console.log(props, 'passtime')
     pick(times, idx)
   }
   return (

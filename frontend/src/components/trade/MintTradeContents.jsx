@@ -1,10 +1,12 @@
 import '../../styles/MintTradeContents.css'
-import Doduck from '../../images/do-duck.gif'
+import { Grid } from '@mui/material'
 
-import MintCard2 from '../common/MintCard2'
 import { getRequest } from '../../api/requests'
 import { useEffect, useState } from 'react'
 import { getSaleList } from '../../functions/erc/ERC721Calls'
+
+import MintCard from '../common/MintCard'
+import MintCollectionsSkeleton from '../skeleton/MintCollectionsSkeleton'
 
 export default function MintTradeContents() {
   const [saleContractAddress, setSaleContractAddress] = useState([])
@@ -17,10 +19,8 @@ export default function MintTradeContents() {
 
   const getOnSaleTicketTokens = async () => {
     for (let i = 0; i < saleContractAddress.length; i++) {
-      console.log(saleContractAddress[i])
       try {
         const saleList = await getSaleList(saleContractAddress[i])
-        console.log(saleList)
         const tempOnSaleArray = []
 
         // for (let j = 0; j < parseInt(onSaleTicketArrayLength, 10).length; j++) {
@@ -37,79 +37,38 @@ export default function MintTradeContents() {
   }, [])
 
   return (
-    <>
-      <div className="MintTrade__cardList">
-        {testData.map(tokenId => (
-          <MintCard2 key={`${tokenId.ownerAccount}-${tokenId.tokenId}`} tokenId={tokenId} type="trade" />
-        ))}
-      </div>
-    </>
+    <div className="MintTrade__cardList">
+      {testData.length === 0 ? (
+        <MintCollectionsSkeleton />
+      ) : (
+        <Grid container spacing={{ xs: 2 }}>
+          {testData.map(tokenId => (
+            <Grid
+              item
+              key={`${tokenId.tokenId}-${tokenId.contractAddress}`}
+              xs={4}
+              sx={{ width: '33.33%', height: '200px', borderRadius: '5px' }}>
+              <MintCard tokenId={tokenId} />
+            </Grid>
+          ))}
+        </Grid>
+      )}
+    </div>
   )
 }
 
 // 테스트 데이터
 const testData = [
   {
-    imgUrl:
-      'https://lh3.googleusercontent.com/tAZzO-ZmRfov6uFtc7VsqCOUhgfHV56n2zhulPbBQS8FnSxBRci3ih9zxB0qvZkHFR-s_5gXC6Ya9Aa8ocfvIRlZaIc1MqOZkmSSXHE=w192',
-    price: 0.02,
-    tokenId: 'ddffa213',
-    date: '220212',
-    ownerAccount: '0x0dafadfaqwer1',
-    concert: 'SmallBroNFT',
-    title: 'Small Bro #530',
+    contractAddress: '0xFbda33F8883E5057Ad852b890d0919EFECD9CF1d',
+    tokenId: '1',
   },
   {
-    imgUrl:
-      'https://lh3.googleusercontent.com/UZ-26gO6lqy5ttLDdHM5hdZFUy1fjHCpurmWHJl0dFgmuQw2LVjN2FV2bm5JwS-i1rvkngpBzDyWaKgDox80OB4v8_muh9JkZcFS=w600',
-    price: 0.01,
-    title: '제목입니다',
-    tokenId: 'ddffa213',
-    owner: 'b023423422',
-    date: '220212',
-    ownerAccount: '0xdafadfaqwer1',
+    contractAddress: '0xB30B4c1625c86034b7C9eF1bBD7b5Bd9D70B926a',
+    tokenId: '2',
   },
   {
-    imgUrl:
-      'https://lh3.googleusercontent.com/1HBO9fN-D2vu75HgWYmQSzje5Zyf6j2RTGPPdaYcEpKDpdxEuPzZG-z2K7Iu0ragRZGsj4B6cW6F-ZDrAz-m9qjuQva1iSAin6O_hA=w335',
-    price: 0.01,
-    tokenId: 'ddffa213',
-    owner: 'b0234234212',
-    date: '220212',
-    ownerAccount: '0x000dafadfaqwer1',
-  },
-  {
-    imgUrl: `${Doduck}`,
-    price: 0.01,
-    owner: 'b0234234212',
-    date: '220212',
-    ownerAccount: '0x00x0dafadfaqwer1',
-  },
-  {
-    imgUrl:
-      'https://lh3.googleusercontent.com/UZ-26gO6lqy5ttLDdHM5hdZFUy1fjHCpurmWHJl0dFgmuQw2LVjN2FV2bm5JwS-i1rvkngpBzDyWaKgDox80OB4v8_muh9JkZcFS=w600',
-    price: 0.01,
-    tokenId: 'ddffa213',
-    owner: 'b023423422',
-    date: '220212',
-    ownerAccount: '0x0x0dafadfaqwer1',
-  },
-  {
-    imgUrl:
-      'https://lh3.googleusercontent.com/UZ-26gO6lqy5ttLDdHM5hdZFUy1fjHCpurmWHJl0dFgmuQw2LVjN2FV2bm5JwS-i1rvkngpBzDyWaKgDox80OB4v8_muh9JkZcFS=w600',
-    price: 0.01,
-    tokenId: 'ddffa213',
-    owner: 'b023423422',
-    date: '220212',
-    ownerAccount: 'x0x00dafadfaqwer1',
-  },
-  {
-    imgUrl:
-      'https://lh3.googleusercontent.com/UZ-26gO6lqy5ttLDdHM5hdZFUy1fjHCpurmWHJl0dFgmuQw2LVjN2FV2bm5JwS-i1rvkngpBzDyWaKgDox80OB4v8_muh9JkZcFS=w600',
-    price: 0.01,
-    tokenId: 'ddffa213',
-    owner: 'b023423422',
-    date: '220212',
-    ownerAccount: '0x0xdafadfaqwer1',
+    contractAddress: '0xb74e8F93448D7B9699bDAfa0bb88Bf6B1823906B',
+    tokenId: '3',
   },
 ]
