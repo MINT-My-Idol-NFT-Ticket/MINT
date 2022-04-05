@@ -229,7 +229,10 @@ public class ConcertService {
      */
     public boolean update(Long concert, int status) {
         try {
-            Concert data = concertRepository.findById(concert).orElseThrow(RuntimeException::new);
+            Concert data = concertRepository.findById(concert).orElseThrow(() -> {
+                log.error("콘서트 상태 변경 실패 Id :"+concert);
+                return new RuntimeException();
+            });
             data.update(status);
             concertRepository.save(data);
 
@@ -249,9 +252,9 @@ public class ConcertService {
         contract = contract.toLowerCase(Locale.ROOT);
         if (contract.equals("contractaddress")) {
 
-            return concertRepository.<ResponseContract>findAllBy(ResponseContract.class);
+            return concertRepository.findAllBy(ResponseContract.class);
         } else if(contract.equals("salecontractaddress")){
-            log.info("salecontractaddress");
+
             return concertRepository.findAllBy(ResponseSaleContract.class);
         }else{
             log.error("주소 조회 실패");
@@ -259,4 +262,28 @@ public class ConcertService {
         }
     }
 
+    /**
+     * 컨트렉트로 콘서트조회
+     * @param contract
+     * @return
+     */
+    public List<ResponseFindAllDto> findconcertby(String contract){
+        List<ResponseFindAllDto> data = new ArrayList<>();
+        List<Concert> list=concertRepository.findAllByContractAddress(contract).orElseThrow(() -> {
+            log.error("컨트렉트로 콘서트조회 실패");
+        return new RuntimeException();});
+
+        list.stream().forEach(concert -> data.add(ResponseFindAllDto.builder()
+                .id(concert.getId())
+                .title(concert.getTitle())
+                .thumnail(concert.getImage().getThumbnailUrl())
+                .poster(concert.getImage().getPosterUrl())
+                .startDate(concert.getTimes().get(0).getDate())
+                .endDate(concert.getTimes().get(concert.getTimes().size() - 1).getDate())
+                .artist(concert.getArtist())
+                .build())
+
+        );
+        return data;
+    }
 }
