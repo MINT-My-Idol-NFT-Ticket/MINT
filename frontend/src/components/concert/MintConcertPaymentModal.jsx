@@ -97,7 +97,7 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
       getRequest('api/ticket/', { seatId })
       return
     } else {
-      errorMessage('티켓을 발급할 수 없습니다', pushMypage, bright)
+      errorMessage('티켓을 발급할 수 없습니다', null, pushMypage, bright)
       return
     }
   }
