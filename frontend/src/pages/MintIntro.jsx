@@ -11,26 +11,25 @@ export default function Intro() {
   // 지갑 연동 페이지 이동
   const navigate = useNavigate()
   const moveToAccount = () => {
-    // window.location.pathname = '/address'
     navigate('/address')
   }
 
   const moveToSSAFYGit = () => {
+    alert('지갑생성을 위해 Project SSAFY로 이동합니다.')
     window.open('https://project.ssafy.com/notice/view/BD202203100420475003290', '_blank')
   }
 
   return (
     <div style={style}>
       <Typography variant="h5" component="div" sx={title}>
-        MINT 이용을 위한
+        MINT 이용을 위해
         <br /> 지갑을 연동해주세요
       </Typography>
       <Card sx={card}>
         <CardContent>
+          <Typography sx={{ fontWeight: 'bold' }}>[다운로드 및 인증]</Typography>
           <Typography sx={{ mt: '10px' }}>
-            [다운로드 및 인증]
-            <br />
-            1. APK 다운로드 및 설치 : [https://t.ly/YZwL]
+            1. APK 다운로드 및 설치 [https://t.ly/YZwL]
             <br />
             2. SSAFY WALLET 앱 실행
             <br />
@@ -74,7 +73,6 @@ const title = {
 const card = {
   width: '306px',
   height: '350px',
-  border: '1px solid gray',
-  // borderRadius: 7,
+  border: '1px solid rgba(0, 0, 0, .2)',
   margin: '20px auto',
 }
