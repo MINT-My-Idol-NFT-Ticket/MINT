@@ -18,12 +18,20 @@ export default function MintHomeContents() {
   const [notOpenConcerts, setNotOpenConcerts] = useState([])
 
   const getOpenConcertList = async () => {
-    const response = await getRequest('api/concert', { status: 1, size: 20, page: 0 })
-    setOpenConcerts(getRandomItem(response.data, 3))
+    try {
+      const response = await getRequest('api/concert', { status: 1, size: 20, page: 0 })
+      setOpenConcerts(getRandomItem(response.data, 3))
+    } catch {
+      navigate('/error404')
+    }
   }
   const getNotOpenConcertList = async () => {
-    const response = await getRequest('api/concert', { status: 0, size: 20, page: 0 })
-    setNotOpenConcerts(getRandomItem(response.data, 4))
+    try {
+      const response = await getRequest('api/concert', { status: 0, size: 20, page: 0 })
+      setNotOpenConcerts(getRandomItem(response.data, 4))
+    } catch {
+      navigate('/error404')
+    }
   }
 
   useEffect(() => {

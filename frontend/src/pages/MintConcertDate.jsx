@@ -17,8 +17,9 @@ import MintBtnGroup from '../components/common/MintBtnGroup'
 function MintConcertDate() {
   const location = useLocation()
   const params = useParams()
-  const [bright, _] = useBrightness()
+  const navigate = useNavigate()
 
+  const [bright, _] = useBrightness()
   const [state, setState] = useState(location.state)
   const [concertData, setConcertData] = useState([])
   const [dayConcertData, setDayConcertData] = useState([])
@@ -35,11 +36,15 @@ function MintConcertDate() {
   }
 
   const getConcertDate = async () => {
-    const response = await getRequest(`/api/ticket/concert/${params.id}`)
-    setConcertData(response.data)
-    setDayConcertData(response.data)
-    setDate(new Date(response.data[0].date))
-    setDates({ min: response.data[0].date, max: response.data[response.data.length - 1].date })
+    try {
+      const response = await getRequest(`/api/ticket/concert/${params.id}`)
+      setConcertData(response.data)
+      setDayConcertData(response.data)
+      setDate(new Date(response.data[0].date))
+      setDates({ min: response.data[0].date, max: response.data[response.data.length - 1].date })
+    } catch {
+      navigate('/error404')
+    }
   }
 
   const changeConcertByDate = newDate => {

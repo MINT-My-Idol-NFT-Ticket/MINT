@@ -9,7 +9,6 @@ export const postRequest = async (url, data) => {
 
 export const getRequest = async (url, params = null) => {
   let parameter = ''
-
   if (params !== null) {
     parameter = '?'
     Object.keys(params).forEach(key => (parameter += `${key}=${params[key]}&`))

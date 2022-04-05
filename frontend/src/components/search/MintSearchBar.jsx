@@ -5,16 +5,22 @@ import SearchIcon from '@mui/icons-material/Search'
 import CancelIcon from '@mui/icons-material/Cancel'
 import { getRequest } from '../../api/requests.js'
 import { Box } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 import useBrightness from '../../hooks/useBrightness'
 
 export default function MintSearchBar({ setSearchList }) {
   const [searchQuery, setSearchQuery] = useState('')
+  const navigate = useNavigate()
   const [bright, _] = useBrightness()
   const search = async () => {
-    const response = await getRequest('api/concert', { searchQuery })
-
-    setSearchList(response.data)
+    try {
+      const response = await getRequest('api/concert', { searchQuery })
+      setSearchList(response.data)
+    } catch {
+      navigate('/error404')
+      console.log('asdf')
+    }
   }
 
   return (

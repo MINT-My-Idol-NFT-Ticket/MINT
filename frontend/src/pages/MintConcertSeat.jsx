@@ -32,8 +32,12 @@ function MintConcertSeat() {
   }
 
   const getSeatAvailable = async () => {
-    const response = await getRequest(`api/ticket/section/${location.state.area.id}`)
-    setSeatLayout(response.data)
+    try {
+      const response = await getRequest(`api/ticket/section/${location.state.area.id}`)
+      setSeatLayout(response.data)
+    } catch {
+      navigate('/error404')
+    }
   }
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Typography } from '@mui/material'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { BASE_URL, getRequest } from '../api/requests'
 
 import { confirmMessageNoBtn } from '../functions/alert/alertFunctions'
@@ -14,19 +14,25 @@ import MintSeatForm from '../components/concert/MintSeatForm'
 function MintConcertArea() {
   const concertId = useParams().id
   const location = useLocation()
-  const [bright, _] = useBrightness()
+  const navigate = useNavigate()
 
+  const [bright, _] = useBrightness()
   const [showSection, setShowSection] = useState({ area: '구역을 선택해 주세요.' })
   const [selected, setSelected] = useState([0, false])
   const [sections, setSections] = useState([])
+
   const pickArea = (area, idx) => {
     setSelected([idx, true])
     setShowSection({ id: idx, area: area })
   }
 
   const getConcertArea = async () => {
-    const response = await getRequest(`/api/ticket/extraSeat/${location.state.timeId}`)
-    setSections(response.data)
+    try {
+      const response = await getRequest(`/api/ticket/extraSeat/${location.state.timeId}`)
+      setSections(response.data)
+    } catch {
+      navigate('/error404')
+    }
   }
 
   useEffect(() => {
