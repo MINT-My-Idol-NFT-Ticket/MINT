@@ -16,8 +16,6 @@ export default function MintUploadCard({ requestData, setRequestData }) {
     setMP4(e.target.files)
   }
   const uploadFiles = async () => {
-    console.log(GIF)
-    console.log(MP4)
     const client = new Web3Storage({ token: getTocken() })
     const gifCID = await client.put(GIF)
     const mp4CID = await client.put(MP4)

@@ -59,8 +59,8 @@ function App({ setMode }) {
         <Route path="/notice/1" element={<MintNotice1 />} />
         <Route path="/notice/2" element={<MintNotice2 />} />
         <Route path="/notice/3" element={<MintNotice3 />} />
-        <Route exact path="/trade" element={<MintTrade bright={bright} />} />
-        <Route exact path="/trade/ticket/:id" element={<MintTradeDetail bright={bright} />} />
+        <Route exact path="/trade" element={<MintTrade />} />
+        <Route exact path="/trade/ticket" element={<MintTradeDetail />} />
         <Route path="/myticket/:id" element={<MintQR />} />
       </Routes>
     </BrowserRouter>

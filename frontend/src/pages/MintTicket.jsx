@@ -7,7 +7,6 @@ import MintTicket3D from '../components/ticket/MintTicket3D'
 
 function MintTicket(props) {
   const location = useLocation()
-  console.log(location, '컬렉션에서 받아온 데이터')
   return (
     <Box sx={{ position: 'relative', overflow: 'hidden', height: '100vh' }}>
       <MintSubHeader content="마이페이지" where="/mypage" />

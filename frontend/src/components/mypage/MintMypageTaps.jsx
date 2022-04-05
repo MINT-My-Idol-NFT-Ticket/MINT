@@ -22,9 +22,7 @@ export default function MintMypageTabs({ value }) {
     const cts = new Set()
     for (let idx = 0; idx < result.length; idx++) {
       const tokenList = await getTicketList(result[idx], userAddress)
-      // console.log('list', tokenList)
-      // const ba = await getTicketAmount(result[idx], userAddress)
-      // console.log('balance', ba)
+
       if (tokenList.length === 0) continue
       for (let i = 0; i < tokenList.length; i++) {
         tks.push({ contractAddress: result[idx], tokenId: tokenList[i].tokenId })

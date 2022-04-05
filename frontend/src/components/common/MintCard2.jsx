@@ -15,7 +15,11 @@ export default function MintCard2({ tokenId }) {
   }
   const getURI = async () => {
     const uri = await getTokenURI(tokenId.contractAddress, tokenId.tokenId)
+<<<<<<< HEAD
+    let response = ''
+=======
     let response
+>>>>>>> ae3a69b9494a99a919bd6209374dc7bcd470f41f
     if (uri) response = await getRequest(uri)
     setTokenURI(response)
   }
@@ -40,6 +44,3 @@ export default function MintCard2({ tokenId }) {
     </Box>
   )
 }
-
-//etherium 아이콘 이미지
-const etherIcon = 'https://openseauserdata.com/files/6f8e2979d428180222796ff4a33ab929.svg'
