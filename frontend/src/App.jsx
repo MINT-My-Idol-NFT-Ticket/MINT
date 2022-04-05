@@ -47,7 +47,7 @@ function App({ setMode }) {
         <Route path="/search" element={<MintSearch bright={bright} />} />
         <Route path="/comming_soon" element={<MintSoon bright={bright} />} />
         <Route path="/mypage" element={<MintMyPage bright={bright} />} />
-        <Route path="/mypage/ticket/:id" element={<MintTicket />} />
+        <Route path="/mypage/ticket" element={<MintTicket />} />
         <Route path="/admin" element={<Admin />} />
         <Route exact path="/concert/detail/:id" element={<MintConcertDetail bright={bright} />} />
         <Route path="/concert/date/:id" element={<MintConcertDate />} />

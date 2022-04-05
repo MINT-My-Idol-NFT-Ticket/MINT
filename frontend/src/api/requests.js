@@ -19,3 +19,16 @@ export const getRequest = async (url, params = null) => {
 
   return response
 }
+
+export const putRequest = async (url, params = null) => {
+  let parameter = ''
+
+  if (params !== null) {
+    parameter = '?'
+    Object.keys(params).forEach(key => (parameter += `${key}=${params[key]}&`))
+  }
+
+  const response = await axiosInstance.put(url + parameter)
+
+  return response
+}

@@ -1,12 +1,12 @@
 import { Modal, Box, Typography, TextField, Button, Grid } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { Web3Storage } from 'web3.storage'
-import { mintTicket, balanceOfSSF, approveSSF, getTicketAmount } from '../../functions/erc/ERCfunctions.js'
+import { mintTicket, balanceOfSSF, approveSSF, getTicketAmount, getTokenURI } from '../../functions/erc/ERCfunctions.js'
 import { checkMessage, errorMessage, timerMessage } from '../../functions/alert/alertFunctions.js'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import useBrightness from '../../hooks/useBrightness.js'
-import { getRequest } from '../../api/requests.js'
+import { getRequest, putRequest } from '../../api/requests.js'
 
 const getTocken = () => process.env.REACT_APP_WEB3_STORAGE_API
 
@@ -28,11 +28,11 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
   const contractAddress = concertInfo.contractAddress
   const navigate = useNavigate()
   const seatId = useLocation().state.seat.id
+  console.log(JSON.parse(concertInfo.cids[0].cid))
 
   const [bright, _] = useBrightness()
   const [wallet, setWellet] = useState(0)
   const [userWalletPK, setUserWalletPK] = useState('')
-  const [tokenURI, setTokenURI] = useState(false)
 
   const pushHome = () => navigate('/home')
   const pushMypage = () => navigate('/mypage')
@@ -46,14 +46,17 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
     const max = concertInfo.cids.length
     console.log(max)
     const random = Math.floor(Math.random() * max)
-
+    const images = JSON.parse(concertInfo.cids[random].cid)
     const data = {
       title: concertInfo.title,
       section: concertInfo.area,
       date: concertInfo.date,
       seat: concertInfo.seat,
       userAddress: userAddress,
-      img: `https://ipfs.io/ipfs/${concertInfo.cids[random].cid}`,
+      img: {
+        gif: `https://ipfs.io/ipfs/${images.gif}`,
+        mp4: `https://ipfs.io/ipfs/${images.mp4}`,
+      },
     }
     const blob = new Blob([JSON.stringify(data)], { type: 'application/json' })
     const files = [new File([blob], 'tokenURI.json')]
@@ -84,17 +87,14 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
       return
     }
     await approveSSF(userWalletPK, contractAddress, concertInfo.price)
-    if (tokenURI === false) {
-      const URI = await makeTokenURI()
-      setTokenURI(URI)
-    }
+    const tokenURI = await makeTokenURI()
+    console.log(tokenURI)
 
     //티켓 발급
     const result = await mintTicket(contractAddress, userAddress, userWalletPK, tokenURI)
-
     if (result) {
       checkMessage('티켓이 발급되었습니다', pushHome, bright)
-      getRequest('api/ticket/', { seatId })
+      putRequest('api/ticket', { seatId: seatId })
       return
     } else {
       errorMessage('티켓을 발급할 수 없습니다', pushMypage, bright)

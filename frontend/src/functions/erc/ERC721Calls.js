@@ -45,10 +45,12 @@ export async function getSaleList(web3, contractAddress) {
 }
 
 export async function tokenURI(web3, contractAddress, tokenId) {
+  console.log(tokenId, contractAddress)
   const contractInstance = new web3.eth.Contract(MINT_ABI, contractAddress)
   const transactionInstance = contractInstance.methods.tokenURI(tokenId)
   try {
     const response = await transactionInstance.call()
+    console.log(response)
     return response
   } catch {
     return false
