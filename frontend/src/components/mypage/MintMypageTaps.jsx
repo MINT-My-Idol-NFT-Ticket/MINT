@@ -1,10 +1,10 @@
 import Box from '@mui/material/Box'
 import TabContext from '@mui/lab/TabContext'
 import TabPanel from '@mui/lab/TabPanel'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { getRequest } from '../../api/requests'
-import { getTicketList } from '../../functions/erc/ERCfunctions'
+import { getTicketList, getTicketAmount } from '../../functions/erc/ERCfunctions'
 import getUserAddress from '../../functions/util/getUserAddress'
 
 import MintBuyList from './MintBuyList'
@@ -17,16 +17,23 @@ export default function MintMypageTabs({ value }) {
 
   const getContractList = async () => {
     const response = await getRequest('api/concert/contracts', { contract: 'contractAddress' })
+    console.log(response)
     const result = response.data.map(address => address.contractAddress[0])
-    const tmpTokenIds = []
+    const tks = []
+    const cts = []
     for (let idx = 0; idx < result.length; idx++) {
       const tokenList = await getTicketList(result[idx], userAddress)
+      // console.log('list', tokenList)
+      // const ba = await getTicketAmount(result[idx], userAddress)
+      // console.log('balance', ba)
       if (tokenList.length === 0) continue
-      for (let i = 0; i < tokenList.length; i++)
-        tmpTokenIds.push({ contractAddress: result[idx], tokenIds: tokenList[i].tokenId })
+      for (let i = 0; i < tokenList.length; i++) {
+        tks.push({ contractAddress: result[idx], tokenIds: tokenList[i].tokenId })
+        cts.push(result[idx])
+      }
     }
     setContractList(result)
-    setTokenIds(tmpTokenIds)
+    setTokenIds(cts)
   }
 
   useEffect(() => {
