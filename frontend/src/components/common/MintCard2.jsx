@@ -9,13 +9,13 @@ export default function MintCard2({ cardData, type, tokenId }) {
   const [tokenURI, setTokenURI] = useState('')
   const navigate = useNavigate()
   const showTicket = () => {
-    navigate(`/mypage/ticket`, { state: { tokenURI } })
+    navigate(`/mypage/ticket`, { state: { ...tokenURI.data } })
   }
   const getURI = async () => {
     const uri = await getTokenURI(tokenId.contractAddress, tokenId.tokenId)
     let response = 'dfaqs'
     if (uri) response = await getRequest(uri)
-    console.log(response)
+    console.log(response, 'token URI')
     setTokenURI(response)
   }
 
@@ -32,7 +32,7 @@ export default function MintCard2({ cardData, type, tokenId }) {
         boxSizing: 'border-box',
       }}
       onClick={showTicket}>
-      <Card sx={{ border: '1px solid grey' }}>
+      <Card sx={{ border: '1px solid grey', cursor: 'pointer' }}>
         {tokenURI === '' ? (
           <></>
         ) : (
