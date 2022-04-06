@@ -1,9 +1,6 @@
 server:
   port: 8080
-  ssl:
-    key-store-password: ssafy
-    key-store-type: PKCS12
-    key-store: classpath:ssafykey.p12
+
 spring:
   web:
     resources:
@@ -26,8 +23,6 @@ spring:
       enabled: true
   jpa:
     show-sql: true
-    format_sql: true
-    use_sql_comments: true
     hibernate:
       ddl-auto: update
     properties:
@@ -50,10 +45,7 @@ logging:
 server:
   port: 9090
 
-  ssl:
-    key-store-password: ssafy
-    key-store-type: PKCS12
-    key-store: classpath:ssafykey.p12
+
 
 spring:
   servlet:
