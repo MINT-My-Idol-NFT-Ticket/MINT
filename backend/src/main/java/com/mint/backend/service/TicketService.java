@@ -107,8 +107,9 @@ public class TicketService {
         return uriData.getId();
     }
 
+    @Transactional(readOnly = true)
     public ResponseUriDataDto findUriData(Long id){
-        ResponseUriDataDto data = new ResponseUriDataDto(uriDataRepository.findById(id).orElseThrow(() ->{
+        ResponseUriDataDto data = new ResponseUriDataDto(uriDataRepository.findById(id).orElseThrow(() -> {
             log.error("uriData를 찾을 수 없음");
             return new NoSuchElementException("id : " + id);
         }));
