@@ -6,9 +6,7 @@ import MintHorizontalCard from '../common/MintHorizontalCard'
 
 export default function MintSearchContents() {
   const [searchList, setSearchList] = useState([])
-  const makeSearchList = () => {
-    return
-  }
+
   return (
     <Box sx={{ padding: '0 20px' }}>
       <Box
@@ -22,9 +20,9 @@ export default function MintSearchContents() {
         }}>
         <MintSearchBar setSearchList={setSearchList} />
       </Box>
-      <Box sx={{ marginTop: '55px' }}>
-        {searchList.lenght === 0 ? (
-          searchList.map(concert => <MintHorizontalCard key={concert.date} concertData={concert} />)
+      <Box sx={{ paddingTop: '65px' }}>
+        {searchList.length !== 0 ? (
+          searchList.map(concert => <MintHorizontalCard key={concert.id} concertData={concert} />)
         ) : (
           <Typography
             sx={{
@@ -38,9 +36,6 @@ export default function MintSearchContents() {
             검색결과가 없습니다
           </Typography>
         )}
-        {/* {searchList.map(concert => (
-        <MintHorizontalCard key={concert.date} concertData={concert} />
-        ))} */}
       </Box>
     </Box>
   )
