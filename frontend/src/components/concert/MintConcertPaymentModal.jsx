@@ -1,11 +1,12 @@
 import { Modal, Box, Typography, TextField, Button, Grid } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { mintTicket, balanceOfSSF, approveSSF, getTicketAmount } from '../../functions/erc/ERCfunctions.js'
+import { mintTicket, balanceOfSSF, approveSSF, getTicketAmount, getTokenURI } from '../../functions/erc/ERCfunctions.js'
 import { checkMessage, errorMessage, timerMessage } from '../../functions/alert/alertFunctions.js'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import useBrightness from '../../hooks/useBrightness.js'
-import { getRequest, putRequest } from '../../api/requests.js'
+import { getRequest, postRequest, putRequest } from '../../api/requests.js'
+import { BASE_URL } from '../../api/requests.js'
 
 const style = {
   position: 'absolute',
@@ -40,20 +41,25 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
   const makeTokenURI = async () => {
     const max = concertInfo.cids.length
     const random = Math.floor(Math.random() * max)
-    const images = concertInfo.cids[random].cid
+    const images = JSON.parse(concertInfo.cids[random].cid)
     const data = {
       title: concertInfo.title,
       place: concertInfo.place,
       date: concertInfo.date,
       time: concertInfo.time,
       area: concertInfo.area,
-      seat: concertInfo.seat,
+      seat: JSON.stringify(concertInfo.seat),
       price: concertInfo.price,
       artists: JSON.stringify(concertInfo.artists),
-      img: images,
+      img: JSON.stringify({
+        gif: `${BASE_URL}${images.gif}`,
+        mp4: `${BASE_URL}${images.mp4}`,
+      }),
     }
 
-    return ''
+    const response = await postRequest('api/ticket/uriData', data)
+
+    return String(response.data)
   }
 
   const paying = async () => {
@@ -78,7 +84,7 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
     await approveSSF(userWalletPK, contractAddress, concertInfo.price)
     const tokenURI = await makeTokenURI()
 
-    //티켓 발급
+    // 티켓 발급
     const result = await mintTicket(contractAddress, userAddress, userWalletPK, tokenURI)
     if (result) {
       checkMessage('티켓이 발급되었습니다', pushHome, bright)

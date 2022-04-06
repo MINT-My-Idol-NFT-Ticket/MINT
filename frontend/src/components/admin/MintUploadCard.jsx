@@ -1,15 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Button } from '@mui/material'
-import { Web3Storage } from 'web3.storage'
 import { postRequest } from '../../api/requests'
 
-const getTocken = () => process.env.REACT_APP_WEB3_STORAGE_API
 let cids = []
 
 export default function MintUploadCard({ requestData, setRequestData }) {
   const [GIF, setGIF] = useState([])
   const [MP4, setMP4] = useState([])
-  // const [cids, setCids] = useState([])
   const selectGIF = e => {
     setGIF(e.target.files)
   }
@@ -19,11 +16,14 @@ export default function MintUploadCard({ requestData, setRequestData }) {
   const uploadFiles = async () => {
     const formData = new FormData()
 
-    formData.append('gif', GIF)
-    formData.append('mp4', MP4)
+    formData.append('gif', GIF[0])
+    formData.append('mp4', MP4[0])
+    console.log(formData)
 
     const response = await postRequest('api/concert/resource', formData)
+    console.log(response.data)
     cids.push(JSON.stringify(response.data))
+    console.log(cids)
     // const client = new Web3Storage({ token: getTocken() })
     // const gifCID = await client.put(GIF)
     // const mp4CID = await client.put(MP4)

@@ -19,7 +19,6 @@ export default function MintSearchBar({ setSearchList }) {
       setSearchList(response.data)
     } catch {
       navigate('/error404')
-      console.log('asdf')
     }
   }
 
