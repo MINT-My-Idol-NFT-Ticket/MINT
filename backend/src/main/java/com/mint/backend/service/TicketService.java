@@ -4,12 +4,15 @@ package com.mint.backend.service;
 import com.mint.backend.domain.Seat;
 import com.mint.backend.domain.Section;
 import com.mint.backend.domain.Times;
+import com.mint.backend.domain.UriData;
+import com.mint.backend.dto.RequestUriDataDto;
 import com.mint.backend.dto.ResponseExistSeatDto;
 import com.mint.backend.dto.ResponseFindDayDTO;
 import com.mint.backend.dto.ResponseSeatAllDto;
 import com.mint.backend.repository.SeatRepository;
 import com.mint.backend.repository.SectionRepository;
 import com.mint.backend.repository.TimesRepository;
+import com.mint.backend.repository.UriDataRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -27,6 +30,7 @@ public class TicketService {
     private final SectionRepository sectionRepository;
     private final SeatRepository seatRepository;
     private final TimesRepository timesRepository;
+    private final UriDataRepository uriDataRepository;
 
     //회차 조회
     @Transactional(readOnly = true)
@@ -96,5 +100,12 @@ public class TicketService {
 
         }
         return result;
+    }
+
+    // uri data 저장
+    @Transactional
+    public Long save(RequestUriDataDto requestUriDataDto) {
+        UriData uriData = uriDataRepository.save(requestUriDataDto.toEntity());
+        return uriData.getTokenUri();
     }
 }

@@ -20,13 +20,14 @@ import javax.persistence.Id;
 @Builder
 public class UriData {
     @Id
-    private String tokenUri;
+    private Long tokenUri;
     private String title;
     private String place;
     private String date;
     private String time;
     private String area;
     private String seat;
+    private String price;
     private String artists;
     private String img;
 

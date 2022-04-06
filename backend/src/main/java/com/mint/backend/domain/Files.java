@@ -20,6 +20,4 @@ public class Files {
     private String gifUrl;
     private String mp4Url;
 
-
-
 }

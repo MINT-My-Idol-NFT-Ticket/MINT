@@ -5,7 +5,6 @@ import com.mint.backend.dto.*;
 import com.mint.backend.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -28,6 +27,7 @@ public class ConcertService {
     private final SeatRepository seatRepository;
     private final SectionRepository sectionRepository;
     private final CidsRepository cidsRepository;
+    private final FilesRepository filesRepository;
 
 
     /**
@@ -285,5 +285,35 @@ public class ConcertService {
 
         );
         return data;
+    }
+
+    @Transactional
+    public ResponseResourceDto saveFiles(MultipartFile gif, MultipartFile mp4) throws IOException {
+        //랜덤파일명생성
+        String gifFileName = UUID.randomUUID() + "_" + gif.getOriginalFilename();
+        String mp4FileName = UUID.randomUUID() + "_" + mp4.getOriginalFilename();
+        //실제저장경로
+        String realPath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" +
+                File.separator + "resources" + File.separator + "image" + File.separator + "UriFiles";
+        //DB저장경로
+        String Path = "files" + File.separator + "UriFiles" + File.separator;
+        // 파일 저장
+        gif.transferTo(new File(realPath, gifFileName));
+        mp4.transferTo(new File(realPath, mp4FileName));
+        try{
+            Files files = Files.builder()
+                    .gifUrl(Path + gif.getOriginalFilename())
+                    .mp4Url(Path+mp4.getOriginalFilename())
+                    .build();
+            filesRepository.save(files);
+
+        }catch(Exception e){
+            log.error("Gif, Mp4 파일 DB 저장 실패");
+            return null;
+        }
+        return  ResponseResourceDto.builder()
+                .gif(gif.getOriginalFilename())
+                .mp4(gif.getOriginalFilename())
+                .build();
     }
 }
