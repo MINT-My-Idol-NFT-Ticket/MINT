@@ -3,7 +3,7 @@ import React from 'react'
 
 function MintQR({ concertData }) {
   console.log(concertData, '뒷면정보')
-  const url = 'http://j6b108.p.ssafy.io/mypage/ticket/1'
+  const url = 'https://j6b108.p.ssafy.io/ticket/confirm'
 
   return (
     <Box sx={{ width: '340px', color: 'white' }}>
