@@ -34,8 +34,7 @@ export default function MintMypageContents() {
     const cts = new Set()
     try {
       const response = await getRequest('api/concert/contracts', { contract: 'contractAddress' })
-      const result = response.data[0].map(address => address.contractAddress[0])
-      console.log(result)
+      const result = response.data.map(address => address.contractAddress[0])
 
       for (let idx = 0; idx < result.length; idx++) {
         const tokenList = await getTicketList(result[idx], userAddress)
@@ -60,7 +59,7 @@ export default function MintMypageContents() {
 
   useEffect(() => {
     if (checkNotAddress(() => navigate('/address'))) {
-      // getBalance()
+      getBalance()
       getContractList()
     }
   }, [])
@@ -75,10 +74,10 @@ export default function MintMypageContents() {
           <TabContext value={value}>
             <Box>
               <TabPanel style={{ padding: 0 }} value="1">
-                {/* <MintBuyList contractList={contractList} loading={loading} /> */}
+                <MintBuyList contractList={contractList} loading={loading} />
               </TabPanel>
               <TabPanel style={{ padding: 0 }} value="2">
-                {/* <MintCollections tokenIds={tokenIds} loading={loading} /> */}
+                <MintCollections tokenIds={tokenIds} loading={loading} />
               </TabPanel>
             </Box>
           </TabContext>
