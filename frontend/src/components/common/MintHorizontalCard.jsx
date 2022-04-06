@@ -2,8 +2,10 @@ import MintConcertText from './MintConcertText'
 import MintConcertPoster from './MintConcertPoster'
 import { Box, Button } from '@mui/material'
 import { BASE_URL } from '../../api/requests'
+import { useNavigate } from 'react-router-dom'
 
 export default function MintHorizontalCard({ concertData, passDetail, children }) {
+  const navigate = useNavigate()
   return (
     <Box
       sx={{
@@ -15,12 +17,12 @@ export default function MintHorizontalCard({ concertData, passDetail, children }
         cursor: 'default',
       }}>
       <Box sx={{ width: '120px', height: '120px', boxSizing: 'border-box', marginRight: '20px' }}>
-        <MintConcertPoster imgUrl={`${BASE_URL}${concertData.poster}`} />
+        <MintConcertPoster imgUrl={`${BASE_URL}${concertData.poster ? concertData.poster : concertData.thumnailUrl}`} />
       </Box>
       <Box sx={{ width: '100px', flex: '1 auto', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
         <MintConcertText
           data={{
-            singer: concertData.artist[0].name,
+            singer: concertData.artists ? concertData.artists[0].name : concertData.artist[0].name,
             title: concertData.title,
             date: `${concertData.startDate.slice(0, -4)} ~ ${concertData.endDate.slice(0, -4)}`,
           }}
@@ -33,7 +35,7 @@ export default function MintHorizontalCard({ concertData, passDetail, children }
             size="small"
             sx={{ width: '45%', marginRight: '16px', float: 'right' }}
             onClick={() => {
-              passDetail(concertData.id)
+              navigate(`/concert/detail/${concertData.id}`)
             }}>
             콘서트 상세
           </Button>
