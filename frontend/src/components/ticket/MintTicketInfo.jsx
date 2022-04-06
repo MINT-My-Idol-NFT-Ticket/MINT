@@ -3,7 +3,7 @@ import React from 'react'
 
 function MintQR({ concertData }) {
   console.log(concertData, '뒷면정보')
-  const url = 'http://j6b108.p.ssafy.io/mypage/ticket/1'
+  const url = 'https://j6b108.p.ssafy.io/ticket/confirm'
 
   return (
     <Box sx={{ width: '340px', color: 'white' }}>
@@ -21,12 +21,12 @@ function MintQR({ concertData }) {
         </Box>
         <Box sx={container}>
           <Typography sx={title}>ARTIST</Typography>
-          <Typography sx={content}>{concertData.artist[0].name}</Typography>
+          <Typography sx={content}>{concertData.artists ? concertData.artists[0].name : 'undefined'}</Typography>
         </Box>
         <Box sx={container}>
           <Typography sx={title}>SEAT</Typography>
           <Typography sx={content}>
-            {concertData.section}-{concertData.seat.seat}
+            {concertData.section}-{concertData.seat ? concertData.seat.seat : 'undefined'}
           </Typography>
         </Box>
         <Box sx={container}>
@@ -43,7 +43,7 @@ function MintQR({ concertData }) {
           </Box>
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'space-between', paddingLeft: '6px' }}>
             <Typography sx={title}>TIME</Typography>
-            <Typography sx={content}>{concertData.time}</Typography>
+            <Typography sx={content}>{concertData.time ? concertData.time : 'undefined'}</Typography>
           </Box>
         </Box>
       </Box>

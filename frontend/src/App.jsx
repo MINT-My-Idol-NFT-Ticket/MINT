@@ -62,7 +62,7 @@ function App({ setMode }) {
         <Route path="/notice/3" element={<MintNotice3 />} />
         <Route exact path="/trade" element={<MintTrade />} />
         <Route exact path="/trade/ticket" element={<MintTradeDetail />} />
-        <Route path="/myticket/:id" element={<MintQR />} />
+        <Route path="/ticket/confirm" element={<MintQR />} />
         <Route path="/error404" element={<MintNotFound404 />} />
       </Routes>
     </BrowserRouter>
@@ -113,7 +113,7 @@ export default function MINT() {
           },
           info: {
             // info black
-            main: '#000000',
+            main: '#121212',
             contrastText: lightColor,
           },
         },

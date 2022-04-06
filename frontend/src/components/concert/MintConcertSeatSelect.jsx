@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
-import { Box, Button, Checkbox } from '@mui/material'
+import { Grid } from '@mui/material'
 import MintConcertSeatBtn from './MintConcertSeatBtn'
 
-//
 function MintConcertSeatSelect(props) {
   const [seats, setSeat] = useState(props.data)
 
   return (
-    <Box sx={{ margin: '0 auto' }}>
+    <Grid container spacing={1} sx={{ margin: '0 auto' }}>
       {seats.map((seat, idx) =>
         props.selected === idx ? (
           <MintConcertSeatBtn
@@ -28,7 +27,7 @@ function MintConcertSeatSelect(props) {
           />
         ),
       )}
-    </Box>
+    </Grid>
   )
 }
 

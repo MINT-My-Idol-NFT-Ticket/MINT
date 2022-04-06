@@ -1,4 +1,4 @@
-import { Card, CardMedia, Box } from '@mui/material'
+import { Card, CardMedia, Box, Button, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -33,16 +33,18 @@ export default function MintCard2({ tokenId }) {
       {tokenURI == null || !tokenURI ? (
         <MintCollectionSingleSkeletion />
       ) : (
-        <Card>
+        <Card style={{ cursor: 'pointer' }}>
           {tokenURI === '' ? (
             <></>
           ) : (
-            <CardMedia
-              component="img"
-              image={JSON.parse(tokenURI.data.img).gif}
-              alt="nft사진"
-              sx={{ height: '175px' }}
-            />
+            <>
+              <CardMedia component="img" image={tokenURI.data.img.gif} alt="nft사진" sx={{ height: '175px' }} />
+              <Typography sx={{ fontSize: '10px', wordBreak: 'break-all', marginTop: '2px', color: 'gray' }}>
+                <marquee scrolldelay="100">
+                  {tokenURI.data.title} on {tokenURI.data.date}
+                </marquee>
+              </Typography>
+            </>
           )}
         </Card>
       )}
