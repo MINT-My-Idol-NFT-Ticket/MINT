@@ -31,7 +31,6 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
   const [wallet, setWellet] = useState(0)
   const [userWalletPK, setUserWalletPK] = useState('')
 
-  const pushHome = () => navigate('/home')
   const pushMypage = () => navigate('/mypage')
 
   const checkWalletBalance = async () => {
@@ -87,7 +86,7 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
     // 티켓 발급
     const result = await mintTicket(contractAddress, userAddress, userWalletPK, tokenURI)
     if (result) {
-      checkMessage('티켓이 발급되었습니다', pushHome, bright)
+      checkMessage('티켓이 발급되었습니다', pushMypage, bright)
       putRequest('api/ticket', { seatId: seatId })
       return
     } else {
@@ -97,7 +96,7 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
   }
 
   const minting = () => {
-    timerMessage('잠깐 기다려 주세요', '티켓을 발급하고 있습니다', paying, bright)
+    timerMessage('잠시 기다려 주세요', '티켓을 발급하고 있습니다', paying, bright)
   }
 
   useEffect(() => {

@@ -18,7 +18,7 @@ export default function MintCard2({ tokenId }) {
       const uri = await getTokenURI(tokenId.contractAddress, tokenId.tokenId)
       console.log(uri)
       let response = ''
-      if (uri) response = await getRequest(uri)
+      if (uri) response = await getRequest(`api/ticket/uriData/${uri}`)
       setTokenURI(response)
     } catch {
       navigate('/error404')
@@ -39,7 +39,12 @@ export default function MintCard2({ tokenId }) {
             <></>
           ) : (
             <>
-              <CardMedia component="img" image={tokenURI.data.img.gif} alt="nft사진" sx={{ height: '175px' }} />
+              <CardMedia
+                component="img"
+                image={JSON.parse(tokenURI.data.img).gif}
+                alt="nft사진"
+                sx={{ height: '175px' }}
+              />
               <Typography sx={{ fontSize: '10px', wordBreak: 'break-all', marginTop: '2px', color: 'gray' }}>
                 <marquee scrolldelay="100">
                   {tokenURI.data.title} on {tokenURI.data.date}

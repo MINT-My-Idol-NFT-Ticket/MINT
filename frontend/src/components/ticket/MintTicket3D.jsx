@@ -1,17 +1,16 @@
 import React, { Suspense, useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Stars, useGLTF, Bounds, Html, useProgress, useTexture } from '@react-three/drei'
 import MintTicketInfo from './MintTicketInfo'
 
 function MintTicket3D({ concertData }) {
+  console.log(concertData)
   const TicketMesh = () => {
     const group = useRef()
     const { nodes, materials } = useGLTF('/mintticket3.glb')
 
-    const src = concertData.img.mp4
-      ? concertData.img.mp4
-      : 'https://ipfs.io/ipfs/bafybeia22z2hmgq4b5alpek3mk2hi7mlwtcqqsf53hl7vovz6sx6zi63lm/default.mp4'
+    const src = concertData.img.mp4 ? concertData.img.mp4 : JSON.parse(concertData.img).mp4
 
     const [video] = useState(() =>
       Object.assign(document.createElement('video'), {

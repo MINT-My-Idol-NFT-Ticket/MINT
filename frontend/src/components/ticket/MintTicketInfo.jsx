@@ -21,12 +21,12 @@ function MintQR({ concertData }) {
         </Box>
         <Box sx={container}>
           <Typography sx={title}>ARTIST</Typography>
-          <Typography sx={content}>{concertData.artists ? concertData.artists[0].name : 'undefined'}</Typography>
+          <Typography sx={content}>{JSON.parse(concertData.artists)[0].name}</Typography>
         </Box>
         <Box sx={container}>
           <Typography sx={title}>SEAT</Typography>
           <Typography sx={content}>
-            {concertData.section}-{concertData.seat ? concertData.seat.seat : 'undefined'}
+            {concertData.area}-{JSON.parse(concertData.seat).seat}
           </Typography>
         </Box>
         <Box sx={container}>

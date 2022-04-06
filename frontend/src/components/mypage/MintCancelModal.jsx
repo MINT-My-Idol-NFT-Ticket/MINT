@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getRequest, putRequest } from '../../api/requests'
 import { getTicketList, getTokenURI, burnTicket } from '../../functions/erc/ERCfunctions'
-import axios from 'axios'
+
+import { checkMessage, timerMessage } from '../../functions/alert/alertFunctions'
+import useBrightness from '../../hooks/useBrightness'
 
 const style = {
   position: 'absolute',
@@ -25,14 +27,15 @@ export default function MintCancelModal({ open, handleClose, targetConcertId }) 
   const [tokenDatas, setTokenDatas] = useState([1])
   const [cancelTarget, setCancelTarget] = useState({})
   const [userPK, setUserPK] = useState('')
+  const [bright, _] = useBrightness()
 
   const getContractAddress = async () => {
-    const concertData = await axios.get(`http://j6b108.p.ssafy.io:9090/api/concert/${29}`)
+    const concertData = await getRequest(`api/concert/${targetConcertId}`)
     const tokenList = await getTicketList(concertData.data.contractAddress, userAddress)
     const metaDatas = []
     for (let tokenId of tokenList) {
       const uri = await getTokenURI(concertData.data.contractAddress, tokenId.tokenId)
-      const tokenMetaData = await getRequest(uri)
+      const tokenMetaData = await getRequest(`api/ticket/uriData/${uri}`)
       metaDatas.push({
         ...tokenMetaData.data,
         tokenId: tokenId.tokenId,
@@ -43,7 +46,6 @@ export default function MintCancelModal({ open, handleClose, targetConcertId }) 
   }
 
   const setTarget = idx => {
-    console.log(idx)
     setCancelTarget(idx)
   }
 
@@ -52,10 +54,25 @@ export default function MintCancelModal({ open, handleClose, targetConcertId }) 
   const cancel = async () => {
     const address = tokenDatas[cancelTarget].contractAddress
     const id = tokenDatas[cancelTarget].tokenId
-    const seatId = tokenDatas[cancelTarget].seat.id
-    await burnTicket(address, userPK, id)
-    putRequest('api/ticket', { seatId })
-    navigate('/home')
+    const seatId = JSON.parse(tokenDatas[cancelTarget].seat).id
+    if (id) {
+      timerMessage(
+        '잠시 기다려주세요',
+        '취소를 처리 중입니다',
+        async () => {
+          await burnTicket(address, userPK, id)
+          checkMessage(
+            '예매가 취소되었습니다',
+            () => {
+              window.location.reload()
+            },
+            bright,
+          )
+          putRequest('api/ticket', { seatId })
+        },
+        bright,
+      )
+    }
   }
 
   useEffect(() => {
@@ -63,6 +80,7 @@ export default function MintCancelModal({ open, handleClose, targetConcertId }) 
       console.log(targetConcertId)
       getContractAddress()
     }
+    return
   }, [targetConcertId])
 
   return (
