@@ -94,11 +94,9 @@ export async function cancelTicket(web3, contractAddress, tokenId) {
     gas,
   }
 
-  try {
-    await send(web3, options, ADMIN_PK)
-  } catch {
-    console.log('전송 실패')
-  }
+  const result = await send(web3, options, ADMIN_PK)
+
+  return result
 }
 
 export async function setForSaleTicket(web3, saleContractAddress, tokenId, price) {
