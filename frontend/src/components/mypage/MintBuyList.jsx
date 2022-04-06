@@ -9,19 +9,19 @@ import MintCancelModal from './MintCancelModal'
 export default function MintBuyList({ contractList, loading }) {
   const navigate = useNavigate()
 
-  const [payOpen, setPayOpen] = useState(false)
+  const [CancelOpen, setCancelOpen] = useState(false)
   const [targetConcertId, setTargetConcertId] = useState(null)
 
   const handleNavigation = id => {
     navigate(`/concert/detail/${id}`)
   }
 
-  const handlePayOpen = id => {
-    setPayOpen(true)
+  const handleCancelOpen = id => {
+    setCancelOpen(true)
     setTargetConcertId(id)
   }
   const handlePayClose = () => {
-    setPayOpen(false)
+    setCancelOpen(false)
     setTargetConcertId(null)
   }
 
@@ -49,7 +49,11 @@ export default function MintBuyList({ contractList, loading }) {
                 key={`${concert.id}-${concert.startDate}-${index}`}
                 concertData={concert}
                 passDetail={handleNavigation}>
-                <Button variant="outlined" size="small" sx={{ width: '45%' }} onClick={() => handlePayOpen(concert.id)}>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  sx={{ width: '45%' }}
+                  onClick={() => handleCancelOpen(concert.id)}>
                   예매 취소
                 </Button>
               </MintHorizontalCard>
@@ -57,7 +61,7 @@ export default function MintBuyList({ contractList, loading }) {
           )}
         </>
       )}
-      <MintCancelModal open={payOpen} handleClose={handlePayClose} targetConcertId={targetConcertId} />
+      <MintCancelModal open={CancelOpen} handleClose={handlePayClose} targetConcertId={targetConcertId} />
     </Box>
   )
 }

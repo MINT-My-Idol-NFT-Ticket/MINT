@@ -8,7 +8,6 @@ export const postRequest = async (url, data) => {
 }
 
 export const getRequest = async (url, params = null) => {
-  const URL = url
   let parameter = ''
   if (params !== null) {
     parameter = '?'

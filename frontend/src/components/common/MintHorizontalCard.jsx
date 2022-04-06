@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom'
 
 export default function MintHorizontalCard({ concertData, passDetail, children }) {
   const navigate = useNavigate()
-  console.log(concertData, '콘서트데이터')
 
   return (
     <Box
