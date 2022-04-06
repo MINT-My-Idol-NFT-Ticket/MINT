@@ -10,7 +10,7 @@ describe("MintTicket contract", function () {
   let addrs;
 
   beforeEach(async function () {
-    MintTicket = await ethers.getContractFactory("MintTicket");
+    MintTicket = await ethers.getContractFactory("EthMintTicket");
     [owner, addr1, addr2, ...addrs] = await ethers.getSigners();
     MintTicketInstance = await MintTicket.deploy();
   });
