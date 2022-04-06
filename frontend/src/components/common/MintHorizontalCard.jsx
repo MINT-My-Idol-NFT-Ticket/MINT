@@ -1,11 +1,13 @@
 import MintConcertText from './MintConcertText'
 import MintConcertPoster from './MintConcertPoster'
-import { Box, Button } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import { BASE_URL } from '../../api/requests'
 import { useNavigate } from 'react-router-dom'
 
 export default function MintHorizontalCard({ concertData, passDetail, children }) {
   const navigate = useNavigate()
+  console.log(concertData, '콘서트데이터')
+
   return (
     <Box
       sx={{
@@ -20,6 +22,17 @@ export default function MintHorizontalCard({ concertData, passDetail, children }
         <MintConcertPoster imgUrl={`${BASE_URL}${concertData.poster ? concertData.poster : concertData.thumnailUrl}`} />
       </Box>
       <Box sx={{ width: '100px', flex: '1 auto', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+        <Typography
+          sx={{
+            display: 'inline-block',
+            backgroundColor: concertData.isBefore ? '#DECAEB' : concertData.isOpen ? '#8811dd' : '#ddd',
+            padding: '2px 8px',
+            color: '#fff',
+            borderRadius: '20px',
+            fontSize: '12px',
+          }}>
+          {concertData.isBefore ? 'soon' : concertData.isOpen ? 'open' : 'closed'}
+        </Typography>
         <MintConcertText
           data={{
             singer: concertData.artists ? concertData.artists[0].name : concertData.artist[0].name,
@@ -28,7 +41,7 @@ export default function MintHorizontalCard({ concertData, passDetail, children }
           }}
           textStyle={textStyle}
         />
-        <Box sx={{ marginTop: '25px' }}>
+        <Box sx={{ marginTop: '18px' }}>
           <Button
             variant="contained"
             color="info"

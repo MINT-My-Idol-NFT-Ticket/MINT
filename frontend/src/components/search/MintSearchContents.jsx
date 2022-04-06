@@ -3,11 +3,23 @@ import { Box, Typography } from '@mui/material'
 import MintHorizontalCard from '../common/MintHorizontalCard'
 
 export default function MintSearchContents({ searchList }) {
+  console.log(searchList, 'searchList')
   return (
     <Box sx={{ padding: '0 20px' }}>
       <Box>
         {searchList.length !== 0 ? (
-          searchList.map(concert => <MintHorizontalCard key={concert.id} concertData={concert} />)
+          searchList.map(concert => (
+            <MintHorizontalCard
+              key={concert.id}
+              concertData={{
+                ...concert,
+                isOpen:
+                  new Date(concert.startDate.slice(0, 10)) <= new Date() &&
+                  new Date(concert.endDate.slice(0, 10)) >= new Date(),
+                isBefore: new Date(concert.startDate.slice(0, 10)) > new Date(),
+              }}
+            />
+          ))
         ) : (
           <Typography
             sx={{
