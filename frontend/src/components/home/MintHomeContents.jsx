@@ -44,7 +44,11 @@ export default function MintHomeContents() {
 
   return (
     <>
-      {notOpenConcerts.length === 0 ? <Skeleton variant="ractangular" sx={{ height: '100px' }} /> : <MintBanner />}
+      {notOpenConcerts.length === 0 && openConcerts.length === 0 ? (
+        <Skeleton variant="rectangular" sx={{ height: '100px' }} />
+      ) : (
+        <MintBanner />
+      )}
       <Box sx={{ padding: '10px 20px 0 20px' }}>
         {openConcerts.length === 0
           ? [0, 0, 0, 0].map((v, i) => <MintVerticalSkeleton key={i} notOpen={false} />)
