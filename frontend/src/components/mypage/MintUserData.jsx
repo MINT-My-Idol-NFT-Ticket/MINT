@@ -20,7 +20,7 @@ export default function MintUserDate({ value, setValue, balance, userAddress }) 
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
-          padding: '40px 60px 14px 60px',
+          padding: '40px 60px 10px 60px',
           fontSize: '26px',
           fontWeight: 'bold',
           boxSizing: 'border-box',
@@ -49,8 +49,8 @@ export default function MintUserDate({ value, setValue, balance, userAddress }) 
             style={{
               position: 'absolute',
               width: '18px',
-              top: '5px',
-              left: '5px',
+              top: '6px',
+              left: '7px',
             }}
             alt=""
           />

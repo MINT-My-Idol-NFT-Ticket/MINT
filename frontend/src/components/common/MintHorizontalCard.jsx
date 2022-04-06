@@ -12,6 +12,7 @@ export default function MintHorizontalCard({ concertData, passDetail, children }
         justifyContent: 'space-between',
         margin: '10px 0',
         boxSizing: 'border-box',
+        cursor: 'default',
       }}>
       <Box sx={{ width: '120px', height: '120px', boxSizing: 'border-box', marginRight: '20px' }}>
         <MintConcertPoster imgUrl={`${BASE_URL}${concertData.poster}`} />

@@ -9,7 +9,7 @@ function MintTicket(props) {
   const location = useLocation()
   return (
     <Box sx={{ position: 'relative', overflow: 'hidden', height: '100vh' }}>
-      <MintSubHeader content="마이페이지" where="/mypage" />
+      <MintSubHeader content="내 컬렉션" where="/mypage" />
       <MintTicketMoveBanner
         position="top"
         name={location.state.artists ? location.state.artists[0].name : 'undefined'}
