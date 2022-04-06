@@ -8,16 +8,15 @@ import * as ERC20Calls from './ERC20Calls.js'
 // 컨트랙트 배포
 export const deployTicketContract = price => ERC721Transactions.deployTicketContract(web3, price)
 export const deploySaleContract = mintTicketAddress => ERC721Transactions.deploySaleContract(web3, mintTicketAddress)
+export const setSaleTicket = (ticketContractAddress, saleContractAddress) =>
+  ERC721Transactions.setSaleTicket(web3, ticketContractAddress, saleContractAddress)
 
 // 예매 시 티켓 mint
 export const mintTicket = (contractAddress, sender, senderPK, tokenURI) =>
   ERC721Transactions.buyTicket(web3, contractAddress, sender, senderPK, tokenURI)
 // 예매 취소 시 티켓 burn
 export const burnTicket = (contractAddress, tokenId) => ERC721Transactions.cancelTicket(web3, contractAddress, tokenId)
-
-// 컨트랙트 배포 시 sale 컨트랙트 연동
-export const setSaleTicket = (ticketContractAddress, saleContractAddress) =>
-  ERC721Transactions.setSaleTicket(web3, ticketContractAddress, saleContractAddress)
+// 콘서트 가격 확인
 export const getPrice = contractAddress => ERC721Calls.getTicketPrice(web3, contractAddress)
 
 // sender의 티켓 수량 파악

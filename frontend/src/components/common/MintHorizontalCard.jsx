@@ -4,7 +4,6 @@ import { Box, Button } from '@mui/material'
 import { BASE_URL } from '../../api/requests'
 
 export default function MintHorizontalCard({ concertData, passDetail, children }) {
-  console.log(concertData)
   return (
     <Box
       sx={{
