@@ -37,7 +37,12 @@ export default function MintCard2({ tokenId }) {
           {tokenURI === '' ? (
             <></>
           ) : (
-            <CardMedia component="img" image={tokenURI.data.img.gif} alt="nft사진" sx={{ height: '175px' }} />
+            <CardMedia
+              component="img"
+              image={JSON.parse(tokenURI.data.img).gif}
+              alt="nft사진"
+              sx={{ height: '175px' }}
+            />
           )}
         </Card>
       )}

@@ -45,7 +45,7 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
     const client = new Web3Storage({ token: getTocken() })
     const max = concertInfo.cids.length
     const random = Math.floor(Math.random() * max)
-    const images = JSON.parse(concertInfo.cids[random].cid)
+    const images = concertInfo.cids[random].cid
     const data = {
       title: concertInfo.title,
       place: concertInfo.place,
@@ -54,11 +54,8 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
       area: concertInfo.area,
       seat: concertInfo.seat,
       price: concertInfo.price,
-      artists: concertInfo.artists,
-      img: {
-        gif: `https://ipfs.io/ipfs/${images.gif}`,
-        mp4: `https://ipfs.io/ipfs/${images.mp4}`,
-      },
+      artists: JSON.stringify(concertInfo.artists),
+      img: images,
     }
     const blob = new Blob([JSON.stringify(data)], { type: 'application/json' })
     const files = [new File([blob], 'tokenURI.json')]
