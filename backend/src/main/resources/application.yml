@@ -1,5 +1,9 @@
 server:
   port: 8080
+  ssl:
+    key-store-password: ssafy
+    key-store-type: PKCS12
+    key-store: classpath:ssafykey.p12
 spring:
   web:
     resources:
@@ -45,6 +49,11 @@ logging:
 ---
 server:
   port: 9090
+
+  ssl:
+    key-store-password: ssafy
+    key-store-type: PKCS12
+    key-store: classpath:ssafykey.p12
 
 spring:
   servlet:
