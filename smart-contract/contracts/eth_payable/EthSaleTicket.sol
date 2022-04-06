@@ -3,12 +3,12 @@ pragma solidity ^0.8.4;
 
 import "./EthMintTicket.sol";
 
-contract SaleTicket {
+contract EthSaleTicket {
    
-    MintTicket public mintTicketAddress;
+    EthMintTicket public mintTicketAddress;
 
     constructor (address _mintTicketAddress) {
-        mintTicketAddress = MintTicket(_mintTicketAddress);
+        mintTicketAddress = EthMintTicket(_mintTicketAddress);
     }
 
     mapping(uint256 => uint256) public ticketPrices;

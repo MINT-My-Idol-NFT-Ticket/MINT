@@ -4,9 +4,9 @@ pragma solidity ^0.8.4;
 import "./EthSaleTicket.sol";
 import "../token/ERC721/extensions/ERC721Enumerable.sol";
 
-contract MintTicket is ERC721Enumerable {
+contract EthMintTicket is ERC721Enumerable {
 
-    SaleTicket public saleTicket;
+    EthSaleTicket public saleTicket;
     address public saleContractAddress;
     // Payable address can receive Ether
     address payable public owner;
@@ -80,7 +80,7 @@ contract MintTicket is ERC721Enumerable {
 
     function setSaleTicket(address _setSaleTicket) public {
         
-        saleTicket = SaleTicket(_setSaleTicket);
+        saleTicket = EthSaleTicket(_setSaleTicket);
         saleContractAddress = _setSaleTicket;
     }
 
