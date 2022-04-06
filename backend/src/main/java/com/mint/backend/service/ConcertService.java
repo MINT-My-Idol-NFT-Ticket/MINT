@@ -294,16 +294,16 @@ public class ConcertService {
         String mp4FileName = UUID.randomUUID() + "_" + mp4.getOriginalFilename();
         //실제저장경로
         String realPath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" +
-                File.separator + "resources" + File.separator + "image" + File.separator + "UriFiles";
+                File.separator + "resources" + File.separator + "image" + File.separator + "URIImg";
         //DB저장경로
-        String Path = "files" + File.separator + "UriFiles" + File.separator;
+        String Path = "files" + File.separator + "URIImg" + File.separator;
         // 파일 저장
         gif.transferTo(new File(realPath, gifFileName));
         mp4.transferTo(new File(realPath, mp4FileName));
         try{
             Files files = Files.builder()
                     .gifUrl(Path + gif.getOriginalFilename())
-                    .mp4Url(Path+mp4.getOriginalFilename())
+                    .mp4Url(Path + mp4.getOriginalFilename())
                     .build();
             filesRepository.save(files);
 
@@ -312,8 +312,8 @@ public class ConcertService {
             return null;
         }
         return  ResponseResourceDto.builder()
-                .gif(gif.getOriginalFilename())
-                .mp4(gif.getOriginalFilename())
+                .gif(Path + gifFileName)
+                .mp4(Path + mp4FileName)
                 .build();
     }
 }

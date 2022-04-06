@@ -5,10 +5,7 @@ import com.mint.backend.domain.Seat;
 import com.mint.backend.domain.Section;
 import com.mint.backend.domain.Times;
 import com.mint.backend.domain.UriData;
-import com.mint.backend.dto.RequestUriDataDto;
-import com.mint.backend.dto.ResponseExistSeatDto;
-import com.mint.backend.dto.ResponseFindDayDTO;
-import com.mint.backend.dto.ResponseSeatAllDto;
+import com.mint.backend.dto.*;
 import com.mint.backend.repository.SeatRepository;
 import com.mint.backend.repository.SectionRepository;
 import com.mint.backend.repository.TimesRepository;
@@ -21,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Slf4j
 @Service
@@ -106,6 +104,14 @@ public class TicketService {
     @Transactional
     public Long save(RequestUriDataDto requestUriDataDto) {
         UriData uriData = uriDataRepository.save(requestUriDataDto.toEntity());
-        return uriData.getTokenUri();
+        return uriData.getId();
+    }
+
+    public ResponseUriDataDto findUriData(Long id){
+        ResponseUriDataDto data = new ResponseUriDataDto(uriDataRepository.findById(id).orElseThrow(() ->{
+            log.error("uriData를 찾을 수 없음");
+            return new NoSuchElementException("id : " + id);
+        }));
+        return data;
     }
 }

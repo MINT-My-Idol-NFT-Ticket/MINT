@@ -3,10 +3,7 @@ package com.mint.backend.controller;
 import com.mint.backend.domain.Seat;
 import com.mint.backend.domain.Section;
 import com.mint.backend.domain.Times;
-import com.mint.backend.dto.RequestUriDataDto;
-import com.mint.backend.dto.ResponseExistSeatDto;
-import com.mint.backend.dto.ResponseFindDayDTO;
-import com.mint.backend.dto.ResponseSeatAllDto;
+import com.mint.backend.dto.*;
 import com.mint.backend.service.TicketService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -83,10 +80,16 @@ public class TicketController {
     @ApiOperation(
             value = "티켓 메타데이터 저장"
     )
-    @PostMapping("/ticket/uriData")
+    @PostMapping("/uriData")
     public ResponseEntity<Long> registUriData(@RequestBody RequestUriDataDto requestUriDataDto) {
 
         Long tokenUri = ticketService.save(requestUriDataDto);
-        return new ResponseEntity<Long>(tokenUri, HttpStatus.OK);
+        return new ResponseEntity<>(tokenUri, HttpStatus.OK);
     }
+
+    @GetMapping("/uriData/{id}")
+    public ResponseEntity<ResponseUriDataDto> findUriData(@PathVariable Long id){
+        return new ResponseEntity<ResponseUriDataDto>(ticketService.findUriData(id), HttpStatus.OK);
+    }
+
 }
