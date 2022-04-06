@@ -1,7 +1,7 @@
-import { Modal, Box, Typography } from '@mui/material'
+import { Modal, Box, Typography, Card } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getRequest } from '../../api/requests'
+import { getRequest, putRequest } from '../../api/requests'
 import { getTicketList, getTokenURI, burnTicket } from '../../functions/erc/ERCfunctions'
 
 const style = {
@@ -52,7 +52,9 @@ export default function MintCancelModal({ open, handleClose, targetConcertId }) 
   const cancel = async () => {
     const address = tokenDatas[cancelTarget].contractAddress
     const id = tokenDatas[cancelTarget].tokenId
-    const response = await burnTicket(address, userPK, id)
+    const seatId = tokenDatas[cancelTarget].seat.id
+    await burnTicket(address, userPK, id)
+    putRequest('api/ticket', { seatId })
     navigate('/home')
   }
 
@@ -68,25 +70,31 @@ export default function MintCancelModal({ open, handleClose, targetConcertId }) 
       onClose={handleClose}
       aria-labelledby="parent-modal-title"
       aria-describedby="parent-modal-description">
-      <Box sx={{ ...style, minWidth: '340px', maxWidth: '414px', zIndex: '-1' }}>
-        <Typography variant="h6" sx={{ marginBottom: '20px', textAlign: 'center' }}>
+      <Box sx={{ ...style, minWidth: '300px', maxWidth: '340px' }}>
+        <Typography>취소하실 콘서트를 선택해주세요</Typography>
+        <Card>
           {tokenDatas === [] ? (
             <></>
           ) : (
             tokenDatas.map((data, idx) => (
-              <Box key={`${tokenDatas.tokenId}-${tokenDatas.contractAddress}`}>
-                <p
-                  onClick={() => {
-                    setTarget(idx)
-                  }}>
-                  {JSON.stringify(data)}
-                </p>
+              <Box
+                key={`${tokenDatas.tokenId}-${tokenDatas.contractAddress}`}
+                onClick={() => {
+                  setTarget(idx)
+                }}>
+                <Typography>{data.title}</Typography>
+                <Typography>
+                  {data.date}-{data.time}
+                </Typography>
+                <Typography>
+                  좌석 정보: {data.area}-{data.seat.seat}
+                </Typography>
               </Box>
             ))
           )}
-          <input type="text" value={userPK} onChange={inputUserPK} />
-          <button onClick={cancel}>취소</button>
-        </Typography>
+        </Card>
+        <input type="text" value={userPK} onChange={inputUserPK} />
+        <button onClick={cancel}>취소</button>
       </Box>
     </Modal>
   )
