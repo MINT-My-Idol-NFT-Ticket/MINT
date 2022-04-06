@@ -1,9 +1,11 @@
 FROM node:lts-alpine as build-stage
-WORKDIR /homepage
+WORKDIR /app
 
-COPY . .
+ENV PATH /app/node_modules/.bin:$PATH
+COPY /frontend/package.json /app/package.json
 RUN npm install
-RUN npm run build
 
-EXPOSE 3000
-CMD ["nginx", "-g", "daemon off;"]
+COPY /frontend/. ./
+
+
+CMD ["npm", "start"]
