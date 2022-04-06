@@ -1,13 +1,14 @@
 import '../../styles/MintTradeContents.css'
 import { Grid } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
+import checkNotAddress from '../../functions/util/checkNotAddress'
 import { getRequest } from '../../api/requests'
 import { useEffect, useState } from 'react'
 import { getSaleList } from '../../functions/erc/ERC721Calls'
 
 import MintCard from '../common/MintCard'
 import MintCollectionsSkeleton from '../skeleton/MintCollectionsSkeleton'
-import { useNavigate } from 'react-router-dom'
 
 export default function MintTradeContents() {
   const [saleContractAddress, setSaleContractAddress] = useState([])
@@ -39,7 +40,9 @@ export default function MintTradeContents() {
   }
 
   useEffect(() => {
-    getSaleContractList()
+    if (checkNotAddress(() => navigate('/address'))) {
+      getSaleContractList()
+    }
   }, [])
 
   return (

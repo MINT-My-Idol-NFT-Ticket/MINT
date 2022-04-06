@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Box from '@mui/material/Box'
 import Tab from '@mui/material/Tab'
 import TabList from '@mui/lab/TabList'
@@ -7,22 +7,9 @@ import TabContext from '@mui/lab/TabContext'
 import { isLight, lightColor, darkColor } from '../../functions/util/color.js'
 import { Typography } from '@mui/material'
 import useBrightness from '../../hooks/useBrightness.js'
-import getUserAddress from '../../functions/util/getUserAddress'
-import { balanceOfSSF } from '../../functions/erc/ERCfunctions'
 
-export default function MintUserDate({ value, setValue }) {
+export default function MintUserDate({ value, setValue, balance, userAddress }) {
   const [bright, _] = useBrightness()
-  const [balance, setBalance] = useState('undefined')
-  const userAddress = getUserAddress()
-
-  const getBalance = async () => {
-    const response = await balanceOfSSF(userAddress)
-    setBalance(response)
-  }
-
-  useEffect(() => {
-    getBalance()
-  }, [])
 
   const handleChange = (e, newValue) => {
     setValue(newValue)

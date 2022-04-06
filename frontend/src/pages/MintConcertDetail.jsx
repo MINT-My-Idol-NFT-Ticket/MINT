@@ -9,7 +9,7 @@ import MintPageTemplate from '../components/common/MintPageTemplate'
 import MintBtn from '../components/common/MintBtn'
 import MintDetailSkeleton from '../components/skeleton/MintDetailSkeleton'
 
-export default function MintConcertDetail({ bright }) {
+export default function MintConcertDetail() {
   const navigate = useNavigate()
 
   const [concertData, setConcertData] = useState(null)
@@ -27,7 +27,7 @@ export default function MintConcertDetail({ bright }) {
     }
   }, [])
 
-  const Header = () => <MintSubHeader bright={bright} content="콘서트 상세" />
+  const Header = () => <MintSubHeader content="콘서트 상세" />
   const Contents = () =>
     concertData === null ? <MintDetailSkeleton /> : <MintConcertDetailContents concertData={concertData} />
   const Footer = () => (
@@ -47,7 +47,7 @@ export default function MintConcertDetail({ bright }) {
   )
 
   return (
-    <Box className={`${bright}`}>
+    <Box>
       <MintPageTemplate header={<Header />} contents={<Contents />} footer={<Footer />} />
     </Box>
   )

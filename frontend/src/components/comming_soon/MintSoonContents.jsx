@@ -1,7 +1,9 @@
 import { Box } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import { getRequest } from '../../api/requests'
+import checkNotAddress from '../../functions/util/checkNotAddress'
 
 import MintHorizontalCard from '../common/MintHorizontalCard'
 import MintHorizontalSkeleton from '../skeleton/MintHorizontalSkeleton'
@@ -19,7 +21,9 @@ export default function MintSoonContents() {
     }
   }
   useEffect(() => {
-    getNotOpenConcertList()
+    if (checkNotAddress(() => navigate('/address'))) {
+      getNotOpenConcertList()
+    }
   }, [])
 
   const handleNaviation = id => {
