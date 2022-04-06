@@ -24,7 +24,11 @@ export default function MintSearchBar({ setSearchList }) {
   }
   const handleEnter = e => {
     if (e.key === 'Enter') {
-      search()
+      if (searchQuery === '') {
+        alert('검색어를 입력해주세요.')
+      } else {
+        search()
+      }
     }
   }
 

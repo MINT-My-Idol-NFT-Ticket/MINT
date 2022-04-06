@@ -1,26 +1,11 @@
-import { useState } from 'react'
 import { Box, Typography } from '@mui/material'
 
-import MintSearchBar from './MintSearchBar'
 import MintHorizontalCard from '../common/MintHorizontalCard'
 
-export default function MintSearchContents() {
-  const [searchList, setSearchList] = useState([])
-
+export default function MintSearchContents({ searchList }) {
   return (
     <Box sx={{ padding: '0 20px' }}>
-      <Box
-        sx={{
-          position: 'absolute',
-          padding: '10px 20px 0 20px',
-          width: '100%',
-          top: '52px',
-          left: 0,
-          boxSizing: 'border-box',
-        }}>
-        <MintSearchBar setSearchList={setSearchList} />
-      </Box>
-      <Box sx={{ paddingTop: '65px' }}>
+      <Box>
         {searchList.length !== 0 ? (
           searchList.map(concert => <MintHorizontalCard key={concert.id} concertData={concert} />)
         ) : (
