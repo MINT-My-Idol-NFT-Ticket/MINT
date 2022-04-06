@@ -16,8 +16,8 @@
 }
 
 .searchBar:focus.light {
-  border: 1px solid #222831;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 .searchBar:focus.dark {
-  border: 1px solid #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
