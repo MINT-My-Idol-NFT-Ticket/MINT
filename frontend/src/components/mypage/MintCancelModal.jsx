@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getRequest, putRequest } from '../../api/requests'
 import { getTicketList, getTokenURI, burnTicket } from '../../functions/erc/ERCfunctions'
+import axios from 'axios'
 
 const style = {
   position: 'absolute',
@@ -26,13 +27,12 @@ export default function MintCancelModal({ open, handleClose, targetConcertId }) 
   const [userPK, setUserPK] = useState('')
 
   const getContractAddress = async () => {
-    const concertData = await getRequest(`api/concert/${targetConcertId}`)
+    const concertData = await axios.get(`http://j6b108.p.ssafy.io:9090/api/concert/${29}`)
     const tokenList = await getTicketList(concertData.data.contractAddress, userAddress)
     const metaDatas = []
     for (let tokenId of tokenList) {
       const uri = await getTokenURI(concertData.data.contractAddress, tokenId.tokenId)
       const tokenMetaData = await getRequest(uri)
-      console.log(tokenMetaData)
       metaDatas.push({
         ...tokenMetaData.data,
         tokenId: tokenId.tokenId,
@@ -60,6 +60,7 @@ export default function MintCancelModal({ open, handleClose, targetConcertId }) 
 
   useEffect(() => {
     if (targetConcertId) {
+      console.log(targetConcertId)
       getContractAddress()
     }
   }, [targetConcertId])
@@ -88,13 +89,7 @@ export default function MintCancelModal({ open, handleClose, targetConcertId }) 
                 onClick={() => {
                   setTarget(idx)
                 }}>
-                {/* <Typography>{data.title}</Typography>
-                <Typography>
-                  {data.date} {data.time}
-                </Typography>
-                <Typography>
-                  좌석 정보: {data.area}-{data.seat.seat}
-                </Typography> */}
+                <Typography>{data.title}</Typography>
                 <Typography
                   sx={{
                     fontSize: 18,
@@ -103,10 +98,9 @@ export default function MintCancelModal({ open, handleClose, targetConcertId }) 
                     textOverflow: 'ellipsis',
                     marginBottom: 1,
                   }}>
-                  테스트테스트테스트테스트테스트테스트테스트테스트
+                  {data.date} {data.time}
                 </Typography>
-                <Typography>0000-00-00 00:00</Typography>
-                <Typography>좌석 정보: 좌석 좌석</Typography>
+                <Typography>{/* 좌석 정보: {data.area}-{data.seat.seat} */}</Typography>
               </Box>
             ))
           )}

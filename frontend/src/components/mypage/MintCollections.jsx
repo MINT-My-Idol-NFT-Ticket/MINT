@@ -27,7 +27,7 @@ export default function MintCollections({ tokenIds, loading }) {
               {tokenIds.map(tokenId => (
                 <Grid
                   item
-                  key={`${tokenId.tokenIds}-${tokenId.contractAddress}`}
+                  key={`${tokenId.tokenId}-${tokenId.contractAddress}`}
                   xs={4}
                   sx={{ width: '33.33%', height: '200px', borderRadius: '5px' }}>
                   <MintCard2 tokenId={tokenId} />

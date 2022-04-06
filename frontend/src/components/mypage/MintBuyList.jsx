@@ -18,7 +18,7 @@ export default function MintBuyList({ contractList, loading }) {
 
   const handlePayOpen = id => {
     setPayOpen(true)
-    // setTargetConcertId(id)
+    setTargetConcertId(id)
   }
   const handlePayClose = () => {
     setPayOpen(false)
@@ -57,7 +57,6 @@ export default function MintBuyList({ contractList, loading }) {
           )}
         </>
       )}
-      <button onClick={handlePayOpen}>adfasfasdfasdfasd</button>
       <MintCancelModal open={payOpen} handleClose={handlePayClose} targetConcertId={targetConcertId} />
     </Box>
   )
