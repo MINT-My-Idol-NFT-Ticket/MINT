@@ -10,26 +10,36 @@ import { useNavigate } from 'react-router-dom'
 import useBrightness from '../../hooks/useBrightness'
 
 export default function MintSearchBar({ setSearchList }) {
-  const [searchQuery, setSearchQuery] = useState('')
   const navigate = useNavigate()
+  const [searchQuery, setSearchQuery] = useState('')
   const [bright, _] = useBrightness()
+
   const search = async () => {
     try {
-      const response = await getRequest('api/concert', { searchQuery })
+      const response = await getRequest('api/concert/search', { keyword: searchQuery })
       setSearchList(response.data)
     } catch {
       navigate('/error404')
-      console.log('asdf')
+    }
+  }
+  const handleEnter = e => {
+    if (e.key === 'Enter') {
+      if (searchQuery === '') {
+        alert('검색어를 입력해주세요.')
+      } else {
+        search()
+      }
     }
   }
 
   return (
-    <Box sx={{ position: 'relative', padding: '10px 0', backgroundColor: 'inherit' }}>
+    <Box sx={{ position: 'relative', padding: '10px 0', bgcolor: 'background.default' }}>
       <input
         className={`searchBar ${bright}`}
         type="text"
         value={searchQuery}
         onChange={e => setSearchQuery(e.target.value)}
+        onKeyPress={handleEnter}
       />
       <Box sx={{ position: 'absolute', top: '17px', left: '10px', cursor: 'pointer' }}>
         <SearchIcon
@@ -40,6 +50,7 @@ export default function MintSearchBar({ setSearchList }) {
       </Box>
       <Box sx={{ position: 'absolute', top: '17px', right: '10px', cursor: 'pointer' }}>
         <CancelIcon
+          onClick={() => setSearchQuery('')}
           fontSize="small"
           sx={{ color: bright === 'light' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 1)' }}
         />
