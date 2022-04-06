@@ -15,7 +15,8 @@ export const setSaleTicket = (ticketContractAddress, saleContractAddress) =>
 export const mintTicket = (contractAddress, sender, senderPK, tokenURI) =>
   ERC721Transactions.buyTicket(web3, contractAddress, sender, senderPK, tokenURI)
 // 예매 취소 시 티켓 burn
-export const burnTicket = (contractAddress, tokenId) => ERC721Transactions.cancelTicket(web3, contractAddress, tokenId)
+export const burnTicket = (contractAddress, senderPK, tokenId) =>
+  ERC721Transactions.cancelTicket(web3, contractAddress, senderPK, tokenId)
 // 콘서트 가격 확인
 export const getPrice = contractAddress => ERC721Calls.getTicketPrice(web3, contractAddress)
 
