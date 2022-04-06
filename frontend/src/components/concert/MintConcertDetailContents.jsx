@@ -9,7 +9,10 @@ export default function MintConcertDetailContents({ concertData }) {
         <img src={`${BASE_URL}${concertData.poster}`} style={{ width: '100%' }} alt="" />
       </Box>
       <Box sx={{ width: '100%' }}>
-        <img src={`${BASE_URL}${concertData.detail}`} style={{ width: '100%', marginBottom: '60px' }} alt="" />
+        <img src={`${BASE_URL}${concertData.detail}`} style={{ width: '100%' }} alt="" />
+      </Box>
+      <Box sx={{ width: '100%' }}>
+        <img src={`${BASE_URL}${concertData.section}`} style={{ width: '100%', marginBottom: '60px' }} alt="" />
       </Box>
     </Box>
   )
