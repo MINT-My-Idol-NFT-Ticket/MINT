@@ -2,6 +2,7 @@ package com.mint.backend.controller;
 
 import com.mint.backend.dto.RequestConcertDto;
 import com.mint.backend.dto.RequestExistAuthDto;
+import com.mint.backend.dto.ResponseResourceDto;
 import com.mint.backend.service.ConcertService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -104,6 +105,32 @@ public class AdminController {
         }
 
         return new ResponseEntity<Boolean>(flag, HttpStatus.OK);
+    }
+
+    @ApiOperation(
+            value = "Uri gif, mp4 등록"
+    )
+    @PostMapping("/concert/resource")
+    public ResponseEntity<ResponseResourceDto> registUriFile(@RequestPart(value = "gif") MultipartFile gif,
+                                                             @RequestPart(value = "mp4") MultipartFile mp4) throws IOException {
+        String folderPath = System.getProperty("user.dir")+File.separator + "src" +
+                File.separator+"main"+File.separator + "resources"+File.separator+"image" +
+                File.separator + "URIImg";
+        System.out.println(gif);
+        System.out.println(mp4);
+        File makeFolder = new File(folderPath);
+        if (!makeFolder.exists()) {
+            try {
+                makeFolder.mkdirs();
+            } catch (Exception e) {
+                e.getStackTrace();
+            }
+        }
+        ResponseResourceDto resourceDto = concertService.saveFiles(gif, mp4);
+        if(resourceDto == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<ResponseResourceDto>(resourceDto, HttpStatus.OK);
     }
 
 }

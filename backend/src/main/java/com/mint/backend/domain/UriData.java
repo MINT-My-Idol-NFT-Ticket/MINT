@@ -16,13 +16,14 @@ import javax.persistence.*;
 public class UriData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tokenUri;
+    private Long id;
     private String title;
     private String place;
     private String date;
     private String time;
     private String area;
     private String seat;
+    private String price;
     private String artists;
     private String img;
 

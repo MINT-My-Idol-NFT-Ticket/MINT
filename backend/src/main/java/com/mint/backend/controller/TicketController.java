@@ -3,9 +3,7 @@ package com.mint.backend.controller;
 import com.mint.backend.domain.Seat;
 import com.mint.backend.domain.Section;
 import com.mint.backend.domain.Times;
-import com.mint.backend.dto.ResponseExistSeatDto;
-import com.mint.backend.dto.ResponseFindDayDTO;
-import com.mint.backend.dto.ResponseSeatAllDto;
+import com.mint.backend.dto.*;
 import com.mint.backend.service.TicketService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +32,7 @@ import java.util.List;
 public class TicketController {
 
     private final TicketService ticketService;
+
     @ApiOperation(
             value = "회차별 선택 가능 날짜 목록 조회"
     )
@@ -78,4 +77,19 @@ public class TicketController {
     public ResponseEntity<List<ResponseSeatAllDto>> findSeatAll(@PathVariable Long timesId){
         return new ResponseEntity<>(ticketService.getExtraSeat(timesId), HttpStatus.OK);
     }
+    @ApiOperation(
+            value = "티켓 메타데이터 저장"
+    )
+    @PostMapping("/uriData")
+    public ResponseEntity<Long> registUriData(@RequestBody RequestUriDataDto requestUriDataDto) {
+
+        Long tokenUri = ticketService.save(requestUriDataDto);
+        return new ResponseEntity<>(tokenUri, HttpStatus.OK);
+    }
+
+    @GetMapping("/uriData/{id}")
+    public ResponseEntity<ResponseUriDataDto> findUriData(@PathVariable Long id){
+        return new ResponseEntity<ResponseUriDataDto>(ticketService.findUriData(id), HttpStatus.OK);
+    }
+
 }
