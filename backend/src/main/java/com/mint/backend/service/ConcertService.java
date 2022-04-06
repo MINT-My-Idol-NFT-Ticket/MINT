@@ -280,6 +280,7 @@ public class ConcertService {
                 .poster(concert.getImage().getPosterUrl())
                 .startDate(concert.getTimes().get(0).getDate())
                 .endDate(concert.getTimes().get(concert.getTimes().size() - 1).getDate())
+                .saleContractAddress(concert.getSaleContractAddress())
                 .artist(concert.getArtist())
                 .build())
 
