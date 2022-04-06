@@ -17,6 +17,7 @@ import MintCollections from './MintCollections'
 export default function MintMypageContents() {
   const userAddress = getUserAddress()
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(true)
 
   const [value, setValue] = useState('1')
   const [balance, setBalance] = useState('undefined')
@@ -50,6 +51,7 @@ export default function MintMypageContents() {
       }
       setContractList(arr)
       setTokenIds(tks)
+      setLoading(false)
     } catch {
       navigate('/error404')
     }
@@ -72,10 +74,10 @@ export default function MintMypageContents() {
           <TabContext value={value}>
             <Box>
               <TabPanel style={{ padding: 0 }} value="1">
-                <MintBuyList contractList={contractList} />
+                <MintBuyList contractList={contractList} loading={loading} />
               </TabPanel>
               <TabPanel style={{ padding: 0 }} value="2">
-                <MintCollections tokenIds={tokenIds} />
+                <MintCollections tokenIds={tokenIds} loading={loading} />
               </TabPanel>
             </Box>
           </TabContext>

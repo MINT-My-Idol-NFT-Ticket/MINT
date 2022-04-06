@@ -10,7 +10,7 @@ async function main() {
   const MintTicket = await ethers.getContractFactory("MintTicket");
   const mintTicket = await MintTicket.deploy();
 
-  saveFrontendFiles(mintTicket, "MintTicket");
+  //saveFrontendFiles(mintTicket, "MintTicket");
 }
 
 function saveFrontendFiles(token, name) {
