@@ -9,7 +9,6 @@ import checkNotAddress from '../../functions/util/checkNotAddress'
 import { getTicketList } from '../../functions/erc/ERCfunctions'
 
 import MintUserData from './MintUserData'
-import MintMypageTaps from './MintMypageTaps'
 import TabContext from '@mui/lab/TabContext'
 import TabPanel from '@mui/lab/TabPanel'
 import MintBuyList from './MintBuyList'
