@@ -72,7 +72,7 @@
 | <img src="https://solidity-kr.readthedocs.io/ko/latest/_images/logo.svg" alt="HTML5" width="50px" height="50px" /> | <img src="https://chainstack.com/wp-content/uploads/2021/12/hardhat.png" alt="CSS3" width="50px" height="50px" /> | <img src="https://openzeppelin.com/images/card.jpg" alt="MUI" width="50px" height="50px" /> |
 |:------------------------------------------------------------------------------------------------------------------:| :--------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------:|
 |                                                      Solidity                                                      |                                                      Hardhat                                                      |                                                                                   OpenZeppelin
-|
+
 
 ### **DevOps**
 
