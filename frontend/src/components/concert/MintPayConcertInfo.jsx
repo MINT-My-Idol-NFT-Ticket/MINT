@@ -24,9 +24,10 @@ function MintPayConcertInfo({ concertInfo }) {
         }}
       />
       <Box sx={{ flex: '1', paddingLeft: '20px' }}>
-        <Typography variant="h6" sx={{ lineHeight: '23px', marginBottom: '10px', wordBreak: 'break-all' }}>
+        <Typography variant="h6" sx={{ lineHeight: '23px', wordBreak: 'break-all' }}>
           {concertInfo.title}
         </Typography>
+        <Typography sx={{ marginBottom: '10px' }}>{concertInfo.artists[0].name}</Typography>
         <Typography>{concertInfo.place}</Typography>
         <Typography>
           {concertInfo.date} {concertInfo.area}구역 {concertInfo.seat.seat}석
