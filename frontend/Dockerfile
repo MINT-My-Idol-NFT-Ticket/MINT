@@ -1,19 +1,24 @@
-FROM node:16.13.1-alpine
-# set working directory
+FROM nginx
+
+# root 에 app 폴더를 생성
+RUN mkdir /app
+
+# work dir 고정
 WORKDIR /app
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+# work dir 에 build 폴더 생성 /app/build
+RUN mkdir ./build
 
-# install app dependencies
-# COPY package.json ./
-# COPY package-lock.json ./
+# host pc의 현재경로의 build 폴더를 workdir 의 build 폴더로 복사
+ADD ./build ./build
 
-COPY /frontend/package.json /app/package.json
-RUN npm install
+# nginx 의 default.conf 를 삭제
+RUN rm /etc/nginx/conf.d/default.conf
 
-# add app
-COPY /frontend/. ./
+# host pc 의 nginx.conf 를 아래 경로에 복사
+COPY ./nginx.conf /etc/nginx/conf.d
 
-# start app
-CMD ["npm", "start"]
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
