@@ -83,7 +83,7 @@ export async function setSaleTicket(web3, ticketContractAddress, saleContractAdd
   }
 }
 
-export async function cancelTicket(web3, contractAddress, tokenId) {
+export async function cancelTicket(web3, contractAddress, senderPK, tokenId) {
   const contract = new web3.eth.Contract(MINT_ABI, contractAddress)
   const transaction = contract.methods.cancelTicket(tokenId)
 
@@ -94,7 +94,7 @@ export async function cancelTicket(web3, contractAddress, tokenId) {
     gas,
   }
 
-  const result = await send(web3, options, ADMIN_PK)
+  const result = await send(web3, options, senderPK)
 
   return result
 }

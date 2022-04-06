@@ -1,5 +1,6 @@
 import { Modal, Box, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { getRequest } from '../../api/requests'
 import { getTicketList, getTokenURI, burnTicket } from '../../functions/erc/ERCfunctions'
 
@@ -18,7 +19,11 @@ const style = {
 
 export default function MintCancelModal({ open, handleClose, targetConcertId }) {
   const userAddress = sessionStorage.getItem('address')
+  const navigate = useNavigate()
+
   const [tokenDatas, setTokenDatas] = useState([])
+  const [cancelTarget, setCancelTarget] = useState({})
+  const [userPK, setUserPK] = useState('')
 
   const getContractAddress = async () => {
     const concertData = await getRequest(`api/concert/${targetConcertId}`)
@@ -27,6 +32,7 @@ export default function MintCancelModal({ open, handleClose, targetConcertId }) 
     for (let tokenId of tokenList) {
       const uri = await getTokenURI(concertData.data.contractAddress, tokenId.tokenId)
       const tokenMetaData = await getRequest(uri)
+      console.log(tokenMetaData)
       metaDatas.push({
         ...tokenMetaData.data,
         tokenId: tokenId.tokenId,
@@ -36,9 +42,18 @@ export default function MintCancelModal({ open, handleClose, targetConcertId }) 
     setTokenDatas(metaDatas)
   }
 
-  const cancel = async (contractAddress, tokenId) => {
-    const response = await burnTicket(contractAddress, tokenId)
-    console.log(response)
+  const setTarget = idx => {
+    console.log(idx)
+    setCancelTarget(idx)
+  }
+
+  const inputUserPK = e => setUserPK(e.target.value)
+
+  const cancel = async () => {
+    const address = tokenDatas[cancelTarget].contractAddress
+    const id = tokenDatas[cancelTarget].tokenId
+    const response = await burnTicket(address, userPK, id)
+    navigate('/home')
   }
 
   useEffect(() => {
@@ -58,18 +73,19 @@ export default function MintCancelModal({ open, handleClose, targetConcertId }) 
           {tokenDatas === [] ? (
             <></>
           ) : (
-            tokenDatas.map(data => (
+            tokenDatas.map((data, idx) => (
               <Box key={`${tokenDatas.tokenId}-${tokenDatas.contractAddress}`}>
-                <p>{JSON.stringify(data)}</p>
-                <button
+                <p
                   onClick={() => {
-                    cancel(tokenDatas.contractAddress, tokenDatas.tokenId)
+                    setTarget(idx)
                   }}>
-                  취소
-                </button>
+                  {JSON.stringify(data)}
+                </p>
               </Box>
             ))
           )}
+          <input type="text" value={userPK} onChange={inputUserPK} />
+          <button onClick={cancel}>취소</button>
         </Typography>
       </Box>
     </Modal>
