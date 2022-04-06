@@ -11,19 +11,25 @@
 ## 목차
 
 1. [**웹 서비스 소개**](#1)
+1. [**개발 기간 및 일정**](#2)
 1. [**기술 스택**](#3)
 1. [**주요 기능**](#4)
-1. [**프로젝트 구성도**](#5)
-1. [**데모 영상**](#6)
-1. [**개발 팀 소개**](#9)
-1. [**개발 기간 및 일정**](#10)
-1. [**실행 방법**](#11)
+1. [**서비스 아키텍처**](#5)
+1. [**MINT 서비스 화면**](#6)
+1. [**개발 팀 소개**](#7)
+1. [**요구사항 정의서**](#8)
+1. [**기능 명세서**](#9)
+1. [**개체-관계 모델(ERD)**](#10)
+1. [**협업**](#11)
+1. [**실행 방법**](#12)
 
 <br />
 
 <div id="1"></div>
 
 ## 💁 웹 서비스 소개
+---
+```🗯 Hyperledger Besu(Permissioned Blockchain Network)로 구성된 SSAFY Network 환경에서 개발되었습니다.```
 
 **MINT** 는 콘서트 티켓을 NFT로 발급해주는 서비스입니다.
 
@@ -38,10 +44,17 @@
 <br />
 
 <div id="2"></div>
+
+## 📅 개발 기간
+---
+2022.03.07 ~ 2022.04.08
+
+<br />
+
 <div id="3"></div>
 
 ## 🛠 기술 스택
-
+---
 ### **Front-end**
 
 | <img src="https://profilinator.rishav.dev/skills-assets/html5-original-wordmark.svg" alt="HTML5" width="50px" height="50px" /> | <img src="https://profilinator.rishav.dev/skills-assets/css3-original-wordmark.svg" alt="CSS3" width="50px" height="50px" /> | <img src="https://profilinator.rishav.dev/skills-assets/react-original-wordmark.svg" alt="React.js" width="50px" height="50px" /> | <img src="https://mui.com/static/logo.png" alt="MUI" width="50px" height="50px" /> |<img src="https://i.imgur.com/GX0qzK1.jpeg" alt="Web3.js" width="50px" height="50px" /> |
@@ -56,9 +69,10 @@
 
 ### **NFT Smart contract**
 
-| <img src="https://solidity-kr.readthedocs.io/ko/latest/_images/logo.svg" alt="HTML5" width="50px" height="50px" /> | <img src="https://chainstack.com/wp-content/uploads/2021/12/hardhat.png" alt="CSS3" width="50px" height="50px" /> | <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1200px-Node.js_logo.svg.png" alt="React.js" width="50px" height="50px" /> | <img src="https://openzeppelin.com/images/card.jpg" alt="MUI" width="50px" height="50px" /> |
-|:------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------:|
-|                                                      Solidity                                                      |                                                      Hardhat                                                      |                                                                            Node.js                                                                             |                                        OpenZeppelin                                         |
+| <img src="https://solidity-kr.readthedocs.io/ko/latest/_images/logo.svg" alt="HTML5" width="50px" height="50px" /> | <img src="https://chainstack.com/wp-content/uploads/2021/12/hardhat.png" alt="CSS3" width="50px" height="50px" /> | <img src="https://openzeppelin.com/images/card.jpg" alt="MUI" width="50px" height="50px" /> |
+|:------------------------------------------------------------------------------------------------------------------:| :--------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------:|
+|                                                      Solidity                                                      |                                                      Hardhat                                                      |                                                                                   OpenZeppelin
+|
 
 ### **DevOps**
 
@@ -71,92 +85,98 @@
 <div id="4"></div>
 
 ## 💡 주요 기능
+---
+- 콘서트 티켓 예매시 NFT로 발급
+- 콘서트 결제는 ERC20을 구현한 Ssafy Token을 이용(단위 : SSF) 
+- 양면 NFT 티켓 (앞면은 티켓 입장권, 뒷면은 포토 카드) 
+- 티켓에 3D 애니메이션 제공 
+- NFT 포토 카드 사용자 간 거래 서비스 제공
 
 <br />
 
 <div id="5"></div>
 
-## 📂 프로젝트 구성도
-
-|                  아키텍처(Architecture)                   |
-|:-----------------------------------------------------:|
-| <img src="./readme_assets/arc.png" alt="아키텍처(Architecture)" width="1000px" /> |
-
-|                              개체-관계 모델(ERD)                               |
-|:------------------------------------------------------------------------:|
-| <img src="./readme_assets/erd.png" alt="개체-관계 모델(ERD)" width="1000px" /> |
+## 📂 서비스 아키텍처
+---
+<img src="./readme_assets/arc.png" alt="아키텍처(Architecture)" width="1000px" />
 
 <br />
 
 <div id="6"></div>
 
-## 🎥 데모 영상
+## 🎥 MINT 서비스 화면
+---
+#### 콘서트 예매
 
-[**🔗 서비스 소개 영상 바로가기 Click !**]() 👈
+#### 3D NFT 티켓 조회
 
-> 새 창 열기 방법 : CTRL+click (on Windows and Linux) | CMD+click (on MacOS)
+#### NFT 티켓 목록 조회
+
+#### 거래 가능한 NFT 포토카드 목록
+
+#### 지갑 연동
+
+#### 메인 화면(콘서트 목록)
+
+
 <br />
 
 <div id="7"></div>
 
-<div id="8"></div>
-
-<div id="9"></div>
-
 ## 👪 개발 팀 소개
-
+---
 <table>
   <tr>
     <td align="center" width="150px">
-      <a href="https://github.com/Jo-wonbin" target="_blank">
-        <img src="" alt="이주현 프로필" />
+      <a href="https://github.com/David-Lee-dev" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/57592095?v=4" alt="이주현 프로필" />
       </a>
     </td>
     <td align="center" width="150px">
-      <a href="https://github.com/dudqo225" target="_blank">
-        <img src="" alt="오재문 프로필" />
+      <a href="https://github.com/DECOY-DUCK" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/51963264?v=4" alt="오재문 프로필" />
       </a>
     </td>
     <td align="center" width="150px">
-      <a href="https://github.com/person003333" target="_blank">
-        <img src="" alt="김정빈 프로필" />
+      <a href="https://github.com/maltepoo" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/78013903?v=4" alt="김정빈 프로필" />
       </a>
     </td>
     <td align="center" width="150px">
-      <a href="https://github.com/JeongHwan-dev" target="_blank">
-        <img src="" alt="박창현 프로필" />
+      <a href="https://github.com/BusChanny" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/80505099?v=4" alt="박창현 프로필" />
       </a>
     </td>
     <td align="center" width="150px">
-      <a href="https://github.com/sojjeong" target="_blank">
-        <img src="" alt="정채은 프로필" />
+      <a href="https://github.com/Chae-EunJeong" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/68576770?v=4" alt="정채은 프로필" />
       </a>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <a href="https://github.com/Jo-wonbin" target="_blank">
+      <a href="https://github.com/David-Lee-dev" target="_blank">
         이주현<br />(Front-end & 팀장)
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/dudqo225" target="_blank">
+      <a href="https://github.com/DECOY-DUCK" target="_blank">
         오재문<br />(Back-end)
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/person003333" target="_blank">
+      <a href="https://github.com/maltepoo" target="_blank">
         김정빈<br />(Front-end)
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/JeongHwan-dev" target="_blank">
+      <a href="https://github.com/BusChanny" target="_blank">
         박창현<br />(Front-end)
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/sojjeong" target="_blank">
-        정채은<br />(Back-end)
+      <a href="https://github.com/Chae-EunJeong" target="_blank">
+        정채은<br />(Blockchain)
       </a>
     </td>
   </tr>
@@ -172,22 +192,64 @@
 | 오재문 |      Back-end      |                                                                                                                                                                                                                                                                                                                                                                   |
 | 김정빈 |      Front-end      |                               |
 | 박창현 |     Front-end      | |
-| 정채은 |     Back-end      |                                  |
+| 정채은 |     Blockchain      |스마트 컨트랙트 작성<br>web3.js 연동 테스트|
 
 <br />
 
-<div id="10"></div>
+<div id='8'></div>
 
-## 📅 개발 기간
+## 📃 요구사항 정의서
+---
+<img src="./readme_assets/requirements.JPG" alt="요구사항 정의서" width="1000px" />
 
-2022.03.07. ~ 2022.04.08.
+<br />
+
+<div id='9'></div>
+
+## 🗂 기능 명세서
+---
+<img src="./readme_assets/functions.JPG" alt="기능 명세서" width="1000px" />
+
+<br />
+
+<div id='10'></div>
+
+## 📐 개체-관계 모델(ERD) 
+---
+<img src="./readme_assets/erd.JPG" alt="개체-관계 모델(ERD)" width="1000px" />
 
 <br />
 
 <div id='11'></div>
 
-## 💻 실행 방법
+## 👨‍👨‍👦‍👦 협업
+---
+#### Gitlab
+- 메인 브랜치는 ```dev```입니다.
+- 각자 작업시에는 ```{이름}/{작업내용}``` 의 브랜치를 생성하고, 깃랩으로 푸시한 후 dev 브랜치로 머지하여 사용했습니다. 
+- 노션에 작성한 코드 컨벤션, 깃 컨벤션을 따라 작업했습니다.
 
+#### JIRA
+- 일정, 작업을 관리하기 위해 지라를 사용했습니다.
+- 매주 월요일 오전에 회의를 통해 한 주동안 진행해야 할 계획을 정하고, 정한 이슈들을 스프린트로 등록했습니다. 
+- 스프린트는 일주일 단위로 진행했고, 스토리 포인트는 1시간에 1포인트로 두었습니다.
+- 기능 명세서의 대분류를 Epic, 중분류를 Story로 해서 이슈를 생성했습니다.
+
+#### Notion
+- 회의록, 팀 공지사항 등 매일 확인할 사항을 관리했습니다. 
+- 각자 공부하거나 참고할만한 자료를 올려 다함께 공유했습니다. 
+- 팀 규칙, 코드 컨벤션, 깃 컨벤션을 노션에 작성하여 규칙을 바로 확인할 수 있게 했습니다.
+
+#### Mattermost
+- gitlab으로 코드를 push, branch merge 등을 하거나 젠킨스 빌드 성공 여부를 메시지 알림으로 받았습니다.
+- jira 변경 사항에 대한 알림을 메시지로 받게 해서 활용했습니다.
+
+<br />
+
+<div id='12'></div>
+
+## 💻 실행 방법
+---
 ### Front-end
 ```bash
 git clone [레포지토리]
@@ -199,7 +261,7 @@ npm install
 npm run start
 ```
 
-<br /><br />
+<br />
 
 ### Back-end
 ```bash
