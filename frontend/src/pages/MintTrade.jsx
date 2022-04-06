@@ -4,6 +4,8 @@ import MintSubHeader from '../components/header/MintSubHeader'
 import MintTradeContents from '../components/trade/MintTradeContents'
 
 function MintTrade() {
+  document.title = 'MINT - 티켓 거래'
+
   const Header = () => <MintSubHeader content={'Open Ticket'} />
   const Contents = () => <MintTradeContents />
   const Footer = () => <MintFooter />

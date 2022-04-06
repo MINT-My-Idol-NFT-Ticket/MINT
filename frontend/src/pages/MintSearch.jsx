@@ -9,6 +9,8 @@ import MintSubHeader from '../components/header/MintSubHeader'
 import MintSearchContents from '../components/search/MintSearchContents'
 
 function MintSearch({ bright }) {
+  document.title = 'MINT - 검색 결과'
+
   const navigate = useNavigate()
 
   const Header = () => <MintSubHeader content="검색" />

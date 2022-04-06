@@ -1,15 +1,11 @@
 import { Modal, Box, Typography, TextField, Button, Grid } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { Web3Storage } from 'web3.storage'
 import { mintTicket, balanceOfSSF, approveSSF, getTicketAmount } from '../../functions/erc/ERCfunctions.js'
 import { checkMessage, errorMessage, timerMessage } from '../../functions/alert/alertFunctions.js'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import useBrightness from '../../hooks/useBrightness.js'
 import { getRequest, putRequest } from '../../api/requests.js'
-
-const getTocken = () =>
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEE2RDQzQWFEMTMzMmZiRDFjNUM2NzMwNEYxZkJhNTdGRjJkRTYzNDIiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NDg5Nzg3MTE1NDUsIm5hbWUiOiJTU0FZRl9NSU5UIn0.2R4MBp59c8W3ds0aTMSD89XM1Rp2XTHHYk8ratza72M'
 
 const style = {
   position: 'absolute',
@@ -42,7 +38,6 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
     setWellet(response)
   }
   const makeTokenURI = async () => {
-    const client = new Web3Storage({ token: getTocken() })
     const max = concertInfo.cids.length
     const random = Math.floor(Math.random() * max)
     const images = concertInfo.cids[random].cid
@@ -57,11 +52,8 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
       artists: JSON.stringify(concertInfo.artists),
       img: images,
     }
-    const blob = new Blob([JSON.stringify(data)], { type: 'application/json' })
-    const files = [new File([blob], 'tokenURI.json')]
-    const cid = await client.put(files)
 
-    return `https://ipfs.io/ipfs/${cid}/tokenURI.json`
+    return ''
   }
 
   const paying = async () => {

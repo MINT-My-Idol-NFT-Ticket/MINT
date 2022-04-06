@@ -6,6 +6,8 @@ import MintHeader from '../components/header/MintHeader'
 import MintNoticeList from '../components/notice/MintNoticeList'
 
 function MintNotice({ bright }) {
+  document.title = 'MINT - 공지사항'
+
   const Header = () => <MintHeader bright={bright} />
   const Contents = () => <MintNoticeList />
   const Footer = () => <MintFooter bright={bright} />

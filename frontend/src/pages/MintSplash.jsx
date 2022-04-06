@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import '../styles/MintIntro.css'
 
 export default function MintSplash() {
+  document.title = 'MINT'
+
   const navigate = useNavigate()
   const nextPage = () => {
     navigate('/intro')

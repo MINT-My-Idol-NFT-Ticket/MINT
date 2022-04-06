@@ -15,12 +15,14 @@ import '../styles/MintConcertProcess.css'
 import MintBtnGroup from '../components/common/MintBtnGroup'
 
 function MintConcertDate() {
+  document.title = 'MINT - 날짜 선택'
+
   const location = useLocation()
   const params = useParams()
   const navigate = useNavigate()
+  const state = location.state
 
   const [bright, _] = useBrightness()
-  const [state, setState] = useState(location.state)
   const [concertData, setConcertData] = useState([])
   const [dayConcertData, setDayConcertData] = useState([])
   const [dates, setDates] = useState({})
@@ -37,14 +39,6 @@ function MintConcertDate() {
 
   const getConcertDate = async () => {
     try {
-      /*
-        - 정빈🐱‍💻
-        모든 콘서트 데이터 받아온 후,
-        콘서트 중 첫번째 날짜에 달력을 세팅할 것이므로
-        첫번째 날짜를 구해줌(firstDate)
-        첫날을 기준으로 모든 콘서트 데이터 filter,
-        첫날 데이터만 뽑아 초기값 데이터에 넣어줌
-      */
       const response = await getRequest(`/api/ticket/concert/${params.id}`)
       setConcertData(response.data) // 모든 콘서트 데이터
       const firstDate = new Date(response.data[0].date) // 첫번째 날

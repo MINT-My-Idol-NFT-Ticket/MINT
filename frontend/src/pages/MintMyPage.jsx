@@ -4,6 +4,8 @@ import MintFooter from '../components/footer/MintFooter'
 import MintPageTemplate from '../components/common/MintPageTemplate'
 
 function MintHome({ bright }) {
+  document.title = 'MINT - 마이페이지'
+
   const Header = () => <MintSubHeader content="내 정보" />
   const Contents = () => <MintMypageContents />
   const Footer = () => <MintFooter />

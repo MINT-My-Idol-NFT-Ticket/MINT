@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import '../styles/Minterror.css'
 
 function MintNotFound404(props) {
+  document.title = '404 Not Found'
+
   const navigate = useNavigate()
   return (
     <Box sx={{ position: 'relative', width: '100%', height: '100%', backgroundImage: 'url(/bg.jpg)' }}>
