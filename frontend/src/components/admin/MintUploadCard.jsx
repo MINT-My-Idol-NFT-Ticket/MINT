@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Button } from '@mui/material'
 import { Web3Storage } from 'web3.storage'
+import { postRequest } from '../../api/requests'
 
 const getTocken = () => process.env.REACT_APP_WEB3_STORAGE_API
 let cids = []
@@ -16,11 +17,18 @@ export default function MintUploadCard({ requestData, setRequestData }) {
     setMP4(e.target.files)
   }
   const uploadFiles = async () => {
-    const client = new Web3Storage({ token: getTocken() })
-    const gifCID = await client.put(GIF)
-    const mp4CID = await client.put(MP4)
-    cids.push(JSON.stringify({ gif: `${gifCID}/${GIF[0].name}`, mp4: `${mp4CID}/${MP4[0].name}` }))
-    console.log(cids)
+    const formData = new FormData()
+
+    formData.append('gif', GIF)
+    formData.append('mp4', MP4)
+
+    const response = await postRequest('api/concert/resource', formData)
+    cids.push(JSON.stringify(response.data))
+    // const client = new Web3Storage({ token: getTocken() })
+    // const gifCID = await client.put(GIF)
+    // const mp4CID = await client.put(MP4)
+    // cids.push(JSON.stringify({ gif: `${gifCID}/${GIF[0].name}`, mp4: `${mp4CID}/${MP4[0].name}` }))
+    // console.log(cids)
   }
   const resetCID = () => {
     cids = []
