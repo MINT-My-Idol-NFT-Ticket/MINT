@@ -3,45 +3,10 @@ import TabContext from '@mui/lab/TabContext'
 import TabPanel from '@mui/lab/TabPanel'
 import { useEffect, useState } from 'react'
 
-import { getRequest } from '../../api/requests'
-import { getTicketList, getTicketAmount } from '../../functions/erc/ERCfunctions'
-import getUserAddress from '../../functions/util/getUserAddress'
-
 import MintBuyList from './MintBuyList'
 import MintCollections from './MintCollections'
-import { useNavigate } from 'react-router-dom'
 
-export default function MintMypageTabs({ value }) {
-  const userAddress = getUserAddress()
-  const navigate = useNavigate()
-  const [contractList, setContractList] = useState([])
-  const [tokenIds, setTokenIds] = useState([])
-
-  const getContractList = async () => {
-    try {
-      const response = await getRequest('api/concert/contracts', { contract: 'contractAddress' })
-      const result = response.data.map(address => address.contractAddress[0])
-      const tks = []
-      const cts = new Set()
-      for (let idx = 0; idx < result.length; idx++) {
-        const tokenList = await getTicketList(result[idx], userAddress)
-
-        if (tokenList.length === 0) continue
-        for (let i = 0; i < tokenList.length; i++) {
-          tks.push({ contractAddress: result[idx], tokenId: tokenList[i].tokenId })
-          cts.add(result[idx])
-        }
-      }
-      setContractList([...cts])
-      setTokenIds(tks)
-    } catch {
-      navigate('/error404')
-    }
-  }
-
-  useEffect(() => {
-    getContractList()
-  }, [])
+export default function MintMypageTabs({ value, contractList, tokenIds }) {
   return (
     <>
       <Box sx={{ width: '100%', padding: '0 15px', boxSizing: 'border-box', marginTop: '40px' }}>

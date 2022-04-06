@@ -1,28 +1,34 @@
 //packages
-import { Box, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
-import { useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material'
+import { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import checkNotAddress from '../../functions/util/checkNotAddress'
 //components
 import MintBtn from '../common/MintBtn'
 import MintTradeDetailModal from './MintTradeDetailModal'
 
 export default function MintTradeDetailContents() {
   const location = useLocation()
+  const navigate = useNavigate()
   const [payOpen, setPayOpen] = useState(false)
   const handlePayOpen = () => setPayOpen(true)
   const handlePayClose = () => setPayOpen(false)
 
-  const ticketInfo = {
-    img: location.state.imgUrl,
-    title: location.state.title,
-    price: location.state.price,
-    owner: location.state.ownerAccount,
-    tokenId: location.state.tokenId,
-  }
+  useEffect(() => {
+    checkNotAddress(() => navigate('/address'))
+  }, [])
+
+  // const ticketInfo = {
+  //   img: location.state.imgUrl,
+  //   title: location.state.title,
+  //   price: location.state.price,
+  //   owner: location.state.ownerAccount,
+  //   tokenId: location.state.tokenId,
+  // }
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Typography
+      {/* <Typography
         sx={{
           color: 'rgb(32, 129, 226)',
           fontSize: '16px',
@@ -80,7 +86,7 @@ export default function MintTradeDetailContents() {
       <Box>
         <MintTradeDetailModal open={payOpen} handleClose={handlePayClose} ticketInfo={ticketInfo} />
         <MintBtn name="결제하기" link={{ handleClick: handlePayOpen }} passData={location.state} />
-      </Box>
+      </Box> */}
     </Box>
   )
 }

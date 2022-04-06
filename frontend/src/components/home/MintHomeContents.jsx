@@ -7,6 +7,7 @@ import { Box, Skeleton } from '@mui/material'
 
 import { getRequest } from '../../api/requests.js'
 import getRandomItem from '../../functions/util/getRandomItem'
+import checkNotAddress from '../../functions/util/checkNotAddress'
 
 import MintVerticalCard from '../common/MintVerticalCard'
 import MintVerticalSkeleton from '../skeleton/MintVerticalSkeleton'
@@ -35,8 +36,10 @@ export default function MintHomeContents() {
   }
 
   useEffect(() => {
-    getOpenConcertList()
-    getNotOpenConcertList()
+    if (checkNotAddress(() => navigate('/address'))) {
+      getOpenConcertList()
+      getNotOpenConcertList()
+    }
   }, [])
 
   return (

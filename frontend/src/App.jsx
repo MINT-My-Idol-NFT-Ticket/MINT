@@ -45,12 +45,12 @@ function App({ setMode }) {
         <Route path="/intro" element={<MintIntro />} />
         <Route path="/wallet" element={<MintConnectWallet />} />
         <Route path="/home" element={<MintHome />} />
-        <Route path="/search" element={<MintSearch bright={bright} />} />
-        <Route path="/comming_soon" element={<MintSoon bright={bright} />} />
-        <Route path="/mypage" element={<MintMyPage bright={bright} />} />
+        <Route path="/search" element={<MintSearch />} />
+        <Route path="/comming_soon" element={<MintSoon />} />
+        <Route path="/mypage" element={<MintMyPage />} />
         <Route path="/mypage/ticket" element={<MintTicket />} />
         <Route path="/admin" element={<Admin />} />
-        <Route exact path="/concert/detail/:id" element={<MintConcertDetail bright={bright} />} />
+        <Route exact path="/concert/detail/:id" element={<MintConcertDetail />} />
         <Route path="/concert/date/:id" element={<MintConcertDate />} />
         <Route path="/concert/area/:id" element={<MintConcertArea />} />
         <Route path="/concert/seat/:id" element={<MintConcertSeat />} />

@@ -4,9 +4,9 @@ import MintFooter from '../components/footer/MintFooter'
 import MintPageTemplate from '../components/common/MintPageTemplate'
 
 function MintHome({ bright }) {
-  const Header = () => <MintSubHeader content="내 정보" bright={bright} />
-  const Contents = () => <MintMypageContents bright={bright} />
-  const Footer = () => <MintFooter bright={bright} />
+  const Header = () => <MintSubHeader content="내 정보" />
+  const Contents = () => <MintMypageContents />
+  const Footer = () => <MintFooter />
 
   return (
     <div className={`${bright}`}>
