@@ -31,6 +31,7 @@ public class ResponseFindAllDto {
     private String poster;
     private String startDate;
     private String endDate;
+    private String saleContractAddress;
     private List<Artist> artist;
 
 //    public static ResponseFindAllDto from(Concert concert){
