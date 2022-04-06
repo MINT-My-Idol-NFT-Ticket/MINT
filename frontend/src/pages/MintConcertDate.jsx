@@ -6,12 +6,12 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import LocalizationProvider from '@mui/lab/LocalizationProvider'
 import CalendarPicker from '@mui/lab/CalendarPicker'
 
-import '../styles/MintConcertProcess.css'
 import { confirmMessageNoBtn } from '../functions/alert/alertFunctions'
 import useBrightness from '../hooks/useBrightness'
 
 import MintPageTemplate from '../components/common/MintPageTemplate'
 import MintConcertTimes from '../components/concert/MintConcertTimes'
+import '../styles/MintConcertProcess.css'
 import MintBtnGroup from '../components/common/MintBtnGroup'
 
 function MintConcertDate() {
@@ -37,10 +37,21 @@ function MintConcertDate() {
 
   const getConcertDate = async () => {
     try {
+      /*
+        - 정빈🐱‍💻
+        모든 콘서트 데이터 받아온 후,
+        콘서트 중 첫번째 날짜에 달력을 세팅할 것이므로
+        첫번째 날짜를 구해줌(firstDate)
+        첫날을 기준으로 모든 콘서트 데이터 filter,
+        첫날 데이터만 뽑아 초기값 데이터에 넣어줌
+      */
       const response = await getRequest(`/api/ticket/concert/${params.id}`)
-      setConcertData(response.data)
-      setDayConcertData(response.data)
-      setDate(new Date(response.data[0].date))
+      setConcertData(response.data) // 모든 콘서트 데이터
+      const firstDate = new Date(response.data[0].date) // 첫번째 날
+      setDate(firstDate)
+
+      const res = response.data.filter(concert => new Date(concert.date).getDate() === firstDate.getDate()) // 첫날 값 filter
+      setDayConcertData(res)
       setDates({ min: response.data[0].date, max: response.data[response.data.length - 1].date })
     } catch {
       navigate('/error404')
@@ -62,6 +73,7 @@ function MintConcertDate() {
         className="date__Header"
         sx={{
           minHeight: '440px',
+          paddingBottom: '20px',
           textAlign: 'center',
           color: '#FFF',
           backgroundColor: '#000',
@@ -91,14 +103,13 @@ function MintConcertDate() {
           }}>
           {state.title}
         </Typography>
-        {/* <Typography sx={{ position: 'relative', zIndex: '100' }}>{state.artists.map(a => a.name)}</Typography> */}
 
         <Box
           sx={{
             width: '320px',
-            height: '305px',
+            minHeight: '305px',
             backgroundColor: '#FFF',
-            margin: '24px 10px 0 20px',
+            margin: '30px 10px 0 20px',
             display: 'inlineBlock',
             textAlign: 'center',
             borderRadius: '8px',
