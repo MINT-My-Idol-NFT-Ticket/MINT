@@ -302,8 +302,8 @@ public class ConcertService {
         mp4.transferTo(new File(realPath, mp4FileName));
         try{
             Files files = Files.builder()
-                    .gifUrl(Path + gif.getOriginalFilename())
-                    .mp4Url(Path + mp4.getOriginalFilename())
+                    .gifUrl(Path + gifFileName)
+                    .mp4Url(Path + mp4FileName)
                     .build();
             filesRepository.save(files);
 
