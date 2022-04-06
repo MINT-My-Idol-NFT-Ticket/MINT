@@ -12,6 +12,8 @@ import MintConcertPaymentModal from '../components/concert/MintConcertPaymentMod
 import useBrightness from '../hooks/useBrightness'
 
 function MintConcertPayment() {
+  document.title = 'MINT - 결제'
+
   const concertId = useParams().id
   const location = useLocation()
   const [bright, _] = useBrightness()

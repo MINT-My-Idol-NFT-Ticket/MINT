@@ -12,6 +12,8 @@ import MintConcertAreaList from '../components/concert/MintConcertAreaList'
 import MintSeatForm from '../components/concert/MintSeatForm'
 
 function MintConcertArea() {
+  document.title = 'MINT - 구역 선택'
+
   const concertId = useParams().id
   const location = useLocation()
   const navigate = useNavigate()

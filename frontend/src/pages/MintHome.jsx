@@ -6,6 +6,8 @@ import MintHomeContents from '../components/home/MintHomeContents'
 import MintPageTemplate from '../components/common/MintPageTemplate'
 
 export default function MintHome({ bright }) {
+  document.title = 'MINT - 나만의 아이돌 티켓'
+
   const Header = () => <MintHeader bright={bright} />
   const Contents = () => <MintHomeContents />
   const Footer = () => <MintFooter bright={bright} />

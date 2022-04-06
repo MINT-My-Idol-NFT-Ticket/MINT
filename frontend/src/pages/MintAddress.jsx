@@ -11,6 +11,8 @@ export default function MintConnectWallet() {
   const [bright, _] = useBrightness()
   const [address, setAddress] = useState('')
 
+  document.title = 'MINT - 지갑 주소 등록'
+
   const connectWallet = () => {
     const displayCheck = () => checkMessage('지갑이 연결되었습니다', pushHome, bright)
 

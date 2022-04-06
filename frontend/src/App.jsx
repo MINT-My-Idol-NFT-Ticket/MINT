@@ -71,7 +71,6 @@ function App({ setMode }) {
 
 export default function MINT() {
   const [mode, setMode] = React.useState('light')
-
   const theme = React.useMemo(
     () =>
       createTheme({

@@ -4,29 +4,22 @@ import { useNavigate } from 'react-router-dom'
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet'
 import KeyIcon from '@mui/icons-material/Key'
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber'
-import LockIcon from '@mui/icons-material/Lock'
 import LockOpenIcon from '@mui/icons-material/LockOpen'
 
-function MintFooterMenus(props) {
-  const [isLogin, setIsLogin] = useState(false)
-  useEffect(() => {
-    const address = sessionStorage.getItem('address')
-    if (address) {
-      setIsLogin(true)
-    } else {
-      setIsLogin(false)
-    }
-  }, [])
-  const handleLogin = () => {
-    if (isLogin) {
-      sessionStorage.removeItem('address')
-      setIsLogin(false)
-      props.drawer()
-      alert('로그아웃 되었습니다.')
-    } else {
-      alert('지갑 연동 페이지로 이동합니다.')
-      navigate('/wallet')
-    }
+import useBrightness from '../../hooks/useBrightness'
+import { checkMessage } from '../../functions/alert/alertFunctions'
+
+function MintFooterMenus() {
+  const [bright, _] = useBrightness()
+
+  const handleRegist = () => {
+    checkMessage(
+      '지갑 등록이 해제되었습니다',
+      () => {
+        navigate('/wallet')
+      },
+      bright,
+    )
   }
 
   const menus = [
@@ -69,9 +62,11 @@ function MintFooterMenus(props) {
         )
       })}
       <ListItem disablePadding>
-        <ListItemButton onClick={handleLogin}>
-          <ListItemIcon>{isLogin ? <LockIcon /> : <LockOpenIcon />}</ListItemIcon>
-          <ListItemText primary={isLogin ? '로그아웃' : '로그인'}></ListItemText>
+        <ListItemButton onClick={handleRegist}>
+          <ListItemIcon>
+            <LockOpenIcon />
+          </ListItemIcon>
+          <ListItemText primary={'지갑 재등록'}></ListItemText>
           <Divider />
         </ListItemButton>
       </ListItem>

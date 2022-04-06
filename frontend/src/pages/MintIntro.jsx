@@ -8,6 +8,8 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 
 export default function Intro() {
+  document.title = 'MINT - 나만의 아이돌 티켓'
+
   // 지갑 연동 페이지 이동
   const navigate = useNavigate()
   const moveToAccount = () => {

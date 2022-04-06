@@ -6,6 +6,8 @@ import MintSubHeader from '../components/header/MintSubHeader'
 import MintTradeDetailContents from '../components/trade/MintTradeDetailContents'
 
 function MintTradeDetail() {
+  document.title = 'MINT - 거래 상세'
+
   const location = useLocation()
 
   const Header = () => <MintSubHeader content="상세페이지" />

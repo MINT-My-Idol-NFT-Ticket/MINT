@@ -12,6 +12,8 @@ import MintSeatForm from '../components/concert/MintSeatForm'
 import MintConcertSeatSelect from '../components/concert/MintConcertSeatSelect'
 
 function MintConcertSeat() {
+  document.title = 'MINT - 좌석 선택'
+
   const concertId = useParams().id
   const location = useLocation()
   const navigate = useNavigate()

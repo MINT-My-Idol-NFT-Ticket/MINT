@@ -6,6 +6,8 @@ import MintTicketMoveBanner from '../components/ticket/MintTicketMoveBanner'
 import MintTicket3D from '../components/ticket/MintTicket3D'
 
 function MintTicket(props) {
+  document.title = 'MINT - 티켓'
+
   const location = useLocation()
   return (
     <Box sx={{ position: 'relative', overflow: 'hidden', height: '100vh' }}>

@@ -10,10 +10,13 @@ import MintBtn from '../components/common/MintBtn'
 import MintDetailSkeleton from '../components/skeleton/MintDetailSkeleton'
 
 export default function MintConcertDetail() {
+  document.title = 'MINT - 콘서트 상세 정보'
+
   const navigate = useNavigate()
 
   const [concertData, setConcertData] = useState(null)
   const [status, setStatus] = useState(false)
+  const [loading, setLoading] = useState(true)
   const id = useParams().id
 
   useEffect(async () => {
@@ -22,6 +25,7 @@ export default function MintConcertDetail() {
 
       setConcertData(response.data)
       setStatus(response.data.status === 1 ? false : true)
+      setLoading(false)
     } catch {
       navigate('/error404')
     }
@@ -29,7 +33,11 @@ export default function MintConcertDetail() {
 
   const Header = () => <MintSubHeader content="콘서트 상세" />
   const Contents = () =>
-    concertData === null ? <MintDetailSkeleton /> : <MintConcertDetailContents concertData={concertData} />
+    concertData === null ? (
+      <MintDetailSkeleton />
+    ) : (
+      <MintConcertDetailContents concertData={concertData} loading={loading} />
+    )
   const Footer = () => (
     <>
       <Box
