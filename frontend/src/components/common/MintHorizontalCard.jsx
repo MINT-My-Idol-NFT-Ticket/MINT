@@ -3,6 +3,7 @@ import MintConcertPoster from './MintConcertPoster'
 import { Box, Button, Typography } from '@mui/material'
 import { BASE_URL } from '../../api/requests'
 import { useNavigate } from 'react-router-dom'
+import removeUnderBar from '../../functions/util/removeUnderBar'
 
 export default function MintHorizontalCard({ concertData, passDetail, children }) {
   const navigate = useNavigate()
@@ -33,8 +34,11 @@ export default function MintHorizontalCard({ concertData, passDetail, children }
           {concertData.isBefore ? 'soon' : concertData.isOpen ? 'open' : 'closed'}
         </Typography>
         <MintConcertText
+          // 콘서트 데이터 artists, artist 통일필요
           data={{
-            singer: concertData.artists ? concertData.artists[0].name : concertData.artist[0].name,
+            singer: concertData.artists
+              ? removeUnderBar(concertData.artists[0].name)
+              : removeUnderBar(concertData.artist[0].name),
             title: concertData.title,
             date: `${concertData.startDate.slice(0, -4)} ~ ${concertData.endDate.slice(0, -4)}`,
           }}
