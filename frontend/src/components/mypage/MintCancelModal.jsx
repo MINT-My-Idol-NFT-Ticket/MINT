@@ -26,6 +26,7 @@ export default function MintCancelModal({ open, handleClose, targetConcertId }) 
   const [cancelTarget, setCancelTarget] = useState({})
   const [userPK, setUserPK] = useState('')
   const [bright, _] = useBrightness()
+  const [selected, setSelected] = useState(false)
 
   const getContractAddress = async () => {
     const concertData = await getRequest(`api/concert/${targetConcertId}`)
@@ -73,6 +74,7 @@ export default function MintCancelModal({ open, handleClose, targetConcertId }) 
   }
 
   useEffect(() => {
+    setSelected(false)
     if (targetConcertId) {
       getContractAddress()
     }
@@ -93,7 +95,16 @@ export default function MintCancelModal({ open, handleClose, targetConcertId }) 
           }}>
           취소하실 콘서트를 선택해주세요
         </Typography>
-        <Card sx={{ marginBottom: 1, padding: '0 4px' }}>
+        <Card
+          sx={{
+            marginBottom: 1,
+            padding: '0 4px',
+            border: `2px solid ${selected ? '#8811dd' : 'transparent'}`,
+            cursor: 'pointer',
+          }}
+          onClick={() => {
+            setSelected(!selected)
+          }}>
           {tokenDatas === [] ? (
             <></>
           ) : (
