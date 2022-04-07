@@ -2,7 +2,7 @@ import { Modal, Box, TextField, Button } from '@mui/material'
 import { useState } from 'react'
 
 import { checkMessage, errorMessage, timerMessage } from '../../functions/alert/alertFunctions'
-import { registSale } from '../../functions/erc/ERCfunctions'
+import { approveNFT, approveSSF, isApproved, registSale } from '../../functions/erc/ERCfunctions'
 import useBrightness from '../../hooks/useBrightness'
 
 const style = {
@@ -26,6 +26,8 @@ export default function MintTradeDetailModal({ open, handleClose, saleContract, 
   const registTicketForSale = async () => {
     try {
       await registSale(saleContract, userPK, tokenId, price)
+      await approveNFT(userPK, saleContract, tokenId)
+      console.log(await isApproved(saleContract, tokenId))
       checkMessage('판매가 등록되었습니다', () => {}, bright)
     } catch {
       errorMessage('등록에 실패했습니다', () => {}, bright)

@@ -135,3 +135,21 @@ export async function purchaseTicket(web3, senderPK, saleContractAddress, tokenI
     console.log('전송 실패')
   }
 }
+
+export async function approve(web3, saleContractAddress, tokenId, senderPK) {
+  const contract = new web3.eth.Contract(SALE_ABI, saleContractAddress)
+  const transaction = contract.methods.approve(saleContractAddress, tokenId)
+
+  const gas = '3000000'
+  const options = {
+    to: saleContractAddress,
+    data: transaction.encodeABI(),
+    gas,
+  }
+
+  try {
+    await send(web3, options, senderPK)
+  } catch {
+    console.log('전송 실패')
+  }
+}

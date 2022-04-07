@@ -66,3 +66,20 @@ export async function MintTicketAddress(web3, saleContractAddress) {
     return false
   }
 }
+
+export async function SaleTicketPrice(web3, saleContractAddress, tokenId) {
+  console.log(saleContractAddress, tokenId)
+  const contractInstance = new web3.eth.Contract(SALE_ABI, saleContractAddress)
+  const transactionInstance = contractInstance.methods.getTicketPrice(tokenId)
+  const response = await transactionInstance.call()
+
+  return response
+}
+
+export async function isApprovedOrOwner(web3, saleContractAddress, tokenId) {
+  const contractInstance = new web3.eth.Contract(SALE_ABI, saleContractAddress)
+  const transactionInstance = contractInstance.methods._isApprovedOrOwner(saleContractAddress, tokenId)
+  const response = await transactionInstance.call()
+
+  return response
+}

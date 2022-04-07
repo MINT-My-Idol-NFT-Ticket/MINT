@@ -18,20 +18,20 @@ export default function MintTradeContents() {
       const response = await getRequest(`/api/concert/contracts`, { contract: 'salecontractaddress' })
       const saleTicket = []
       for (let saleContractelement of response.data) {
-        const saleContractTicketArray = []
         const saletokenIdList = await getSaleList(saleContractelement.saleContractAddress[0])
-        const tempOnSaleArray = [...saletokenIdList]
+        const tokenIdArray = [...saletokenIdList]
 
-        for (let j = 0; j < tempOnSaleArray.length; j++) {
+        for (let j = 0; j < tokenIdArray.length; j++) {
           const ticketAddress = await getMintTicketAddress(saleContractelement.saleContractAddress[0])
-          const ticketTokenURI = await getTokenURI(ticketAddress, tempOnSaleArray[j])
+          const ticketTokenURI = await getTokenURI(ticketAddress, tokenIdArray[j])
+          console.log(ticketTokenURI)
           const response = await getRequest(`api/ticket/uriData/${ticketTokenURI}`)
-          saleTicket.push(response.data)
+          saleTicket.push({ ...response.data, tokenId: tokenIdArray[j], saleContract: ticketAddress })
         }
       }
       setMedatData(saleTicket)
     } catch {
-      // navigate('/error404')
+      navigate('/error404')
     }
   }
 
