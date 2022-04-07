@@ -4,10 +4,6 @@ import MintPageTemplate from '../common/MintPageTemplate'
 import MintFooter from '../footer/MintFooter'
 import MintSubHeader from '../header/MintSubHeader'
 import MintBtn from '../common/MintBtn'
-// images
-import noticeImg1 from '../../images/notice/notice2-1.png'
-import noticeImg2 from '../../images/notice/notice3-1.png'
-import noticeImg3 from '../../images/notice/notice3-2.png'
 
 function MintNotice3(props) {
   return (
@@ -23,15 +19,15 @@ function Contents() {
           지갑 개인키 확인하기
         </Typography>
         <Box sx={subCon}>
-          <img src={noticeImg1} style={imgStyle} />
+          <img src="/img/notice3_1.png" style={imgStyle} />
           <Typography>1. 메인 화면에서 우측 상단의 ··· 버튼을 클릭해주세요.</Typography>
         </Box>
         <Box sx={subCon}>
-          <img src={noticeImg2} style={imgStyle} />
+          <img src="/img/notice3_2.png" style={imgStyle} />
           <Typography>2. 지갑관리 창에서 개인키 보기를 선택해주세요.</Typography>
         </Box>
         <Box sx={{ ...subCon, marginBottom: '50px' }}>
-          <img src={noticeImg3} style={imgStyle} />
+          <img src="/img/notice3-2.png" style={imgStyle} />
           <Typography>3. 창 중앙에서 개인키를 확인할수 있습니다.</Typography>
         </Box>
         <Typography sx={{ ...subHeader, marginTop: '60px' }}>주의사항</Typography>

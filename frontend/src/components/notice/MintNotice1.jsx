@@ -4,12 +4,7 @@ import MintPageTemplate from '../common/MintPageTemplate'
 import MintFooter from '../footer/MintFooter'
 import MintSubHeader from '../header/MintSubHeader'
 import MintBtn from '../common/MintBtn'
-// images
-import noticeImg1 from '../../images/notice/notice1-1.png'
-import noticeImg2 from '../../images/notice/notice1-2.png'
-import noticeImg3 from '../../images/notice/notice1-3.png'
-import noticeImg4 from '../../images/notice/notice1-4.png'
-// style
+
 import '../../styles/MintNotice.css'
 
 function MintNotice1(props) {
@@ -27,22 +22,22 @@ function Contents() {
         </Typography>
         <Typography sx={subHeader}>1. SSAFY Wallet 설치</Typography>
         <Box sx={subCon}>
-          <img src={noticeImg1} style={imgStyle} />
+          <img src={'/img/notice1_1.png'} style={imgStyle} />
           <Typography>
             1. APK파일을 내려받아 주세요.
             <a style={{ color: '#8811DD', textDecoration: 'underline', cursor: 'pointer' }}>https://t.ly/YZwL</a>
           </Typography>
         </Box>
         <Box sx={subCon}>
-          <img src={noticeImg2} style={imgStyle} />
+          <img src="/img/notice1_2.png" style={imgStyle} />
           <Typography>2. SSAFY GIT에 등록된 이메일 주소를 인증해주세요.</Typography>
         </Box>
         <Box sx={subCon}>
-          <img src={noticeImg3} style={imgStyle} />
+          <img src="/img/notice1_3.png" style={imgStyle} />
           <Typography>3. 수신 이메일을 확인 후 인증코드를 입력해주세요.</Typography>
         </Box>
         <Box sx={subCon}>
-          <img src={noticeImg4} style={imgStyle} />
+          <img src="/img/notice1_4.png" style={imgStyle} />
           <Typography>4. 지갑 생성이 완료되었습니다. 확인버튼을 눌러 지갑을 확인해주세요.</Typography>
         </Box>
         <Typography sx={{ ...subHeader, marginTop: '60px' }}>주의사항</Typography>
