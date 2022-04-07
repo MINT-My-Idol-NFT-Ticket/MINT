@@ -5,22 +5,12 @@ import { getSaleTicketPrice } from '../../functions/erc/ERCfunctions'
 
 import MintCollectionSingleSkeletion from '../skeleton/MintCollectionSingleSkeletion'
 
-export default function MintCard2({ tokenURI }) {
-  const navigate = useNavigate()
-  const [price, setPrice] = useState(null)
+export default function MintCard({ tokenURI }) {
   console.log(tokenURI)
+  const navigate = useNavigate()
   const showTicket = () => {
-    navigate(`/trade/ticket`, { state: { ...tokenURI.data } })
+    navigate(`/trade/ticket`, { state: { tokenURI } })
   }
-  const getPrice = async () => {
-    console.log(tokenURI.saleContract, tokenURI.tokenId)
-    const response = await getSaleTicketPrice(tokenURI.saleContract, tokenURI.tokenId)
-    console.log(response)
-  }
-
-  useEffect(() => {
-    getPrice()
-  }, [])
 
   return (
     <Box onClick={showTicket}>

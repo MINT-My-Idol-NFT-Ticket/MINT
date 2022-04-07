@@ -11,7 +11,7 @@ export default function GenerateTimer(swal, title, text, callback, bright) {
     timerProgressBar: true,
     didOpen: async () => {
       swal.showLoading()
-      await callback()
+      if (callback) await callback()
     },
   })
 }

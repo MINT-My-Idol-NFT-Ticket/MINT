@@ -2,22 +2,21 @@ import { typography } from '@mui/system'
 import { MINT_ABI, SALE_ABI } from './index'
 
 export async function getBalance(web3, contractAddress, sender) {
-  const contractInstance = new web3.eth.Contract(MINT_ABI, contractAddress)
-  const transactionInstance = contractInstance.methods.balanceOf(sender)
+  const contract = new web3.eth.Contract(MINT_ABI, contractAddress)
+  const transaction = contract.methods.balanceOf(sender)
   try {
-    const response = await transactionInstance.call()
+    const response = await transaction.call()
     return response
   } catch (err) {
-    console.log(err)
     return 0
   }
 }
 
 export async function getTicketList(web3, contractAddress, sender) {
-  const contractInstance = new web3.eth.Contract(MINT_ABI, contractAddress)
-  const transactionInstance = contractInstance.methods.getTicketList(sender)
+  const contract = new web3.eth.Contract(MINT_ABI, contractAddress)
+  const transaction = contract.methods.getTicketList(sender)
   try {
-    const response = await transactionInstance.call()
+    const response = await transaction.call()
     return response
   } catch {
     return []
@@ -25,20 +24,10 @@ export async function getTicketList(web3, contractAddress, sender) {
 }
 
 export async function getTicketPrice(web3, contractAddress) {
-  const contractInstance = new web3.eth.Contract(MINT_ABI, contractAddress)
-  const transactionInstance = contractInstance.methods.getTicketPrice()
+  const contract = new web3.eth.Contract(MINT_ABI, contractAddress)
+  const transaction = contract.methods.getTicketPrice()
   try {
-    const response = await transactionInstance.call()
-    return response
-  } catch {
-    return false
-  }
-}
-export async function getSaleList(web3, contractAddress) {
-  const contractInstance = new web3.eth.Contract(SALE_ABI, contractAddress)
-  const transactionInstance = contractInstance.methods.getSaleList()
-  try {
-    const response = await transactionInstance.call()
+    const response = await transaction.call()
     return response
   } catch {
     return false
@@ -46,10 +35,10 @@ export async function getSaleList(web3, contractAddress) {
 }
 
 export async function tokenURI(web3, contractAddress, tokenId) {
-  const contractInstance = new web3.eth.Contract(MINT_ABI, contractAddress)
-  const transactionInstance = contractInstance.methods.tokenURI(tokenId)
+  const contract = new web3.eth.Contract(MINT_ABI, contractAddress)
+  const transaction = contract.methods.tokenURI(tokenId)
   try {
-    const response = await transactionInstance.call()
+    const response = await transaction.call()
     return response
   } catch {
     return false
@@ -57,10 +46,21 @@ export async function tokenURI(web3, contractAddress, tokenId) {
 }
 
 export async function MintTicketAddress(web3, saleContractAddress) {
-  const contractInstance = new web3.eth.Contract(SALE_ABI, saleContractAddress)
-  const transactionInstance = contractInstance.methods.getLinkedContract()
+  const contract = new web3.eth.Contract(SALE_ABI, saleContractAddress)
+  const transaction = contract.methods.getLinkedContract()
   try {
-    const response = await transactionInstance.call()
+    const response = await transaction.call()
+    return response
+  } catch {
+    return false
+  }
+}
+
+export async function getSaleList(web3, contractAddress) {
+  const contract = new web3.eth.Contract(SALE_ABI, contractAddress)
+  const transaction = contract.methods.getSaleList()
+  try {
+    const response = await transaction.call()
     return response
   } catch {
     return false
@@ -68,18 +68,17 @@ export async function MintTicketAddress(web3, saleContractAddress) {
 }
 
 export async function SaleTicketPrice(web3, saleContractAddress, tokenId) {
-  console.log(saleContractAddress, tokenId)
-  const contractInstance = new web3.eth.Contract(SALE_ABI, saleContractAddress)
-  const transactionInstance = contractInstance.methods.getTicketPrice(tokenId)
-  const response = await transactionInstance.call()
+  const contract = new web3.eth.Contract(SALE_ABI, saleContractAddress)
+  const transaction = contract.methods.getTicketPrice(tokenId)
+  const response = await transaction.call()
 
   return response
 }
 
-export async function isApprovedOrOwner(web3, saleContractAddress, tokenId) {
-  const contractInstance = new web3.eth.Contract(SALE_ABI, saleContractAddress)
-  const transactionInstance = contractInstance.methods._isApprovedOrOwner(saleContractAddress, tokenId)
-  const response = await transactionInstance.call()
-
+export async function getApproved(web3, contractAddress, tokenId) {
+  const contract = new web3.eth.Contract(MINT_ABI, contractAddress)
+  const transaction = contract.methods.getApproved(tokenId)
+  const response = await transaction.call()
+  console.log(response)
   return response
 }

@@ -15,6 +15,6 @@ export default function GenerateConfirm(swal, title, text, callback, bright) {
       cancelButtonText: '아니오',
     })
     .then(result => {
-      if (result.isConfirmed) callback()
+      if (result.isConfirmed) if (callback) callback()
     })
 }

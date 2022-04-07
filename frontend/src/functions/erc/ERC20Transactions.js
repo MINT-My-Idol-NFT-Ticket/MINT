@@ -41,9 +41,12 @@ export async function transferFrom(web3, operatorPK, from, to, amount) {
 
 //owner가 spender에게 amount의 토큰 권한 부여
 export async function approve(web3, ownerPK, spender, amount) {
+  console.log(ownerPK)
+  console.log(spender)
+  console.log(amount)
   const contractInstance = new web3.eth.Contract(ERC20_ABI, ERC20ADDRESS)
   const transactionInstance = contractInstance.methods.approve(spender, amount)
-  const gas = await transactionInstance.estimateGas({ from: process.env.REACT_APP_ADMIN_WALLET_ADDRESS })
+  const gas = '300000'
   const options = {
     to: ERC20ADDRESS,
     data: transactionInstance.encodeABI(),

@@ -62,9 +62,9 @@ export default function MintCancelModal({ open, handleClose, targetConcertId }) 
         },
         bright,
       )
-      putRequest(`api/${seatId}/cancel`)
+      await putRequest(`api/ticket/seat/${seatId}/cancel`).then(res => console.log(res))
     } catch {
-      errorMessage('예매 취소에 실패했습니다', () => {}, bright)
+      errorMessage('예매 취소에 실패했습니다', null, null, bright)
     }
   }
 
