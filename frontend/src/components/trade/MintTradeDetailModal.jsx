@@ -19,7 +19,6 @@ const style = {
 }
 
 export default function MintTradeDetailModal({ open, handleClose, tokenURI }) {
-  // console.log(tokenURI)
   const userAddress = sessionStorage.getItem('address')
 
   const [userPK, setUserPK] = useState('')
@@ -58,20 +57,20 @@ export default function MintTradeDetailModal({ open, handleClose, tokenURI }) {
       <Box sx={{ ...style, minWidth: '340px', maxWidth: '414px' }}>
         <Box>
           <Typography variant="h6" s={{ margin: 'auto' }}>
-            결제를 진행합니다
+            구매를 진행합니다
           </Typography>
         </Box>
         <Grid container sx={{ margin: '40px 0 30px' }}>
           <Grid item xs={5.5} sx={itemStyle}>
             <Typography sx={itemTypo}>현재 잔액</Typography>
-            <Typography>{wallet} SSF</Typography>
+            <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{wallet} SSF</Typography>
           </Grid>
           <Grid item xs={1} sx={{ textAlign: 'center' }}>
             <Typography sx={{ fontSize: '12px', lineHeight: '44px' }}>➡</Typography>
           </Grid>
           <Grid item xs={5.5} sx={itemStyle}>
             <Typography sx={itemTypo}>결제 후 예상 잔액</Typography>
-            <Typography>{wallet - tokenURI.price} SSF</Typography>
+            <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{wallet - tokenURI.price} SSF</Typography>
           </Grid>
         </Grid>
         <TextField
@@ -81,7 +80,11 @@ export default function MintTradeDetailModal({ open, handleClose, tokenURI }) {
           sx={{ width: '100%', margin: '16px 0' }}
           value={userPK}
           onChange={e => setUserPK(e.target.value)}></TextField>
-        <Box sx={{ float: 'right' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Typography sx={{ fontWeight: '600' }}>Total</Typography>
+          <Typography>{tokenURI.price} SSF</Typography>
+        </Box>
+        <Box sx={{ marginTop: '16px', float: 'right' }}>
           <Button variant="contained" color="secondary" onClick={handleClose}>
             취소
           </Button>
