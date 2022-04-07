@@ -1,4 +1,4 @@
-import { Modal, Box, Typography, TextField, Button, CardMedia, Card, Grid } from '@mui/material'
+import { Modal, Box, Typography, TextField, Button, Grid } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { balanceOfSSF } from '../../functions/erc/ERCfunctions'
