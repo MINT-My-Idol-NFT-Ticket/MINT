@@ -1,8 +1,9 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
 
+import removeUnderBar from '../../functions/util/removeUnderBar'
+
 function MintQR({ concertData }) {
-  console.log(concertData, '뒷면정보')
   const url = 'https://j6b108.p.ssafy.io/ticket/confirm'
 
   return (
@@ -21,13 +22,11 @@ function MintQR({ concertData }) {
         </Box>
         <Box sx={container}>
           <Typography sx={title}>ARTIST</Typography>
-          <Typography sx={content}>{JSON.parse(concertData.artists)[0].name}</Typography>
+          <Typography sx={content}>{removeUnderBar(JSON.parse(concertData.artists)[0].name)}</Typography>
         </Box>
         <Box sx={container}>
           <Typography sx={title}>SEAT</Typography>
-          <Typography sx={content}>
-            {concertData.area}-{JSON.parse(concertData.seat).seat}
-          </Typography>
+          <Typography sx={content}>{JSON.parse(concertData.seat).seat}</Typography>
         </Box>
         <Box sx={container}>
           <Box

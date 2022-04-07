@@ -11,12 +11,11 @@ export default function MintCard2({ tokenId }) {
   const [tokenURI, setTokenURI] = useState(null)
   const navigate = useNavigate()
   const showTicket = () => {
-    navigate(`/mypage/ticket`, { state: { ...tokenURI.data } })
+    navigate(`/mypage/ticket`, { state: { ...tokenURI.data, tokenId } })
   }
   const getURI = async () => {
     try {
       const uri = await getTokenURI(tokenId.contractAddress, tokenId.tokenId)
-      console.log(uri)
       let response = ''
       if (uri) response = await getRequest(`api/ticket/uriData/${uri}`)
       setTokenURI(response)

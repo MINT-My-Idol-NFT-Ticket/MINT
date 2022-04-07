@@ -31,6 +31,7 @@ function MintConcertPayment() {
   const handlePayClose = () => setPayOpen(false)
 
   const concertInfo = {
+    concertId: String(location.state.id),
     img: location.state.poster,
     title: location.state.title,
     place: location.state.place,

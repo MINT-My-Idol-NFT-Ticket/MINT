@@ -42,6 +42,7 @@ export default function MintConcertPaymentModal({ open, handleClose, concertInfo
     const random = Math.floor(Math.random() * max)
     const images = JSON.parse(concertInfo.cids[random].cid)
     const data = {
+      contractId: concertInfo.id,
       title: concertInfo.title,
       place: concertInfo.place,
       date: concertInfo.date,

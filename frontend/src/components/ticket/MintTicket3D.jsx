@@ -5,12 +5,11 @@ import { OrbitControls, Stars, useGLTF, Bounds, Html, useProgress, useTexture } 
 import MintTicketInfo from './MintTicketInfo'
 
 function MintTicket3D({ concertData }) {
-  console.log(concertData)
   const TicketMesh = () => {
     const group = useRef()
     const { nodes, materials } = useGLTF('/mintticket3.glb')
 
-    const src = concertData.img.mp4 ? concertData.img.mp4 : JSON.parse(concertData.img).mp4
+    const src = JSON.parse(concertData.img).mp4
 
     const [video] = useState(() =>
       Object.assign(document.createElement('video'), {

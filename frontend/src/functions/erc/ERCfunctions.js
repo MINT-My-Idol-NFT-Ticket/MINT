@@ -42,8 +42,8 @@ export const approveSSF = (ownerPK, spender, amount) => ERC20Transactions.approv
 export const allowanceSSF = (owner, spender) => ERC20Calls.allowance(web3, owner, spender)
 
 //판매 등록
-export const registSale = (saleContractAddress, tokenId, price) =>
-  ERC721Transactions.setForSaleTicket(web3, saleContractAddress, tokenId, price)
+export const registSale = (saleContractAddress, senderPK, tokenId, price) =>
+  ERC721Transactions.setForSaleTicket(web3, saleContractAddress, senderPK, tokenId, price)
 //구매
-export const purchaseTicket = (saleContractAddress, tokenId) =>
-  ERC721Transactions.purchaseTicket(web3, saleContractAddress, tokenId)
+export const purchaseTicket = (saleContractAddress, senderPK, tokenId) =>
+  ERC721Transactions.purchaseTicket(web3, saleContractAddress, senderPK, tokenId)
