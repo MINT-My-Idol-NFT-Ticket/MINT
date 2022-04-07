@@ -29,7 +29,17 @@ export default function MintCard({ tokenURI }) {
                   alt="nft사진"
                   sx={{ height: '175px' }}
                 />
-                <Typography>t</Typography>
+                <Typography
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    textAlign: 'right',
+                    padding: '0 10px',
+                  }}>
+                  <CardMedia component="img" image={'currency.png'} sx={{ width: 15 }} />
+                  {tokenURI.price}
+                </Typography>
               </>
             )}
           </Card>
