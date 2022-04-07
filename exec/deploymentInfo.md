@@ -1,3 +1,5 @@
+#개발 환경
+
 ## BE
 
 java 1.8      
@@ -8,6 +10,8 @@ gradle 6.9
 spring boot 2.6.4  
 
 IDE : intelliJ ultimate 2021.1.3   
+
+Dockerfile 작성
 
 ```
 FROM openjdk:8-jdk
@@ -32,6 +36,8 @@ react 17.0.2
 IDE: vs code 
 
 dockerfile 설정
+
+Dockerfile 작성
 
 ```
 FROM nginx
@@ -59,7 +65,57 @@ EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
 ```
-## jenkins command
+## Infra
+- AWS EC2
+- Docker
+- Nginx
+## NGINX
+설정 파일 
+```
+server {
+    listen 80;
+    server_name j6b108.p.ssafy.io;
+
+    location / {
+        proxy_hide_header Access-Control-Allow-Origin;
+        add_header 'Access-Control-Allow-Origin' '*';
+        root    /app/build;
+        index   index.html;
+        try_files $uri $uri/ /index.html;
+    }
+
+
+}
+
+```
+# 빌드 및 배포
+DB 설치
+```
+# 최신버전의 MySQL 이미지 다운로드
+docker pull mysql
+
+# 가져온 이미지 확인
+docker images
+# MySQL 컨테이너 생성이 정상적으로 완료 되었다면, Container에 접속한다.
+docker exec -it mysql-container bash
+
+# 이름 : ssafy , password : "ssafy"인 user 생성
+CREATE USER 'ssafy'@'%' IDENTIFIED BY 'ssafy';
+
+# 외부에서 접속 할 수 있도록 권한을 부여하도록 합니다.
+GRANT ALL PRIVILEGES ON *.* TO 'ssafy'@'%';
+
+# 변경된 권한을 적용합니다.
+flush privileges;
+
+```
+
+## jenkins 
+```
+sudo docker run -d -p 8080:8080 --name jenkins -v /home/jenkins:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -u root jenkins/jenkins:lts
+--name awesome_jenkins -u root jenkins/jenkins:lts
+```
+FE BE 각각 나눠서
 ```
 cd backend
 chmod 777 gradlew
