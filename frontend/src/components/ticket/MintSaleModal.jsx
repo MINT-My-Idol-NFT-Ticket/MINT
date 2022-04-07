@@ -7,7 +7,11 @@ import { approveNFT, approveSSF, getMintTicketAddress, getApproved, registSale }
 import useBrightness from '../../hooks/useBrightness'
 
 const style = {
+  display: 'flex',
+  flexDirection: 'column',
   position: 'absolute',
+  minWidth: '250px',
+  maxWidth: '350px',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
@@ -50,7 +54,10 @@ export default function MintTradeDetailModal({ open, handleClose, saleContract, 
       onClose={handleClose}
       aria-labelledby="parent-modal-title"
       aria-describedby="parent-modal-description">
-      <Box sx={{ ...style, minWidth: '340px', maxWidth: '414px' }}>
+      <Box
+        sx={{
+          ...style,
+        }}>
         <TextField
           size="small"
           label="가격을 입력해주세요"
