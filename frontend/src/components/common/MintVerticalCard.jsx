@@ -6,6 +6,7 @@ import { BASE_URL } from '../../api/requests'
 
 import MintConcertText from '../common/MintConcertText'
 import MintConcertPoster from '../common/MintConcertPoster'
+import removeUnderBar from '../../functions/util/removeUnderBar'
 
 export default function MintVerticalCard({ concertData, notOpen }) {
   const navigate = useNavigate()
@@ -21,7 +22,7 @@ export default function MintVerticalCard({ concertData, notOpen }) {
       <Box sx={{ marginBottom: '10px' }}>
         <MintConcertText
           data={{
-            singer: concertData.artist[0].name,
+            singer: removeUnderBar(concertData.artist[0].name),
             title: concertData.title,
             date: `${makeDataString(concertData.startDate)} ~ ${makeDataString(concertData.endDate)}`,
           }}

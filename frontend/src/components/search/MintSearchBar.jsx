@@ -8,6 +8,7 @@ import { Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 import useBrightness from '../../hooks/useBrightness'
+import { errorMessage } from '../../functions/alert/alertFunctions'
 
 export default function MintSearchBar({ setSearchList }) {
   const navigate = useNavigate()
@@ -25,7 +26,7 @@ export default function MintSearchBar({ setSearchList }) {
   const handleEnter = e => {
     if (e.key === 'Enter') {
       if (searchQuery === '') {
-        alert('검색어를 입력해주세요.')
+        errorMessage('검색어를 입력해주세요.', bright)
       } else {
         search()
       }
