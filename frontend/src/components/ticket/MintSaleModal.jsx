@@ -1,7 +1,9 @@
 import { Modal, Box, TextField, Button } from '@mui/material'
 import { useState } from 'react'
 
+import { checkMessage, errorMessage, timerMessage } from '../../functions/alert/alertFunctions'
 import { registSale } from '../../functions/erc/ERCfunctions'
+import useBrightness from '../../hooks/useBrightness'
 
 const style = {
   position: 'absolute',
@@ -19,10 +21,19 @@ const style = {
 export default function MintTradeDetailModal({ open, handleClose, saleContract, tokenId }) {
   const [userPK, setUserPK] = useState()
   const [price, setPrice] = useState()
+  const [bright, _] = useBrightness()
 
   const registTicketForSale = async () => {
-    const response = await registSale(saleContract, userPK, tokenId, price)
-    console.log(response)
+    try {
+      await registSale(saleContract, userPK, tokenId, price)
+      checkMessage('판매가 등록되었습니다', () => {}, bright)
+    } catch {
+      errorMessage('등록에 실패했습니다', () => {}, bright)
+    }
+  }
+
+  const regist = () => {
+    timerMessage('잠시 기다려주세요', '판매 등록 중입니다', registTicketForSale, bright)
   }
 
   return (
@@ -48,7 +59,7 @@ export default function MintTradeDetailModal({ open, handleClose, saleContract, 
           onChange={e => setUserPK(e.target.value)}
           sx={{ width: '100%', margin: '16px 0' }}
         />
-        <Button variant="contained" sx={{ float: 'right' }} onClick={registTicketForSale}>
+        <Button variant="contained" sx={{ float: 'right' }} onClick={regist}>
           판매 등록
         </Button>
       </Box>

@@ -1,10 +1,9 @@
 import { Modal, Box, Typography, Card, Button, Input, TextField } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { getRequest, putRequest } from '../../api/requests'
 import { getTicketList, getTokenURI, burnTicket } from '../../functions/erc/ERCfunctions'
 
-import { checkMessage, timerMessage } from '../../functions/alert/alertFunctions'
+import { checkMessage, errorMessage, timerMessage } from '../../functions/alert/alertFunctions'
 import useBrightness from '../../hooks/useBrightness'
 
 const style = {
@@ -22,7 +21,6 @@ const style = {
 
 export default function MintCancelModal({ open, handleClose, targetConcertId }) {
   const userAddress = sessionStorage.getItem('address')
-  const navigate = useNavigate()
 
   const [tokenDatas, setTokenDatas] = useState([1])
   const [cancelTarget, setCancelTarget] = useState({})
@@ -51,33 +49,31 @@ export default function MintCancelModal({ open, handleClose, targetConcertId }) 
 
   const inputUserPK = e => setUserPK(e.target.value)
 
-  const cancel = async () => {
-    const address = tokenDatas[cancelTarget].contractAddress
-    const id = tokenDatas[cancelTarget].tokenId
-    const seatId = JSON.parse(tokenDatas[cancelTarget].seat).id
-    if (id) {
-      timerMessage(
-        '잠시 기다려주세요',
-        '취소를 처리 중입니다',
-        async () => {
-          await burnTicket(address, userPK, id)
-          checkMessage(
-            '예매가 취소되었습니다',
-            () => {
-              window.location.reload()
-            },
-            bright,
-          )
-          putRequest('api/ticket', { seatId })
+  const cancelTicketing = async () => {
+    try {
+      const address = tokenDatas[cancelTarget].contractAddress
+      const id = tokenDatas[cancelTarget].tokenId
+      const seatId = JSON.parse(tokenDatas[cancelTarget].seat).id
+      await burnTicket(address, userPK, id)
+      checkMessage(
+        '예매가 취소되었습니다',
+        () => {
+          window.location.reload()
         },
         bright,
       )
+      putRequest(`api/${seatId}/cancel`)
+    } catch {
+      errorMessage('예매 취소에 실패했습니다', () => {}, bright)
     }
+  }
+
+  const cancel = () => {
+    timerMessage('잠시 기다려주세요', '취소를 처리 중입니다', cancelTicketing, bright)
   }
 
   useEffect(() => {
     if (targetConcertId) {
-      console.log(targetConcertId)
       getContractAddress()
     }
     return
@@ -107,7 +103,6 @@ export default function MintCancelModal({ open, handleClose, targetConcertId }) 
                 onClick={() => {
                   setTarget(idx)
                 }}>
-                <Typography>{data.title}</Typography>
                 <Typography
                   sx={{
                     fontSize: 18,
@@ -115,10 +110,13 @@ export default function MintCancelModal({ open, handleClose, targetConcertId }) 
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     marginBottom: 1,
+                    fontWeight: 'bold',
                   }}>
+                  {data.title}
+                </Typography>
+                <Typography sx={{ float: 'right' }}>
                   {data.date} {data.time}
                 </Typography>
-                <Typography>{/* 좌석 정보: {data.area}-{data.seat.seat} */}</Typography>
               </Box>
             ))
           )}
