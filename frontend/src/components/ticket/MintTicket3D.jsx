@@ -15,14 +15,16 @@ function MintTicket3D({ concertData }) {
       Object.assign(document.createElement('video'), {
         src: src,
         crossOrigin: 'Anonymous',
+        autoPlay: true,
         loop: true,
         muted: true,
-        offset: { x: 1, y: 1 },
+        // offset: { x: 1, y: 1 },
       }),
     )
     const texture = Object.assign(new THREE.VideoTexture(video), { offset: { x: 0.2, y: 0 } })
 
-    useEffect(() => video.play(), [video])
+    // useEffect(() => video.play(), [video])
+    useEffect(() => video.play())
     const date = new Date()
 
     return (
