@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, Typography } from '@mui/material'
 import MintPageTemplate from '../common/MintPageTemplate'
 import MintFooter from '../footer/MintFooter'
-import MintHeader from '../header/MintHeader'
+import MintSubHeader from '../header/MintSubHeader'
 import MintBtn from '../common/MintBtn'
 // images
 import noticeImg1 from '../../images/notice/notice2-1.png'
@@ -10,7 +10,9 @@ import noticeImg2 from '../../images/notice/notice3-1.png'
 import noticeImg3 from '../../images/notice/notice3-2.png'
 
 function MintNotice3(props) {
-  return <MintPageTemplate header={<MintHeader />} contents={<Contents />} footer={<MintFooter />} />
+  return (
+    <MintPageTemplate header={<MintSubHeader content="메인으로" />} contents={<Contents />} footer={<MintFooter />} />
+  )
 }
 
 function Contents() {
