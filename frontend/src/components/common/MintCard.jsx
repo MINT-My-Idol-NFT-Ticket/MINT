@@ -10,6 +10,8 @@ import MintCollectionSingleSkeletion from '../skeleton/MintCollectionSingleSkele
 export default function MintCard2({ tokenId }) {
   const [tokenURI, setTokenURI] = useState(null)
   const navigate = useNavigate()
+  console.log(tokenId)
+  console.log(tokenURI)
   const showTicket = () => {
     navigate(`/trade/ticket`, { state: { ...tokenURI.data } })
   }
@@ -18,6 +20,8 @@ export default function MintCard2({ tokenId }) {
       const uri = await getTokenURI(tokenId.contractAddress, tokenId.tokenId)
       let response = ''
       if (uri) response = await getRequest(uri)
+      // if (uri) response = await getRequest(`/api/ticket/uriData/${uri}`)
+
       setTokenURI(response)
     } catch {
       navigate('/error404')
@@ -34,15 +38,10 @@ export default function MintCard2({ tokenId }) {
         <MintCollectionSingleSkeletion />
       ) : (
         <Card>
-          {tokenURI === '' ? (
+          {tokenURI !== '' ? (
             <></>
           ) : (
-            <CardMedia
-              component="img"
-              image={JSON.parse(tokenURI.data.img).gif}
-              alt="nft사진"
-              sx={{ height: '175px' }}
-            />
+            <CardMedia component="img" image={JSON.parse(tokenId.img).gif} alt="nft사진" sx={{ height: '175px' }} />
           )}
         </Card>
       )}

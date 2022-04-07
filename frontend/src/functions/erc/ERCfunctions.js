@@ -47,3 +47,5 @@ export const registSale = (saleContractAddress, senderPK, tokenId, price) =>
 //구매
 export const purchaseTicket = (saleContractAddress, senderPK, tokenId) =>
   ERC721Transactions.purchaseTicket(web3, saleContractAddress, senderPK, tokenId)
+
+export const getMintTicketAddress = saleContractAddress => ERC721Calls.MintTicketAddress(web3, saleContractAddress)
