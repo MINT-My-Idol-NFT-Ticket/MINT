@@ -1,6 +1,7 @@
 import { Box, Grid, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { BASE_URL } from '../../api/requests'
+import removeUnderBar from '../../functions/util/removeUnderBar'
 
 function MintPayConcertInfo({ concertInfo }) {
   return (
@@ -27,7 +28,7 @@ function MintPayConcertInfo({ concertInfo }) {
         <Typography variant="h6" sx={{ lineHeight: '23px', wordBreak: 'break-all' }}>
           {concertInfo.title}
         </Typography>
-        <Typography sx={{ marginBottom: '10px' }}>{concertInfo.artists[0].name}</Typography>
+        <Typography sx={{ marginBottom: '10px' }}>{removeUnderBar(concertInfo.artists[0].name)}</Typography>
         <Typography>{concertInfo.place}</Typography>
         <Typography>
           {concertInfo.date} {concertInfo.area}구역 {concertInfo.seat.seat}석
