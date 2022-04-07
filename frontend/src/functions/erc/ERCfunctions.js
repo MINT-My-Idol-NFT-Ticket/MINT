@@ -17,6 +17,9 @@ export const mintTicket = (contractAddress, sender, senderPK, tokenURI) =>
 // 예매 취소 시 티켓 burn
 export const burnTicket = (contractAddress, senderPK, tokenId) =>
   ERC721Transactions.cancelTicket(web3, contractAddress, senderPK, tokenId)
+
+export const approveNFT = (saleContractAddress, tokenId, senderPK) =>
+  ERC721Transactions.approve(web3, saleContractAddress, tokenId, senderPK)
 // 콘서트 가격 확인
 export const getPrice = contractAddress => ERC721Calls.getTicketPrice(web3, contractAddress)
 
@@ -28,6 +31,9 @@ export const getTicketList = (contractAddress, sender) => ERC721Calls.getTicketL
 export const getSaleList = contractAddress => ERC721Calls.getSaleList(web3, contractAddress)
 
 export const getTokenURI = (contractAddress, tokenId) => ERC721Calls.tokenURI(web3, contractAddress, tokenId)
+
+export const isApproved = (saleContractAddress, tokenId) =>
+  ERC721Calls.isApprovedOrOwner(web3, saleContractAddress, tokenId)
 
 //잔액확인
 export const balanceOfSSF = owner => ERC20Calls.balanceOf(web3, owner)
@@ -49,3 +55,6 @@ export const purchaseTicket = (saleContractAddress, senderPK, tokenId) =>
   ERC721Transactions.purchaseTicket(web3, saleContractAddress, senderPK, tokenId)
 
 export const getMintTicketAddress = saleContractAddress => ERC721Calls.MintTicketAddress(web3, saleContractAddress)
+
+export const getSaleTicketPrice = (saleContractAddress, tokenId) =>
+  ERC721Calls.SaleTicketPrice(web3, saleContractAddress, tokenId)

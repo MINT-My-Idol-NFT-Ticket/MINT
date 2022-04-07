@@ -16,32 +16,24 @@ export default function MintTradeContents() {
   const getSaleContractList = async () => {
     try {
       const response = await getRequest(`/api/concert/contracts`, { contract: 'salecontractaddress' })
-
+      const saleTicket = []
       for (let saleContractelement of response.data) {
-        const saleContractTicketArray = []
-        console.log(saleContractelement.saleContractAddress[0])
         const saletokenIdList = await getSaleList(saleContractelement.saleContractAddress[0])
-        const tempOnSaleArray = [...saletokenIdList]
-        console.log(tempOnSaleArray)
-        const saleTicket = []
-        for (let j = 0; j < tempOnSaleArray.length; j++) {
-          const ticketAddress = await getMintTicketAddress(saleContractelement.saleContractAddress[0])
-          console.log(ticketAddress)
-          // const ticketTokenURI = await getTokenURI(ticketAddress, tempOnSaleArray[i])
-          // const response = await getRequest(`api/ticket/uriData/${ticketTokenURI}`)
-          // console.log(response)
-          // saleTicket.push(response.data[0])
-        }
-        saleContractTicketArray.push(...saleTicket)
+        const tokenIdArray = [...saletokenIdList]
 
-        setMedatData(...metaData, ...saleContractTicketArray)
+        for (let j = 0; j < tokenIdArray.length; j++) {
+          const ticketAddress = await getMintTicketAddress(saleContractelement.saleContractAddress[0])
+          const ticketTokenURI = await getTokenURI(ticketAddress, tokenIdArray[j])
+          console.log(ticketTokenURI)
+          const response = await getRequest(`api/ticket/uriData/${ticketTokenURI}`)
+          saleTicket.push({ ...response.data, tokenId: tokenIdArray[j], saleContract: ticketAddress })
+        }
       }
+      setMedatData(saleTicket)
     } catch {
-      // navigate('/error404')
+      navigate('/error404')
     }
   }
-
-  const getOnSaleTicketTokens = async () => {}
 
   useEffect(() => {
     if (checkNotAddress(() => navigate('/address'))) {
@@ -49,21 +41,19 @@ export default function MintTradeContents() {
     }
   }, [])
 
-  const setSaleTest = () => {}
-
   return (
     <div className="MintTrade__cardList">
-      {testData.length === 0 ? (
+      {metaData.length === 0 ? (
         <MintCollectionsSkeleton />
       ) : (
         <Grid container spacing={{ xs: 2 }}>
-          {testData.map(tokenId => (
+          {metaData.map(tokenURI => (
             <Grid
               item
-              key={`${tokenId.tokenId}-${tokenId.contractAddress}`}
+              key={`${tokenURI.tokenId}-${tokenURI.contractAddress}`}
               xs={4}
               sx={{ width: '33.33%', height: '200px', borderRadius: '5px' }}>
-              <MintCard tokenId={tokenId} />
+              <MintCard tokenURI={tokenURI} />
               {/* <Button onClick={}></Button> */}
             </Grid>
           ))}
