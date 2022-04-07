@@ -8,10 +8,12 @@ contract SaleTicket {
    
     MintTicket public mintTicketAddress;
     IERC20 public erc20Contract;
+    address public linkedContract;
 
     constructor (address _mintTicketAddress, address _currencyAddress) {
         mintTicketAddress = MintTicket(_mintTicketAddress);
         erc20Contract = IERC20(_currencyAddress);
+        linkedContract = _mintTicketAddress;
     }
 
     mapping(uint256 => uint256) public ticketPrices;
@@ -69,5 +71,9 @@ contract SaleTicket {
     function getTicketPrice(uint256 _tokenId) view public returns(uint256) {
         
         return ticketPrices[_tokenId];
+    }
+
+    function getLinkedContract() view public returns(address) {
+        return linkedContract;
     }
 }

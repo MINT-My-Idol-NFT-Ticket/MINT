@@ -21,7 +21,6 @@ const style = {
 
 export default function MintCancelModal({ open, handleClose, targetConcertId }) {
   const userAddress = sessionStorage.getItem('address')
-
   const [tokenDatas, setTokenDatas] = useState([1])
   const [cancelTarget, setCancelTarget] = useState({})
   const [userPK, setUserPK] = useState('')
