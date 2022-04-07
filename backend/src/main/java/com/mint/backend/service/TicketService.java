@@ -83,6 +83,19 @@ public class TicketService {
         return true;
     }
 
+    //좌석 예매 취소
+    public boolean seatCancel(Long seatId){
+        try{
+            Seat seat = seatRepository.findById(seatId).orElseThrow(RuntimeException::new);
+            seat.cancelSeat();
+            seatRepository.save(seat);
+        }catch (Exception e) {
+            log.error("좌석 예매 취소 실패", e);
+            return false;
+        }
+        return true;
+    }
+
 //     구역별 잔여 좌석 전체 조회
     @Transactional(readOnly = true)
     public List<ResponseSeatAllDto> getExtraSeat(Long timesId){
