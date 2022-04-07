@@ -12,7 +12,7 @@ export default function GenerateError(swal, title, text, callback, bright) {
     })
     .then(res => {
       if (res.isDismissed) {
-        callback()
+        if (callback) callback()
       }
     })
 }

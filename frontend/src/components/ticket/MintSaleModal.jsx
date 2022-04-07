@@ -1,8 +1,9 @@
 import { Modal, Box, TextField, Button } from '@mui/material'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { checkMessage, errorMessage, timerMessage } from '../../functions/alert/alertFunctions'
-import { approveNFT, approveSSF, isApproved, registSale } from '../../functions/erc/ERCfunctions'
+import { approveNFT, approveSSF, getMintTicketAddress, getApproved, registSale } from '../../functions/erc/ERCfunctions'
 import useBrightness from '../../hooks/useBrightness'
 
 const style = {
@@ -23,14 +24,16 @@ export default function MintTradeDetailModal({ open, handleClose, saleContract, 
   const [price, setPrice] = useState()
   const [bright, _] = useBrightness()
 
+  const navigate = useNavigate()
   const registTicketForSale = async () => {
     try {
+      const contractAddress = await getMintTicketAddress(saleContract)
+      const approvedContract = await getApproved(contractAddress, tokenId)
+      if (saleContract !== approvedContract) await approveNFT(saleContract, contractAddress, tokenId, userPK)
       await registSale(saleContract, userPK, tokenId, price)
-      await approveNFT(userPK, saleContract, tokenId)
-      console.log(await isApproved(saleContract, tokenId))
-      checkMessage('판매가 등록되었습니다', () => {}, bright)
+      checkMessage('판매가 등록되었습니다', navigate(-1), bright)
     } catch {
-      errorMessage('등록에 실패했습니다', () => {}, bright)
+      errorMessage('등록에 실패했습니다', null, null, bright)
     }
   }
 
@@ -61,7 +64,7 @@ export default function MintTradeDetailModal({ open, handleClose, saleContract, 
           onChange={e => setUserPK(e.target.value)}
           sx={{ width: '100%', margin: '16px 0' }}
         />
-        <Button variant="contained" sx={{ float: 'right' }} onClick={regist}>
+        <Button variant="contained" sx={{ float: 'right' }} onClick={registTicketForSale}>
           판매 등록
         </Button>
       </Box>

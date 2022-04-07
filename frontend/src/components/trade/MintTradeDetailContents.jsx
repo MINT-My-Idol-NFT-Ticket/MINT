@@ -8,7 +8,7 @@ import MintBtn from '../common/MintBtn'
 import MintTradeDetailModal from './MintTradeDetailModal'
 
 export default function MintTradeDetailContents() {
-  const location = useLocation()
+  const location = useLocation().state.tokenURI
   const navigate = useNavigate()
   const [payOpen, setPayOpen] = useState(false)
   const handlePayOpen = () => setPayOpen(true)
@@ -28,7 +28,7 @@ export default function MintTradeDetailContents() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      {/* <Typography
+      <Typography
         sx={{
           color: 'rgb(32, 129, 226)',
           fontSize: '16px',
@@ -36,7 +36,7 @@ export default function MintTradeDetailContents() {
           padding: '15px',
           overflow: 'hidden',
         }}>
-        {location.state.concert}
+        {location.concert}
       </Typography>
       <Typography
         sx={{
@@ -48,7 +48,7 @@ export default function MintTradeDetailContents() {
           boxSizing: 'border-box',
           padding: '0 0 15px 15px',
         }}>
-        {location.state.title}
+        {location.title}
       </Typography>
       <Card
         sx={{
@@ -58,7 +58,7 @@ export default function MintTradeDetailContents() {
           justifyContent: 'center',
           margin: '10px',
         }}>
-        <CardMedia component="img" image={location.state.imgUrl} alt="nft사진" />
+        <CardMedia component="img" image={JSON.parse(location.img).gif} alt="nft사진" />
         <CardContent
           sx={{
             width: '100%',
@@ -66,10 +66,7 @@ export default function MintTradeDetailContents() {
             justifyContent: 'space-between',
             boxSizing: 'border-box',
             mb: '-10px',
-          }}>
-          <Typography sx={owner}>owner By</Typography>
-          <Typography sx={owner}>{location.state.ownerAccount}</Typography>
-        </CardContent>
+          }}></CardContent>
       </Card>
 
       <Box
@@ -81,12 +78,12 @@ export default function MintTradeDetailContents() {
           boxSizing: 'border-box',
         }}>
         <Typography sx={price}>Price</Typography>
-        <Typography sx={price}>{location.state.price}</Typography>
+        <Typography sx={price}>{location.price}</Typography>
       </Box>
       <Box>
-        <MintTradeDetailModal open={payOpen} handleClose={handlePayClose} ticketInfo={ticketInfo} />
+        <MintTradeDetailModal open={payOpen} handleClose={handlePayClose} tokenURI={location} />
         <MintBtn name="결제하기" link={{ handleClick: handlePayOpen }} passData={location.state} />
-      </Box> */}
+      </Box>
     </Box>
   )
 }
