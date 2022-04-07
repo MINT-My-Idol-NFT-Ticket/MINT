@@ -18,14 +18,6 @@ export default function MintTradeDetailContents() {
     checkNotAddress(() => navigate('/address'))
   }, [])
 
-  // const ticketInfo = {
-  //   img: location.state.imgUrl,
-  //   title: location.state.title,
-  //   price: location.state.price,
-  //   owner: location.state.ownerAccount,
-  //   tokenId: location.state.tokenId,
-  // }
-
   return (
     <Box sx={{ width: '100%' }}>
       <Typography

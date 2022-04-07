@@ -29,7 +29,10 @@ export default function MintTradeDetailModal({ open, handleClose, saleContract, 
     try {
       const contractAddress = await getMintTicketAddress(saleContract)
       const approvedContract = await getApproved(contractAddress, tokenId)
-      if (saleContract !== approvedContract) await approveNFT(saleContract, contractAddress, tokenId, userPK)
+
+      if (saleContract !== approvedContract) {
+        await approveNFT(saleContract, contractAddress, tokenId, userPK)
+      }
       await registSale(saleContract, userPK, tokenId, price)
       checkMessage('판매가 등록되었습니다', navigate(-1), bright)
     } catch {

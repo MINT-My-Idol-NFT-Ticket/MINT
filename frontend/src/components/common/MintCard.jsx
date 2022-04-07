@@ -6,7 +6,6 @@ import { getSaleTicketPrice } from '../../functions/erc/ERCfunctions'
 import MintCollectionSingleSkeletion from '../skeleton/MintCollectionSingleSkeletion'
 
 export default function MintCard({ tokenURI }) {
-  console.log(tokenURI)
   const navigate = useNavigate()
   const showTicket = () => {
     navigate(`/trade/ticket`, { state: { tokenURI } })
