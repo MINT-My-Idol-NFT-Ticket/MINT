@@ -67,7 +67,7 @@ export default function MintTradeDetailModal({ open, handleClose, saleContract, 
           onChange={e => setUserPK(e.target.value)}
           sx={{ width: '100%', margin: '16px 0' }}
         />
-        <Button variant="contained" sx={{ float: 'right' }} onClick={registTicketForSale}>
+        <Button variant="contained" sx={{ float: 'right' }} onClick={regist}>
           판매 등록
         </Button>
       </Box>
