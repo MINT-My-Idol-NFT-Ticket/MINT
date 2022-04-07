@@ -99,9 +99,10 @@ export async function cancelTicket(web3, contractAddress, senderPK, tokenId) {
   return result
 }
 
-export async function setForSaleTicket(web3, saleContractAddress, tokenId, price) {
-  const contract = new web3.eth.Contract(MINT_ABI, saleContractAddress)
-  const transaction = contract.methods.cancelTicket(tokenId, price)
+export async function setForSaleTicket(web3, saleContractAddress, senderPK, tokenId, price) {
+  console.log(saleContractAddress)
+  const contract = new web3.eth.Contract(SALE_ABI, saleContractAddress)
+  const transaction = contract.methods.setForSaleTicket(tokenId, price)
 
   const gas = '3000000'
   const options = {
@@ -111,14 +112,14 @@ export async function setForSaleTicket(web3, saleContractAddress, tokenId, price
   }
 
   try {
-    await send(web3, options, ADMIN_PK)
+    await send(web3, options, senderPK)
   } catch {
     console.log('전송 실패')
   }
 }
 
-export async function purchaseTicket(web3, saleContractAddress, tokenId) {
-  const contract = new web3.eth.Contract(MINT_ABI, saleContractAddress)
+export async function purchaseTicket(web3, senderPK, saleContractAddress, tokenId) {
+  const contract = new web3.eth.Contract(SALE_ABI, saleContractAddress)
   const transaction = contract.methods.cancelTicket(tokenId)
 
   const gas = '3000000'
@@ -129,7 +130,7 @@ export async function purchaseTicket(web3, saleContractAddress, tokenId) {
   }
 
   try {
-    await send(web3, options, ADMIN_PK)
+    await send(web3, options, senderPK)
   } catch {
     console.log('전송 실패')
   }
