@@ -92,4 +92,8 @@ public class TicketController {
         return new ResponseEntity<ResponseUriDataDto>(ticketService.findUriData(id), HttpStatus.OK);
     }
 
+    @PutMapping("/seat/{seatid}/cancel")
+    public ResponseEntity<Boolean> seatCancel(@PathVariable Long seatid){
+        return new ResponseEntity<>(ticketService.seatCancel(seatid), HttpStatus.OK);
+    }
 }

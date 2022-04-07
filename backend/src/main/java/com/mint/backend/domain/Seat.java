@@ -44,4 +44,7 @@ public class Seat {
         this.date= new Date();
 
     }
+    public void cancelSeat(){
+        this.status = 0;
+    }
 }
