@@ -70,15 +70,22 @@ export async function getSaleList(web3, contractAddress) {
 export async function SaleTicketPrice(web3, saleContractAddress, tokenId) {
   const contract = new web3.eth.Contract(SALE_ABI, saleContractAddress)
   const transaction = contract.methods.getTicketPrice(tokenId)
-  const response = await transaction.call()
 
-  return response
+  try {
+    const response = await transaction.call()
+    return response
+  } catch {
+    return false
+  }
 }
 
 export async function getApproved(web3, contractAddress, tokenId) {
   const contract = new web3.eth.Contract(MINT_ABI, contractAddress)
   const transaction = contract.methods.getApproved(tokenId)
-  const response = await transaction.call()
-  console.log(response)
-  return response
+  try {
+    const response = await transaction.call()
+    return response
+  } catch {
+    return false
+  }
 }

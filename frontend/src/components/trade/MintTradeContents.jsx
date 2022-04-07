@@ -23,11 +23,17 @@ export default function MintTradeContents() {
         const tokenIdArray = [...saletokenIdList]
 
         for (let j = 0; j < tokenIdArray.length; j++) {
-          const ticketAddress = await getMintTicketAddress(saleContractAddress)
-          const ticketTokenURI = await getTokenURI(ticketAddress, tokenIdArray[j])
+          const contractAddress = await getMintTicketAddress(saleContractAddress)
+          const ticketTokenURI = await getTokenURI(contractAddress, tokenIdArray[j])
           const response = await getRequest(`api/ticket/uriData/${ticketTokenURI}`)
           const price = await getSaleTicketPrice(saleContractAddress, tokenIdArray[j])
-          saleTicket.push({ ...response.data, tokenId: tokenIdArray[j], saleContract: ticketAddress, price: price })
+          saleTicket.push({
+            ...response.data,
+            tokenId: tokenIdArray[j],
+            contractAddress,
+            saleContractAddress,
+            price: price,
+          })
         }
       }
       setMedatData(saleTicket)

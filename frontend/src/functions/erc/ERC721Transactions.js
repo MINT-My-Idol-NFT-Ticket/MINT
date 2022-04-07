@@ -18,7 +18,7 @@ export async function deployTicketContract(web3, price) {
     const result = await send(web3, options, ADMIN_PK)
     return result.contractAddress
   } catch {
-    console.log('배포 실패')
+    console.log('fail to deploy')
   }
 }
 
@@ -41,7 +41,7 @@ export async function deploySaleContract(web3, mintTicketAddress) {
     const result = await send(web3, options, ADMIN_PK)
     return result.contractAddress
   } catch {
-    console.log('배포 실패')
+    console.log('fail to deploy')
   }
 }
 
@@ -61,7 +61,7 @@ export async function buyTicket(web3, contractAddress, sender, senderPK, tokenUR
     const result = await send(web3, options, senderPK)
     return result.status ? true : false
   } catch {
-    console.log('민팅 실패')
+    console.log('fail to minting')
   }
 }
 
@@ -77,9 +77,9 @@ export async function setSaleTicket(web3, ticketContractAddress, saleContractAdd
   }
 
   try {
-    await send(web3, options, ADMIN_PK)
+    return await send(web3, options, ADMIN_PK)
   } catch {
-    console.log('전송 실패')
+    console.log('fail to resist')
   }
 }
 
@@ -94,9 +94,11 @@ export async function cancelTicket(web3, contractAddress, senderPK, tokenId) {
     gas,
   }
 
-  const result = await send(web3, options, senderPK)
-
-  return result
+  try {
+    return await send(web3, options, senderPK)
+  } catch {
+    console.log('fail to burn')
+  }
 }
 
 export async function setForSaleTicket(web3, saleContractAddress, senderPK, tokenId, price) {
@@ -114,7 +116,7 @@ export async function setForSaleTicket(web3, saleContractAddress, senderPK, toke
   try {
     await send(web3, options, senderPK)
   } catch {
-    console.log('전송 실패')
+    console.log('fail to resist')
   }
 }
 
@@ -128,9 +130,11 @@ export async function purchaseTicket(web3, senderPK, saleContractAddress, tokenI
     data: transaction.encodeABI(),
     gas,
   }
-
-  await send(web3, options, senderPK)
-  // console.log('전송 실패')
+  try {
+    await send(web3, options, senderPK)
+  } catch {
+    console.log('fail to transfer')
+  }
 }
 
 export async function approve(web3, saleContractAddress, contractAddress, tokenId, senderPK) {
@@ -143,6 +147,9 @@ export async function approve(web3, saleContractAddress, contractAddress, tokenI
     data: transaction.encodeABI(),
     gas,
   }
-  const result = await send(web3, options, senderPK)
-  console.log(result)
+  try {
+    return await send(web3, options, senderPK)
+  } catch {
+    console.log('fail to get approve')
+  }
 }

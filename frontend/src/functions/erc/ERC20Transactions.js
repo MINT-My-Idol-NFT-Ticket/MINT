@@ -16,7 +16,7 @@ export async function transfer(web3, from, fromPK, to, amount) {
     const result = await send(web3, options, fromPK)
     return result
   } catch {
-    console.log('전송 실패')
+    console.log('fail to transfer')
   }
 }
 
@@ -35,15 +35,13 @@ export async function transferFrom(web3, operatorPK, from, to, amount) {
     const result = await await send(web3, options, operatorPK)
     return result
   } catch {
-    console.log('전송 실패')
+    console.log('fail to transfer')
   }
 }
 
 //owner가 spender에게 amount의 토큰 권한 부여
 export async function approve(web3, ownerPK, spender, amount) {
-  console.log(ownerPK)
-  console.log(spender)
-  console.log(amount)
+  console.log(ownerPK, spender, amount)
   const contractInstance = new web3.eth.Contract(ERC20_ABI, ERC20ADDRESS)
   const transactionInstance = contractInstance.methods.approve(spender, amount)
   const gas = '300000'
@@ -57,6 +55,6 @@ export async function approve(web3, ownerPK, spender, amount) {
     const result = await send(web3, options, ownerPK)
     return result
   } catch {
-    console.log('전송 실패')
+    console.log('fail to get approvement')
   }
 }

@@ -31,7 +31,6 @@ import MintTradeDetail from './pages/MintTradeDetail.jsx'
 import MintConnectWallet from './pages/MintAddress'
 import MintQR from './pages/MintQR'
 import MintNotFound404 from './pages/MintNotFound404.jsx'
-import TicketTest from './components/ticket/TicketTest.jsx'
 
 function App({ setMode }) {
   const [bright, _] = useBrightness()
@@ -65,7 +64,6 @@ function App({ setMode }) {
         <Route exact path="/trade/ticket" element={<MintTradeDetail />} />
         <Route path="/ticket/confirm" element={<MintQR />} />
         <Route path="/error404" element={<MintNotFound404 />} />
-        <Route path="/ticket/test" element={<TicketTest />} />
       </Routes>
     </BrowserRouter>
   )

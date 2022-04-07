@@ -1,8 +1,9 @@
 import { Modal, Box, Typography, TextField, Button, Grid } from '@mui/material'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-import { approveSSF, balanceOfSSF, purchaseTicket, allowanceSSF } from '../../functions/erc/ERCfunctions'
-import { errorMessage, timerMessage } from '../../functions/alert/alertFunctions'
+import { approveSSF, balanceOfSSF, purchaseTicket } from '../../functions/erc/ERCfunctions'
+import { checkMessage, errorMessage, timerMessage } from '../../functions/alert/alertFunctions'
 import useBrightness from '../../hooks/useBrightness'
 
 const style = {
@@ -20,20 +21,29 @@ const style = {
 
 export default function MintTradeDetailModal({ open, handleClose, tokenURI }) {
   const userAddress = sessionStorage.getItem('address')
+  // const contractAddress = tokenURI.contractAddress
+  const saleContractAddress = tokenURI.saleContractAddress
+  const navigate = useNavigate()
 
   const [userPK, setUserPK] = useState('')
   const [wallet, setWallet] = useState(0)
   const [bright, _] = useBrightness()
+
   const checkWalletBalance = async () => {
     const response = await balanceOfSSF(userAddress)
     setWallet(response)
   }
-
   const tradeTicket = async () => {
     try {
-      await approveSSF(userPK, tokenURI.saleContract, tokenURI.price)
-      console.log(await allowanceSSF(sessionStorage.getItem('address'), tokenURI.saleContract))
-      await purchaseTicket(tokenURI.saleContract, userPK, tokenURI.tokenId)
+      await approveSSF(userPK, saleContractAddress, tokenURI.price)
+      await purchaseTicket(userPK, saleContractAddress, tokenURI.tokenId)
+      checkMessage(
+        '티켓을 구매했습니다',
+        () => {
+          navigate('/mypage')
+        },
+        bright,
+      )
     } catch (error) {
       errorMessage('거래에 실패했습니다', '잔액이 부족하거나 이미 소유 중입니다', null, bright)
     } finally {

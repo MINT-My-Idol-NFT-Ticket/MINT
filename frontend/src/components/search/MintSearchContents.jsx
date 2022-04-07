@@ -3,7 +3,6 @@ import { Box, Typography } from '@mui/material'
 import MintHorizontalCard from '../common/MintHorizontalCard'
 
 export default function MintSearchContents({ searchList }) {
-  console.log(searchList, 'searchList')
   return (
     <Box sx={{ padding: '0 20px' }}>
       <Box>
