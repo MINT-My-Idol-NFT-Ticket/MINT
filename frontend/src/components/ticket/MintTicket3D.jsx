@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Stars, useGLTF, Bounds, Html, useProgress, useTexture } from '@react-three/drei'
+import { OrbitControls, Stars, useGLTF, Bounds, Html, useProgress } from '@react-three/drei'
 import MintTicketInfo from './MintTicketInfo'
 
 function MintTicket3D({ concertData }) {
